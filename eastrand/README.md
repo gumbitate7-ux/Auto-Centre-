@@ -38,6 +38,22 @@ Fill in `business` in `site.config.js` (phone, WhatsApp, email, address, hours, 
 3. Confirm the services list with the owner.
 4. Set `demoNotes: false`, rebuild, and upload the contents of `dist/` to any static host.
 
+## Photos to take at the workshop
+
+Free stock photography with South African (GP) plates isn't available, so the most local-looking result comes from 10 minutes with a phone at the workshop. Landscape, daylight or workshop lights on, no people's faces needed:
+
+1. **Hero:** a customer car on the lift or in the bay, GP plate visible, shot low and wide.
+2. **Why us:** a technician's hands at work under a bonnet or wheel arch.
+3. **Gallery (4):** a bakkie (Hilux or Ranger) in for a service, a brake job with the wheel off, the diagnostic scanner plugged in, and a finished car ready for collection at the gate.
+4. **Services (8):** one close-up per service. Oil, brakes, scanner, suspension, battery, gearbox, engine bay, aircon vent.
+
+Blur or crop any customer's plate the owner doesn't want shown. Then drop the files in `assets/img/` and point each `images` entry in `site.config.js` at them.
+
+## South African details
+
+- `business.plate` draws a personalised Gauteng-style plate ("EASTRAND GP") in the hero. Change the text, or the province code if needed.
+- The quote form has an optional registration field styled as a number plate. Whatever's typed is sent in the WhatsApp message in capitals.
+
 ## What the page does for leads
 
 - One clear next step per section: book, WhatsApp or call.

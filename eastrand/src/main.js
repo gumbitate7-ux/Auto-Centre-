@@ -211,6 +211,7 @@
         `Name: ${f.name.value.trim()}`,
         `Phone: ${f.phone.value.trim()}`,
         f.vehicle.value.trim() && `Vehicle: ${f.vehicle.value.trim()}`,
+        f.reg.value.trim() && `Registration: ${f.reg.value.trim().toUpperCase()}`,
         `Service: ${f.service.value}`,
         f.message.value.trim() && `\n${f.message.value.trim()}`,
       ].filter(Boolean);

@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unsplash.com">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Geist:wght@300..800&display=swap" rel="stylesheet">
 <script>
   // Runs before images load: any photo that fails gets its frame's designed placeholder.
   document.documentElement.classList.add("js");
@@ -166,7 +166,13 @@
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content container">
-    <p class="eyebrow hero-eyebrow">East Rand • Kempton Park</p>
+    <div class="hero-top">
+      <p class="eyebrow hero-eyebrow">East Rand • Kempton Park</p>
+      <span class="plate hero-plate" role="img" aria-label="Number plate reading EASTRAND GP">
+    <span class="plate-chars" aria-hidden="true">EASTRAND<span class="plate-gap"></span>GP</span>
+    <span class="plate-region" aria-hidden="true">Gauteng</span>
+  </span>
+    </div>
     <h1 class="hero-title" id="hero-title"><span class="line"><span>Your car.</span></span><span class="line"><span>Our craft.</span></span></h1>
     <div class="hero-foot">
       <p class="hero-body">Professional automotive repairs and servicing in the East Rand, with workmanship you can trust.</p>
@@ -373,6 +379,13 @@
         <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
       </div>
       <div class="field">
+        <label for="f-reg">Registration <span class="opt">(optional)</span></label>
+        <span class="plate plate-input">
+          <input id="f-reg" name="reg" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="AB 12 CD GP">
+          <span class="plate-region" aria-hidden="true">Gauteng</span>
+        </span>
+      </div>
+      <div class="field field-full">
         <label for="f-service">Service required</label>
         <div class="select">
           <select id="f-service" name="service">

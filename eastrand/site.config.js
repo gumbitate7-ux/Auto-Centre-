@@ -11,6 +11,8 @@ export default {
   business: {
     name: "Eastrand Auto Repairs",
     wordmark: ["Eastrand", "Auto Repairs"],
+    // Personalised-plate graphic shown in the hero. Text + province code, as on a South African plate.
+    plate: { text: "EASTRAND", province: "GP", region: "Gauteng" },
     positioning: "Professional automotive care without the dealership price tag.",
 
     // Leave blank until confirmed with the owner. Blank values never render as fake data:

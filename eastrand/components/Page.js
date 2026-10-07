@@ -61,7 +61,7 @@ ${s.url ? `<meta property="og:url" content="${esc(s.url)}">` : ""}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unsplash.com">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Geist:wght@300..800&display=swap" rel="stylesheet">
 <script>
   // Runs before images load: any photo that fails gets its frame's designed placeholder.
   document.documentElement.classList.add("js");

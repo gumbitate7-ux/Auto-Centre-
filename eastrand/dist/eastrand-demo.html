@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unsplash.com">
 <link rel="preconnect" href="https://images.unsplash.com">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Geist:wght@300..800&display=swap" rel="stylesheet">
 <script>
   // Runs before images load: any photo that fails gets its frame's designed placeholder.
   document.documentElement.classList.add("js");
@@ -167,6 +167,34 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   font-size: .75rem; letter-spacing: .04em; color: var(--on-dark-faint);
 }
 
+/* ---------- South African number plate (Gauteng style) ---------- */
+.plate {
+  --plate-ink: #111;
+  position: relative; display: inline-grid; justify-items: center; align-content: center;
+  padding: 7px 18px 5px;
+  background: linear-gradient(180deg, #FDFDFB, #ECEBE6);
+  color: var(--plate-ink);
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 2px var(--plate-ink), inset 0 0 0 4px #FDFDFB, 0 10px 30px rgba(0, 0, 0, .35);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  line-height: 1;
+}
+.plate-chars { display: flex; align-items: baseline; font-size: 1.75rem; font-weight: 600; letter-spacing: .08em; }
+.plate-gap { width: .4em; }
+.plate-region { margin-top: 3px; font-family: var(--font); font-size: .5rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; opacity: .7; }
+.hero-plate { flex: none; }
+
+.plate-input { display: grid; width: 100%; padding: 6px 14px 6px; box-shadow: inset 0 0 0 2px var(--plate-ink), inset 0 0 0 4px #FDFDFB; }
+.field .plate-input input {
+  width: 100%; min-height: 40px; padding: 0; border: 0; background: transparent; color: var(--plate-ink);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 1.625rem; font-weight: 600; letter-spacing: .1em;
+  text-align: center; text-transform: uppercase;
+}
+.field .plate-input input::placeholder { color: rgba(17, 17, 17, .28); }
+.field .plate-input input:focus { outline: none; background: transparent; border: 0; }
+.plate-input:focus-within { outline: 2px solid var(--amber); outline-offset: 3px; }
+.plate-input .plate-region { margin-top: 0; }
+
 /* ==========================================================================
    Navbar
    ========================================================================== */
@@ -270,6 +298,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     linear-gradient(90deg, rgba(11, 11, 11, .7) 0%, rgba(11, 11, 11, .15) 60%, rgba(11, 11, 11, 0) 100%);
 }
 .hero-content { padding-top: calc(var(--nav-h) + 48px); padding-bottom: clamp(56px, 10vh, 112px); }
+.hero-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: clamp(20px, 3vh, 32px); }
+.hero-top .hero-eyebrow { margin-bottom: 0; }
 .hero-eyebrow { display: flex; align-items: center; gap: 14px; color: var(--on-dark-dim); margin-bottom: clamp(20px, 3vh, 32px); }
 .hero-eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--amber); }
 .hero-title {
@@ -297,7 +327,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   .js .hero-title .line > span { animation: rise 1.1s var(--ease-out) both; }
   .js .hero-title .line:nth-child(1) > span { animation-delay: .25s; }
   .js .hero-title .line:nth-child(2) > span { animation-delay: .38s; }
-  .js .hero-eyebrow { animation: fade-up .9s var(--ease-out) .15s both; }
+  .js .hero-top { animation: fade-up .9s var(--ease-out) .15s both; }
   .js .hero-foot { animation: fade-up 1s var(--ease-out) .65s both; }
   .js .hero-trust { animation: fade 1s ease 1s both; }
   .js .nav { animation: fade 1s ease .1s both; }
@@ -521,6 +551,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   .hero-foot { grid-template-columns: 1fr; }
   .hero-ctas .btn { flex: 1 1 auto; }
   .hero-trust { display: none; }
+  .hero-top { flex-wrap: wrap; }
+  .hero-plate .plate-chars { font-size: 1.25rem; }
+  .hero-plate { padding: 5px 12px 4px; }
 
   .svc-row { grid-template-columns: 2.25rem 1fr 20px; padding: 18px 0; gap: 12px; }
   .svc-title { font-size: 1.0625rem; }
@@ -707,7 +740,13 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content container">
-    <p class="eyebrow hero-eyebrow">East Rand • Kempton Park</p>
+    <div class="hero-top">
+      <p class="eyebrow hero-eyebrow">East Rand • Kempton Park</p>
+      <span class="plate hero-plate" role="img" aria-label="Number plate reading EASTRAND GP">
+    <span class="plate-chars" aria-hidden="true">EASTRAND<span class="plate-gap"></span>GP</span>
+    <span class="plate-region" aria-hidden="true">Gauteng</span>
+  </span>
+    </div>
     <h1 class="hero-title" id="hero-title"><span class="line"><span>Your car.</span></span><span class="line"><span>Our craft.</span></span></h1>
     <div class="hero-foot">
       <p class="hero-body">Professional automotive repairs and servicing in the East Rand, with workmanship you can trust.</p>
@@ -914,6 +953,13 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
         <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
       </div>
       <div class="field">
+        <label for="f-reg">Registration <span class="opt">(optional)</span></label>
+        <span class="plate plate-input">
+          <input id="f-reg" name="reg" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="AB 12 CD GP">
+          <span class="plate-region" aria-hidden="true">Gauteng</span>
+        </span>
+      </div>
+      <div class="field field-full">
         <label for="f-service">Service required</label>
         <div class="select">
           <select id="f-service" name="service">
@@ -1173,6 +1219,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
         `Name: ${f.name.value.trim()}`,
         `Phone: ${f.phone.value.trim()}`,
         f.vehicle.value.trim() && `Vehicle: ${f.vehicle.value.trim()}`,
+        f.reg.value.trim() && `Registration: ${f.reg.value.trim().toUpperCase()}`,
         `Service: ${f.service.value}`,
         f.message.value.trim() && `\n${f.message.value.trim()}`,
       ].filter(Boolean);

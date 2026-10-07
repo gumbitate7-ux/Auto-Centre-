@@ -1,4 +1,4 @@
-import { esc, img, icon, lines, whatsappHref, waMessages } from "./_lib.js";
+import { esc, img, icon, lines, plate, whatsappHref, waMessages } from "./_lib.js";
 
 export default function Hero(cfg) {
   const h = cfg.hero;
@@ -9,7 +9,10 @@ export default function Hero(cfg) {
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-content container">
-    <p class="eyebrow hero-eyebrow">${esc(h.eyebrow)}</p>
+    <div class="hero-top">
+      <p class="eyebrow hero-eyebrow">${esc(h.eyebrow)}</p>
+      ${plate(cfg, "hero-plate")}
+    </div>
     <h1 class="hero-title" id="hero-title">${lines(h.headline)}</h1>
     <div class="hero-foot">
       <p class="hero-body">${esc(h.body)}</p>

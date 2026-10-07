@@ -66,3 +66,12 @@ export const pad2 = (n) => String(n).padStart(2, "0");
 
 /** Section heading split into lines, each line revealed in sequence. */
 export const lines = (arr) => arr.map((l) => `<span class="line"><span>${esc(l)}</span></span>`).join("");
+
+/** A Gauteng-style personalised number plate, drawn in HTML/CSS. */
+export const plate = (cfg, cls = "") => {
+  const pl = cfg.business.plate;
+  return `<span class="plate${cls ? " " + cls : ""}" role="img" aria-label="Number plate reading ${esc(pl.text)} ${esc(pl.province)}">
+    <span class="plate-chars" aria-hidden="true">${esc(pl.text)}<span class="plate-gap"></span>${esc(pl.province)}</span>
+    <span class="plate-region" aria-hidden="true">${esc(pl.region)}</span>
+  </span>`;
+};

@@ -47,6 +47,13 @@ export default function Contact(cfg) {
         <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
       </div>
       <div class="field">
+        <label for="f-reg">Registration <span class="opt">(optional)</span></label>
+        <span class="plate plate-input">
+          <input id="f-reg" name="reg" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="AB 12 CD GP">
+          <span class="plate-region" aria-hidden="true">${esc(b.plate.region)}</span>
+        </span>
+      </div>
+      <div class="field field-full">
         <label for="f-service">Service required</label>
         <div class="select">
           <select id="f-service" name="service">

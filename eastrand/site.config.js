@@ -4,8 +4,8 @@
 // ============================================================================
 
 export default {
-  // While true, small "Demo" tags explain which content is placeholder.
-  // Set to false before showing a finished site to the public.
+  // While true, the footer notes that this is a concept with demo photography.
+  // Set to false once the real details and photos are in.
   demoNotes: true,
 
   business: {
@@ -61,16 +61,10 @@ export default {
     work2:       { unsplash: "x1LGDpkRSDs", alt: "Brake disc and caliper behind a BMW wheel", position: "50% 50%", credit: "Unsplash" },
     work3:       { unsplash: "0cTvMZHuVZE", alt: "White BMW in a dark garage", position: "50% 50%", credit: "RanaMotorWorks / Unsplash" },
     work4:       { unsplash: "-OsnPr51mgo", alt: "Detail of a polished black wheel", position: "50% 50%", credit: "Janosch Diggelmann / Unsplash" },
-    work5:       { unsplash: "ZzdvxLpwtao", alt: "Instrument cluster with gauges", position: "50% 50%", credit: "Toby Hall / Unsplash" },
-    work6:       { unsplash: "d9PeiNr58FM", alt: "Engine bay detail", position: "50% 40%", credit: "Unsplash" },
-    // Before/after: the demo uses one photo for both sides. Replace with a real pair.
-    before:      { unsplash: "d9PeiNr58FM", alt: "Engine bay before the work", position: "50% 50%", credit: "Unsplash" },
-    after:       { unsplash: "d9PeiNr58FM", alt: "Engine bay after the work", position: "50% 50%", credit: "Unsplash" },
   },
 
   nav: [
     { label: "Services", href: "#services" },
-    { label: "About", href: "#about" },
     { label: "Why Us", href: "#why-us" },
     { label: "Our Work", href: "#work" },
     { label: "Contact", href: "#contact" },
@@ -86,84 +80,50 @@ export default {
 
   services: {
     headline: ["Everything your vehicle needs.", "Handled properly."],
-    intro: "From a routine service to the noise you can't place. Tell us what's happening and we'll tell you what it needs, before any work starts.",
-    demoNote: "Proposed service structure. Confirm the final list with the workshop.",
+    intro: "Tell us what's happening. We'll tell you what it needs before any work starts.",
     items: [
-      { id: "servicing",    title: "General servicing",          image: "servicing",    text: "Minor and major services to manufacturer intervals: oil, filters, fluids and a full safety check." },
-      { id: "brakes",       title: "Brakes & brake systems",     image: "brakes",       text: "Pads, discs, drums, callipers and brake fluid. Inspected, measured and replaced only when needed." },
-      { id: "diagnostics",  title: "Engine diagnostics",         image: "diagnostics",  text: "Warning lights and fault codes read, traced to the cause and explained in plain language." },
-      { id: "suspension",   title: "Suspension & steering",      image: "suspension",   text: "Shocks, bushes, ball joints and tie rods for a car that tracks straight and rides quietly." },
-      { id: "electrical",   title: "Auto electrical",            image: "electrical",   text: "Batteries, alternators, starters, wiring and lighting faults found and fixed." },
-      { id: "transmission", title: "Clutch & transmission",      image: "transmission", text: "Slipping clutches, hard gear changes and gearbox noises assessed and repaired." },
-      { id: "engine",       title: "Engine repairs",             image: "engine",       text: "Timing belts, gaskets, cooling systems and overheating, through to larger mechanical repairs." },
-      { id: "aircon",       title: "Air conditioning",           image: "aircon",       text: "Re-gassing, leak checks and component repairs, ready for a Highveld summer." },
+      { id: "servicing",    title: "General servicing",       image: "servicing",    text: "Minor and major services, oil, filters and a full safety check." },
+      { id: "brakes",       title: "Brakes & brake systems",  image: "brakes",       text: "Pads, discs, callipers and fluid, replaced only when needed." },
+      { id: "diagnostics",  title: "Engine diagnostics",      image: "diagnostics",  text: "Warning lights traced to the cause and explained plainly." },
+      { id: "suspension",   title: "Suspension & steering",   image: "suspension",   text: "Shocks, bushes and joints for a car that tracks straight." },
+      { id: "electrical",   title: "Auto electrical",         image: "electrical",   text: "Batteries, alternators, starters and wiring faults." },
+      { id: "transmission", title: "Clutch & transmission",   image: "transmission", text: "Slipping clutches and hard gear changes, sorted." },
+      { id: "engine",       title: "Engine repairs",          image: "engine",       text: "Timing belts, gaskets, cooling and overheating." },
+      { id: "aircon",       title: "Air conditioning",        image: "aircon",       text: "Re-gassing, leak checks and repairs." },
     ],
   },
 
   why: {
     headline: ["Built around your vehicle.", "Not your invoice."],
-    body: "Most people dread the workshop call because they don't know what they're agreeing to. We work the other way round: you hear what we found, what it costs and what can wait, before a spanner turns.",
+    body: "You hear what we found, what it costs and what can wait. Nothing starts until you approve the quote.",
     points: [
-      { title: "Clear communication", text: "Updates on WhatsApp or by phone while your car is with us. No chasing." },
-      { title: "Honest assessments", text: "We separate what's urgent from what can wait, so you can plan." },
-      { title: "Quality workmanship", text: "Careful, methodical work, checked before the keys go back to you." },
-      { title: "Customer-first service", text: "Practical solutions that fit your car, your budget and your week." },
-    ],
-  },
-
-  process: {
-    headline: "No surprises. Here's how it works.",
-    steps: [
-      { title: "Tell us what's wrong", text: "WhatsApp, call or send the form. A noise, a warning light or just a service that's due." },
-      { title: "We inspect", text: "We look at the car properly and find the cause, not just the symptom." },
-      { title: "We explain the work", text: "You get a clear quote and an explanation. Nothing starts until you approve it." },
-      { title: "You get back on the road", text: "We finish the work, test it and hand your car back with a rundown of what was done." },
+      { title: "Clear communication", text: "Updates by WhatsApp or phone while your car is with us." },
+      { title: "Honest assessments", text: "What's urgent, separated from what can wait." },
+      { title: "Quality workmanship", text: "Methodical work, checked before the keys go back." },
+      { title: "Customer-first service", text: "Practical fixes that fit your car and your budget." },
     ],
   },
 
   gallery: {
     headline: "Our work",
-    intro: "A look inside the workshop.",
-    demoNote: "Sample photography. The workshop's own photos replace these.",
     items: [
-      { image: "work1", caption: "In for a major service", size: "tall" },
-      { image: "work2", caption: "Brake disc and calliper inspection", size: "wide" },
-      { image: "work3", caption: "Ready for collection", size: "square" },
-      { image: "work5", caption: "Diagnostics before any work starts", size: "square" },
-      { image: "work4", caption: "Wheel off for suspension work", size: "wide" },
-      { image: "work6", caption: "Engine bay, cleaned and checked", size: "tall" },
+      { image: "work1", caption: "In for a major service" },
+      { image: "work2", caption: "Brake disc and calliper inspection" },
+      { image: "work3", caption: "Ready for collection" },
+      { image: "work4", caption: "Wheel off for suspension work" },
     ],
   },
 
-  beforeAfter: {
-    label: "Case study",
-    title: "Engine bay service and reseal",
-    vehicle: "Vehicle make and model",
-    problem: "What the customer noticed, in a sentence.",
-    work: "What was found and what was done.",
-    result: "How the car came back to the customer.",
-    demoNote: "Demo slider. Drop in a real before and after pair from the workshop.",
-  },
-
+  // Reviews render only when this list has entries. Add real Google reviews here, e.g.
+  // { quote: "…", name: "Thandi M.", meta: "Google review" }
   testimonials: {
     headline: "What customers say",
-    demoNote: "Placeholder reviews. Replace with real Google reviews before going live.",
-    items: [
-      { quote: "Customer review goes here. Two or three sentences about the service, the communication and the result.", name: "Customer name", meta: "Verified customer" },
-      { quote: "Customer review goes here. Ideally one that mentions being kept informed and the price matching the quote.", name: "Customer name", meta: "Verified customer" },
-      { quote: "Customer review goes here. A short one works well too.", name: "Customer name", meta: "Verified customer" },
-    ],
-  },
-
-  location: {
-    headline: ["Your local workshop.", "Right here in the East Rand."],
-    body: "Based in Kempton Park and easy to reach from across the East Rand. Drop your car off on the way to work and we'll keep you posted through the day.",
-    places: ["Kempton Park", "East Rand", "Gauteng"],
+    items: [],
   },
 
   contact: {
     headline: "Let's get your car back on the road.",
-    body: "Tell us about your car and what it needs. We'll come back to you with a quote or a booking time.",
+    body: "Serving Kempton Park and the East Rand. Send a quick message, or fill in the form and we'll come back to you with a quote or a booking time.",
     serviceOptions: [
       "General servicing", "Brakes & brake systems", "Engine diagnostics", "Suspension & steering",
       "Auto electrical", "Clutch & transmission", "Engine repairs", "Air conditioning", "Something else",

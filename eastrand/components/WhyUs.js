@@ -4,10 +4,9 @@ export default function WhyUs(cfg) {
   const w = cfg.why;
   return `
 <section class="section why dark" id="why-us" aria-labelledby="why-title">
-  <span class="anchor" id="about" aria-hidden="true"></span>
   <div class="why-grid container">
     <div class="why-media-wrap reveal">
-      ${media(cfg, "whyUs", { sizes: "(min-width: 1000px) 50vw, 100vw", frameClass: "why-media", className: "parallax" })}
+      ${media(cfg, "whyUs", { sizes: "(min-width: 1024px) 45vw, 100vw", frameClass: "why-media", className: "parallax" })}
     </div>
     <div class="why-copy">
       <h2 class="display reveal" id="why-title">${lines(w.headline)}</h2>

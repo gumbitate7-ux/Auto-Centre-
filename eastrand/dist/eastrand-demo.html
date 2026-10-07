@@ -62,7 +62,7 @@
 
   --container: 1440px;
   --gutter: clamp(20px, 4vw, 56px);
-  --section: clamp(88px, 11vw, 176px);
+  --section: clamp(72px, 9vw, 144px);
   --nav-h: 84px;
   --radius: 2px;
 
@@ -166,14 +166,6 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   position: absolute; left: 16px; bottom: 14px; right: 16px;
   font-size: .75rem; letter-spacing: .04em; color: var(--on-dark-faint);
 }
-
-/* ---------- Demo tags ---------- */
-.demo-tag {
-  display: inline-flex; align-items: baseline; gap: 10px; margin-top: 20px;
-  padding: 8px 12px; border: 1px dashed currentColor; border-radius: var(--radius);
-  font-size: .8125rem; line-height: 1.4; opacity: .8; max-width: 34em;
-}
-.demo-tag span { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .6875rem; color: var(--amber); flex: none; }
 
 /* ==========================================================================
    Navbar
@@ -295,19 +287,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 .hero-body { font-size: clamp(1.0625rem, 1.35vw, 1.25rem); color: var(--on-dark-dim); line-height: 1.55; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-
-.scroll-cue {
-  position: absolute; right: var(--gutter); top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
-  color: var(--on-dark-faint); font-size: .6875rem; letter-spacing: .24em; text-transform: uppercase;
-}
-.scroll-cue-text { writing-mode: vertical-rl; }
-.scroll-cue-track { position: relative; width: 1px; height: 72px; background: var(--line-dark); overflow: hidden; }
-.scroll-cue-track span { position: absolute; inset: 0; background: var(--amber); transform: translateY(-100%); }
-@media (prefers-reduced-motion: no-preference) {
-  .scroll-cue-track span { animation: cue 2.4s var(--ease-io) 2s infinite; }
-  @keyframes cue { 0% { transform: translateY(-100%); } 55% { transform: translateY(0); } 100% { transform: translateY(100%); } }
-}
+.hero-trust { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: clamp(28px, 4vh, 44px); }
+.hero-trust li { display: flex; align-items: center; gap: 10px; font-size: .6875rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--on-dark-faint); }
+.hero-trust li::before { content: ""; width: 5px; height: 5px; background: var(--amber); }
 
 /* Page-load sequence: the photo settles, headline lines rise, details follow. */
 @media (prefers-reduced-motion: no-preference) {
@@ -317,27 +299,13 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   .js .hero-title .line:nth-child(2) > span { animation-delay: .38s; }
   .js .hero-eyebrow { animation: fade-up .9s var(--ease-out) .15s both; }
   .js .hero-foot { animation: fade-up 1s var(--ease-out) .65s both; }
-  .js .scroll-cue { animation: fade 1s ease 1.2s both; }
+  .js .hero-trust { animation: fade 1s ease 1s both; }
   .js .nav { animation: fade 1s ease .1s both; }
   @keyframes hero-settle { from { transform: scale(1.08); } }
   @keyframes rise { from { transform: translateY(105%); } }
   @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } }
   @keyframes fade { from { opacity: 0; } }
 }
-
-/* ==========================================================================
-   Trust strip
-   ========================================================================== */
-.trust { background: var(--ink); border-bottom: 1px solid var(--line-dark); }
-.trust-list { display: grid; grid-template-columns: repeat(4, 1fr); }
-.trust-list li {
-  display: flex; align-items: center; gap: 12px;
-  padding: 26px 0 26px 24px;
-  font-size: .75rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-dim);
-  border-left: 1px solid var(--line-dark);
-}
-.trust-list li:first-child { padding-left: 0; border-left: 0; }
-.trust-dot { width: 6px; height: 6px; background: var(--amber); flex: none; }
 
 /* ==========================================================================
    Shared section layout
@@ -347,15 +315,6 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .section:not(.dark) .lead { color: var(--on-light-dim); }
 .dark { background: var(--ink); color: var(--on-dark); }
 .dark .lead { color: var(--on-dark-dim); }
-.section-head { margin-bottom: clamp(48px, 6vw, 88px); }
-.section-head.split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 32px 64px; align-items: end; }
-.section-cta {
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px 32px;
-  margin-top: clamp(48px, 6vw, 80px); padding-top: 32px; border-top: 1px solid var(--line-light);
-}
-.section-cta p { font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 500; letter-spacing: -.02em; }
-.section-cta.on-dark { border-top-color: var(--line-dark); }
-.gallery .section-cta { justify-content: flex-end; }
 
 /* Scroll reveal */
 @media (prefers-reduced-motion: no-preference) {
@@ -368,94 +327,61 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 
 /* ==========================================================================
-   Services
+   Services: editorial index + following photo
    ========================================================================== */
-.svc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(40px, 4vw, 64px) clamp(16px, 1.6vw, 24px); }
-.svc-link { position: relative; display: flex; flex-direction: column; height: 100%; color: var(--on-light); }
-.svc-media { aspect-ratio: 4 / 5; border-radius: var(--radius); }
-.svc-media img { transition: transform 1.2s var(--ease-out), filter .6s var(--ease-out); filter: saturate(.85); }
-.svc-num {
-  position: absolute; top: 16px; left: 16px;
-  font-size: .75rem; font-weight: 600; letter-spacing: .12em; color: var(--on-dark);
-  padding: 6px 8px; background: rgba(11, 11, 11, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+.svc-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.svc-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.svc-preview { position: sticky; top: 96px; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--graphite); }
+.svc-shot { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease-out); }
+.svc-shot img { transform: scale(1.04); transition: transform 1.4s var(--ease-out); }
+.svc-shot.is-active { opacity: 1; }
+.svc-shot.is-active img { transform: none; }
+.svc-list { border-top: 1px solid var(--line-light); counter-reset: none; }
+.svc-row {
+  position: relative; display: grid; grid-template-columns: 3.25rem 1fr 24px; align-items: center; gap: 16px;
+  padding: 22px 0; border-bottom: 1px solid var(--line-light); color: var(--on-light);
 }
-.svc-body { position: relative; display: grid; gap: 10px; padding-top: 20px; }
-.svc-body::before {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--line-light);
-}
-.svc-body::after {
-  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--amber);
-  transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out);
-}
-.svc-title { font-size: clamp(1.125rem, 1.4vw, 1.3125rem); font-weight: 600; letter-spacing: -.015em; line-height: 1.2; text-transform: uppercase; }
-.svc-text { font-size: .9375rem; line-height: 1.55; color: var(--on-light-dim); }
-.svc-cta {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
-  font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-  opacity: .55; transition: opacity .3s, gap .3s var(--ease-out);
-}
-.svc-cta .ico { width: 16px; height: 16px; transition: transform .4s var(--ease-out); }
-@media (hover: hover) {
-  .svc-link { transition: transform .6s var(--ease-out); }
-  .svc-link:hover { transform: translateY(-6px); }
-  .svc-link:hover .svc-media img { transform: scale(1.06); filter: saturate(1); }
-  .svc-link:hover .svc-body::after { transform: scaleX(1); }
-  .svc-link:hover .svc-cta { opacity: 1; gap: 10px; }
-  .svc-link:hover .svc-cta .ico { transform: translate(2px, -2px); color: var(--amber); }
-}
-.svc-link:focus-visible .svc-body::after { transform: scaleX(1); }
+.svc-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out); }
+.svc-num { font-size: .75rem; font-weight: 600; letter-spacing: .12em; color: var(--on-light-dim); transition: color .3s; }
+.svc-main { display: grid; gap: 4px; }
+.svc-title { font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.1; text-transform: uppercase; transition: transform .5s var(--ease-out); }
+.svc-text { font-size: .9375rem; color: var(--on-light-dim); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; }
+.svc-arrow { width: 22px; height: 22px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
+.svc-row.is-active .svc-num { color: var(--amber); }
+.svc-row.is-active .svc-title { transform: translateX(6px); }
+.svc-row.is-active .svc-text { max-height: 3em; opacity: 1; }
+.svc-row.is-active .svc-arrow { color: var(--ink); transform: translate(2px, -2px); }
+.svc-row.is-active::after { transform: scaleX(1); }
 
 /* ==========================================================================
    Why us
    ========================================================================== */
-.why-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
-.why-media-wrap { position: sticky; top: 96px; }
+.why-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 7vw, 120px); align-items: center; }
 .why-media { aspect-ratio: 4 / 5; border-radius: var(--radius); }
 .why-media img.parallax { height: 116%; margin-top: -8%; will-change: transform; }
-.why-copy { padding-top: clamp(0px, 4vw, 48px); }
 .why-copy .lead { margin-top: 32px; }
-.why-points { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 32px; margin: clamp(48px, 5vw, 72px) 0; }
+.why-points { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: clamp(40px, 4vw, 56px) 0; }
 .why-points li { padding-top: 20px; border-top: 1px solid var(--line-dark); }
 .why-num { display: block; margin-bottom: 16px; font-size: .75rem; font-weight: 600; letter-spacing: .14em; color: var(--amber); }
 .why-points h3 { font-size: 1rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; }
 .why-points p { font-size: .9375rem; color: var(--on-dark-dim); }
 
 /* ==========================================================================
-   Process
-   ========================================================================== */
-.process { background: var(--carbon); }
-.process .display { max-width: 14em; }
-.process-track { position: relative; margin-top: clamp(56px, 7vw, 104px); --p: 0; }
-.process-line { position: absolute; top: 15px; left: 0; right: 0; height: 1px; background: var(--line-dark); }
-.process-line span { position: absolute; inset: 0; background: var(--amber); transform: scaleX(var(--p)); transform-origin: left; }
-.process-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-.process-steps li { position: relative; padding-top: 64px; }
-.process-num {
-  position: absolute; top: 0; left: 0;
-  display: grid; place-items: center; width: 32px; height: 32px;
-  font-size: .6875rem; font-weight: 600; letter-spacing: .06em;
-  background: var(--carbon); color: var(--on-dark); box-shadow: inset 0 0 0 1px var(--line-dark);
-  transition: background-color .5s, color .5s, box-shadow .5s;
-}
-.process-steps li.is-lit .process-num { background: var(--amber); color: var(--ink); box-shadow: none; }
-.process-steps h3 { font-size: clamp(1.25rem, 1.8vw, 1.625rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.15; text-transform: uppercase; margin-bottom: 14px; max-width: 11em; }
-.process-steps p { font-size: .9375rem; color: var(--on-dark-dim); max-width: 22em; }
-
-/* ==========================================================================
    Gallery
    ========================================================================== */
+.gal-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(32px, 4vw, 56px); }
 .gal-grid {
-  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-auto-rows: clamp(200px, 21vw, 320px); grid-auto-flow: dense;
-  gap: clamp(10px, 1.2vw, 18px);
+  display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, clamp(180px, 19vw, 300px));
+  gap: clamp(10px, 1.2vw, 16px);
 }
-.gal-tall { grid-column: span 4; grid-row: span 2; }
-.gal-wide { grid-column: span 8; }
-.gal-square { grid-column: span 4; }
-.gal-item:nth-child(5) { grid-column: span 8; grid-row: span 2; }
+.gal-item:first-child { grid-row: span 2; }
+.gal-item:nth-child(4) { grid-column: span 2; }
 .gal-btn { position: relative; display: block; width: 100%; height: 100%; text-align: left; cursor: zoom-in; }
 .gal-media { position: absolute; inset: 0; border-radius: var(--radius); }
 .gal-media.is-missing::after { display: none; }
+.link-cta { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; font-size: .8125rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark); border-bottom: 1px solid var(--amber); }
+.link-cta .ico { width: 18px; height: 18px; transition: transform .4s var(--ease-out); }
+.link-cta:hover .ico { transform: translate(2px, -2px); }
 .gal-media img { transition: transform 1.4s var(--ease-out); }
 .gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(11, 11, 11, .75)); pointer-events: none; }
 .gal-cap { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; font-size: .875rem; font-weight: 500; color: var(--on-dark); transition: transform .5s var(--ease-out); }
@@ -484,78 +410,18 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 
 /* ==========================================================================
-   Before / after
-   ========================================================================== */
-.ba-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
-.ba-copy .label { color: var(--on-light-dim); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
-.ba-copy .label::before { content: ""; width: 32px; height: 1px; background: var(--amber); }
-.ba-facts { margin-top: 40px; border-top: 1px solid var(--line-light); }
-.ba-facts div { display: grid; grid-template-columns: 9rem 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-light); }
-.ba-facts dt { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding-top: .2em; }
-.ba-facts dd { color: var(--on-light-dim); font-size: .9375rem; }
-
-.ba-stage { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; user-select: none; background: var(--graphite); }
-.ba-layer { position: absolute; inset: 0; }
-.ba-before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
-.ba-demo .ba-before img { filter: grayscale(.9) sepia(.35) brightness(.62) contrast(.9) blur(.4px); }
-.ba-tag { position: absolute; top: 18px; padding: 7px 10px; font-size: .6875rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(11, 11, 11, .6); color: var(--on-dark); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none; }
-.ba-tag-before { left: 18px; }
-.ba-tag-after { right: 18px; background: var(--amber); color: var(--ink); }
-.ba-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--on-dark); pointer-events: none; }
-.ba-knob { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 56px; height: 56px; transform: translate(-50%, -50%); background: var(--on-dark); color: var(--ink); border-radius: 50%; box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
-.ba-knob svg { width: 24px; height: 24px; }
-.ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; touch-action: pan-y; }
-.ba-range:focus-visible ~ .ba-handle .ba-knob, .ba-stage:has(.ba-range:focus-visible) .ba-knob { outline: 2px solid var(--amber); outline-offset: 4px; }
-
-/* ==========================================================================
    Testimonials
    ========================================================================== */
 .reviews { background: var(--bone-2) !important; }
-.rev-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); }
+.rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 24px); margin-top: clamp(32px, 4vw, 56px); }
 .rev figure { display: flex; flex-direction: column; height: 100%; padding: clamp(28px, 3vw, 40px); background: var(--paper); border-radius: var(--radius); }
 .rev-stars { display: flex; gap: 2px; color: var(--amber); }
 .rev-stars .ico { width: 18px; height: 18px; }
 .rev blockquote { flex: 1; margin: 24px 0 32px; }
 .rev blockquote p { font-size: clamp(1.125rem, 1.5vw, 1.3125rem); line-height: 1.45; letter-spacing: -.01em; }
-.rev-lead { background: none; }
-.rev-lead figure { background: var(--ink); color: var(--on-dark); }
 .rev figcaption { display: grid; gap: 2px; padding-top: 20px; border-top: 1px solid var(--line-light); font-size: .875rem; }
-.rev-lead figcaption { border-top-color: var(--line-dark); }
 .rev figcaption strong { font-weight: 600; letter-spacing: .04em; text-transform: uppercase; font-size: .8125rem; }
 .rev figcaption span { color: var(--on-light-dim); }
-.rev-lead figcaption span { color: var(--on-dark-dim); }
-
-/* ==========================================================================
-   Location
-   ========================================================================== */
-.loc-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
-.loc-copy .lead { margin-top: 32px; }
-.loc-address { display: flex; align-items: flex-start; gap: 12px; margin-top: 32px; font-style: normal; font-size: 1.125rem; font-weight: 500; }
-.loc-address .ico { width: 22px; height: 22px; color: var(--amber); margin-top: 2px; }
-.loc-hours { margin-top: 20px; display: grid; gap: 6px; font-size: .9375rem; }
-.loc-hours div { display: flex; justify-content: space-between; max-width: 24rem; border-bottom: 1px solid var(--line-dark); padding-bottom: 6px; }
-.loc-hours dd { color: var(--on-dark-dim); }
-.loc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; max-width: 34rem; }
-.loc-actions .btn:first-child { grid-column: 1 / -1; }
-.loc-actions .btn { padding: 0 18px; }
-.loc-map { position: relative; aspect-ratio: 1; border-radius: var(--radius); background: var(--carbon); box-shadow: inset 0 0 0 1px var(--line-dark); overflow: hidden; }
-.loc-map svg { width: 100%; height: 100%; }
-.road { stroke-opacity: .2; stroke-width: 2; }
-.road-major { stroke-opacity: .34; stroke-width: 4; }
-.road-minor { stroke-opacity: .1; stroke-width: 1.5; }
-.map-label text { font-size: 14px; letter-spacing: .06em; }
-.map-card {
-  position: absolute; left: calc(50% + 22px); top: 55%; transform: translateY(-50%);
-  display: grid; gap: 2px; padding: 12px 16px;
-  background: var(--ink); box-shadow: inset 0 0 0 1px var(--line-dark); border-radius: var(--radius);
-  font-size: .9375rem; line-height: 1.3;
-}
-.map-card strong { font-weight: 600; }
-.map-card span { font-size: .8125rem; color: var(--on-dark-dim); }
-@media (prefers-reduced-motion: no-preference) {
-  .pin-pulse { animation: pulse 2.8s var(--ease-out) infinite; transform-origin: center; transform-box: fill-box; }
-  @keyframes pulse { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
-}
 
 /* ==========================================================================
    Contact
@@ -569,6 +435,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .contact-ways strong { display: block; font-size: .8125rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .contact-ways a > span:nth-child(2) > span { font-size: .9375rem; color: var(--on-light-dim); }
 .cw-arrow { width: 20px; height: 20px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
+.hours { margin-top: 24px; display: grid; gap: 8px; font-size: .9375rem; }
+.hours div { display: flex; justify-content: space-between; max-width: 26rem; }
+.hours dd { color: var(--on-light-dim); }
 .contact-ways a:hover .cw-arrow { transform: translate(3px, -3px); color: var(--ink); }
 
 .quote-form {
@@ -606,15 +475,12 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 /* ==========================================================================
    Footer
    ========================================================================== */
-.footer { padding-block: clamp(64px, 8vw, 112px) 32px; border-top: 1px solid var(--line-dark); }
-.footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; padding-bottom: 48px; border-bottom: 1px solid var(--line-dark); }
-.footer-line { font-size: clamp(1.125rem, 1.8vw, 1.5rem); font-weight: 500; letter-spacing: -.02em; max-width: 22em; }
-.footer-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding-block: 48px; font-size: .9375rem; }
-.footer-cols ul { display: grid; gap: 10px; }
-.footer-cols a { color: var(--on-dark-dim); transition: color .2s; }
-.footer-cols a:hover { color: var(--on-dark); }
-.footer-contact { display: grid; gap: 10px; color: var(--on-dark-dim); }
-.footer-base { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; padding-top: 24px; border-top: 1px solid var(--line-dark); font-size: .8125rem; color: var(--on-dark-faint); }
+.footer { padding-block: 56px 32px; border-top: 1px solid var(--line-dark); }
+.footer-inner { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 32px; }
+.footer nav ul { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px 32px; }
+.footer nav a { font-size: .8125rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-dim); transition: color .2s; }
+.footer nav a:hover { color: var(--on-dark); }
+.footer-base { grid-column: 1 / -1; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px; padding-top: 24px; border-top: 1px solid var(--line-dark); font-size: .8125rem; color: var(--on-dark-faint); }
 
 /* ==========================================================================
    Mobile CTA bar + toast
@@ -633,74 +499,47 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 1180px) {
-  .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .svc-media { aspect-ratio: 16 / 11; }
-}
-
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .nav-actions { margin-left: auto; }
   .menu-btn { display: inline-flex; }
-  .section-head.split { grid-template-columns: 1fr; }
-  .why-grid, .ba-grid, .loc-grid, .contact-grid { grid-template-columns: 1fr; }
-  .why-media-wrap { position: relative; top: 0; }
-  .why-media { aspect-ratio: 16 / 11; }
-  .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
-  .process-line { display: none; }
-  .rev-grid { grid-template-columns: 1fr; }
-  .loc-map { max-width: 640px; }
-  .scroll-cue { display: none; }
+  .svc-head { grid-template-columns: 1fr; }
+  .svc-layout { grid-template-columns: 1fr; }
+  .svc-preview { display: none; }
+  .svc-text { max-height: none; opacity: 1; }
+  .svc-row.is-active .svc-title { transform: none; }
+  .svc-row.is-active::after { transform: scaleX(0); }
+  .svc-row.is-active .svc-num { color: var(--on-light-dim); }
+  .why-grid, .contact-grid { grid-template-columns: 1fr; }
+  .why-media { aspect-ratio: 16 / 10; }
 }
 
 @media (max-width: 760px) {
   :root { --nav-h: 68px; }
   .nav-book { display: none; }
+  .hero-title { font-size: clamp(3.25rem, 16.4vw, 5.5rem); line-height: .88; }
   .hero-foot { grid-template-columns: 1fr; }
   .hero-ctas .btn { flex: 1 1 auto; }
-  .hero-title { font-size: clamp(3.25rem, 16.4vw, 5.5rem); line-height: .88; }
-  .trust-list { grid-template-columns: 1fr 1fr; }
-  .trust-list li { padding: 18px 0 18px 16px; font-size: .6875rem; }
-  .trust-list li:nth-child(3) { padding-left: 0; border-left: 0; }
-  .trust-list li:nth-child(n + 3) { border-top: 1px solid var(--line-dark); }
+  .hero-trust { display: none; }
 
-  /* Services become a scannable list */
-  .svc-grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line-light); }
-  .svc-link { display: grid; grid-template-columns: 96px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line-light); }
-  .svc-media { aspect-ratio: 1; }
-  .svc-num { top: 6px; left: 6px; padding: 3px 5px; font-size: .625rem; }
-  .svc-media.is-missing::after { display: none; }
-  .map-label text { font-size: 26px; }
-  .map-card { padding: 10px 12px; font-size: .875rem; }
-  .svc-body { padding-top: 0; gap: 6px; align-content: center; }
-  .svc-body::before, .svc-body::after { display: none; }
-  .svc-title { font-size: 1rem; }
+  .svc-row { grid-template-columns: 2.25rem 1fr 20px; padding: 18px 0; gap: 12px; }
+  .svc-title { font-size: 1.0625rem; }
   .svc-text { font-size: .875rem; }
-  .svc-cta { opacity: 1; color: var(--on-light); }
 
-  .why-points { grid-template-columns: 1fr; gap: 28px; }
-  .process-steps { grid-template-columns: 1fr; row-gap: 0; }
-  .process-steps li { padding: 0 0 36px 56px; }
-  .process-steps li::before { content: ""; position: absolute; left: 15px; top: 40px; bottom: 6px; width: 1px; background: var(--line-dark); }
-  .process-steps li:last-child { padding-bottom: 0; }
-  .process-steps li:last-child::before { display: none; }
+  .why-points { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .why-points h3 { font-size: .8125rem; }
+  .why-points p { font-size: .875rem; }
+  .why-copy > .btn { width: 100%; }
 
-  .gal-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
-  .gal-tall { grid-column: span 1; grid-row: span 2; }
-  .gal-wide, .gal-item:nth-child(5) { grid-column: span 2; grid-row: span 1; }
-  .gal-square { grid-column: span 1; }
+  .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 140px 140px; }
+  .gal-item:first-child { grid-column: span 2; grid-row: span 1; }
+  .gal-item:nth-child(4) { grid-column: span 2; }
   .gal-cap { left: 12px; right: 12px; bottom: 10px; font-size: .75rem; line-height: 1.3; }
-  .gallery .section-cta { justify-content: stretch; }
-  .gallery .section-cta .btn { width: 100%; }
 
-  .ba-stage { aspect-ratio: 4 / 5; }
-  .ba-facts div { grid-template-columns: 1fr; gap: 4px; }
-  .loc-actions { grid-template-columns: 1fr; }
   .quote-form { grid-template-columns: 1fr; }
   .form-foot .btn { width: 100%; }
-  .section-cta .btn { width: 100%; }
-  .footer-cols { grid-template-columns: 1fr 1fr; }
-  .footer-contact { grid-column: 1 / -1; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer nav ul { justify-content: flex-start; }
   .footer { padding-bottom: calc(32px + 76px + env(safe-area-inset-bottom)); }
 
   .mcta {
@@ -823,7 +662,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     </svg>
     <span class="logo-text"><span class="logo-main">Eastrand</span><span class="logo-sub">Auto Repairs</span></span>
   </a>
-    <nav class="nav-links" aria-label="Main"><ul><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#why-us">Why Us</a></li><li><a href="#work">Our Work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <nav class="nav-links" aria-label="Main"><ul><li><a href="#services">Services</a></li><li><a href="#why-us">Why Us</a></li><li><a href="#work">Our Work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
     <div class="nav-actions">
       <a class="btn btn-accent btn-sm nav-book" href="#contact" data-book>Book a service</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
@@ -849,7 +688,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     </button>
   </div>
   <nav class="menu-body container" aria-label="Mobile">
-    <ol class="menu-links"><li><a href="#services" data-menu-link>Services</a></li><li><a href="#about" data-menu-link>About</a></li><li><a href="#why-us" data-menu-link>Why Us</a></li><li><a href="#work" data-menu-link>Our Work</a></li><li><a href="#contact" data-menu-link>Contact</a></li></ol>
+    <ol class="menu-links"><li><a href="#services" data-menu-link>Services</a></li><li><a href="#why-us" data-menu-link>Why Us</a></li><li><a href="#work" data-menu-link>Our Work</a></li><li><a href="#contact" data-menu-link>Contact</a></li></ol>
   </nav>
   <div class="menu-foot container">
     <a class="btn btn-accent" href="#contact" data-book data-menu-link><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="1.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>Book a service</a>
@@ -877,156 +716,114 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
         <a class="btn btn-glass btn-lg" href="https://wa.me/?text=Hi%20Eastrand%20Auto%20Repairs%2C%20I'd%20like%20to%20ask%20about%20my%20car.%0A%0AMy%20car%3A%20%0AWhat's%20happening%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp us</a>
       </div>
     </div>
+    <ul class="hero-trust" aria-label="What to expect">
+      <li>Professional service</li><li>Transparent communication</li><li>Quality workmanship</li><li>East Rand based</li>
+    </ul>
   </div>
-  <a class="scroll-cue" href="#services" aria-label="Scroll to services">
-    <span class="scroll-cue-track" aria-hidden="true"><span></span></span>
-    <span class="scroll-cue-text">Scroll</span>
-  </a>
-</section>
-
-<section class="trust" aria-label="What to expect">
-  <ul class="trust-list container">
-    <li><span class="trust-dot" aria-hidden="true"></span>Professional service</li><li><span class="trust-dot" aria-hidden="true"></span>Transparent communication</li><li><span class="trust-dot" aria-hidden="true"></span>Quality workmanship</li><li><span class="trust-dot" aria-hidden="true"></span>East Rand based</li>
-  </ul>
 </section>
 
 <section class="section services" id="services" aria-labelledby="services-title">
   <div class="container">
-    <div class="section-head split">
+    <div class="svc-head">
       <h2 class="display reveal" id="services-title"><span class="line"><span>Everything your vehicle needs.</span></span><span class="line"><span>Handled properly.</span></span></h2>
-      <div class="section-aside reveal">
-        <p class="lead">From a routine service to the noise you can&#39;t place. Tell us what&#39;s happening and we&#39;ll tell you what it needs, before any work starts.</p>
-        <p class="demo-tag"><span>Demo</span>Proposed service structure. Confirm the final list with the workshop.</p>
-      </div>
+      <p class="lead reveal">Tell us what&#39;s happening. We&#39;ll tell you what it needs before any work starts.</p>
     </div>
-    <ul class="svc-grid">
-      
-  <li class="svc reveal" style="--i:0">
-    <a class="svc-link" href="#contact" data-service="General servicing">
-      <div class="media svc-media" data-label="Fresh oil being poured into an engine"><img src="https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=960" srcset="https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=640 640w, https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=960 960w, https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Fresh oil being poured into an engine" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">01</span>
-      <span class="svc-body">
-        <span class="svc-title">General servicing</span>
-        <span class="svc-text">Minor and major services to manufacturer intervals: oil, filters, fluids and a full safety check.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:1">
-    <a class="svc-link" href="#contact" data-service="Brakes &amp; brake systems">
-      <div class="media svc-media" data-label="Brake caliper behind a dark alloy wheel"><img src="https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=960" srcset="https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=640 640w, https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=960 960w, https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Brake caliper behind a dark alloy wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">02</span>
-      <span class="svc-body">
-        <span class="svc-title">Brakes &amp; brake systems</span>
-        <span class="svc-text">Pads, discs, drums, callipers and brake fluid. Inspected, measured and replaced only when needed.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:2">
-    <a class="svc-link" href="#contact" data-service="Engine diagnostics">
-      <div class="media svc-media" data-label="Dashboard warning lights lit up"><img src="https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=960" srcset="https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=640 640w, https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=960 960w, https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Dashboard warning lights lit up" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">03</span>
-      <span class="svc-body">
-        <span class="svc-title">Engine diagnostics</span>
-        <span class="svc-text">Warning lights and fault codes read, traced to the cause and explained in plain language.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:3">
-    <a class="svc-link" href="#contact" data-service="Suspension &amp; steering">
-      <div class="media svc-media" data-label="Close-up of a wheel and tyre"><img src="https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=960" srcset="https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=640 640w, https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=960 960w, https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Close-up of a wheel and tyre" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">04</span>
-      <span class="svc-body">
-        <span class="svc-title">Suspension &amp; steering</span>
-        <span class="svc-text">Shocks, bushes, ball joints and tie rods for a car that tracks straight and rides quietly.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:0">
-    <a class="svc-link" href="#contact" data-service="Auto electrical">
-      <div class="media svc-media" data-label="Car headlights glowing in the dark"><img src="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960" srcset="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=640 640w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960 960w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Car headlights glowing in the dark" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">05</span>
-      <span class="svc-body">
-        <span class="svc-title">Auto electrical</span>
-        <span class="svc-text">Batteries, alternators, starters, wiring and lighting faults found and fixed.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:1">
-    <a class="svc-link" href="#contact" data-service="Clutch &amp; transmission">
-      <div class="media svc-media" data-label="Gear lever in a car interior"><img src="https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=960" srcset="https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=640 640w, https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=960 960w, https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Gear lever in a car interior" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">06</span>
-      <span class="svc-body">
-        <span class="svc-title">Clutch &amp; transmission</span>
-        <span class="svc-text">Slipping clutches, hard gear changes and gearbox noises assessed and repaired.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:2">
-    <a class="svc-link" href="#contact" data-service="Engine repairs">
-      <div class="media svc-media" data-label="Close-up of a car engine"><img src="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960" srcset="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=640 640w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960 960w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Close-up of a car engine" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">07</span>
-      <span class="svc-body">
-        <span class="svc-title">Engine repairs</span>
-        <span class="svc-text">Timing belts, gaskets, cooling systems and overheating, through to larger mechanical repairs.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-  <li class="svc reveal" style="--i:3">
-    <a class="svc-link" href="#contact" data-service="Air conditioning">
-      <div class="media svc-media" data-label="Air vent on a car dashboard"><img src="https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=960" srcset="https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=640 640w, https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=960 960w, https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=1280 1280w" sizes="(min-width: 1100px) 25vw, (min-width: 700px) 50vw, 100vw" alt="Air vent on a car dashboard" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="svc-num">08</span>
-      <span class="svc-body">
-        <span class="svc-title">Air conditioning</span>
-        <span class="svc-text">Re-gassing, leak checks and component repairs, ready for a Highveld summer.</span>
-        <span class="svc-cta">Enquire <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </span>
-    </a>
-  </li>
-    </ul>
-    <div class="section-cta reveal">
-      <p>Not sure what it needs?</p>
-      <a class="btn btn-dark" href="#contact" data-book>Book an inspection</a>
+    <div class="svc-layout" data-svc>
+      <div class="svc-preview" aria-hidden="true">
+        <div class="svc-shot media is-active" data-label="Fresh oil being poured into an engine" data-shot="0"><img src="https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=960" srcset="https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=640 640w, https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=960 960w, https://unsplash.com/photos/V37iTrYZz2E/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Fresh oil being poured into an engine" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Brake caliper behind a dark alloy wheel" data-shot="1"><img src="https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=960" srcset="https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=640 640w, https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=960 960w, https://unsplash.com/photos/Wr1vbV1i-Qc/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Brake caliper behind a dark alloy wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Dashboard warning lights lit up" data-shot="2"><img src="https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=960" srcset="https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=640 640w, https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=960 960w, https://unsplash.com/photos/7JLMFoFyIZ4/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Dashboard warning lights lit up" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Close-up of a wheel and tyre" data-shot="3"><img src="https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=960" srcset="https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=640 640w, https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=960 960w, https://unsplash.com/photos/uviIXpm3CQM/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Close-up of a wheel and tyre" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Car headlights glowing in the dark" data-shot="4"><img src="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960" srcset="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=640 640w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960 960w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car headlights glowing in the dark" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Gear lever in a car interior" data-shot="5"><img src="https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=960" srcset="https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=640 640w, https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=960 960w, https://unsplash.com/photos/Wec3M4dY_LE/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Gear lever in a car interior" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Close-up of a car engine" data-shot="6"><img src="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960" srcset="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=640 640w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960 960w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Close-up of a car engine" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Air vent on a car dashboard" data-shot="7"><img src="https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=960" srcset="https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=640 640w, https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=960 960w, https://unsplash.com/photos/PboDJj4mSck/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Air vent on a car dashboard" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+      </div>
+      <ol class="svc-list">
+        
+        <li>
+          <a class="svc-row is-active" href="#contact" data-service="General servicing" data-row="0">
+            <span class="svc-num">01</span>
+            <span class="svc-main"><span class="svc-title">General servicing</span><span class="svc-text">Minor and major services, oil, filters and a full safety check.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Brakes &amp; brake systems" data-row="1">
+            <span class="svc-num">02</span>
+            <span class="svc-main"><span class="svc-title">Brakes &amp; brake systems</span><span class="svc-text">Pads, discs, callipers and fluid, replaced only when needed.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Engine diagnostics" data-row="2">
+            <span class="svc-num">03</span>
+            <span class="svc-main"><span class="svc-title">Engine diagnostics</span><span class="svc-text">Warning lights traced to the cause and explained plainly.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Suspension &amp; steering" data-row="3">
+            <span class="svc-num">04</span>
+            <span class="svc-main"><span class="svc-title">Suspension &amp; steering</span><span class="svc-text">Shocks, bushes and joints for a car that tracks straight.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Auto electrical" data-row="4">
+            <span class="svc-num">05</span>
+            <span class="svc-main"><span class="svc-title">Auto electrical</span><span class="svc-text">Batteries, alternators, starters and wiring faults.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Clutch &amp; transmission" data-row="5">
+            <span class="svc-num">06</span>
+            <span class="svc-main"><span class="svc-title">Clutch &amp; transmission</span><span class="svc-text">Slipping clutches and hard gear changes, sorted.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Engine repairs" data-row="6">
+            <span class="svc-num">07</span>
+            <span class="svc-main"><span class="svc-title">Engine repairs</span><span class="svc-text">Timing belts, gaskets, cooling and overheating.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Air conditioning" data-row="7">
+            <span class="svc-num">08</span>
+            <span class="svc-main"><span class="svc-title">Air conditioning</span><span class="svc-text">Re-gassing, leak checks and repairs.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
 
 <section class="section why dark" id="why-us" aria-labelledby="why-title">
-  <span class="anchor" id="about" aria-hidden="true"></span>
   <div class="why-grid container">
     <div class="why-media-wrap reveal">
-      <div class="media why-media" data-label="Car raised on a workshop lift"><img class="parallax" src="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1920" srcset="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=640 640w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=960 960w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1280 1280w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1920 1920w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=2560 2560w" sizes="(min-width: 1000px) 50vw, 100vw" alt="Car raised on a workshop lift" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+      <div class="media why-media" data-label="Car raised on a workshop lift"><img class="parallax" src="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1920" srcset="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=640 640w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=960 960w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1280 1280w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1920 1920w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=2560 2560w" sizes="(min-width: 1024px) 45vw, 100vw" alt="Car raised on a workshop lift" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
     </div>
     <div class="why-copy">
       <h2 class="display reveal" id="why-title"><span class="line"><span>Built around your vehicle.</span></span><span class="line"><span>Not your invoice.</span></span></h2>
-      <p class="lead reveal">Most people dread the workshop call because they don&#39;t know what they&#39;re agreeing to. We work the other way round: you hear what we found, what it costs and what can wait, before a spanner turns.</p>
+      <p class="lead reveal">You hear what we found, what it costs and what can wait. Nothing starts until you approve the quote.</p>
       <ol class="why-points">
         
         <li class="reveal" style="--i:0">
           <span class="why-num">01</span>
           <h3>Clear communication</h3>
-          <p>Updates on WhatsApp or by phone while your car is with us. No chasing.</p>
+          <p>Updates by WhatsApp or phone while your car is with us.</p>
         </li>
         <li class="reveal" style="--i:1">
           <span class="why-num">02</span>
           <h3>Honest assessments</h3>
-          <p>We separate what&#39;s urgent from what can wait, so you can plan.</p>
+          <p>What&#39;s urgent, separated from what can wait.</p>
         </li>
         <li class="reveal" style="--i:2">
           <span class="why-num">03</span>
           <h3>Quality workmanship</h3>
-          <p>Careful, methodical work, checked before the keys go back to you.</p>
+          <p>Methodical work, checked before the keys go back.</p>
         </li>
         <li class="reveal" style="--i:3">
           <span class="why-num">04</span>
           <h3>Customer-first service</h3>
-          <p>Practical solutions that fit your car, your budget and your week.</p>
+          <p>Practical fixes that fit your car and your budget.</p>
         </li>
       </ol>
       <a class="btn btn-accent reveal" href="https://wa.me/?text=Hi%20Eastrand%20Auto%20Repairs%2C%20something's%20wrong%20with%20my%20car.%0A%0AMy%20car%3A%20%0AWhat%20I'm%20noticing%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>Ask us about your car</a>
@@ -1034,91 +831,39 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   </div>
 </section>
 
-<section class="section process dark" id="process" aria-labelledby="process-title">
-  <div class="container">
-    <h2 class="display display-md reveal" id="process-title">No surprises. Here&#39;s how it works.</h2>
-    <div class="process-track" data-progress>
-      <span class="process-line" aria-hidden="true"><span></span></span>
-      <ol class="process-steps">
-        
-        <li class="reveal" style="--i:0">
-          <span class="process-num">01</span>
-          <h3>Tell us what&#39;s wrong</h3>
-          <p>WhatsApp, call or send the form. A noise, a warning light or just a service that&#39;s due.</p>
-        </li>
-        <li class="reveal" style="--i:1">
-          <span class="process-num">02</span>
-          <h3>We inspect</h3>
-          <p>We look at the car properly and find the cause, not just the symptom.</p>
-        </li>
-        <li class="reveal" style="--i:2">
-          <span class="process-num">03</span>
-          <h3>We explain the work</h3>
-          <p>You get a clear quote and an explanation. Nothing starts until you approve it.</p>
-        </li>
-        <li class="reveal" style="--i:3">
-          <span class="process-num">04</span>
-          <h3>You get back on the road</h3>
-          <p>We finish the work, test it and hand your car back with a rundown of what was done.</p>
-        </li>
-      </ol>
-    </div>
-    <div class="section-cta on-dark reveal">
-      <p>Start with step one. It takes a minute.</p>
-      <a class="btn btn-accent" href="https://wa.me/?text=Hi%20Eastrand%20Auto%20Repairs%2C%20something's%20wrong%20with%20my%20car.%0A%0AMy%20car%3A%20%0AWhat%20I'm%20noticing%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>Tell us what's wrong</a>
-    </div>
-  </div>
-</section>
-
 <section class="section gallery dark" id="work" aria-labelledby="work-title">
   <div class="container">
-    <div class="section-head split">
+    <div class="gal-head">
       <h2 class="display reveal" id="work-title">Our work</h2>
-      <div class="section-aside reveal">
-        <p class="lead">A look inside the workshop.</p>
-        <p class="demo-tag"><span>Demo</span>Sample photography. The workshop&#39;s own photos replace these.</p>
-      </div>
+      <div class="reveal"><button class="link-cta" type="button" data-lightbox-open="0">See our work <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></button></div>
     </div>
     <ul class="gal-grid">
       
-      <li class="gal-item gal-tall reveal" style="--i:0">
+      <li class="gal-item reveal" style="--i:0">
         <button class="gal-btn" type="button" data-lightbox-open="0" aria-label="View larger: In for a major service">
-          <div class="media gal-media" data-label="Car parked in a dimly lit workshop"><img src="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280" srcset="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=640 640w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=960 960w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280 1280w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="Car parked in a dimly lit workshop" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <div class="media gal-media" data-label="Car parked in a dimly lit workshop"><img src="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280" srcset="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=640 640w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=960 960w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280 1280w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 50vw, 100vw" alt="Car parked in a dimly lit workshop" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
           <span class="gal-cap">In for a major service</span>
         </button>
       </li>
-      <li class="gal-item gal-wide reveal" style="--i:1">
+      <li class="gal-item reveal" style="--i:1">
         <button class="gal-btn" type="button" data-lightbox-open="1" aria-label="View larger: Brake disc and calliper inspection">
-          <div class="media gal-media" data-label="Brake disc and caliper behind a BMW wheel"><img src="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280" srcset="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=640 640w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=960 960w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280 1280w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="Brake disc and caliper behind a BMW wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <div class="media gal-media" data-label="Brake disc and caliper behind a BMW wheel"><img src="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280" srcset="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=640 640w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=960 960w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280 1280w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Brake disc and caliper behind a BMW wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
           <span class="gal-cap">Brake disc and calliper inspection</span>
         </button>
       </li>
-      <li class="gal-item gal-square reveal" style="--i:2">
+      <li class="gal-item reveal" style="--i:2">
         <button class="gal-btn" type="button" data-lightbox-open="2" aria-label="View larger: Ready for collection">
-          <div class="media gal-media" data-label="White BMW in a dark garage"><img src="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280" srcset="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=640 640w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=960 960w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280 1280w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="White BMW in a dark garage" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <div class="media gal-media" data-label="White BMW in a dark garage"><img src="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280" srcset="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=640 640w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=960 960w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280 1280w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="White BMW in a dark garage" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
           <span class="gal-cap">Ready for collection</span>
         </button>
       </li>
-      <li class="gal-item gal-square reveal" style="--i:0">
-        <button class="gal-btn" type="button" data-lightbox-open="3" aria-label="View larger: Diagnostics before any work starts">
-          <div class="media gal-media" data-label="Instrument cluster with gauges"><img src="https://unsplash.com/photos/ZzdvxLpwtao/download?force=true&w=1280" srcset="https://unsplash.com/photos/ZzdvxLpwtao/download?force=true&w=640 640w, https://unsplash.com/photos/ZzdvxLpwtao/download?force=true&w=960 960w, https://unsplash.com/photos/ZzdvxLpwtao/download?force=true&w=1280 1280w, https://unsplash.com/photos/ZzdvxLpwtao/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="Instrument cluster with gauges" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-          <span class="gal-cap">Diagnostics before any work starts</span>
-        </button>
-      </li>
-      <li class="gal-item gal-wide reveal" style="--i:1">
-        <button class="gal-btn" type="button" data-lightbox-open="4" aria-label="View larger: Wheel off for suspension work">
-          <div class="media gal-media" data-label="Detail of a polished black wheel"><img src="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1280" srcset="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=640 640w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=960 960w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1280 1280w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="Detail of a polished black wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+      <li class="gal-item reveal" style="--i:3">
+        <button class="gal-btn" type="button" data-lightbox-open="3" aria-label="View larger: Wheel off for suspension work">
+          <div class="media gal-media" data-label="Detail of a polished black wheel"><img src="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1280" srcset="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=640 640w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=960 960w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1280 1280w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Detail of a polished black wheel" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
           <span class="gal-cap">Wheel off for suspension work</span>
         </button>
       </li>
-      <li class="gal-item gal-tall reveal" style="--i:2">
-        <button class="gal-btn" type="button" data-lightbox-open="5" aria-label="View larger: Engine bay, cleaned and checked">
-          <div class="media gal-media" data-label="Engine bay detail"><img src="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280" srcset="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=640 640w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960 960w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280 1280w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1920 1920w" sizes="(min-width: 900px) 40vw, 100vw" alt="Engine bay detail" loading="lazy" decoding="async" style="object-position:50% 40%"></div>
-          <span class="gal-cap">Engine bay, cleaned and checked</span>
-        </button>
-      </li>
     </ul>
-    <div class="section-cta on-dark reveal"><button class="btn btn-outline-light" type="button" data-lightbox-open="0">See our work <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button></div>
   </div>
 
   <dialog class="lightbox" data-lightbox aria-label="Workshop photos">
@@ -1132,131 +877,24 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   </dialog>
 </section>
 
-<section class="section ba" id="results" aria-labelledby="ba-title">
-  <div class="ba-grid container">
-    <div class="ba-copy">
-      <p class="label reveal">Case study</p>
-      <h2 class="display display-md reveal" id="ba-title">Engine bay service and reseal</h2>
-      <dl class="ba-facts reveal">
-        <div><dt>Vehicle</dt><dd>Vehicle make and model</dd></div>
-        <div><dt>The problem</dt><dd>What the customer noticed, in a sentence.</dd></div>
-        <div><dt>The work</dt><dd>What was found and what was done.</dd></div>
-        <div><dt>The result</dt><dd>How the car came back to the customer.</dd></div>
-      </dl>
-      <p class="demo-tag"><span>Demo</span>Demo slider. Drop in a real before and after pair from the workshop.</p>
-    </div>
-    <div class="ba-stage reveal ba-demo" data-ba style="--pos:50%">
-      <div class="ba-layer ba-after media" data-label="Engine bay after the work"><img src="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280" srcset="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=640 640w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960 960w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280 1280w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1920 1920w" sizes="(min-width: 1000px) 58vw, 100vw" alt="Engine bay after the work" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <div class="ba-layer ba-before media" data-label="Engine bay before the work"><img src="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280" srcset="https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=640 640w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=960 960w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1280 1280w, https://unsplash.com/photos/d9PeiNr58FM/download?force=true&w=1920 1920w" sizes="(min-width: 1000px) 58vw, 100vw" alt="Engine bay before the work" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-      <span class="ba-tag ba-tag-before" aria-hidden="true">Before</span>
-      <span class="ba-tag ba-tag-after" aria-hidden="true">After</span>
-      <span class="ba-handle" aria-hidden="true"><span class="ba-knob"><svg viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
-      <label class="sr-only" for="ba-range">Drag to compare before and after</label>
-      <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50" data-ba-range>
-    </div>
-  </div>
-</section>
-
-<section class="section reviews" aria-labelledby="reviews-title">
-  <div class="container">
-    <div class="section-head split">
-      <h2 class="display display-md reveal" id="reviews-title">What customers say</h2>
-      <div class="section-aside reveal"><p class="demo-tag"><span>Demo</span>Placeholder reviews. Replace with real Google reviews before going live.</p></div>
-    </div>
-    <ul class="rev-grid">
-      
-      <li class="rev reveal rev-lead" style="--i:0">
-        <figure>
-          <span class="rev-stars" role="img" aria-label="5 out of 5 stars"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg></span>
-          <blockquote><p>Customer review goes here. Two or three sentences about the service, the communication and the result.</p></blockquote>
-          <figcaption><strong>Customer name</strong><span>Verified customer</span></figcaption>
-        </figure>
-      </li>
-      <li class="rev reveal" style="--i:1">
-        <figure>
-          <span class="rev-stars" role="img" aria-label="5 out of 5 stars"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg></span>
-          <blockquote><p>Customer review goes here. Ideally one that mentions being kept informed and the price matching the quote.</p></blockquote>
-          <figcaption><strong>Customer name</strong><span>Verified customer</span></figcaption>
-        </figure>
-      </li>
-      <li class="rev reveal" style="--i:2">
-        <figure>
-          <span class="rev-stars" role="img" aria-label="5 out of 5 stars"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8L12 3.5Z" fill="currentColor" stroke="none"/></svg></span>
-          <blockquote><p>Customer review goes here. A short one works well too.</p></blockquote>
-          <figcaption><strong>Customer name</strong><span>Verified customer</span></figcaption>
-        </figure>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="section location dark" id="location" aria-labelledby="loc-title">
-  <div class="loc-grid container">
-    <div class="loc-copy">
-      <h2 class="display reveal" id="loc-title"><span class="line"><span>Your local workshop.</span></span><span class="line"><span>Right here in the East Rand.</span></span></h2>
-      <p class="lead reveal">Based in Kempton Park and easy to reach from across the East Rand. Drop your car off on the way to work and we&#39;ll keep you posted through the day.</p>
-      <address class="loc-address reveal"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg><span>Kempton Park, East Rand, Gauteng</span></address>
-      
-      <div class="loc-actions reveal">
-        <a class="btn btn-accent" href="https://www.google.com/maps/search/?api=1&query=Eastrand%20Auto%20Repairs%20Kempton%20Park%2C%20East%20Rand%2C%20Gauteng" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>Get directions</a>
-        <a class="btn btn-ghost" href="#contact" data-demo-call><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.2a10.5 10.5 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg>Call the workshop</a>
-        <a class="btn btn-ghost" href="https://wa.me/?text=Hi%20Eastrand%20Auto%20Repairs%2C%20I'd%20like%20to%20ask%20about%20my%20car.%0A%0AMy%20car%3A%20%0AWhat's%20happening%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp the workshop</a>
-      </div>
-    </div>
-    <figure class="loc-map reveal" aria-label="Map of Kempton Park and the East Rand">
-      <svg viewBox="0 0 600 600" role="img" aria-labelledby="map-title">
-        <title id="map-title">Stylised map showing the workshop in Kempton Park, East Rand</title>
-        <defs>
-          <radialGradient id="map-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#D99A2E" stop-opacity=".22"/><stop offset="1" stop-color="#D99A2E" stop-opacity="0"/></radialGradient>
-          <pattern id="map-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" fill="none" stroke="#F4F3EF" stroke-opacity=".05"/></pattern>
-        </defs>
-        <rect width="600" height="600" fill="url(#map-grid)"/>
-        <g fill="none" stroke="#F4F3EF" stroke-linecap="round">
-          <path class="road road-major" d="M-20 470C120 430 220 420 300 330S470 150 640 120"/>
-          <path class="road road-major" d="M40 -20C90 120 170 230 300 330S520 520 560 640"/>
-          <path class="road" d="M-20 250C110 260 200 290 300 330s230 30 330 10"/>
-          <path class="road" d="M210 -20c10 120 40 230 90 350"/>
-          <path class="road road-minor" d="M0 380c120-10 230 10 340 70s170 90 280 70"/>
-          <path class="road road-minor" d="M420 -20c-20 140-30 250-30 330s20 200 60 310"/>
-          <path class="road road-minor" d="M-20 130c150 20 280 60 420 40s180-40 220-60"/>
-        </g>
-        <circle cx="300" cy="330" r="150" fill="url(#map-glow)"/>
-        <g class="map-label" fill="#F4F3EF" font-family="inherit" opacity=".45">
-          <text x="250" y="60">Tembisa</text>
-          <text x="40" y="120">Midrand</text>
-          <text x="40" y="520">Edenvale</text>
-          <text x="440" y="400">OR Tambo</text>
-          <text x="250" y="575">Boksburg</text>
-          <text x="480" y="530">Benoni</text>
-        </g>
-        <g class="map-pin" transform="translate(300 330)">
-          <circle r="34" class="pin-pulse" fill="#D99A2E" fill-opacity=".18"/>
-          <circle r="9" fill="#D99A2E"/>
-          <circle r="3.5" fill="#0B0B0B"/>
-        </g>
-
-      </svg>
-      <p class="map-card"><strong>Eastrand Auto Repairs</strong><span>Kempton Park</span></p>
-    </figure>
-  </div>
-</section>
 
 <section class="section contact" id="contact" aria-labelledby="contact-title">
   <div class="contact-grid container">
     <div class="contact-intro">
       <h2 class="display reveal" id="contact-title">Let&#39;s get your car back on the road.</h2>
-      <p class="lead reveal">Tell us about your car and what it needs. We&#39;ll come back to you with a quote or a booking time.</p>
+      <p class="lead reveal">Serving Kempton Park and the East Rand. Send a quick message, or fill in the form and we&#39;ll come back to you with a quote or a booking time.</p>
       <ul class="contact-ways reveal">
         <li><a href="https://wa.me/?text=Hi%20Eastrand%20Auto%20Repairs%2C%20I'd%20like%20to%20ask%20about%20my%20car.%0A%0AMy%20car%3A%20%0AWhat's%20happening%3A%20" target="_blank" rel="noopener">
           <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg></span>
-          <span><strong>WhatsApp</strong><span>Fastest way to reach us. Send photos too.</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <span><strong>WhatsApp</strong><span>Fastest reply. Send photos too.</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
         <li><a href="#contact" data-demo-call>
           <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.2a10.5 10.5 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg></span>
-          <span><strong>Call</strong><span>Speak to the workshop directly.</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <span><strong>Call the workshop</strong><span>Speak to us directly.</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
         <li><a href="https://www.google.com/maps/search/?api=1&query=Eastrand%20Auto%20Repairs%20Kempton%20Park%2C%20East%20Rand%2C%20Gauteng" target="_blank" rel="noopener">
           <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg></span>
-          <span><strong>Location</strong><span>Kempton Park, East Rand, Gauteng</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+          <span><strong>Get directions</strong><span>Kempton Park, East Rand, Gauteng</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
       </ul>
+      
     </div>
 
     <form class="quote-form reveal" data-quote-form novalidate aria-labelledby="form-title">
@@ -1268,12 +906,12 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
       </div>
       <div class="field">
         <label for="f-phone">Phone</label>
-        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err" placeholder="e.g. 082 123 4567">
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err" placeholder="082 123 4567">
         <p class="field-err" id="f-phone-err" role="alert"></p>
       </div>
       <div class="field">
         <label for="f-vehicle">Vehicle make &amp; model</label>
-        <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="e.g. 2018 Toyota Corolla">
+        <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
       </div>
       <div class="field">
         <label for="f-service">Service required</label>
@@ -1285,11 +923,11 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
       </div>
       <div class="field field-full">
         <label for="f-message">Message <span class="opt">(optional)</span></label>
-        <textarea id="f-message" name="message" rows="4" placeholder="What's the car doing? Any warning lights or noises?"></textarea>
+        <textarea id="f-message" name="message" rows="3" placeholder="Any warning lights or noises?"></textarea>
       </div>
       <div class="form-foot field-full">
         <button class="btn btn-accent btn-lg" type="submit">Request a quote</button>
-        <p class="form-note" data-form-note>Your request opens in WhatsApp, ready to send to the workshop.</p>
+        <p class="form-note" data-form-note>Opens WhatsApp with your request ready to send.</p>
       </div>
     </form>
   </div>
@@ -1297,9 +935,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 </main>
 
 <footer class="footer dark">
-  <div class="container">
-    <div class="footer-top">
-      
+  <div class="container footer-inner">
+    
   <a class="logo " href="#top" aria-label="Eastrand Auto Repairs, back to top">
     <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
       <rect x="1" y="1" width="38" height="38" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
@@ -1307,21 +944,11 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     </svg>
     <span class="logo-text"><span class="logo-main">Eastrand</span><span class="logo-sub">Auto Repairs</span></span>
   </a>
-      <p class="footer-line">Professional automotive care without the dealership price tag.</p>
-    </div>
-    <div class="footer-cols">
-      <nav aria-label="Footer"><ul><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#why-us">Why Us</a></li><li><a href="#work">Our Work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
-      <ul class="footer-services"><li><a href="#services">General servicing</a></li><li><a href="#services">Brakes &amp; brake systems</a></li><li><a href="#services">Engine diagnostics</a></li><li><a href="#services">Suspension &amp; steering</a></li><li><a href="#services">Auto electrical</a></li></ul>
-      <div class="footer-contact">
-        <p>Kempton Park, East Rand, Gauteng</p>
-        
-        
-        
-      </div>
-    </div>
+    <nav aria-label="Footer"><ul><li><a href="#services">Services</a></li><li><a href="#why-us">Why Us</a></li><li><a href="#work">Our Work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
     <div class="footer-base">
-      <p>© 2026 Eastrand Auto Repairs. Auto repairs and car servicing in Kempton Park and the East Rand.</p>
-      <p class="footer-demo">Concept website designed for Eastrand Auto Repairs. Demo photography from Unsplash.</p>
+      <p>© 2026 Eastrand Auto Repairs. Auto repairs and car servicing in Kempton Park, East Rand, Gauteng.</p>
+      
+      <p class="footer-demo">Concept website for Eastrand Auto Repairs. Demo photography from Unsplash; services and contact details to be confirmed.</p>
     </div>
   </div>
 </footer>
@@ -1332,7 +959,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   <a class="mcta-btn mcta-primary" href="#contact" data-book><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5.5" width="16" height="14.5" rx="1.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg><span>Book</span></a>
 </nav>
 <div class="toast" role="status" aria-live="polite" data-toast></div>
-<script>window.SITE = {"name":"Eastrand Auto Repairs","whatsapp":"","phone":"","gallery":[{"caption":"In for a major service","image":{"unsplash":"rg8Ak619UAQ","alt":"Car parked in a dimly lit workshop","position":"50% 50%","credit":"Franck V. / Unsplash"}},{"caption":"Brake disc and calliper inspection","image":{"unsplash":"x1LGDpkRSDs","alt":"Brake disc and caliper behind a BMW wheel","position":"50% 50%","credit":"Unsplash"}},{"caption":"Ready for collection","image":{"unsplash":"0cTvMZHuVZE","alt":"White BMW in a dark garage","position":"50% 50%","credit":"RanaMotorWorks / Unsplash"}},{"caption":"Diagnostics before any work starts","image":{"unsplash":"ZzdvxLpwtao","alt":"Instrument cluster with gauges","position":"50% 50%","credit":"Toby Hall / Unsplash"}},{"caption":"Wheel off for suspension work","image":{"unsplash":"-OsnPr51mgo","alt":"Detail of a polished black wheel","position":"50% 50%","credit":"Janosch Diggelmann / Unsplash"}},{"caption":"Engine bay, cleaned and checked","image":{"unsplash":"d9PeiNr58FM","alt":"Engine bay detail","position":"50% 40%","credit":"Unsplash"}}]};</script>
+<script>window.SITE = {"name":"Eastrand Auto Repairs","whatsapp":"","phone":"","gallery":[{"caption":"In for a major service","image":{"unsplash":"rg8Ak619UAQ","alt":"Car parked in a dimly lit workshop","position":"50% 50%","credit":"Franck V. / Unsplash"}},{"caption":"Brake disc and calliper inspection","image":{"unsplash":"x1LGDpkRSDs","alt":"Brake disc and caliper behind a BMW wheel","position":"50% 50%","credit":"Unsplash"}},{"caption":"Ready for collection","image":{"unsplash":"0cTvMZHuVZE","alt":"White BMW in a dark garage","position":"50% 50%","credit":"RanaMotorWorks / Unsplash"}},{"caption":"Wheel off for suspension work","image":{"unsplash":"-OsnPr51mgo","alt":"Detail of a polished black wheel","position":"50% 50%","credit":"Janosch Diggelmann / Unsplash"}}]};</script>
 <script>// Eastrand Auto Repairs — interactions. No dependencies.
 (() => {
   const SITE = window.SITE || {};
@@ -1385,7 +1012,6 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
       navLinks.forEach((a) => a.setAttribute("aria-current", String(current && a.getAttribute("href") === "#" + current.id)));
 
       parallax();
-      processProgress();
       ticking = false;
     });
   }
@@ -1455,24 +1081,20 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     para.style.transform = `translate3d(0, ${(progress * -6).toFixed(2)}%, 0)`;
   }
 
-  // ---------- Process line fills as you read down ----------
-  const track = $("[data-progress]");
-  const steps = track ? $$(".process-steps li", track) : [];
-  function processProgress() {
-    if (!track) return;
-    const r = track.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (innerHeight * 0.75 - r.top) / (r.height + innerHeight * 0.25)));
-    track.style.setProperty("--p", reduceMotion ? 1 : p.toFixed(3));
-    steps.forEach((li, i) => li.classList.toggle("is-lit", reduceMotion || p >= i / steps.length + 0.02));
+  // ---------- Services: photo panel follows the hovered or focused row ----------
+  const svc = $("[data-svc]");
+  if (svc) {
+    const rows = $$("[data-row]", svc);
+    const shots = $$("[data-shot]", svc);
+    const activate = (i) => {
+      rows.forEach((r, k) => r.classList.toggle("is-active", k === i));
+      shots.forEach((s, k) => s.classList.toggle("is-active", k === i));
+    };
+    rows.forEach((r, i) => {
+      r.addEventListener("mouseenter", () => activate(i));
+      r.addEventListener("focus", () => activate(i));
+    });
   }
-
-  // ---------- Before / after slider ----------
-  $$("[data-ba]").forEach((stage) => {
-    const range = $("[data-ba-range]", stage);
-    const set = () => stage.style.setProperty("--pos", range.value + "%");
-    range.addEventListener("input", set);
-    set();
-  });
 
   // ---------- Gallery lightbox ----------
   const lb = $("[data-lightbox]");

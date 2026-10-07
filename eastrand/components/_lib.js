@@ -29,9 +29,6 @@ export function img(cfg, key, { sizes = "100vw", eager = false, maxWidth = 2560,
 export const media = (cfg, key, opts = {}) =>
   `<div class="media${opts.frameClass ? " " + opts.frameClass : ""}" data-label="${esc(cfg.images[key].alt)}">${img(cfg, key, opts)}</div>`;
 
-export const demoTag = (cfg, text) =>
-  cfg.demoNotes && text ? `<p class="demo-tag"><span>Demo</span>${esc(text)}</p>` : "";
-
 // ---------- Contact links ----------
 export function whatsappHref(cfg, message) {
   const n = cfg.business.whatsapp.replace(/\D/g, "");

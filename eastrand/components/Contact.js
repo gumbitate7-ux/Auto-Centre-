@@ -1,5 +1,11 @@
 import { esc, icon, callAttrs, whatsappHref, waMessages } from "./_lib.js";
-import { addressLine, directionsHref } from "./Location.js";
+
+export const addressLine = (cfg) => {
+  const a = cfg.business.address;
+  return [a.street, a.suburb, a.region, a.postalCode].filter(Boolean).join(", ");
+};
+export const directionsHref = (cfg) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cfg.business.name + " " + addressLine(cfg))}`;
 
 export default function Contact(cfg) {
   const c = cfg.contact;
@@ -13,14 +19,15 @@ export default function Contact(cfg) {
       <ul class="contact-ways reveal">
         <li><a href="${whatsappHref(cfg, waMessages(cfg).general)}" target="_blank" rel="noopener">
           <span class="cw-ico">${icon("whatsapp")}</span>
-          <span><strong>WhatsApp</strong><span>Fastest way to reach us. Send photos too.</span></span>${icon("arrow", "cw-arrow")}</a></li>
+          <span><strong>WhatsApp</strong><span>Fastest reply. Send photos too.</span></span>${icon("arrow", "cw-arrow")}</a></li>
         <li><a ${callAttrs(cfg)}>
           <span class="cw-ico">${icon("phone")}</span>
-          <span><strong>Call</strong><span>${b.phoneDisplay ? esc(b.phoneDisplay) : "Speak to the workshop directly."}</span></span>${icon("arrow", "cw-arrow")}</a></li>
+          <span><strong>Call the workshop</strong><span>${b.phoneDisplay ? esc(b.phoneDisplay) : "Speak to us directly."}</span></span>${icon("arrow", "cw-arrow")}</a></li>
         <li><a href="${directionsHref(cfg)}" target="_blank" rel="noopener">
           <span class="cw-ico">${icon("pin")}</span>
-          <span><strong>Location</strong><span>${esc(addressLine(cfg))}</span></span>${icon("arrow", "cw-arrow")}</a></li>
+          <span><strong>Get directions</strong><span>${esc(addressLine(cfg))}</span></span>${icon("arrow", "cw-arrow")}</a></li>
       </ul>
+      ${b.hours.length ? `<dl class="hours reveal">${b.hours.map((h) => `<div><dt>${esc(h.days)}</dt><dd>${esc(h.time)}</dd></div>`).join("")}</dl>` : ""}
     </div>
 
     <form class="quote-form reveal" data-quote-form novalidate aria-labelledby="form-title">
@@ -32,12 +39,12 @@ export default function Contact(cfg) {
       </div>
       <div class="field">
         <label for="f-phone">Phone</label>
-        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err" placeholder="e.g. 082 123 4567">
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err" placeholder="082 123 4567">
         <p class="field-err" id="f-phone-err" role="alert"></p>
       </div>
       <div class="field">
         <label for="f-vehicle">Vehicle make &amp; model</label>
-        <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="e.g. 2018 Toyota Corolla">
+        <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
       </div>
       <div class="field">
         <label for="f-service">Service required</label>
@@ -49,11 +56,11 @@ export default function Contact(cfg) {
       </div>
       <div class="field field-full">
         <label for="f-message">Message <span class="opt">(optional)</span></label>
-        <textarea id="f-message" name="message" rows="4" placeholder="What's the car doing? Any warning lights or noises?"></textarea>
+        <textarea id="f-message" name="message" rows="3" placeholder="Any warning lights or noises?"></textarea>
       </div>
       <div class="form-foot field-full">
         <button class="btn btn-accent btn-lg" type="submit">Request a quote</button>
-        <p class="form-note" data-form-note>Your request opens in WhatsApp, ready to send to the workshop.</p>
+        <p class="form-note" data-form-note>Opens WhatsApp with your request ready to send.</p>
       </div>
     </form>
   </div>

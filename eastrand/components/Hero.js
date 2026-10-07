@@ -18,10 +18,9 @@ export default function Hero(cfg) {
         <a class="btn btn-glass btn-lg" href="${whatsappHref(cfg, waMessages(cfg).general)}" target="_blank" rel="noopener">${icon("whatsapp")}WhatsApp us</a>
       </div>
     </div>
+    <ul class="hero-trust" aria-label="What to expect">
+      ${cfg.trust.map((t) => `<li>${esc(t)}</li>`).join("")}
+    </ul>
   </div>
-  <a class="scroll-cue" href="#services" aria-label="Scroll to services">
-    <span class="scroll-cue-track" aria-hidden="true"><span></span></span>
-    <span class="scroll-cue-text">Scroll</span>
-  </a>
 </section>`;
 }

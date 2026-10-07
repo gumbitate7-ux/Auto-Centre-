@@ -1,15 +1,11 @@
 import { esc } from "./_lib.js";
-import { addressLine } from "./Location.js";
+import { addressLine } from "./Contact.js";
 import Navbar from "./Navbar.js";
 import Hero from "./Hero.js";
-import TrustBar from "./TrustBar.js";
 import Services from "./Services.js";
 import WhyUs from "./WhyUs.js";
-import Process from "./Process.js";
 import Gallery from "./Gallery.js";
-import BeforeAfter from "./BeforeAfter.js";
 import Testimonials from "./Testimonials.js";
-import Location from "./Location.js";
 import Contact from "./Contact.js";
 import Footer from "./Footer.js";
 import MobileCTA from "./MobileCTA.js";
@@ -84,14 +80,10 @@ ${schema(cfg)}
 ${Navbar(cfg)}
 <main id="main">
 ${Hero(cfg)}
-${TrustBar(cfg)}
 ${Services(cfg)}
 ${WhyUs(cfg)}
-${Process(cfg)}
 ${Gallery(cfg)}
-${BeforeAfter(cfg)}
 ${Testimonials(cfg)}
-${Location(cfg)}
 ${Contact(cfg)}
 </main>
 ${Footer(cfg)}

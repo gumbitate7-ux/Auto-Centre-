@@ -50,7 +50,6 @@
       navLinks.forEach((a) => a.setAttribute("aria-current", String(current && a.getAttribute("href") === "#" + current.id)));
 
       parallax();
-      processProgress();
       ticking = false;
     });
   }
@@ -120,24 +119,20 @@
     para.style.transform = `translate3d(0, ${(progress * -6).toFixed(2)}%, 0)`;
   }
 
-  // ---------- Process line fills as you read down ----------
-  const track = $("[data-progress]");
-  const steps = track ? $$(".process-steps li", track) : [];
-  function processProgress() {
-    if (!track) return;
-    const r = track.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (innerHeight * 0.75 - r.top) / (r.height + innerHeight * 0.25)));
-    track.style.setProperty("--p", reduceMotion ? 1 : p.toFixed(3));
-    steps.forEach((li, i) => li.classList.toggle("is-lit", reduceMotion || p >= i / steps.length + 0.02));
+  // ---------- Services: photo panel follows the hovered or focused row ----------
+  const svc = $("[data-svc]");
+  if (svc) {
+    const rows = $$("[data-row]", svc);
+    const shots = $$("[data-shot]", svc);
+    const activate = (i) => {
+      rows.forEach((r, k) => r.classList.toggle("is-active", k === i));
+      shots.forEach((s, k) => s.classList.toggle("is-active", k === i));
+    };
+    rows.forEach((r, i) => {
+      r.addEventListener("mouseenter", () => activate(i));
+      r.addEventListener("focus", () => activate(i));
+    });
   }
-
-  // ---------- Before / after slider ----------
-  $$("[data-ba]").forEach((stage) => {
-    const range = $("[data-ba-range]", stage);
-    const set = () => stage.style.setProperty("--pos", range.value + "%");
-    range.addEventListener("input", set);
-    set();
-  });
 
   // ---------- Gallery lightbox ----------
   const lb = $("[data-lightbox]");

@@ -1,31 +1,27 @@
-import { esc, media, demoTag, icon } from "./_lib.js";
+import { esc, media, icon } from "./_lib.js";
 
 export default function Gallery(cfg) {
   const g = cfg.gallery;
   const social = cfg.business.socials.instagram || cfg.business.socials.facebook;
   const seeMore = social
-    ? `<a class="btn btn-outline-light" href="${esc(social)}" target="_blank" rel="noopener">See our work ${icon("arrow")}</a>`
-    : `<button class="btn btn-outline-light" type="button" data-lightbox-open="0">See our work ${icon("expand")}</button>`;
+    ? `<a class="link-cta" href="${esc(social)}" target="_blank" rel="noopener">See our work ${icon("arrow")}</a>`
+    : `<button class="link-cta" type="button" data-lightbox-open="0">See our work ${icon("arrow")}</button>`;
   return `
 <section class="section gallery dark" id="work" aria-labelledby="work-title">
   <div class="container">
-    <div class="section-head split">
+    <div class="gal-head">
       <h2 class="display reveal" id="work-title">${esc(g.headline)}</h2>
-      <div class="section-aside reveal">
-        <p class="lead">${esc(g.intro)}</p>
-        ${demoTag(cfg, g.demoNote)}
-      </div>
+      <div class="reveal">${seeMore}</div>
     </div>
     <ul class="gal-grid">
       ${g.items.map((it, i) => `
-      <li class="gal-item gal-${it.size} reveal" style="--i:${i % 3}">
+      <li class="gal-item reveal" style="--i:${i}">
         <button class="gal-btn" type="button" data-lightbox-open="${i}" aria-label="View larger: ${esc(it.caption)}">
-          ${media(cfg, it.image, { sizes: "(min-width: 900px) 40vw, 100vw", maxWidth: 1920, frameClass: "gal-media" })}
+          ${media(cfg, it.image, { sizes: i === 0 ? "(min-width: 760px) 50vw, 100vw" : "(min-width: 760px) 25vw, 50vw", maxWidth: 1920, frameClass: "gal-media" })}
           <span class="gal-cap">${esc(it.caption)}</span>
         </button>
       </li>`).join("")}
     </ul>
-    <div class="section-cta on-dark reveal">${seeMore}</div>
   </div>
 
   <dialog class="lightbox" data-lightbox aria-label="Workshop photos">

@@ -22,7 +22,10 @@ export function img(cfg, key, { sizes = "100vw", eager = false, maxWidth = 2560,
   }
   const widths = UNSPLASH_WIDTHS.filter((w) => w <= maxWidth);
   const srcset = widths.map((w) => `${unsplashUrl(entry.unsplash, w)} ${w}w`).join(", ");
-  return `<img${cls} src="${unsplashUrl(entry.unsplash, widths.at(-2) ?? widths[0])}" srcset="${srcset}" sizes="${sizes}" alt="${esc(entry.alt)}" ${loading} decoding="async"${style}>`;
+  // Backup photos, tried in order by the error handler in Page.js if this one fails to load.
+  const fallbacks = (entry.fallbacks || cfg.imageFallbacks || []).filter((id) => id !== entry.unsplash);
+  const fb = fallbacks.length ? ` data-fallbacks="${esc(fallbacks.join(" "))}"` : "";
+  return `<img${cls} src="${unsplashUrl(entry.unsplash, widths.at(-2) ?? widths[0])}" srcset="${srcset}" sizes="${sizes}" alt="${esc(entry.alt)}" ${loading} decoding="async"${style}${fb}>`;
 }
 
 /** Image inside a frame that shows a designed placeholder if the photo can't load. */

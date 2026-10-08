@@ -61,8 +61,12 @@ export default {
   // workshop's own photographs. `tools/download-images.mjs` can localise them all.
   // Demo photos are free to use under the Unsplash License.
   // ---------------------------------------------------------------------------
+  // If a photo fails to load, these workshop photos are tried in its place before a placeholder shows.
+  imageFallbacks: ["Iw480aWLXGo", "Hv_gKPOXmwE", "rg8Ak619UAQ"],
+
   images: {
-    hero:       { unsplash: "8MXNZCgAah0", alt: "Technician working on a car inside a workshop", position: "50% 50%", credit: "Unsplash" },
+    // The hero uses the workshop photo that loaded in the previous demo, with two backups.
+    hero:       { unsplash: "Iw480aWLXGo", fallbacks: ["8MXNZCgAah0", "Hv_gKPOXmwE"], alt: "Technician working on a car in the workshop", position: "50% 55%", credit: "Luke Roberts / Unsplash" },
     accident:   { unsplash: "p76hPO989to", alt: "Car with a crashed front end", position: "50% 50%", credit: "Erik Mclean / Unsplash" },
     spray:      { unsplash: "G6sI_6B_FFY", alt: "Gloved hands working on a car's paintwork in a body shop", position: "50% 50%", credit: "Unsplash" },
     panel:      { unsplash: "iuuKLgDwbwQ", alt: "Car with a dent in the front end", position: "50% 50%", credit: "Unsplash" },
@@ -75,8 +79,6 @@ export default {
     work2:      { unsplash: "9XcUbV5CdVA", alt: "Finishing a car's paint in a garage", position: "50% 50%", credit: "Unsplash" },
     work3:      { unsplash: "TNybYN-LqJo", alt: "Glossy black bodywork up close", position: "50% 50%", credit: "Unsplash" },
     work4:      { unsplash: "k_DBVzru8d8", alt: "Hand-finishing a car's bonnet", position: "50% 50%", credit: "Unsplash" },
-    // The real shopfront (cropped from a phone photo of the sign). Replace with a sharper photo when possible.
-    storefront: { src: "assets/img/storefront.jpg", alt: "The Eastern Auto Body sign on the face-brick workshop building", credit: "Shop photo" },
   },
 
   nav: [
@@ -148,7 +150,6 @@ export default {
     headline: "Send us the damage.",
     body: "We'll send you a quote. WhatsApp is quickest, or fill in the form and we'll come back to you.",
     photoTips: ["The damage, up close", "The whole side of the car, from a few steps back", "The registration plate"],
-    findUs: "12 Turf Road, Anderbolt. Look for the brown sign on the face-brick building.",
     serviceOptions: [
       "Accident repairs", "Spray painting", "Dents & creases", "Insurance claim quotes",
       "Bumper repairs", "Scratches & scuffs", "Rust repair", "Machine polishing", "Not sure yet",

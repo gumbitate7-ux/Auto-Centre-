@@ -10,7 +10,6 @@ export const directionsHref = (cfg) =>
 export default function Contact(cfg) {
   const c = cfg.contact;
   const b = cfg.business;
-  const shop = cfg.images.storefront;
   return `
 <section class="section contact" id="contact" aria-labelledby="contact-title">
   <div class="contact-grid container">
@@ -21,11 +20,6 @@ export default function Contact(cfg) {
         <p class="tips-title">For a quote from photos, send:</p>
         <ol>${c.photoTips.map((t) => `<li>${esc(t)}</li>`).join("")}</ol>
       </div>` : ""}
-
-      ${shop ? `<figure class="storefront reveal">
-        <div class="media storefront-media" data-label="${esc(shop.alt)}"><img src="${esc(shop.src)}" alt="${esc(shop.alt)}" loading="lazy" decoding="async" width="838" height="286"></div>
-        <figcaption>${esc(c.findUs)}</figcaption>
-      </figure>` : ""}
 
       <ul class="contact-ways reveal">
         <li><a href="${whatsappHref(cfg, waMessages(cfg).photos)}" target="_blank" rel="noopener">

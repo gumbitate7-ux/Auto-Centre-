@@ -59,7 +59,7 @@ ${s.url ? `<link rel="canonical" href="${esc(s.url)}">` : ""}
 ${s.url ? `<meta property="og:url" content="${esc(s.url)}">` : ""}
 ${cfg.business.address.province === "Gauteng" ? `<meta name="geo.region" content="ZA-GP">` : ""}
 ${addressLine(cfg) ? `<meta name="geo.placename" content="${esc(addressLine(cfg))}">` : ""}
-<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -31 114 114"><rect x="-14" y="-31" width="114" height="114" rx="16" fill="#6E3A2B"/>${markSvg("").replace(/<svg[^>]*>|<\/svg>/g, "").replace(/<polygon/g, '<polygon fill="#47A877"')}</svg>`)}">
+<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -31 114 114"><rect x="-14" y="-31" width="114" height="114" rx="16" fill="#E6EAE7"/>${markSvg("").replace(/<svg[^>]*>|<\/svg>/g, "").replace(/<polygon/g, '<polygon fill="#47A877"')}</svg>`)}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unsplash.com">
@@ -70,7 +70,16 @@ ${addressLine(cfg) ? `<meta name="geo.placename" content="${esc(addressLine(cfg)
   document.documentElement.classList.add("js");
   addEventListener("error", function (e) {
     var t = e.target;
-    if (t && t.tagName === "IMG") { var m = t.closest(".media"); if (m) m.classList.add("is-missing"); }
+    if (!t || t.tagName !== "IMG") return;
+    // try the next backup photo before giving up on this frame
+    var fb = (t.getAttribute("data-fallbacks") || "").split(" ").filter(Boolean);
+    if (fb.length) {
+      t.setAttribute("data-fallbacks", fb.slice(1).join(" "));
+      t.removeAttribute("srcset");
+      t.src = "https://unsplash.com/photos/" + fb[0] + "/download?force=true&w=1920";
+      return;
+    }
+    var m = t.closest(".media"); if (m) m.classList.add("is-missing");
   }, true);
 </script>
 ${styles}

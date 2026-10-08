@@ -1,11 +1,12 @@
 import { esc, img, icon, markSvg, whatsappHref, waMessages } from "./_lib.js";
 
-// The shop's own sign is the hero: an oxide band with the mark and raised aluminium
-// lettering runs along the foot of the hero.
+// The logo lockup (jade mark + wide wordmark) runs along the foot of the hero on a
+// light grey band, under a full-bleed workshop photograph.
 //
-// Above it, either a workshop photograph (hero.visual = "photo") or, by default, a dark
-// lacquered panel under booth lights: the reflections start bent around a dent and pull
-// straight on load, which is how a panel beater reads a panel. main.js draws the curves.
+// Above it, a workshop photograph (hero.visual = "photo"). Underneath the photo sits a dark
+// lacquered panel under booth lights, whose reflections start bent around a dent and pull
+// straight on load. It shows if the photo can't load (or with hero.visual = "reflection"),
+// so the hero is never empty. main.js draws the curves.
 const Reflection = () => `
   <div class="hero-media hero-panel" aria-hidden="true">
     <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
@@ -26,9 +27,10 @@ export default function Hero(cfg) {
   const b = cfg.business;
   return `
 <section class="hero" id="top" aria-labelledby="hero-title">
-  ${h.visual === "photo" ? `<div class="hero-media media" data-label="${esc(cfg.images.hero.alt)}">
+  ${Reflection()}
+  ${h.visual === "photo" ? `<div class="hero-media media hero-photo" data-label="${esc(cfg.images.hero.alt)}">
     ${img(cfg, "hero", { eager: true, sizes: "100vw" })}
-  </div>` : Reflection()}
+  </div>` : ""}
   <div class="hero-shade" aria-hidden="true"></div>
 
   <div class="hero-content container">

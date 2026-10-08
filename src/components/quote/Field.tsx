@@ -47,7 +47,15 @@ type TextFieldProps = Omit<FieldShellProps, 'children'> & InputHTMLAttributes<HT
 
 export function TextField({ id, label, required, optional, error, hint, className, ...input }: TextFieldProps) {
   return (
-    <FieldShell id={id} label={label} required={required} optional={optional} error={error} hint={hint} className={className}>
+    <FieldShell
+      id={id}
+      label={label}
+      required={required}
+      optional={optional}
+      error={error}
+      hint={hint}
+      className={className}
+    >
       <input
         id={id}
         className="field__input"
@@ -64,7 +72,15 @@ type TextAreaProps = Omit<FieldShellProps, 'children'> & TextareaHTMLAttributes<
 
 export function TextArea({ id, label, required, optional, error, hint, className, ...textarea }: TextAreaProps) {
   return (
-    <FieldShell id={id} label={label} required={required} optional={optional} error={error} hint={hint} className={className}>
+    <FieldShell
+      id={id}
+      label={label}
+      required={required}
+      optional={optional}
+      error={error}
+      hint={hint}
+      className={className}
+    >
       <textarea
         id={id}
         className="field__input field__textarea"

@@ -80,8 +80,7 @@ export function QuoteForm() {
   const focusFirstError = (errs: QuoteErrors) => {
     const first = steps.flatMap((s) => s.fields).find((f) => errs[f])
     if (!first) return
-    const el =
-      document.getElementById(`quote-${first}`) ?? document.querySelector<HTMLElement>(`[name="${first}"]`)
+    const el = document.getElementById(`quote-${first}`) ?? document.querySelector<HTMLElement>(`[name="${first}"]`)
     el?.focus()
   }
 
@@ -93,7 +92,11 @@ export function QuoteForm() {
 
   const next = () => {
     const errs = validateStep(step, values)
-    setErrors((e) => ({ ...e, ...errs, ...Object.fromEntries(steps[step].fields.filter((f) => !errs[f]).map((f) => [f, undefined])) }))
+    setErrors((e) => ({
+      ...e,
+      ...errs,
+      ...Object.fromEntries(steps[step].fields.filter((f) => !errs[f]).map((f) => [f, undefined])),
+    }))
     if (Object.keys(errs).length) {
       focusFirstError(errs)
       return
@@ -163,7 +166,12 @@ export function QuoteForm() {
             <dd className="tabular">{reference}</dd>
           </dl>
           <div className="quote-success__actions">
-            <Button href={whatsappHref(`Hi Dino's, I've just sent quote request ${reference}. Here are some extra photos.`)} target="_blank" rel="noopener noreferrer" iconStart="whatsapp">
+            <Button
+              href={whatsappHref(`Hi Dino's, I've just sent quote request ${reference}. Here are some extra photos.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              iconStart="whatsapp"
+            >
               Send more photos on WhatsApp
             </Button>
             <Button variant="secondary" onClick={reset}>
@@ -184,7 +192,11 @@ export function QuoteForm() {
               {steps.map((s, i) => {
                 const state = i < step ? 'done' : i === step ? 'current' : 'todo'
                 return (
-                  <li key={s.id} className={`quote-steps__item is-${state}`} aria-current={i === step ? 'step' : undefined}>
+                  <li
+                    key={s.id}
+                    className={`quote-steps__item is-${state}`}
+                    aria-current={i === step ? 'step' : undefined}
+                  >
                     <button
                       type="button"
                       className="quote-steps__btn"
@@ -398,7 +410,10 @@ export function QuoteForm() {
                   <ReviewRow label="Name" value={values.name} />
                   <ReviewRow label="Phone" value={values.phone} />
                   <ReviewRow label="Email" value={values.email || '—'} />
-                  <ReviewRow label="Contact by" value={contactOptions.find((o) => o.value === values.contactMethod)?.label ?? ''} />
+                  <ReviewRow
+                    label="Contact by"
+                    value={contactOptions.find((o) => o.value === values.contactMethod)?.label ?? ''}
+                  />
                 </ReviewGroup>
                 <ReviewGroup title="Vehicle" onEdit={() => goTo(1)}>
                   <ReviewRow label="Vehicle" value={`${values.make} ${values.model}`.trim()} />
@@ -457,7 +472,12 @@ export function QuoteForm() {
 
           <div className="quote-actions">
             {step > 0 ? (
-              <Button variant="ghost" iconStart="arrow-left" onClick={() => goTo(step - 1)} disabled={status === 'submitting'}>
+              <Button
+                variant="ghost"
+                iconStart="arrow-left"
+                onClick={() => goTo(step - 1)}
+                disabled={status === 'submitting'}
+              >
                 Back
               </Button>
             ) : (
@@ -478,7 +498,11 @@ export function QuoteForm() {
                   Sending request…
                 </>
               ) : step === steps.length - 1 ? (
-                status === 'error' ? 'Try again' : 'Submit Request'
+                status === 'error' ? (
+                  'Try again'
+                ) : (
+                  'Submit Request'
+                )
               ) : (
                 'Continue'
               )}

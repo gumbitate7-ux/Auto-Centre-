@@ -113,7 +113,8 @@ export function CompareSlider({
   const endDrag = (event: PointerEvent<HTMLDivElement>) => {
     dragging.current = false
     rootRef.current?.classList.remove('is-dragging')
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
+    if (event.currentTarget.hasPointerCapture(event.pointerId))
+      event.currentTarget.releasePointerCapture(event.pointerId)
   }
 
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -147,7 +148,13 @@ export function CompareSlider({
     >
       <Picture name={after} alt={altAfter} sizes={sizes} className="compare__layer compare__after" draggable={false} />
       <div className="compare__before-clip">
-        <Picture name={before} alt={altBefore} sizes={sizes} className="compare__layer compare__before" draggable={false} />
+        <Picture
+          name={before}
+          alt={altBefore}
+          sizes={sizes}
+          className="compare__layer compare__before"
+          draggable={false}
+        />
       </div>
 
       <span className="compare__tag compare__tag--before" aria-hidden="true">

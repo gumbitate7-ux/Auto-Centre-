@@ -2,7 +2,9 @@
   position: relative;
   background: var(--c-surface);
   border-radius: var(--radius-l);
-  box-shadow: var(--shadow-m), 0 0 0 1px rgb(20 22 24 / 0.05);
+  box-shadow:
+    var(--shadow-m),
+    0 0 0 1px rgb(20 22 24 / 0.05);
   padding: clamp(22px, 3.4vw, 44px);
   scroll-margin-top: calc(var(--header-h-compact) + 16px);
 }
@@ -454,8 +456,7 @@
   padding: 28px 20px;
   border-radius: var(--radius-m);
   border: 1px dashed var(--c-line-strong);
-  background:
-    linear-gradient(#fafbfb, #fafbfb) padding-box;
+  background: linear-gradient(#fafbfb, #fafbfb) padding-box;
   text-align: center;
   cursor: pointer;
   transition:
@@ -495,7 +496,9 @@ input:focus-visible + .dropzone {
   border-radius: 50%;
   background: #fff;
   color: var(--c-ink);
-  box-shadow: var(--shadow-s), 0 0 0 1px var(--c-line);
+  box-shadow:
+    var(--shadow-s),
+    0 0 0 1px var(--c-line);
   transition: transform 500ms var(--ease-out);
 }
 

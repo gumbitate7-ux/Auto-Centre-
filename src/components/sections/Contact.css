@@ -29,7 +29,9 @@
   height: 46px;
   border-radius: 50%;
   background: var(--c-surface);
-  box-shadow: var(--shadow-s), 0 0 0 1px var(--c-line);
+  box-shadow:
+    var(--shadow-s),
+    0 0 0 1px var(--c-line);
   color: var(--c-ink);
   transition:
     background-color 400ms var(--ease-soft),
@@ -152,7 +154,9 @@
   min-height: 460px;
   border-radius: var(--radius-l);
   overflow: hidden;
-  box-shadow: var(--shadow-m), 0 0 0 1px rgb(20 22 24 / 0.05);
+  box-shadow:
+    var(--shadow-m),
+    0 0 0 1px rgb(20 22 24 / 0.05);
 }
 
 .map {
@@ -279,7 +283,9 @@
     padding: 16px 8px 14px;
     border-radius: var(--radius-m);
     background: var(--c-surface);
-    box-shadow: var(--shadow-s), 0 0 0 1px var(--c-line);
+    box-shadow:
+      var(--shadow-s),
+      0 0 0 1px var(--c-line);
     font-size: 0.85rem;
     font-weight: 560;
   }

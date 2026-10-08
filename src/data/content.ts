@@ -12,9 +12,21 @@ export const navigation = [
 export type SectionId = (typeof navigation)[number]['id'] | 'quote' | 'process'
 
 export const heroSlides = [
-  { image: 'hero-booth', label: 'Refinishing', alt: 'Graphite sports car in a bright refinishing bay, lit by overhead light panels' },
-  { image: 'hero-profile', label: 'Panel & paint detail', alt: 'Close-up of a silver rear wheel arch with clean reflections across the panel' },
-  { image: 'hero-rear', label: 'Colour & finish', alt: 'Sage-metallic vehicle seen from the rear three-quarter in a refinishing bay' },
+  {
+    image: 'hero-booth',
+    label: 'Refinishing',
+    alt: 'Graphite sports car in a bright refinishing bay, lit by overhead light panels',
+  },
+  {
+    image: 'hero-profile',
+    label: 'Panel & paint detail',
+    alt: 'Close-up of a silver rear wheel arch with clean reflections across the panel',
+  },
+  {
+    image: 'hero-rear',
+    label: 'Colour & finish',
+    alt: 'Sage-metallic vehicle seen from the rear three-quarter in a refinishing bay',
+  },
 ] as const
 
 export const trustPoints = [
@@ -133,7 +145,7 @@ export interface Project {
   image: string
   alt: string
   /** Visual size in the editorial grid. */
-  shape: 'portrait' | 'landscape' | 'wide'
+  shape: 'portrait' | 'landscape' | 'wide' | 'cinema'
   beforeAfter?: { before: string; after: string }
   service: ServiceId
 }
@@ -153,6 +165,18 @@ export const projects: Project[] = [
     service: 'accident',
   },
   {
+    id: 'wheel-detail',
+    title: 'Finishing and detail',
+    category: 'Restorations',
+    description:
+      'The final stage of a restoration, where trim, wheels and paint are inspected under strong light before handover.',
+    work: ['Final inspection', 'Paint correction', 'Detail finishing'],
+    image: 'gal-wheel',
+    alt: 'Close-up of a graphite vehicle wheel and front fender',
+    shape: 'portrait',
+    service: 'restoration',
+  },
+  {
     id: 'respray',
     title: 'Full respray in sage metallic',
     category: 'Spray Painting',
@@ -165,16 +189,27 @@ export const projects: Project[] = [
     service: 'spray',
   },
   {
-    id: 'wheel-detail',
-    title: 'Finishing and detail',
-    category: 'Restorations',
+    id: 'bonnet',
+    title: 'Bonnet and front-end refinish',
+    category: 'Spray Painting',
     description:
-      'The final stage of a restoration, where trim, wheels and paint are inspected under strong light before handover.',
-    work: ['Final inspection', 'Paint correction', 'Detail finishing'],
-    image: 'gal-wheel',
-    alt: 'Close-up of a graphite vehicle wheel and front fender',
+      'Stone-chipped bonnet and front end refinished and blended into the wings for an invisible transition.',
+    work: ['Chip repair', 'Preparation', 'Refinish and blend'],
+    image: 'gal-bonnet',
+    alt: 'White bonnet and front end with clean reflections after refinishing',
     shape: 'portrait',
-    service: 'restoration',
+    service: 'spray',
+  },
+  {
+    id: 'panel-prep',
+    title: 'Panel repair and primer',
+    category: 'Panel Beating',
+    description: 'A damaged panel section repaired and taken back to primer, with feathered edges ready for paint.',
+    work: ['Panel repair', 'Feather sanding', 'Primer'],
+    image: 'svc-panel',
+    alt: 'Graphite fender and door section in primer during panel repair',
+    shape: 'portrait',
+    service: 'panel',
   },
   {
     id: 'door-swipe',
@@ -190,31 +225,6 @@ export const projects: Project[] = [
     service: 'panel',
   },
   {
-    id: 'restoration',
-    title: 'Exterior restoration',
-    category: 'Restorations',
-    description:
-      'Bodywork brought back to a straight, primed shell before being refinished in a deep bronze metallic.',
-    work: ['Full strip and assessment', 'Body repairs', 'High-build primer', 'Bronze metallic refinish'],
-    image: 'gal-resto-after',
-    alt: 'Bronze-metallic convertible after an exterior restoration',
-    shape: 'landscape',
-    beforeAfter: { before: 'gal-resto-before', after: 'gal-resto-after' },
-    service: 'restoration',
-  },
-  {
-    id: 'bonnet',
-    title: 'Bonnet and front-end refinish',
-    category: 'Spray Painting',
-    description:
-      'Stone-chipped bonnet and front end refinished and blended into the wings for an invisible transition.',
-    work: ['Chip repair', 'Preparation', 'Refinish and blend'],
-    image: 'gal-bonnet',
-    alt: 'White bonnet and front end with clean reflections after refinishing',
-    shape: 'portrait',
-    service: 'spray',
-  },
-  {
     id: 'rear-quarter',
     title: 'Rear bumper and quarter repair',
     category: 'Accident Repairs',
@@ -228,16 +238,28 @@ export const projects: Project[] = [
     service: 'bumper',
   },
   {
-    id: 'panel-prep',
-    title: 'Panel repair and primer',
-    category: 'Panel Beating',
+    id: 'paint-finish',
+    title: 'Paint finishing and correction',
+    category: 'Spray Painting',
     description:
-      'A damaged panel section repaired and taken back to primer, with feathered edges ready for paint.',
-    work: ['Panel repair', 'Feather sanding', 'Primer'],
-    image: 'svc-panel',
-    alt: 'Graphite fender and door section in primer during panel repair',
-    shape: 'portrait',
-    service: 'panel',
+      'Refinished panels are flatted and polished so reflections run cleanly from one panel to the next, with no visible repair edges.',
+    work: ['Refinish', 'Flatting', 'Machine polish', 'Final inspection'],
+    image: 'hero-profile',
+    alt: 'Silver rear wheel arch with clean, unbroken reflections across the panel',
+    shape: 'cinema',
+    service: 'spray',
+  },
+  {
+    id: 'restoration',
+    title: 'Exterior restoration',
+    category: 'Restorations',
+    description: 'Bodywork brought back to a straight, primed shell before being refinished in a deep bronze metallic.',
+    work: ['Full strip and assessment', 'Body repairs', 'High-build primer', 'Bronze metallic refinish'],
+    image: 'gal-resto-after',
+    alt: 'Bronze-metallic convertible after an exterior restoration',
+    shape: 'landscape',
+    beforeAfter: { before: 'gal-resto-before', after: 'gal-resto-after' },
+    service: 'restoration',
   },
 ]
 

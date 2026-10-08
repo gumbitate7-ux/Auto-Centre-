@@ -51,7 +51,8 @@ export function Contact() {
           </div>
           <Reveal className="section-head__aside" delay={140}>
             <p className="body-copy">
-              Pop in for an assessment, give us a call, or send photos of the damage on WhatsApp for a quicker first look.
+              Pop in for an assessment, give us a call, or send photos of the damage on WhatsApp for a quicker first
+              look.
             </p>
           </Reveal>
         </div>
@@ -128,7 +129,13 @@ export function Contact() {
               <p className="contact__map-name">{business.name}</p>
               <p className="contact__map-address">{address.slice(0, 2).join(', ')}</p>
               <div className="contact__map-actions">
-                <Button href={business.mapsUrl} size="sm" iconStart="navigation" target="_blank" rel="noopener noreferrer">
+                <Button
+                  href={business.mapsUrl}
+                  size="sm"
+                  iconStart="navigation"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Get Directions
                 </Button>
                 <Button href={business.phone.href} size="sm" variant="secondary" iconStart="phone">

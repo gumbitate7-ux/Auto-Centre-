@@ -22,8 +22,8 @@ export function QuoteSection() {
             Tell Us About Your Vehicle.
           </Reveal>
           <Reveal as="p" className="lead quote-section__lead" delay={120}>
-            Share a few details and, if you can, some photos of the damage. We&rsquo;ll review everything and get back to
-            you to arrange an assessment.
+            Share a few details and, if you can, some photos of the damage. We&rsquo;ll review everything and get back
+            to you to arrange an assessment.
           </Reveal>
 
           <Reveal className="quote-section__next" delay={160}>
@@ -44,7 +44,13 @@ export function QuoteSection() {
               <Button href={business.phone.href} variant="secondary" iconStart="phone">
                 Call Dino&rsquo;s
               </Button>
-              <Button href={whatsappHref()} variant="secondary" iconStart="whatsapp" target="_blank" rel="noopener noreferrer">
+              <Button
+                href={whatsappHref()}
+                variant="secondary"
+                iconStart="whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp
               </Button>
             </div>

@@ -69,6 +69,14 @@
   box-shadow: var(--shadow-l);
 }
 
+/* Keep the whole slider on screen on desktop: crop slightly rather than overflow the viewport */
+@media (min-width: 768px) {
+  .compare-section__stage .compare {
+    aspect-ratio: auto;
+    height: min(66.6vw, clamp(380px, 74vh, 860px), 900px);
+  }
+}
+
 .compare-section__meta {
   display: grid;
   gap: 18px;

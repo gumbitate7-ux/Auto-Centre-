@@ -9,7 +9,7 @@ import './CtaBand.css'
 
 export function CtaBand() {
   const mediaRef = useRef<HTMLDivElement>(null)
-  useParallax(mediaRef, 0.1)
+  useParallax(mediaRef, 0.1, 0.095)
 
   return (
     <section className="cta-band" aria-labelledby="cta-title">

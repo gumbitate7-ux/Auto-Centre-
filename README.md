@@ -61,7 +61,7 @@ Work through this list before publishing the site as Dino's real website.
    - Update the alt text in `src/data/services.ts` and `src/data/content.ts` to describe the new photos.
    - Remove the "Concept renders…" notes in `BeforeAfter.tsx`, `Gallery.tsx` and `Lightbox.tsx`, and the concept line in `Footer.tsx`.
    - Regenerate `public/og-image.jpg` (1200×630) from a real photo.
-3. **Projects:** edit `projects` in `src/data/content.ts` to reflect real jobs. Categories, filters and counts update automatically.
+3. **Projects:** edit `projects` in `src/data/content.ts` to reflect real jobs. Categories, filter counts and the masonry layout (balanced automatically by each card's `shape`) update on their own.
 4. **Quote form:** set `VITE_QUOTE_ENDPOINT` (in `.env` or your host's environment settings) to any endpoint that accepts `multipart/form-data`, such as Formspree, Getform, Basin or your own API. Requests include all fields plus the uploaded photos. Without it, the form runs in **demo mode**: it shows the full flow but sends nothing, and says so on the success screen. Add `?simulate-error` to the URL to preview the error state.
 5. **Map:** `MapIllustration.tsx` is a stylised placeholder. Once the address is confirmed, swap it for a Google Maps embed (`<iframe loading="lazy" …>`) or keep it and point `mapsUrl` at the workshop.
 6. **Domain:** update `public/robots.txt` and `public/sitemap.xml`.
@@ -71,7 +71,7 @@ Work through this list before publishing the site as Dino's real website.
 - **Palette:** light-to-mid greys with graphite (`#25282B`) for type and the two dark bands. A restrained warm metallic (`#9B907F`) is used only for small details such as the pillar numbers and required-field markers. All body text meets WCAG AA contrast.
 - **Type:** Archivo at 104–125% width for display text gives an engineered, automotive character without looking like racing branding. Inter handles body copy and UI.
 - **Motion:** used where it communicates quality: the hero media opens from inset to full-bleed as you scroll, imagery has subtle parallax, CTAs have a gentle magnetic pull and a brushed-metal sheen, sections reveal once, the process timeline fills on scroll, and gallery filtering animates via View Transitions. Everything respects `prefers-reduced-motion`.
-- **Mobile:** not just a squashed desktop layout. The hero leads with the headline and two side-by-side CTAs, services become a swipeable carousel, the timeline goes vertical, the contact section starts with Call / WhatsApp / Directions buttons, and a floating Call · WhatsApp · Get a Quote bar appears after the hero (it steps aside when the quote form or contact section is on screen).
+- **Mobile:** not just a squashed desktop layout. The hero leads with the headline and two side-by-side CTAs, services become a swipeable carousel, the gallery shows four projects with a "Show all" button (keeping the quote form close), the timeline goes vertical, the contact section starts with Call / WhatsApp / Directions buttons, and a floating Call · WhatsApp · Get a Quote bar appears after the hero (it steps aside when the quote form or contact section is on screen).
 
 ## Accessibility
 

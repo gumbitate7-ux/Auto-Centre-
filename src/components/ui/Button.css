@@ -95,7 +95,9 @@
 .btn--primary {
   background: var(--c-ink);
   color: var(--c-bg);
-  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 10px 24px -14px rgb(20 22 24 / 0.55);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.08) inset,
+    0 10px 24px -14px rgb(20 22 24 / 0.55);
 }
 
 .btn--primary:hover {

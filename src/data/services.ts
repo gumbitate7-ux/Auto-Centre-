@@ -1,10 +1,4 @@
-export type ServiceId =
-  | 'accident'
-  | 'panel'
-  | 'spray'
-  | 'dent'
-  | 'bumper'
-  | 'restoration'
+export type ServiceId = 'accident' | 'panel' | 'spray' | 'dent' | 'bumper' | 'restoration'
 
 export interface Service {
   id: ServiceId
@@ -19,8 +13,7 @@ export const services: Service[] = [
   {
     id: 'accident',
     title: 'Accident Repairs',
-    summary:
-      'Collision damage repaired and restored with attention to structural and cosmetic detail.',
+    summary: 'Collision damage repaired and restored with attention to structural and cosmetic detail.',
     image: 'svc-accident',
     alt: 'Silver coupé with front-corner collision damage to the bumper and front fender',
   },
@@ -41,8 +34,7 @@ export const services: Service[] = [
   {
     id: 'dent',
     title: 'Dent Repairs',
-    summary:
-      "Precision dent restoration while preserving the vehicle's original appearance.",
+    summary: "Precision dent restoration while preserving the vehicle's original appearance.",
     image: 'svc-dent',
     alt: 'Close-up of a dent in a silver door panel, visible in the distorted reflections',
   },
@@ -56,8 +48,7 @@ export const services: Service[] = [
   {
     id: 'restoration',
     title: 'Full Vehicle Restoration',
-    summary:
-      'Comprehensive exterior restoration for vehicles requiring extensive repair.',
+    summary: 'Comprehensive exterior restoration for vehicles requiring extensive repair.',
     image: 'svc-restoration',
     alt: 'Vehicle in grey primer with glass and wheels masked, ready for refinishing',
   },

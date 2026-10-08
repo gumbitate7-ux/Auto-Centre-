@@ -75,7 +75,10 @@ export function Lightbox({ projects, index, onClose, onNavigate }: LightboxProps
   const hasPair = Boolean(project.beforeAfter)
 
   return (
-    <div className={`lightbox ${isOpen ? 'is-open' : 'is-closing'}`} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className={`lightbox ${isOpen ? 'is-open' : 'is-closing'}`}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
       <div
         ref={ref}
         className="lightbox__dialog on-dark"
@@ -94,7 +97,13 @@ export function Lightbox({ projects, index, onClose, onNavigate }: LightboxProps
             <button type="button" className="lightbox__icon-btn" onClick={() => go(1)} aria-label="Next project">
               <Icon name="arrow-right" size={20} />
             </button>
-            <button type="button" className="lightbox__icon-btn lightbox__close" onClick={onClose} aria-label="Close project" data-autofocus>
+            <button
+              type="button"
+              className="lightbox__icon-btn lightbox__close"
+              onClick={onClose}
+              aria-label="Close project"
+              data-autofocus
+            >
               <Icon name="close" size={20} />
             </button>
           </div>
@@ -114,7 +123,12 @@ export function Lightbox({ projects, index, onClose, onNavigate }: LightboxProps
                 label={`${project.title}: before and after`}
               />
             ) : (
-              <Picture name={project.image} alt={project.alt} sizes="(min-width: 1100px) 66vw, 100vw" className="lightbox__picture" />
+              <Picture
+                name={project.image}
+                alt={project.alt}
+                sizes="(min-width: 1100px) 66vw, 100vw"
+                className="lightbox__picture"
+              />
             )}
             {hasPair && (
               <div className="lightbox__toggle" role="group" aria-label="Image view">

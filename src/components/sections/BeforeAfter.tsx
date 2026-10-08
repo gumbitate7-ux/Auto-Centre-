@@ -78,7 +78,9 @@ export function BeforeAfter() {
             <Icon name="chevron-right" size={16} />
           </p>
         </div>
-        <p className="concept-note">Concept renders for demonstration. Replace with Dino&rsquo;s own project photography.</p>
+        <p className="concept-note">
+          Concept renders for demonstration. Replace with Dino&rsquo;s own project photography.
+        </p>
       </div>
     </section>
   )

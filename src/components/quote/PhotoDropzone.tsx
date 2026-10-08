@@ -33,7 +33,8 @@ export function PhotoDropzone({ id, files, onChange }: PhotoDropzoneProps) {
 
     const messages: string[] = []
     if (rejectedType) messages.push(`${rejectedType} file${rejectedType > 1 ? 's were' : ' was'} not an image`)
-    if (rejectedSize) messages.push(`${rejectedSize} file${rejectedSize > 1 ? 's were' : ' was'} larger than ${MAX_PHOTO_MB} MB`)
+    if (rejectedSize)
+      messages.push(`${rejectedSize} file${rejectedSize > 1 ? 's were' : ' was'} larger than ${MAX_PHOTO_MB} MB`)
     if (overflow) messages.push(`only ${MAX_PHOTOS} photos can be attached`)
     setNotice(messages.length ? `Some photos were skipped: ${messages.join(', ')}.` : null)
   }
@@ -85,7 +86,9 @@ export function PhotoDropzone({ id, files, onChange }: PhotoDropzoneProps) {
           <Icon name="upload" size={22} />
         </span>
         <span className="dropzone__title">
-          {full ? 'Photo limit reached' : (
+          {full ? (
+            'Photo limit reached'
+          ) : (
             <>
               Drag photos here or <span className="dropzone__browse">browse</span>
             </>
@@ -108,7 +111,12 @@ export function PhotoDropzone({ id, files, onChange }: PhotoDropzoneProps) {
           {previews.map((p, i) => (
             <li key={p.url} className="dropzone__thumb">
               <img src={p.url} alt={`Attached photo: ${p.file.name}`} />
-              <button type="button" className="dropzone__remove" onClick={() => remove(i)} aria-label={`Remove ${p.file.name}`}>
+              <button
+                type="button"
+                className="dropzone__remove"
+                onClick={() => remove(i)}
+                aria-label={`Remove ${p.file.name}`}
+              >
                 <Icon name="close" size={14} strokeWidth={2} />
               </button>
             </li>

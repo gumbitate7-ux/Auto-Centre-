@@ -12,10 +12,8 @@ interface ImageEntry {
 const images = manifest as Record<string, ImageEntry>
 const base = import.meta.env.BASE_URL
 
-export const imageUrl = (name: string, width: number, format: 'avif' | 'webp' = 'webp') =>
+const imageUrl = (name: string, width: number, format: 'avif' | 'webp' = 'webp') =>
   `${base}images/${name}-${width}.${format}`
-
-export const imageEntry = (name: string): ImageEntry | undefined => images[name]
 
 interface PictureProps {
   /** Base name of the image (see scripts/optimize-images.mjs). */

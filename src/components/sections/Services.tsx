@@ -38,8 +38,8 @@ export function Services() {
           </div>
           <Reveal className="section-head__aside" delay={140}>
             <p className="body-copy services__intro">
-              From minor dents to major collision damage, every repair gets the same care: proper preparation,
-              accurate colour matching and a quality finish.
+              From minor dents to major collision damage, every repair gets the same care: proper preparation, accurate
+              colour matching and a quality finish.
             </p>
             <Button href="#quote" variant="ghost" icon="arrow-right">
               Discuss your repair

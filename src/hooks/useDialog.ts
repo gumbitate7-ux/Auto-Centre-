@@ -20,7 +20,8 @@ export function useDialog(open: boolean, ref: RefObject<HTMLElement | null>, onC
     document.documentElement.style.setProperty('--scrollbar-comp', `${scrollbar}px`)
 
     const focusFirst = () => {
-      const first = container?.querySelector<HTMLElement>('[data-autofocus]') ?? container?.querySelector<HTMLElement>(FOCUSABLE)
+      const first =
+        container?.querySelector<HTMLElement>('[data-autofocus]') ?? container?.querySelector<HTMLElement>(FOCUSABLE)
       first?.focus({ preventScroll: true })
     }
     const raf = requestAnimationFrame(focusFirst)

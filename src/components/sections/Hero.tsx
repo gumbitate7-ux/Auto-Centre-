@@ -30,7 +30,7 @@ export function Hero() {
     const measure = () => {
       const styles = getComputedStyle(intro)
       const inset = intro.getBoundingClientRect().left + parseFloat(styles.paddingLeft)
-      media.style.setProperty('--inset-x', `${Math.max(0, inset)}px`)
+      media.style.setProperty('--inset-x', `${Math.max(0, Math.round(inset))}px`)
     }
     measure()
     window.addEventListener('resize', measure)

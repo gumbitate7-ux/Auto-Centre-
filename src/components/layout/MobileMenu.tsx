@@ -52,7 +52,14 @@ export function MobileMenu({ open, onClose, active }: MobileMenuProps) {
             <Button href={business.phone.href} variant="secondary" iconStart="phone" block>
               Call
             </Button>
-            <Button href={whatsappHref()} variant="secondary" iconStart="whatsapp" block target="_blank" rel="noopener noreferrer">
+            <Button
+              href={whatsappHref()}
+              variant="secondary"
+              iconStart="whatsapp"
+              block
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               WhatsApp
             </Button>
           </div>

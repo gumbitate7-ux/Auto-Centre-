@@ -29,7 +29,15 @@ interface RevealProps {
 }
 
 /** Fades/slides content in once, when it first scrolls into view. */
-export function Reveal({ as: Tag = 'div', delay = 0, fade = false, className = '', style, children, ...rest }: RevealProps) {
+export function Reveal({
+  as: Tag = 'div',
+  delay = 0,
+  fade = false,
+  className = '',
+  style,
+  children,
+  ...rest
+}: RevealProps) {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {

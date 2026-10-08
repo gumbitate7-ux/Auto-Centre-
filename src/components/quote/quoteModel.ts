@@ -70,7 +70,8 @@ export function validateField(field: keyof QuoteValues, values: QuoteValues): st
     }
     case 'email': {
       const email = (v as string).trim()
-      if (values.contactMethod === 'email' && !email) return 'Please add an email address, or choose another contact method.'
+      if (values.contactMethod === 'email' && !email)
+        return 'Please add an email address, or choose another contact method.'
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return 'Please enter a valid email address.'
       return undefined
     }
@@ -88,7 +89,9 @@ export function validateField(field: keyof QuoteValues, values: QuoteValues): st
     case 'repairType':
       return v ? undefined : 'Please choose the type of repair (or “Not sure yet”).'
     case 'message':
-      return (v as string).length > MESSAGE_MAX ? `Please keep the description under ${MESSAGE_MAX} characters.` : undefined
+      return (v as string).length > MESSAGE_MAX
+        ? `Please keep the description under ${MESSAGE_MAX} characters.`
+        : undefined
     case 'consent':
       return v ? undefined : 'Please confirm that we may contact you about this quote.'
     default:

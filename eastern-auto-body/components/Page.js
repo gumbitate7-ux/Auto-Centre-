@@ -2,6 +2,7 @@ import { esc, markSvg } from "./_lib.js";
 import { addressLine } from "./Contact.js";
 import Navbar from "./Navbar.js";
 import Hero from "./Hero.js";
+import Credentials from "./Credentials.js";
 import Services from "./Services.js";
 import Process from "./Process.js";
 import Gallery from "./Gallery.js";
@@ -22,8 +23,8 @@ function schema(cfg) {
     ...(b.socials.facebook && { sameAs: [b.socials.facebook, b.socials.instagram].filter(Boolean) }),
     address: {
       "@type": "PostalAddress",
-      ...(b.address.street && { streetAddress: b.address.street }),
-      ...(b.address.suburb && { addressLocality: b.address.city ? `${b.address.suburb}, ${b.address.city}` : b.address.suburb }),
+      ...(b.address.street && { streetAddress: [b.address.street, b.address.suburb].filter(Boolean).join(", ") }),
+      ...((b.address.city || b.address.suburb) && { addressLocality: b.address.city || b.address.suburb }),
       ...(b.address.province && { addressRegion: b.address.province }),
       ...(b.address.postalCode && { postalCode: b.address.postalCode }),
       addressCountry: "ZA",
@@ -81,6 +82,7 @@ ${schema(cfg)}
 ${Navbar(cfg)}
 <main id="main">
 ${Hero(cfg)}
+${Credentials(cfg)}
 ${Services(cfg)}
 ${Process(cfg)}
 ${Gallery(cfg)}

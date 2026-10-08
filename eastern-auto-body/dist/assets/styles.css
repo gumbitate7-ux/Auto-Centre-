@@ -342,6 +342,16 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   @keyframes fade { from { opacity: 0; } }
 }
 
+/* Credentials strip */
+.creds { background: var(--ink); border-bottom: 1px solid var(--line-dark); }
+.creds-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 40px; padding-block: 22px; }
+.creds-group { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; }
+.creds-label { font-size: .7rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-faint); }
+.creds-list { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.creds-list li { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark); }
+.creds-members li { display: flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .12em; color: var(--on-dark-dim); }
+.creds-members li::before { content: ""; width: 10px; height: 6px; background: var(--jade); transform: skewX(-30deg); }
+
 /* ==========================================================================
    Shared section layout
    ========================================================================== */
@@ -598,6 +608,10 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   .hero-foot { grid-template-columns: 1fr; }
   .hero-ctas .btn { flex: 1 1 auto; }
   .sign-inner { padding-block: max(.7em, 18px); }
+  .creds-inner { padding-block: 18px; gap: 12px 24px; }
+  .creds-group { gap: 8px 16px; }
+  .creds-list { gap: 6px 16px; }
+  .creds-list li { font-size: .8rem; }
 
   .svc-row { grid-template-columns: 2.25rem 1fr 20px; padding: 18px 0; gap: 12px; }
   .svc-title { font-size: 1rem; }

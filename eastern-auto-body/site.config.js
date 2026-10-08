@@ -13,23 +13,31 @@ export default {
     wordmark: "Eastern Auto Body",
     tagline: "Panel beating & spray painting",
 
-    // Leave blank until confirmed with the owner. Blank values never render as fake data:
-    // call buttons show a short demo notice, WhatsApp opens with the message ready to forward.
-    phoneDisplay: "",          // e.g. "011 000 0000"
-    phoneE164: "",             // e.g. "+27110000000"
-    whatsapp: "",              // digits only, international format, e.g. "27820000000"
-    email: "",
+    // From public listings (Waze, SAMBRA, CRA, Brabys, manufacturer repairer lists). Confirm with the owner.
+    phoneDisplay: "011 917 8304",
+    phoneE164: "+27119178304",
+    // Listings also show a cell, 083 285 0389, but not whether it's on WhatsApp. Until the owner
+    // confirms, WhatsApp buttons open with the message written and let you choose the chat.
+    whatsapp: "",              // digits only, international format, e.g. "27832850389"
+    email: "",                 // listings show easternauto@eabmail.co.za; confirm before adding
 
     address: {
-      street: "",              // e.g. "12 Example Road"
-      suburb: "",              // e.g. "Germiston"
-      city: "",                // e.g. "East Rand"
+      street: "12 Turf Road",
+      suburb: "Anderbolt",
+      city: "Boksburg",
       province: "Gauteng",
-      postalCode: "",
+      postalCode: "",          // listings disagree (1459 / 1465 / 1508); confirm before adding
     },
-    areaServed: [],            // e.g. ["Germiston", "Boksburg", "East Rand"]
-    // Example: [{ days: "Monday to Friday", time: "07:30 to 17:00" }]
+    areaServed: ["Boksburg", "East Rand", "Gauteng"],
+    // Listings disagree on hours, so none are shown yet. Example:
+    // [{ days: "Monday to Thursday", time: "07:30 to 17:30" }, { days: "Friday", time: "07:30 to 17:00" }]
     hours: [],
+
+    // Shown as a credentials strip. Each comes from the manufacturer's or association's own list.
+    credentials: {
+      approvedFor: ["Peugeot", "Chery", "Omoda", "Jaecoo", "GWM", "Haval"],
+      memberships: ["SAMBRA member", "CRA member"],
+    },
 
     // Registration field in the quote form, styled as a number plate.
     plate: { region: "Gauteng", example: "AB 12 CD GP" },
@@ -38,9 +46,9 @@ export default {
   },
 
   seo: {
-    title: "Eastern Auto Body | Panel Beating & Spray Painting",
+    title: "Eastern Auto Body | Panel Beating & Spray Painting in Boksburg",
     description:
-      "Panel beating, spray painting, dent, scratch and bumper repairs. Send photos of the damage on WhatsApp for a quote, for private and insurance work.",
+      "Panel beating and spray painting in Anderbolt, Boksburg. Accident repairs, resprays, dents, bumpers and insurance claim quotes. Send photos of the damage for a quote.",
     url: "",
   },
 
@@ -76,7 +84,7 @@ export default {
   ],
 
   hero: {
-    eyebrow: "Panel beating & spray painting",
+    eyebrow: "Panel beating & spray painting • Boksburg",
     statement: "Dents, scratches and accident damage. Put right.",
     body: "Panel beating and spray painting for cars and bakkies. WhatsApp us photos of the damage and we'll come back to you with a quote, for private or insurance work.",
   },
@@ -135,7 +143,7 @@ export default {
     headline: "Send us the damage.",
     body: "We'll send you a quote. WhatsApp is quickest, or fill in the form and we'll come back to you.",
     photoTips: ["The damage, up close", "The whole side of the car, from a few steps back", "The registration plate"],
-    findUs: "Look for the brown sign on the face-brick building.",
+    findUs: "12 Turf Road, Anderbolt. Look for the brown sign on the face-brick building.",
     serviceOptions: [
       "Accident repairs", "Spray painting", "Dents & creases", "Insurance claim quotes",
       "Bumper repairs", "Scratches & scuffs", "Rust repair", "Machine polishing", "Not sure yet",

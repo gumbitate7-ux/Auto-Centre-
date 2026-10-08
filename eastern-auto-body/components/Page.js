@@ -49,7 +49,7 @@ export default function Page(cfg, { css, js, inline }) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(s.title)}</title>
 <meta name="description" content="${esc(s.description)}">
-<meta name="theme-color" content="#100E0D">
+<meta name="theme-color" content="#1A100C">
 ${s.url ? `<link rel="canonical" href="${esc(s.url)}">` : ""}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(cfg.business.name)}">

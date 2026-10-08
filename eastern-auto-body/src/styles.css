@@ -1,37 +1,42 @@
 /* ==========================================================================
    Eastern Auto Body — design system
    Taken from the shop sign: an oxide-brown band, raised aluminium lettering
-   in a wide sans, and a jade mark of slanted bars. Warm near-black carries
-   the photography; mortar-white paper carries the reading sections.
+   in a wide sans, and a jade mark of slanted bars. The whole palette comes
+   from those three: deep browns of the band's hue for the dark sections,
+   aluminium for text, jade for every action, and the face brick lifted into
+   a warm buff for the reading sections.
    One family (Mona Sans): extended width for display and the wordmark,
    normal width for everything you read.
    ========================================================================== */
 
 :root {
-  --ink: #100E0D;
-  --carbon: #181513;
-  --graphite: #24201D;
+  /* deep browns from the band's hue (about 18 degrees) */
+  --ink: #1A100C;
+  --carbon: #24170F;
+  --graphite: #33201A;
 
   /* colour-corrected from the sign photo (white-balanced on the aluminium letters) */
   --oxide: #7E4D38;
   --oxide-hi: #8F5A43;
   --oxide-deep: #5C3727;
   --jade: #559F7B;
-  --jade-hi: #8FCCAA;
+  --jade-hi: #6CB792;
+  --jade-deep: #2E6B50;
   --alu: #ECEAE4;
   --alu-shadow: #B9B3A8;
 
-  --mortar: #F2EEE6;
-  --mortar-2: #E8E2D6;
-  --paper: #FBF9F5;
+  /* the yellow face brick, lifted into daylight */
+  --mortar: #F3EDE1;
+  --mortar-2: #E9DFCC;
+  --paper: #FBF7EF;
 
   --on-dark: #ECEAE4;
   --on-dark-dim: rgba(236, 234, 228, .68);
-  --on-dark-faint: rgba(236, 234, 228, .44);
-  --on-light: #100E0D;
-  --on-light-dim: #5C564E;
+  --on-dark-faint: rgba(236, 234, 228, .5);
+  --on-light: #1E120D;
+  --on-light-dim: #6B594C;
   --line-dark: rgba(236, 234, 228, .13);
-  --line-light: rgba(16, 14, 13, .13);
+  --line-light: rgba(30, 18, 13, .14);
 
   --font: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
   --wide: 125%;
@@ -76,7 +81,8 @@ img, svg { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 
-:focus-visible { outline: 2px solid var(--jade); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--jade-hi); outline-offset: 3px; }
+.section:not(.dark) :focus-visible { outline-color: var(--jade-deep); }
 
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -120,8 +126,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .btn-sm { --h: 44px; padding: 0 18px; font-size: .72rem; }
 .btn-lg { --h: 58px; padding: 0 30px; }
 /* Primary action looks like the sign: oxide plate, aluminium letters. */
-.btn-primary { background: var(--oxide); color: var(--alu); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), inset 0 -1px 0 rgba(0, 0, 0, .25); }
-.btn-primary:hover { background: var(--oxide-hi); }
+/* Every main action is jade, like the mark on the sign. */
+.btn-primary { background: var(--jade); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -1px 0 rgba(0, 0, 0, .18); }
+.btn-primary:hover { background: var(--jade-hi); }
 .btn-glass { background: rgba(236, 234, 228, .08); color: var(--on-dark); box-shadow: inset 0 0 0 1px rgba(236, 234, 228, .34); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .btn-glass:hover { background: rgba(236, 234, 228, .16); }
 .btn-ghost { color: var(--on-dark); box-shadow: inset 0 0 0 1px var(--line-dark); }
@@ -132,9 +139,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .media img { width: 100%; height: 100%; object-fit: cover; }
 .media.is-missing {
   background:
-    radial-gradient(120% 80% at 75% 20%, rgba(110, 58, 43, .45), transparent 60%),
+    radial-gradient(120% 80% at 75% 20%, rgba(126, 77, 56, .45), transparent 60%),
     repeating-linear-gradient(115deg, rgba(236, 234, 228, .035) 0 1px, transparent 1px 14px),
-    linear-gradient(160deg, #2a2420, #120f0e);
+    linear-gradient(160deg, #33201A, #170E0B);
 }
 .media.is-missing img { visibility: hidden; }
 .media.is-missing::after {
@@ -181,10 +188,10 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 .nav::before {
   content: ""; position: absolute; inset: 0 0 -40px; pointer-events: none;
-  background: linear-gradient(180deg, rgba(16, 14, 13, .6), transparent);
+  background: linear-gradient(180deg, rgba(26, 16, 12, .6), transparent);
   transition: opacity .4s var(--ease-out);
 }
-.nav.is-solid { --nav-h: 66px; background: rgba(16, 14, 13, .94); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line-dark); }
+.nav.is-solid { --nav-h: 66px; background: rgba(26, 16, 12, .94); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line-dark); }
 .nav.is-solid::before { opacity: 0; }
 .nav-inner { position: relative; display: flex; align-items: center; height: 100%; gap: 32px; }
 .nav-links { margin-left: auto; }
@@ -254,14 +261,14 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   background:
     radial-gradient(70% 60% at 70% 30%, rgba(130, 72, 58, .5), transparent 65%),
     radial-gradient(50% 40% at 15% 70%, rgba(71, 168, 119, .08), transparent 70%),
-    linear-gradient(180deg, #1d1916, #100E0D);
+    linear-gradient(180deg, #2C1B14, #1A100C);
 }
 .hero-media.is-missing::after { display: none; }
 /* Lacquered panel under booth lights (default hero visual) */
 .hero-panel {
   background:
-    radial-gradient(90% 70% at 70% 40%, rgba(126, 77, 56, .22), transparent 70%),
-    linear-gradient(176deg, #221d1a 0%, #120f0e 46%, #1a1512 74%, #0e0c0b 100%);
+    radial-gradient(90% 70% at 70% 40%, rgba(126, 77, 56, .3), transparent 70%),
+    linear-gradient(176deg, #2C1B14 0%, #1A100C 46%, #24160F 74%, #150C09 100%);
 }
 .reflections { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; }
 .reflections .glint { stroke-dasharray: 140 3200; stroke-dashoffset: 140; opacity: 0; }
@@ -272,8 +279,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .hero-shade {
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(16, 14, 13, .62) 0%, rgba(16, 14, 13, 0) 28%, rgba(16, 14, 13, .25) 55%, rgba(16, 14, 13, .9) 100%),
-    linear-gradient(90deg, rgba(16, 14, 13, .72) 0%, rgba(16, 14, 13, .2) 60%, rgba(16, 14, 13, 0) 100%);
+    linear-gradient(180deg, rgba(26, 16, 12, .62) 0%, rgba(26, 16, 12, 0) 28%, rgba(26, 16, 12, .25) 55%, rgba(26, 16, 12, .9) 100%),
+    linear-gradient(90deg, rgba(26, 16, 12, .72) 0%, rgba(26, 16, 12, .2) 60%, rgba(26, 16, 12, 0) 100%);
 }
 .hero-content { padding-top: calc(var(--nav-h) + 40px); padding-bottom: clamp(32px, 5.5vh, 60px); }
 .hero-eyebrow { display: flex; align-items: center; gap: 14px; color: var(--on-dark-dim); margin-bottom: clamp(18px, 2.6vh, 28px); }
@@ -396,7 +403,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .svc-preview-tag {
   position: absolute; left: 0; bottom: 0; z-index: 1;
   padding: 12px 18px;
-  background: var(--oxide); color: var(--alu);
+  background: var(--oxide); color: var(--alu); border-top: 3px solid var(--jade);
   font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase;
 }
 .svc-list { border-top: 1px solid var(--line-light); }
@@ -410,7 +417,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .svc-title { font-size: clamp(1.15rem, 1.8vw, 1.6rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; line-height: 1.1; text-transform: uppercase; transition: transform .5s var(--ease-out); }
 .svc-text { font-size: .9375rem; color: var(--on-light-dim); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; }
 .svc-arrow { width: 22px; height: 22px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
-.svc-row.is-active .svc-num { color: var(--oxide); }
+.svc-row.is-active .svc-num { color: var(--jade-deep); }
 .svc-row.is-active .svc-title { transform: translateX(6px); }
 .svc-row.is-active .svc-text { max-height: 3em; opacity: 1; }
 .svc-row.is-active .svc-arrow { color: var(--ink); transform: translate(2px, -2px); }
@@ -451,7 +458,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .gal-media { position: absolute; inset: 0; border-radius: var(--radius); }
 .gal-media.is-missing::after { display: none; }
 .gal-media img { transition: transform 1.4s var(--ease-out); }
-.gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(16, 14, 13, .78)); pointer-events: none; }
+.gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(26, 16, 12, .78)); pointer-events: none; }
 .gal-cap { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; font-size: .875rem; font-weight: 500; color: var(--on-dark); transition: transform .5s var(--ease-out); }
 @media (hover: hover) {
   .gal-btn:hover .gal-media img { transform: scale(1.05); }
@@ -462,8 +469,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .link-cta .ico { width: 18px; height: 18px; transition: transform .4s var(--ease-out); }
 .link-cta:hover .ico { transform: translate(2px, -2px); }
 
-.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(16, 14, 13, .96); color: var(--on-dark); }
-.lightbox::backdrop { background: rgba(16, 14, 13, .9); }
+.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(26, 16, 12, .96); color: var(--on-dark); }
+.lightbox::backdrop { background: rgba(26, 16, 12, .9); }
 .lb-frame { position: relative; display: grid; place-items: center; height: 100%; padding: 72px clamp(16px, 6vw, 96px); }
 .lb-figure { display: grid; gap: 16px; width: 100%; max-width: 1280px; }
 .lb-img { aspect-ratio: 3 / 2; max-height: 76vh; width: 100%; border-radius: var(--radius); }
@@ -558,7 +565,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .seg label { position: relative; }
 .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .seg span { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius); font-size: .875rem; font-weight: 500; color: var(--on-dark-dim); cursor: pointer; text-align: center; transition: background-color .2s, color .2s; }
-.seg input:checked + span { background: var(--oxide); color: var(--alu); }
+.seg input:checked + span { background: var(--jade); color: var(--ink); }
 .seg input:focus-visible + span { outline: 2px solid var(--jade); outline-offset: 2px; }
 .form-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; margin-top: 6px; }
 .form-note { font-size: .875rem; color: var(--on-dark-faint); max-width: 26em; }
@@ -655,11 +662,11 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   .mcta.is-on { transform: none; }
   .mcta-btn {
     display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 60px;
-    background: rgba(16, 14, 13, .96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    background: rgba(26, 16, 12, .96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     font-size: .7rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark);
   }
   .mcta-btn .ico { width: 18px; height: 18px; }
-  .mcta-primary { background: var(--oxide); color: var(--alu); backdrop-filter: none; }
+  .mcta-primary { background: var(--jade); color: var(--ink); backdrop-filter: none; }
   .toast { bottom: calc(76px + env(safe-area-inset-bottom)); }
 }
 

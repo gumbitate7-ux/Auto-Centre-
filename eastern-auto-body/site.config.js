@@ -62,19 +62,19 @@ export default {
   // Demo photos are free to use under the Unsplash License.
   // ---------------------------------------------------------------------------
   images: {
-    hero:       { unsplash: "Iw480aWLXGo", alt: "Technician working on a car in a dark workshop", position: "50% 55%", credit: "Luke Roberts / Unsplash" },
-    accident:   { unsplash: "rg8Ak619UAQ", alt: "Car parked in a dimly lit workshop", position: "50% 50%", credit: "Franck V. / Unsplash" },
-    spray:      { unsplash: "C559_TEewiA", alt: "Close-up of glossy silver paintwork", position: "50% 50%", credit: "Sergio Aguirre / Unsplash" },
-    panel:      { unsplash: "Hv_gKPOXmwE", alt: "Car raised on a workshop lift", position: "50% 50%", credit: "KC Shum / Unsplash" },
-    insurance:  { unsplash: "0cTvMZHuVZE", alt: "White car in a dark garage", position: "50% 50%", credit: "RanaMotorWorks / Unsplash" },
-    bumper:     { unsplash: "AO3VsQ_sGK8", alt: "Close-up of a car's headlight and front end", position: "50% 50%", credit: "Art Lasovsky / Unsplash" },
-    scratch:    { unsplash: "GB7fVMi3-B4", alt: "Close-up of a car's bodywork", position: "50% 50%", credit: "Unsplash" },
-    rust:       { unsplash: "Nv8-Oq1TQPA", alt: "Car front lights in the dark", position: "50% 50%", credit: "Unsplash" },
-    polish:     { unsplash: "-OsnPr51mgo", alt: "Polished black wheel and paintwork", position: "50% 50%", credit: "Janosch Diggelmann / Unsplash" },
-    work1:      { unsplash: "rg8Ak619UAQ", alt: "Car in the workshop", position: "50% 50%", credit: "Franck V. / Unsplash" },
-    work2:      { unsplash: "x1LGDpkRSDs", alt: "Wheel and brake detail", position: "50% 50%", credit: "Unsplash" },
-    work3:      { unsplash: "C559_TEewiA", alt: "Glossy paintwork up close", position: "50% 50%", credit: "Sergio Aguirre / Unsplash" },
-    work4:      { unsplash: "0cTvMZHuVZE", alt: "Finished car in the garage", position: "50% 50%", credit: "RanaMotorWorks / Unsplash" },
+    hero:       { unsplash: "8MXNZCgAah0", alt: "Technician working on a car inside a workshop", position: "50% 50%", credit: "Unsplash" },
+    accident:   { unsplash: "p76hPO989to", alt: "Car with a crashed front end", position: "50% 50%", credit: "Erik Mclean / Unsplash" },
+    spray:      { unsplash: "G6sI_6B_FFY", alt: "Gloved hands working on a car's paintwork in a body shop", position: "50% 50%", credit: "Unsplash" },
+    panel:      { unsplash: "iuuKLgDwbwQ", alt: "Car with a dent in the front end", position: "50% 50%", credit: "Unsplash" },
+    insurance:  { unsplash: "CSkriQWeTVs", alt: "Silver car with a crushed bonnet after a collision", position: "50% 50%", credit: "Unsplash" },
+    bumper:     { unsplash: "Eygfeq1Xe4E", alt: "Front-end damage around a car's bumper", position: "50% 50%", credit: "Unsplash" },
+    scratch:    { unsplash: "rsaYn6mq2qo", alt: "Gloved hands working on a car's body panel", position: "50% 50%", credit: "Unsplash" },
+    rust:       { unsplash: "8DH_pOGTOQ0", alt: "Angle grinder cutting metal", position: "50% 50%", credit: "Unsplash" },
+    polish:     { unsplash: "q94A6k81lAQ", alt: "Machine polishing a car's paint", position: "50% 50%", credit: "Unsplash" },
+    work1:      { unsplash: "e5LozVcb-6E", alt: "Welding on a car, sparks flying", position: "50% 50%", credit: "Unsplash" },
+    work2:      { unsplash: "9XcUbV5CdVA", alt: "Finishing a car's paint in a garage", position: "50% 50%", credit: "Unsplash" },
+    work3:      { unsplash: "TNybYN-LqJo", alt: "Glossy black bodywork up close", position: "50% 50%", credit: "Unsplash" },
+    work4:      { unsplash: "k_DBVzru8d8", alt: "Hand-finishing a car's bonnet", position: "50% 50%", credit: "Unsplash" },
     // The real shopfront (cropped from a phone photo of the sign). Replace with a sharper photo when possible.
     storefront: { src: "assets/img/storefront.jpg", alt: "The Eastern Auto Body sign on the face-brick workshop building", credit: "Shop photo" },
   },
@@ -88,7 +88,7 @@ export default {
 
   hero: {
     // "reflection" (drawn booth-light reflections on a dark panel) or "photo" (images.hero)
-    visual: "reflection",
+    visual: "photo",
     eyebrow: "Panel beating & spray painting • Boksburg",
     statement: "Dents, scratches and accident damage. Put right.",
     body: "Panel beating and spray painting for cars and bakkies. WhatsApp us photos of the damage and we'll come back to you with a quote, for private or insurance work.",
@@ -130,10 +130,10 @@ export default {
     // Shown while the gallery uses stock photography, so it's never passed off as the shop's own work.
     note: "Illustrative photos until the workshop's own are added.",
     items: [
-      { image: "work1", caption: "In the workshop" },
-      { image: "work2", caption: "Wheel and arch detail" },
+      { image: "work1", caption: "Welding and structural repairs" },
+      { image: "work2", caption: "Finishing in the workshop" },
       { image: "work3", caption: "Paint, up close" },
-      { image: "work4", caption: "Ready for collection" },
+      { image: "work4", caption: "Hand finishing" },
     ],
   },
 

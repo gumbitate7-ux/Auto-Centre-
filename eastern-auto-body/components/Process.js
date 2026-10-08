@@ -4,7 +4,7 @@ import { esc, icon, lines, pad2, whatsappHref, waMessages } from "./_lib.js";
 export default function Process(cfg) {
   const p = cfg.process;
   return `
-<section class="section process dark" id="how-it-works" aria-labelledby="process-title">
+<section class="section process" id="how-it-works" aria-labelledby="process-title">
   <div class="container">
     <div class="process-head">
       <h2 class="display reveal" id="process-title">${lines(p.headline)}</h2>

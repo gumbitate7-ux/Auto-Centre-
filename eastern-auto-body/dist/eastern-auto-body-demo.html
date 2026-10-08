@@ -32,19 +32,25 @@
 <style>/* ==========================================================================
    Eastern Auto Body — design system
    Taken from the shop sign: an oxide-brown band, raised aluminium lettering
-   in a wide sans, and a jade mark of slanted bars. The whole palette comes
-   from those three: deep browns of the band's hue for the dark sections,
-   aluminium for text, jade for every action, and the face brick lifted into
-   a warm buff for the reading sections.
+   in a wide sans, and a jade mark of slanted bars. The page is light: soft
+   greys and pastel sage so the logo's jade is the colour that stands out,
+   on every main action. The oxide band appears where the sign does; the
+   workshop photograph carries the hero.
    One family (Mona Sans): extended width for display and the wordmark,
    normal width for everything you read.
    ========================================================================== */
 
 :root {
-  /* deep browns from the band's hue (about 18 degrees) */
-  --ink: #1A100C;
-  --carbon: #24170F;
-  --graphite: #33201A;
+  /* light greys and pastels */
+  --bg: #F4F5F4;
+  --bg-2: #EAEDEB;
+  --sage: #E2EFE7;
+  --sage-2: #CFE5D8;
+  --white: #FFFFFF;
+  --field: #F1F3F2;
+  /* charcoal for text, photo shading and the lightbox */
+  --ink: #1D2320;
+  --charcoal: #161B18;
 
   /* colour-corrected from the sign photo (white-balanced on the aluminium letters) */
   --oxide: #7E4D38;
@@ -56,18 +62,15 @@
   --alu: #ECEAE4;
   --alu-shadow: #B9B3A8;
 
-  /* the yellow face brick, lifted into daylight */
-  --mortar: #F3EDE1;
-  --mortar-2: #E9DFCC;
-  --paper: #FBF7EF;
 
   --on-dark: #ECEAE4;
   --on-dark-dim: rgba(236, 234, 228, .68);
   --on-dark-faint: rgba(236, 234, 228, .5);
-  --on-light: #1E120D;
-  --on-light-dim: #6B594C;
-  --line-dark: rgba(236, 234, 228, .13);
-  --line-light: rgba(30, 18, 13, .14);
+  --on-light: #1D2320;
+  --on-light-dim: #55605A;
+  --on-light-faint: #626C67;
+  --line-dark: rgba(236, 234, 228, .16);
+  --line-light: rgba(29, 35, 32, .12);
 
   --font: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
   --wide: 125%;
@@ -92,8 +95,8 @@ html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
 
 body {
   margin: 0;
-  background: var(--ink);
-  color: var(--on-dark);
+  background: var(--bg);
+  color: var(--on-light);
   font-family: var(--font);
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -112,12 +115,12 @@ img, svg { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 
-:focus-visible { outline: 2px solid var(--jade-hi); outline-offset: 3px; }
-.section:not(.dark) :focus-visible { outline-color: var(--jade-deep); }
+:focus-visible { outline: 2px solid var(--jade-deep); outline-offset: 3px; }
+.hero :focus-visible, .lightbox :focus-visible { outline-color: var(--jade-hi); }
 
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.skip { position: fixed; left: 12px; top: -80px; z-index: 100; background: var(--alu); color: var(--ink); padding: 12px 16px; font-weight: 600; }
+.skip { position: fixed; left: 12px; top: -80px; z-index: 100; background: var(--jade); color: var(--ink); padding: 12px 16px; font-weight: 600; }
 .skip:focus { top: 12px; }
 .ico { width: 1.25em; height: 1.25em; flex: none; }
 
@@ -156,33 +159,33 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .btn:active { transform: translateY(1px); }
 .btn-sm { --h: 44px; padding: 0 18px; font-size: .72rem; }
 .btn-lg { --h: 58px; padding: 0 30px; }
-/* Primary action looks like the sign: oxide plate, aluminium letters. */
-/* Every main action is jade, like the mark on the sign. */
-.btn-primary { background: var(--jade); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -1px 0 rgba(0, 0, 0, .18); }
+/* Every main action is the logo's jade. */
+.btn-primary { background: var(--jade); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .12), 0 6px 18px -8px rgba(47, 125, 87, .55); }
 .btn-primary:hover { background: var(--jade-hi); }
 .btn-glass { background: rgba(236, 234, 228, .08); color: var(--on-dark); box-shadow: inset 0 0 0 1px rgba(236, 234, 228, .34); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 .btn-glass:hover { background: rgba(236, 234, 228, .16); }
-.btn-ghost { color: var(--on-dark); box-shadow: inset 0 0 0 1px var(--line-dark); }
-.btn-ghost:hover { box-shadow: inset 0 0 0 1px var(--on-dark-dim); background: rgba(236, 234, 228, .04); }
+.btn-ghost { color: var(--on-light); box-shadow: inset 0 0 0 1.5px rgba(29, 35, 32, .28); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); background: rgba(29, 35, 32, .03); }
 
 /* ---------- Media frames + designed fallback ---------- */
-.media { position: relative; overflow: hidden; background: var(--graphite); }
+.media { position: relative; overflow: hidden; background: var(--bg-2); }
 .media img { width: 100%; height: 100%; object-fit: cover; }
 .media.is-missing {
   background:
-    radial-gradient(120% 80% at 75% 20%, rgba(126, 77, 56, .45), transparent 60%),
-    repeating-linear-gradient(115deg, rgba(236, 234, 228, .035) 0 1px, transparent 1px 14px),
-    linear-gradient(160deg, #33201A, #170E0B);
+    radial-gradient(120% 80% at 75% 20%, rgba(85, 159, 123, .22), transparent 60%),
+    repeating-linear-gradient(115deg, rgba(29, 35, 32, .04) 0 1px, transparent 1px 14px),
+    linear-gradient(160deg, #E3E8E5, #D3DAD6);
 }
 .media.is-missing img { visibility: hidden; }
 .media.is-missing::after {
   content: attr(data-label);
   position: absolute; left: 16px; bottom: 14px; right: 16px;
-  font-size: .75rem; letter-spacing: .04em; color: var(--on-dark-faint);
+  font-size: .75rem; letter-spacing: .04em; color: var(--on-light-faint);
 }
 
 /* ---------- Logo ---------- */
-.logo { display: inline-flex; align-items: center; gap: 12px; color: var(--on-dark); }
+.logo { display: inline-flex; align-items: center; gap: 12px; color: var(--on-light); }
+.nav .logo { color: var(--on-dark); transition: color .3s; }
 .logo-mark { width: 40px; height: auto; color: var(--jade); flex: none; }
 .logo-text { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase; line-height: 1; white-space: nowrap; }
 
@@ -207,7 +210,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 .field .plate-input input::placeholder { color: rgba(17, 17, 17, .28); }
 .field .plate-input input:focus { outline: none; background: transparent; border: 0; }
-.plate-input:focus-within { outline: 2px solid var(--jade); outline-offset: 3px; }
+.plate-input:focus-within { outline: 2px solid var(--jade-deep); outline-offset: 3px; }
 
 /* ==========================================================================
    Navbar
@@ -219,10 +222,14 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 .nav::before {
   content: ""; position: absolute; inset: 0 0 -40px; pointer-events: none;
-  background: linear-gradient(180deg, rgba(26, 16, 12, .6), transparent);
+  background: linear-gradient(180deg, rgba(22, 27, 24, .55), transparent);
   transition: opacity .4s var(--ease-out);
 }
-.nav.is-solid { --nav-h: 66px; background: rgba(26, 16, 12, .94); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line-dark); }
+/* Over the photo the nav is light-on-dark; once scrolling it turns into a white bar. */
+.nav.is-solid { --nav-h: 66px; background: rgba(255, 255, 255, .94); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line-light); }
+.nav.is-solid .logo, .nav.is-solid .menu-btn { color: var(--on-light); }
+.nav.is-solid .nav-links a { color: var(--on-light-dim); }
+.nav.is-solid .nav-links a:hover, .nav.is-solid .nav-links a[aria-current="true"] { color: var(--on-light); }
 .nav.is-solid::before { opacity: 0; }
 .nav-inner { position: relative; display: flex; align-items: center; height: 100%; gap: 32px; }
 .nav-links { margin-left: auto; }
@@ -240,7 +247,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .nav-links a:hover::after, .nav-links a[aria-current="true"]::after { transform: scaleX(1); }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 
-.menu-btn { display: none; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px 0 14px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark); }
+.menu-btn { display: none; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px 0 14px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark); transition: color .3s; }
 .menu-btn-lines { display: grid; gap: 6px; width: 22px; }
 .menu-btn-lines span { height: 1.5px; background: currentColor; transition: transform .3s var(--ease-out); }
 .menu-btn-lines span:last-child { width: 14px; justify-self: end; }
@@ -248,26 +255,26 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .menu {
   position: fixed; inset: 0; z-index: var(--z-menu);
   display: flex; flex-direction: column;
-  background: var(--ink);
+  background: var(--white); color: var(--on-light);
   padding-bottom: env(safe-area-inset-bottom);
   overflow-y: auto;
 }
 .menu[hidden] { display: none; }
-.menu-top { display: flex; align-items: center; justify-content: space-between; min-height: 66px; border-bottom: 1px solid var(--line-dark); }
+.menu-top { display: flex; align-items: center; justify-content: space-between; min-height: 66px; border-bottom: 1px solid var(--line-light); }
 .menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding-left: 12px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; text-transform: uppercase; }
 .menu-close .ico { width: 22px; height: 22px; }
 .menu-body { flex: 1; display: flex; align-items: center; padding-block: 32px; }
 .menu-links { counter-reset: m; width: 100%; }
-.menu-links li { counter-increment: m; border-bottom: 1px solid var(--line-dark); overflow: hidden; }
+.menu-links li { counter-increment: m; border-bottom: 1px solid var(--line-light); overflow: hidden; }
 .menu-links a {
   display: flex; align-items: baseline; gap: 16px; padding: 16px 0;
   font-size: clamp(1.75rem, 8vw, 2.6rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; text-transform: uppercase; line-height: 1;
 }
-.menu-links a::before { content: counter(m, decimal-leading-zero); font-size: .72rem; font-weight: 600; letter-spacing: .1em; color: var(--jade); transform: translateY(-.9em); }
+.menu-links a::before { content: counter(m, decimal-leading-zero); font-size: .72rem; font-weight: 600; letter-spacing: .1em; color: var(--jade-deep); transform: translateY(-.9em); }
 .menu-foot { display: grid; gap: 12px; padding-block: 8px 28px; }
 .menu-foot .btn { width: 100%; }
 .menu-foot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.menu-place { margin-top: 8px; font-size: .8125rem; color: var(--on-dark-faint); }
+.menu-place { margin-top: 8px; font-size: .8125rem; color: var(--on-light-faint); }
 
 @media (prefers-reduced-motion: no-preference) {
   .menu.is-open { animation: menu-in .45s var(--ease-out) both; }
@@ -285,21 +292,21 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   min-height: 100vh; min-height: 100svh;
   display: flex; flex-direction: column; justify-content: flex-end;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--charcoal);
+  color: var(--on-dark);
 }
 .hero-media { position: absolute; inset: 0; z-index: -2; }
 .hero-media.is-missing {
   background:
-    radial-gradient(70% 60% at 70% 30%, rgba(130, 72, 58, .5), transparent 65%),
-    radial-gradient(50% 40% at 15% 70%, rgba(71, 168, 119, .08), transparent 70%),
-    linear-gradient(180deg, #2C1B14, #1A100C);
+    radial-gradient(70% 60% at 70% 30%, rgba(85, 159, 123, .22), transparent 65%),
+    linear-gradient(180deg, #2A312D, #161B18);
 }
 .hero-media.is-missing::after { display: none; }
 /* Lacquered panel under booth lights (default hero visual) */
 .hero-panel {
   background:
-    radial-gradient(90% 70% at 70% 40%, rgba(126, 77, 56, .3), transparent 70%),
-    linear-gradient(176deg, #2C1B14 0%, #1A100C 46%, #24160F 74%, #150C09 100%);
+    radial-gradient(90% 70% at 70% 40%, rgba(85, 159, 123, .16), transparent 70%),
+    linear-gradient(176deg, #2A312D 0%, #161B18 46%, #202622 74%, #121614 100%);
 }
 .reflections { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; }
 .reflections .glint { stroke-dasharray: 140 3200; stroke-dashoffset: 140; opacity: 0; }
@@ -310,8 +317,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .hero-shade {
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(26, 16, 12, .62) 0%, rgba(26, 16, 12, 0) 28%, rgba(26, 16, 12, .25) 55%, rgba(26, 16, 12, .9) 100%),
-    linear-gradient(90deg, rgba(26, 16, 12, .72) 0%, rgba(26, 16, 12, .2) 60%, rgba(26, 16, 12, 0) 100%);
+    linear-gradient(180deg, rgba(22, 27, 24, .55) 0%, rgba(22, 27, 24, 0) 26%, rgba(22, 27, 24, .2) 52%, rgba(22, 27, 24, .86) 100%),
+    linear-gradient(90deg, rgba(22, 27, 24, .74) 0%, rgba(22, 27, 24, .25) 58%, rgba(22, 27, 24, 0) 100%);
 }
 .hero-content { padding-top: calc(var(--nav-h) + 40px); padding-bottom: clamp(32px, 5.5vh, 60px); }
 .hero-eyebrow { display: flex; align-items: center; gap: 14px; color: var(--on-dark-dim); margin-bottom: clamp(18px, 2.6vh, 28px); }
@@ -393,23 +400,21 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 }
 
 /* Credentials strip */
-.creds { background: var(--ink); border-bottom: 1px solid var(--line-dark); }
+.creds { background: var(--white); border-bottom: 1px solid var(--line-light); }
 .creds-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 40px; padding-block: 22px; }
 .creds-group { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; }
-.creds-label { font-size: .7rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .14em; text-transform: uppercase; color: var(--on-dark-faint); }
+.creds-label { font-size: .7rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .14em; text-transform: uppercase; color: var(--on-light-faint); }
 .creds-list { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-.creds-list li { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark); }
-.creds-members li { display: flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .12em; color: var(--on-dark-dim); }
+.creds-list li { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light); }
+.creds-members li { display: flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .12em; color: var(--on-light-dim); }
 .creds-members li::before { content: ""; width: 10px; height: 6px; background: var(--jade); transform: skewX(-30deg); }
 
 /* ==========================================================================
    Shared section layout
    ========================================================================== */
 .section { position: relative; padding-block: var(--section); }
-.section:not(.dark) { background: var(--mortar); color: var(--on-light); }
-.section:not(.dark) .lead { color: var(--on-light-dim); }
-.dark { background: var(--ink); color: var(--on-dark); }
-.dark .lead { color: var(--on-dark-dim); }
+.section { background: var(--bg); color: var(--on-light); }
+.section .lead { color: var(--on-light-dim); }
 
 @media (prefers-reduced-motion: no-preference) {
   .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform 1.1s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
@@ -425,7 +430,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
    ========================================================================== */
 .svc-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
 .svc-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
-.svc-preview { position: sticky; top: 96px; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--graphite); }
+.svc-preview { position: sticky; top: 96px; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); }
 .svc-shot { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease-out); }
 .svc-shot img { transform: scale(1.04); transition: transform 1.4s var(--ease-out); }
 .svc-shot.is-active { opacity: 1; }
@@ -434,7 +439,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .svc-preview-tag {
   position: absolute; left: 0; bottom: 0; z-index: 1;
   padding: 12px 18px;
-  background: var(--oxide); color: var(--alu); border-top: 3px solid var(--jade);
+  background: var(--jade); color: var(--ink);
   font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase;
 }
 .svc-list { border-top: 1px solid var(--line-light); }
@@ -442,7 +447,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   position: relative; display: grid; grid-template-columns: 3.25rem 1fr 24px; align-items: center; gap: 16px;
   padding: 22px 0; border-bottom: 1px solid var(--line-light); color: var(--on-light);
 }
-.svc-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--oxide); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out); }
+.svc-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--jade); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out); }
 .svc-num { font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; color: var(--on-light-dim); transition: color .3s; }
 .svc-main { display: grid; gap: 4px; }
 .svc-title { font-size: clamp(1.15rem, 1.8vw, 1.6rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; line-height: 1.1; text-transform: uppercase; transition: transform .5s var(--ease-out); }
@@ -457,27 +462,29 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 /* ==========================================================================
    Process
    ========================================================================== */
-.process { background: var(--carbon); }
+.process { background: var(--sage); }
 .process-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(48px, 6vw, 88px); }
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); counter-reset: none; }
-.step { position: relative; padding-top: 28px; border-top: 1px solid var(--line-dark); }
-.step::before { content: ""; position: absolute; top: -1px; left: 0; width: 48px; height: 2px; background: var(--jade); }
-.step-num { display: block; margin-bottom: 22px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; color: var(--on-dark-faint); }
+.step { position: relative; padding-top: 28px; border-top: 1px solid rgba(33, 103, 74, .22); }
+.step::before { content: ""; position: absolute; top: -2px; left: 0; width: 48px; height: 3px; background: var(--jade); }
+.step-num { display: block; margin-bottom: 22px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; color: var(--jade-deep); }
 .step h3 { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.005em; line-height: 1.15; text-transform: uppercase; margin-bottom: 12px; }
-.step p { font-size: .9375rem; color: var(--on-dark-dim); max-width: 22em; }
+.step p { font-size: .9375rem; color: var(--on-light-dim); max-width: 22em; }
 .process-foot {
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px 40px;
   margin-top: clamp(48px, 6vw, 80px); padding: clamp(24px, 3vw, 36px);
-  background: var(--graphite); border-left: 4px solid var(--oxide); border-radius: var(--radius);
+  background: var(--white); border-left: 4px solid var(--jade); border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(29, 35, 32, .06);
 }
 .claim { max-width: 40em; }
 .claim h3 { font-size: 1.05rem; font-weight: 650; font-stretch: var(--wide); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
-.claim p { color: var(--on-dark-dim); font-size: .9375rem; }
+.claim p { color: var(--on-light-dim); font-size: .9375rem; }
 .process-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ==========================================================================
    Gallery
    ========================================================================== */
+.gallery { background: var(--bg-2); }
 .gal-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(32px, 4vw, 56px); }
 .gal-grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, clamp(180px, 19vw, 300px));
@@ -489,23 +496,23 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .gal-media { position: absolute; inset: 0; border-radius: var(--radius); }
 .gal-media.is-missing::after { display: none; }
 .gal-media img { transition: transform 1.4s var(--ease-out); }
-.gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(26, 16, 12, .78)); pointer-events: none; }
+.gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(22, 27, 24, .72)); pointer-events: none; }
 .gal-cap { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; font-size: .875rem; font-weight: 500; color: var(--on-dark); transition: transform .5s var(--ease-out); }
 @media (hover: hover) {
   .gal-btn:hover .gal-media img { transform: scale(1.05); }
   .gal-btn:hover .gal-cap { transform: translateY(-4px); }
 }
-.gal-note { margin-top: 14px; font-size: .875rem; color: var(--on-dark-faint); }
-.link-cta { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; font-size: .75rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase; color: var(--on-dark); border-bottom: 2px solid var(--jade); }
+.gal-note { margin-top: 14px; font-size: .875rem; color: var(--on-light-faint); }
+.link-cta { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; font-size: .75rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase; color: var(--on-light); border-bottom: 2px solid var(--jade); }
 .link-cta .ico { width: 18px; height: 18px; transition: transform .4s var(--ease-out); }
 .link-cta:hover .ico { transform: translate(2px, -2px); }
 
-.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(26, 16, 12, .96); color: var(--on-dark); }
-.lightbox::backdrop { background: rgba(26, 16, 12, .9); }
+.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(22, 27, 24, .96); color: var(--on-dark); }
+.lightbox::backdrop { background: rgba(22, 27, 24, .9); }
 .lb-frame { position: relative; display: grid; place-items: center; height: 100%; padding: 72px clamp(16px, 6vw, 96px); }
 .lb-figure { display: grid; gap: 16px; width: 100%; max-width: 1280px; }
 .lb-img { aspect-ratio: 3 / 2; max-height: 76vh; width: 100%; border-radius: var(--radius); }
-.lb-img img { object-fit: contain; background: var(--ink); }
+.lb-img img { object-fit: contain; background: var(--charcoal); }
 .lb-cap { font-size: .9375rem; color: var(--on-dark-dim); }
 .lb-btn, .lb-close { position: absolute; display: grid; place-items: center; width: 52px; height: 52px; color: var(--on-dark); box-shadow: inset 0 0 0 1px var(--line-dark); border-radius: var(--radius); transition: background-color .2s; }
 .lb-btn:hover, .lb-close:hover { background: rgba(236, 234, 228, .08); }
@@ -522,9 +529,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 /* ==========================================================================
    Testimonials (only rendered when real reviews exist)
    ========================================================================== */
-.reviews { background: var(--mortar-2) !important; }
+.reviews { background: var(--white); }
 .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 24px); margin-top: clamp(32px, 4vw, 56px); }
-.rev figure { display: flex; flex-direction: column; height: 100%; padding: clamp(28px, 3vw, 40px); background: var(--paper); border-radius: var(--radius); }
+.rev figure { display: flex; flex-direction: column; height: 100%; padding: clamp(28px, 3vw, 40px); background: var(--bg); border-radius: var(--radius); }
 .rev-stars { display: flex; gap: 2px; color: #D9A23A; }
 .rev-stars .ico { width: 18px; height: 18px; }
 .rev blockquote { flex: 1; margin: 24px 0 32px; }
@@ -538,11 +545,11 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
    ========================================================================== */
 .contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
 .contact-intro .lead { margin-top: 28px; }
-.tips { margin-top: 28px; padding: 20px 22px; background: var(--paper); border-left: 4px solid var(--jade); border-radius: var(--radius); }
+.tips { margin-top: 28px; padding: 20px 22px; background: var(--sage); border-left: 4px solid var(--jade); border-radius: var(--radius); }
 .tips-title { font-size: .78rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
 .tips ol { display: grid; gap: 6px; counter-reset: tip; }
 .tips li { counter-increment: tip; display: flex; gap: 12px; font-size: .9375rem; color: var(--on-light-dim); }
-.tips li::before { content: counter(tip); flex: none; display: grid; place-items: center; width: 22px; height: 22px; background: var(--ink); color: var(--alu); font-size: .72rem; font-weight: 650; border-radius: var(--radius); }
+.tips li::before { content: counter(tip); flex: none; display: grid; place-items: center; width: 22px; height: 22px; background: var(--jade); color: var(--ink); font-size: .72rem; font-weight: 650; border-radius: var(--radius); }
 .storefront { margin-top: 36px; }
 .storefront-media { aspect-ratio: 838 / 286; border-radius: var(--radius); }
 .storefront-media img { filter: saturate(.92) contrast(1.04); }
@@ -550,12 +557,14 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .storefront figcaption::before { content: ""; width: 18px; height: 10px; background: var(--oxide); flex: none; }
 .contact-ways { margin-top: 32px; border-top: 1px solid var(--line-light); }
 .contact-ways a { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-light); }
-.cw-ico { display: grid; place-items: center; width: 48px; height: 48px; background: var(--ink); color: var(--on-dark); border-radius: var(--radius); }
+.cw-ico { display: grid; place-items: center; width: 48px; height: 48px; background: var(--sage); color: var(--jade-deep); border-radius: var(--radius); }
 .cw-ico .ico { width: 20px; height: 20px; }
 .contact-ways strong { display: block; font-size: .78rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; }
 .contact-ways a > span:nth-child(2) > span { font-size: .9375rem; color: var(--on-light-dim); }
 .cw-arrow { width: 20px; height: 20px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
-.contact-ways a:hover .cw-arrow { transform: translate(3px, -3px); color: var(--oxide); }
+.contact-ways a:hover .cw-arrow { transform: translate(3px, -3px); color: var(--jade-deep); }
+.contact-ways a:hover .cw-ico { background: var(--jade); color: var(--ink); }
+.cw-ico { transition: background-color .25s, color .25s; }
 .hours { margin-top: 24px; display: grid; gap: 8px; font-size: .9375rem; }
 .hours div { display: flex; justify-content: space-between; max-width: 26rem; }
 .hours dd { color: var(--on-light-dim); }
@@ -564,53 +573,54 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px;
   padding: calc(clamp(28px, 4vw, 56px) + 10px) clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
-  background: var(--ink); color: var(--on-dark); border-radius: var(--radius);
+  background: var(--white); color: var(--on-light); border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(29, 35, 32, .05), 0 24px 60px -32px rgba(29, 35, 32, .28);
 }
 .form-band { position: absolute; inset: 0 0 auto; height: 10px; background: var(--oxide); }
 .form-band::after { content: ""; position: absolute; left: clamp(28px, 4vw, 56px); top: 0; width: 56px; height: 10px; background: var(--jade); }
 .form-title { grid-column: 1 / -1; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 6px; }
 .field { display: grid; gap: 8px; align-content: start; }
 .field-full { grid-column: 1 / -1; }
-.field label, .field legend { font-size: .8125rem; font-weight: 500; letter-spacing: .02em; color: var(--on-dark-dim); padding: 0; }
+.field label, .field legend { font-size: .8125rem; font-weight: 500; letter-spacing: .02em; color: var(--on-light-dim); padding: 0; }
 .field legend { margin-bottom: 8px; }
-.opt { color: var(--on-dark-faint); }
+.opt { color: var(--on-light-faint); }
 .field input, .field select, .field textarea {
   width: 100%; min-height: 54px; padding: 14px 16px;
-  background: var(--carbon); color: var(--on-dark);
-  border: 1px solid var(--line-dark); border-radius: var(--radius);
+  background: var(--field); color: var(--on-light);
+  border: 1px solid var(--line-light); border-radius: var(--radius);
   font-size: 1rem; line-height: 1.4;
   transition: border-color .2s, background-color .2s;
 }
 .field textarea { resize: vertical; min-height: 110px; }
-.field input::placeholder, .field textarea::placeholder { color: rgba(236, 234, 228, .3); }
-.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(236, 234, 228, .28); }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--jade); background: var(--graphite); }
-.field input[aria-invalid="true"] { border-color: #E5735A; }
-.field-err { font-size: .8125rem; color: #F09A86; }
+.field input::placeholder, .field textarea::placeholder { color: #8A938E; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(29, 35, 32, .3); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--jade-deep); background: var(--white); box-shadow: 0 0 0 3px rgba(85, 159, 123, .22); }
+.field input[aria-invalid="true"] { border-color: #C0392B; }
+.field-err { font-size: .8125rem; color: #B03A2E; }
 .field-err:empty { display: none; }
 .select { position: relative; }
 .select select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer; }
-.select::after { content: ""; position: absolute; right: 18px; top: 50%; width: 8px; height: 8px; border-right: 1.5px solid var(--on-dark-dim); border-bottom: 1.5px solid var(--on-dark-dim); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
-.select option { background: var(--carbon); }
-.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--carbon); border: 1px solid var(--line-dark); border-radius: var(--radius); }
+.select::after { content: ""; position: absolute; right: 18px; top: 50%; width: 8px; height: 8px; border-right: 1.5px solid var(--on-light-dim); border-bottom: 1.5px solid var(--on-light-dim); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+.select option { background: var(--white); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--field); border: 1px solid var(--line-light); border-radius: var(--radius); }
 .seg label { position: relative; }
 .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.seg span { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius); font-size: .875rem; font-weight: 500; color: var(--on-dark-dim); cursor: pointer; text-align: center; transition: background-color .2s, color .2s; }
+.seg span { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius); font-size: .875rem; font-weight: 500; color: var(--on-light-dim); cursor: pointer; text-align: center; transition: background-color .2s, color .2s; }
 .seg input:checked + span { background: var(--jade); color: var(--ink); }
-.seg input:focus-visible + span { outline: 2px solid var(--jade); outline-offset: 2px; }
+.seg input:focus-visible + span { outline: 2px solid var(--jade-deep); outline-offset: 2px; }
 .form-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; margin-top: 6px; }
-.form-note { font-size: .875rem; color: var(--on-dark-faint); max-width: 26em; }
-.form-note.is-done { color: var(--on-dark); }
+.form-note { font-size: .875rem; color: var(--on-light-faint); max-width: 26em; }
+.form-note.is-done { color: var(--jade-deep); font-weight: 500; }
 
 /* ==========================================================================
    Footer
    ========================================================================== */
-.footer { padding-block: 56px 32px; border-top: 6px solid var(--oxide); }
+.footer { padding-block: 56px 32px; background: var(--white); color: var(--on-light); border-top: 6px solid var(--oxide); }
 .footer-inner { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 32px; }
 .footer nav ul { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px 32px; }
-.footer nav a { font-size: .75rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-dim); transition: color .2s; }
-.footer nav a:hover { color: var(--on-dark); }
-.footer-base { grid-column: 1 / -1; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px; padding-top: 24px; border-top: 1px solid var(--line-dark); font-size: .8125rem; color: var(--on-dark-faint); }
+.footer nav a { font-size: .75rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light-dim); transition: color .2s; }
+.footer nav a:hover { color: var(--on-light); }
+.footer-base { grid-column: 1 / -1; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px; padding-top: 24px; border-top: 1px solid var(--line-light); font-size: .8125rem; color: var(--on-light-faint); }
 
 /* ==========================================================================
    Mobile CTA bar + toast
@@ -619,8 +629,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .toast {
   position: fixed; left: 50%; bottom: 24px; z-index: var(--z-toast);
   max-width: min(92vw, 28rem); padding: 14px 18px;
-  background: var(--alu); color: var(--ink); border-radius: var(--radius);
-  font-size: .9375rem; font-weight: 500; box-shadow: 0 16px 40px rgba(0, 0, 0, .35);
+  background: var(--ink); color: var(--white); border-radius: var(--radius);
+  font-size: .9375rem; font-weight: 500; box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
   transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
   transition: opacity .3s var(--ease-out), transform .4s var(--ease-out);
 }
@@ -686,15 +696,15 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-mcta);
     display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 1px;
     padding-bottom: env(safe-area-inset-bottom);
-    background: var(--line-dark);
-    box-shadow: 0 -12px 32px rgba(0, 0, 0, .35);
+    background: var(--line-light);
+    box-shadow: 0 -10px 30px rgba(29, 35, 32, .12);
     transform: translateY(110%); transition: transform .45s var(--ease-out);
   }
   .mcta.is-on { transform: none; }
   .mcta-btn {
     display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 60px;
-    background: rgba(26, 16, 12, .96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    font-size: .7rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark);
+    background: rgba(255, 255, 255, .97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    font-size: .7rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light);
   }
   .mcta-btn .ico { width: 18px; height: 18px; }
   .mcta-primary { background: var(--jade); color: var(--ink); backdrop-filter: none; }
@@ -838,20 +848,8 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 <main id="main">
 
 <section class="hero" id="top" aria-labelledby="hero-title">
-  
-  <div class="hero-media hero-panel" aria-hidden="true">
-    <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
-      <defs>
-        <!-- userSpaceOnUse: a perfectly straight line has a zero-height box, which would blank a bounding-box gradient -->
-        <linearGradient id="refl" gradientUnits="userSpaceOnUse" x1="0" x2="1600" y1="0" y2="0">
-          <stop offset="0" stop-color="#FFF0E2" stop-opacity="0"/>
-          <stop offset=".3" stop-color="#FFF0E2" stop-opacity=".18"/>
-          <stop offset=".72" stop-color="#FFF0E2" stop-opacity=".9"/>
-          <stop offset="1" stop-color="#FFF0E2" stop-opacity="0"/>
-        </linearGradient>
-        <filter id="tube" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="6"/></filter>
-      </defs>
-    </svg>
+  <div class="hero-media media" data-label="Technician working on a car inside a workshop">
+    <img src="https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=1920" srcset="https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=640 640w, https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=960 960w, https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=1280 1280w, https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=1920 1920w, https://unsplash.com/photos/8MXNZCgAah0/download?force=true&w=2560 2560w" sizes="100vw" alt="Technician working on a car inside a workshop" loading="eager" fetchpriority="high" decoding="async" style="object-position:50% 50%">
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
 
@@ -893,7 +891,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     </div>
     <div class="svc-layout" data-svc>
       <div class="svc-preview" aria-hidden="true">
-        <div class="svc-shot media is-active" data-label="Car parked in a dimly lit workshop" data-shot="0"><img src="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=960" srcset="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=640 640w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=960 960w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car parked in a dimly lit workshop" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Close-up of glossy silver paintwork" data-shot="1"><img src="https://unsplash.com/photos/C559_TEewiA/download?force=true&w=960" srcset="https://unsplash.com/photos/C559_TEewiA/download?force=true&w=640 640w, https://unsplash.com/photos/C559_TEewiA/download?force=true&w=960 960w, https://unsplash.com/photos/C559_TEewiA/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Close-up of glossy silver paintwork" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Car raised on a workshop lift" data-shot="2"><img src="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=960" srcset="https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=640 640w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=960 960w, https://unsplash.com/photos/Hv_gKPOXmwE/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car raised on a workshop lift" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="White car in a dark garage" data-shot="3"><img src="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=960" srcset="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=640 640w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=960 960w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="White car in a dark garage" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Close-up of a car&#39;s headlight and front end" data-shot="4"><img src="https://unsplash.com/photos/AO3VsQ_sGK8/download?force=true&w=960" srcset="https://unsplash.com/photos/AO3VsQ_sGK8/download?force=true&w=640 640w, https://unsplash.com/photos/AO3VsQ_sGK8/download?force=true&w=960 960w, https://unsplash.com/photos/AO3VsQ_sGK8/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Close-up of a car&#39;s headlight and front end" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Close-up of a car&#39;s bodywork" data-shot="5"><img src="https://unsplash.com/photos/GB7fVMi3-B4/download?force=true&w=960" srcset="https://unsplash.com/photos/GB7fVMi3-B4/download?force=true&w=640 640w, https://unsplash.com/photos/GB7fVMi3-B4/download?force=true&w=960 960w, https://unsplash.com/photos/GB7fVMi3-B4/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Close-up of a car&#39;s bodywork" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Car front lights in the dark" data-shot="6"><img src="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960" srcset="https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=640 640w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=960 960w, https://unsplash.com/photos/Nv8-Oq1TQPA/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car front lights in the dark" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Polished black wheel and paintwork" data-shot="7"><img src="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=960" srcset="https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=640 640w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=960 960w, https://unsplash.com/photos/-OsnPr51mgo/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Polished black wheel and paintwork" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+        <div class="svc-shot media is-active" data-label="Car with a crashed front end" data-shot="0"><img src="https://unsplash.com/photos/p76hPO989to/download?force=true&w=960" srcset="https://unsplash.com/photos/p76hPO989to/download?force=true&w=640 640w, https://unsplash.com/photos/p76hPO989to/download?force=true&w=960 960w, https://unsplash.com/photos/p76hPO989to/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car with a crashed front end" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Gloved hands working on a car&#39;s paintwork in a body shop" data-shot="1"><img src="https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=960" srcset="https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=640 640w, https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=960 960w, https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Gloved hands working on a car&#39;s paintwork in a body shop" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Car with a dent in the front end" data-shot="2"><img src="https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=960" srcset="https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=640 640w, https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=960 960w, https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car with a dent in the front end" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Silver car with a crushed bonnet after a collision" data-shot="3"><img src="https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=960" srcset="https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=640 640w, https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=960 960w, https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Silver car with a crushed bonnet after a collision" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Front-end damage around a car&#39;s bumper" data-shot="4"><img src="https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=960" srcset="https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=640 640w, https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=960 960w, https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Front-end damage around a car&#39;s bumper" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Gloved hands working on a car&#39;s body panel" data-shot="5"><img src="https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=960" srcset="https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=640 640w, https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=960 960w, https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Gloved hands working on a car&#39;s body panel" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Angle grinder cutting metal" data-shot="6"><img src="https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=960" srcset="https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=640 640w, https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=960 960w, https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Angle grinder cutting metal" loading="lazy" decoding="async" style="object-position:50% 50%"></div><div class="svc-shot media" data-label="Machine polishing a car&#39;s paint" data-shot="7"><img src="https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=960" srcset="https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=640 640w, https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=960 960w, https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Machine polishing a car&#39;s paint" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
         <span class="svc-preview-tag" data-preview-tag>Accident repairs</span>
       </div>
       <ol class="svc-list">
@@ -959,7 +957,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   </div>
 </section>
 
-<section class="section process dark" id="how-it-works" aria-labelledby="process-title">
+<section class="section process" id="how-it-works" aria-labelledby="process-title">
   <div class="container">
     <div class="process-head">
       <h2 class="display reveal" id="process-title"><span class="line"><span>From damage</span></span><span class="line"><span>to done.</span></span></h2>
@@ -1001,7 +999,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   </div>
 </section>
 
-<section class="section gallery dark" id="work" aria-labelledby="work-title">
+<section class="section gallery" id="work" aria-labelledby="work-title">
   <div class="container">
     <div class="gal-head">
       <div>
@@ -1013,27 +1011,27 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     <ul class="gal-grid">
       
       <li class="gal-item reveal" style="--i:0">
-        <button class="gal-btn" type="button" data-lightbox-open="0" aria-label="View larger: In the workshop">
-          <div class="media gal-media" data-label="Car in the workshop"><img src="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280" srcset="https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=640 640w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=960 960w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1280 1280w, https://unsplash.com/photos/rg8Ak619UAQ/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 50vw, 100vw" alt="Car in the workshop" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-          <span class="gal-cap">In the workshop</span>
+        <button class="gal-btn" type="button" data-lightbox-open="0" aria-label="View larger: Welding and structural repairs">
+          <div class="media gal-media" data-label="Welding on a car, sparks flying"><img src="https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1280" srcset="https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=640 640w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=960 960w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1280 1280w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 50vw, 100vw" alt="Welding on a car, sparks flying" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <span class="gal-cap">Welding and structural repairs</span>
         </button>
       </li>
       <li class="gal-item reveal" style="--i:1">
-        <button class="gal-btn" type="button" data-lightbox-open="1" aria-label="View larger: Wheel and arch detail">
-          <div class="media gal-media" data-label="Wheel and brake detail"><img src="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280" srcset="https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=640 640w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=960 960w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1280 1280w, https://unsplash.com/photos/x1LGDpkRSDs/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Wheel and brake detail" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-          <span class="gal-cap">Wheel and arch detail</span>
+        <button class="gal-btn" type="button" data-lightbox-open="1" aria-label="View larger: Finishing in the workshop">
+          <div class="media gal-media" data-label="Finishing a car&#39;s paint in a garage"><img src="https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1280" srcset="https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=640 640w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=960 960w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1280 1280w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Finishing a car&#39;s paint in a garage" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <span class="gal-cap">Finishing in the workshop</span>
         </button>
       </li>
       <li class="gal-item reveal" style="--i:2">
         <button class="gal-btn" type="button" data-lightbox-open="2" aria-label="View larger: Paint, up close">
-          <div class="media gal-media" data-label="Glossy paintwork up close"><img src="https://unsplash.com/photos/C559_TEewiA/download?force=true&w=1280" srcset="https://unsplash.com/photos/C559_TEewiA/download?force=true&w=640 640w, https://unsplash.com/photos/C559_TEewiA/download?force=true&w=960 960w, https://unsplash.com/photos/C559_TEewiA/download?force=true&w=1280 1280w, https://unsplash.com/photos/C559_TEewiA/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Glossy paintwork up close" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <div class="media gal-media" data-label="Glossy black bodywork up close"><img src="https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1280" srcset="https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=640 640w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=960 960w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1280 1280w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Glossy black bodywork up close" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
           <span class="gal-cap">Paint, up close</span>
         </button>
       </li>
       <li class="gal-item reveal" style="--i:3">
-        <button class="gal-btn" type="button" data-lightbox-open="3" aria-label="View larger: Ready for collection">
-          <div class="media gal-media" data-label="Finished car in the garage"><img src="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280" srcset="https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=640 640w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=960 960w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1280 1280w, https://unsplash.com/photos/0cTvMZHuVZE/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Finished car in the garage" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
-          <span class="gal-cap">Ready for collection</span>
+        <button class="gal-btn" type="button" data-lightbox-open="3" aria-label="View larger: Hand finishing">
+          <div class="media gal-media" data-label="Hand-finishing a car&#39;s bonnet"><img src="https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1280" srcset="https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=640 640w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=960 960w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1280 1280w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Hand-finishing a car&#39;s bonnet" loading="lazy" decoding="async" style="object-position:50% 50%"></div>
+          <span class="gal-cap">Hand finishing</span>
         </button>
       </li>
     </ul>
@@ -1132,7 +1130,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 </section>
 </main>
 
-<footer class="footer dark">
+<footer class="footer">
   <div class="container footer-inner">
     
   <a class="logo " href="#top" aria-label="Eastern Auto Body, back to top">
@@ -1154,7 +1152,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   <a class="mcta-btn mcta-primary" href="#contact" data-quote><span>Get a quote</span></a>
 </nav>
 <div class="toast" role="status" aria-live="polite" data-toast></div>
-<script>window.SITE = {"name":"Eastern Auto Body","whatsapp":"","phone":"+27119178304","gallery":[{"caption":"In the workshop","image":{"unsplash":"rg8Ak619UAQ","alt":"Car in the workshop","position":"50% 50%","credit":"Franck V. / Unsplash"}},{"caption":"Wheel and arch detail","image":{"unsplash":"x1LGDpkRSDs","alt":"Wheel and brake detail","position":"50% 50%","credit":"Unsplash"}},{"caption":"Paint, up close","image":{"unsplash":"C559_TEewiA","alt":"Glossy paintwork up close","position":"50% 50%","credit":"Sergio Aguirre / Unsplash"}},{"caption":"Ready for collection","image":{"unsplash":"0cTvMZHuVZE","alt":"Finished car in the garage","position":"50% 50%","credit":"RanaMotorWorks / Unsplash"}}]};</script>
+<script>window.SITE = {"name":"Eastern Auto Body","whatsapp":"","phone":"+27119178304","gallery":[{"caption":"Welding and structural repairs","image":{"unsplash":"e5LozVcb-6E","alt":"Welding on a car, sparks flying","position":"50% 50%","credit":"Unsplash"}},{"caption":"Finishing in the workshop","image":{"unsplash":"9XcUbV5CdVA","alt":"Finishing a car's paint in a garage","position":"50% 50%","credit":"Unsplash"}},{"caption":"Paint, up close","image":{"unsplash":"TNybYN-LqJo","alt":"Glossy black bodywork up close","position":"50% 50%","credit":"Unsplash"}},{"caption":"Hand finishing","image":{"unsplash":"k_DBVzru8d8","alt":"Hand-finishing a car's bonnet","position":"50% 50%","credit":"Unsplash"}}]};</script>
 <script>// Eastern Auto Body — interactions. No dependencies.
 (() => {
   const SITE = window.SITE || {};

@@ -5,7 +5,7 @@ import { addressLine } from "./Contact.js";
 export default function Footer(cfg) {
   const b = cfg.business;
   return `
-<footer class="footer dark">
+<footer class="footer">
   <div class="container footer-inner">
     ${Logo(cfg)}
     <nav aria-label="Footer"><ul>${cfg.nav.map((n) => `<li><a href="${n.href}">${esc(n.label)}</a></li>`).join("")}</ul></nav>

@@ -7,7 +7,7 @@ export default function Gallery(cfg) {
     ? `<a class="link-cta" href="${esc(social)}" target="_blank" rel="noopener">See our work ${icon("arrow")}</a>`
     : `<button class="link-cta" type="button" data-lightbox-open="0">See our work ${icon("arrow")}</button>`;
   return `
-<section class="section gallery dark" id="work" aria-labelledby="work-title">
+<section class="section gallery" id="work" aria-labelledby="work-title">
   <div class="container">
     <div class="gal-head">
       <div>

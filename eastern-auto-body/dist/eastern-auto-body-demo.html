@@ -288,6 +288,18 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     linear-gradient(180deg, #1d1916, #100E0D);
 }
 .hero-media.is-missing::after { display: none; }
+/* Lacquered panel under booth lights (default hero visual) */
+.hero-panel {
+  background:
+    radial-gradient(90% 70% at 70% 40%, rgba(126, 77, 56, .22), transparent 70%),
+    linear-gradient(176deg, #221d1a 0%, #120f0e 46%, #1a1512 74%, #0e0c0b 100%);
+}
+.reflections { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; }
+.reflections .glint { stroke-dasharray: 140 3200; stroke-dashoffset: 140; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .reflections .glint.is-on { opacity: 1; animation: glint 1.4s var(--ease-io) both; }
+  @keyframes glint { from { stroke-dashoffset: 140; } to { stroke-dashoffset: -1700; } }
+}
 .hero-shade {
   position: absolute; inset: 0; z-index: -1;
   background:
@@ -710,6 +722,7 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
     "addressCountry": "ZA"
   },
   "telephone": "+27119178304",
+  "foundingDate": "1998",
   "makesOffer": [
     {
       "@type": "Offer",
@@ -818,8 +831,20 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 <main id="main">
 
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero-media media" data-label="Technician working on a car in a dark workshop">
-    <img src="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920" srcset="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=640 640w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=960 960w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1280 1280w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920 1920w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=2560 2560w" sizes="100vw" alt="Technician working on a car in a dark workshop" loading="eager" fetchpriority="high" decoding="async" style="object-position:50% 55%">
+  
+  <div class="hero-media hero-panel" aria-hidden="true">
+    <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
+      <defs>
+        <!-- userSpaceOnUse: a perfectly straight line has a zero-height box, which would blank a bounding-box gradient -->
+        <linearGradient id="refl" gradientUnits="userSpaceOnUse" x1="0" x2="1600" y1="0" y2="0">
+          <stop offset="0" stop-color="#FFF0E2" stop-opacity="0"/>
+          <stop offset=".3" stop-color="#FFF0E2" stop-opacity=".18"/>
+          <stop offset=".72" stop-color="#FFF0E2" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#FFF0E2" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="tube" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+    </svg>
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
 
@@ -847,9 +872,9 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   <div class="creds-inner container">
     <div class="creds-group">
       <p class="creds-label">Approved repairer for</p>
-      <ul class="creds-list"><li>Peugeot</li><li>Chery</li><li>Omoda</li><li>Jaecoo</li><li>GWM</li><li>Haval</li></ul>
+      <ul class="creds-list"><li>Peugeot</li><li>Mitsubishi</li><li>Chery</li><li>Omoda</li><li>Jaecoo</li><li>GWM</li><li>Haval</li></ul>
     </div>
-    <ul class="creds-list creds-members"><li>SAMBRA member</li><li>CRA member</li></ul>
+    <ul class="creds-list creds-members"><li>Since 1998</li><li>Santam contracted repairer</li><li>SAMBRA member</li><li>CRA member</li></ul>
   </div>
 </section>
 
@@ -1133,6 +1158,59 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
   const waLink = (text) => `https://wa.me/${SITE.whatsapp || ""}?text=${encodeURIComponent(text)}`;
   const imageUrl = (image, w = 1920) =>
     image.src ? image.src : `https://unsplash.com/photos/${image.unsplash}/download?force=true&w=${w}`;
+
+  // ---------- Hero: booth-light reflections that straighten out a dent ----------
+  const refl = $("[data-reflections]");
+  if (refl) {
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 1600, H = 900, N = 48;
+    const mobile = matchMedia("(max-width: 760px)").matches;
+    // Lines sit in the upper part of the panel, clear of the headline below.
+    const lines = (mobile ? [0.11, 0.17, 0.23, 0.29] : [0.12, 0.18, 0.24, 0.3, 0.36, 0.42]).map((f) => f * H);
+    const widths = mobile ? [2, 7, 2.5, 1.5] : [1.5, 3, 8, 2, 2.5, 1.5];
+    const cx = (mobile ? 0.66 : 0.7) * W, cy = (mobile ? 0.2 : 0.27) * H;
+    const sx = 0.085 * W, sy = 0.12 * H, D0 = mobile ? 34 : 58;
+    const paths = lines.map((y0, i) => {
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("stroke", "url(#refl)");
+      p.setAttribute("stroke-width", widths[i]);
+      p.setAttribute("fill", "none");
+      if (widths[i] >= 6) p.setAttribute("filter", "url(#tube)");
+      refl.appendChild(p);
+      return { p, y0 };
+    });
+    const draw = (D) => paths.forEach(({ p, y0 }) => {
+      const dir = Math.sign(cy - y0) || 1;
+      const fall = Math.exp(-((y0 - cy) ** 2) / (2 * sy * sy));
+      let d = "";
+      for (let k = 0; k <= N; k++) {
+        const x = (k / N) * W;
+        const y = y0 + D * fall * Math.exp(-((x - cx) ** 2) / (2 * sx * sx)) * dir;
+        d += `${k ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
+      }
+      p.setAttribute("d", d);
+    });
+    // the brightest line carries a single glint once it's straight
+    const glint = paths[Math.floor(paths.length / 2)].p.cloneNode();
+    glint.removeAttribute("filter");
+    glint.setAttribute("stroke", "#FFF6EC");
+    glint.setAttribute("stroke-width", "2.5");
+    glint.classList.add("glint");
+    refl.appendChild(glint);
+    if (reduceMotion) { draw(0); glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); }
+    else {
+      draw(D0);
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const start = performance.now() + 250, dur = 1600;
+      const tick = (now) => {
+        const t = Math.min(1, Math.max(0, (now - start) / dur));
+        draw(D0 * (1 - ease(t)));
+        if (t < 1) requestAnimationFrame(tick);
+        else { glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); glint.classList.add("is-on"); }
+      };
+      requestAnimationFrame(tick);
+    }
+  }
 
   // ---------- Toast ----------
   const toastEl = $("[data-toast]");

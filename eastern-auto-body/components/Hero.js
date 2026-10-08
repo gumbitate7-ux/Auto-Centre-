@@ -1,15 +1,34 @@
 import { esc, img, icon, markSvg, whatsappHref, waMessages } from "./_lib.js";
 
 // The shop's own sign is the hero: an oxide band with the mark and raised aluminium
-// lettering runs along the foot of a full-bleed workshop photograph.
+// lettering runs along the foot of the hero.
+//
+// Above it, either a workshop photograph (hero.visual = "photo") or, by default, a dark
+// lacquered panel under booth lights: the reflections start bent around a dent and pull
+// straight on load, which is how a panel beater reads a panel. main.js draws the curves.
+const Reflection = () => `
+  <div class="hero-media hero-panel" aria-hidden="true">
+    <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
+      <defs>
+        <!-- userSpaceOnUse: a perfectly straight line has a zero-height box, which would blank a bounding-box gradient -->
+        <linearGradient id="refl" gradientUnits="userSpaceOnUse" x1="0" x2="1600" y1="0" y2="0">
+          <stop offset="0" stop-color="#FFF0E2" stop-opacity="0"/>
+          <stop offset=".3" stop-color="#FFF0E2" stop-opacity=".18"/>
+          <stop offset=".72" stop-color="#FFF0E2" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#FFF0E2" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="tube" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+    </svg>
+  </div>`;
 export default function Hero(cfg) {
   const h = cfg.hero;
   const b = cfg.business;
   return `
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero-media media" data-label="${esc(cfg.images.hero.alt)}">
+  ${h.visual === "photo" ? `<div class="hero-media media" data-label="${esc(cfg.images.hero.alt)}">
     ${img(cfg, "hero", { eager: true, sizes: "100vw" })}
-  </div>
+  </div>` : Reflection()}
   <div class="hero-shade" aria-hidden="true"></div>
 
   <div class="hero-content container">

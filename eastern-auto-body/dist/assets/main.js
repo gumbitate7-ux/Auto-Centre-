@@ -9,6 +9,59 @@
   const imageUrl = (image, w = 1920) =>
     image.src ? image.src : `https://unsplash.com/photos/${image.unsplash}/download?force=true&w=${w}`;
 
+  // ---------- Hero: booth-light reflections that straighten out a dent ----------
+  const refl = $("[data-reflections]");
+  if (refl) {
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 1600, H = 900, N = 48;
+    const mobile = matchMedia("(max-width: 760px)").matches;
+    // Lines sit in the upper part of the panel, clear of the headline below.
+    const lines = (mobile ? [0.11, 0.17, 0.23, 0.29] : [0.12, 0.18, 0.24, 0.3, 0.36, 0.42]).map((f) => f * H);
+    const widths = mobile ? [2, 7, 2.5, 1.5] : [1.5, 3, 8, 2, 2.5, 1.5];
+    const cx = (mobile ? 0.66 : 0.7) * W, cy = (mobile ? 0.2 : 0.27) * H;
+    const sx = 0.085 * W, sy = 0.12 * H, D0 = mobile ? 34 : 58;
+    const paths = lines.map((y0, i) => {
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("stroke", "url(#refl)");
+      p.setAttribute("stroke-width", widths[i]);
+      p.setAttribute("fill", "none");
+      if (widths[i] >= 6) p.setAttribute("filter", "url(#tube)");
+      refl.appendChild(p);
+      return { p, y0 };
+    });
+    const draw = (D) => paths.forEach(({ p, y0 }) => {
+      const dir = Math.sign(cy - y0) || 1;
+      const fall = Math.exp(-((y0 - cy) ** 2) / (2 * sy * sy));
+      let d = "";
+      for (let k = 0; k <= N; k++) {
+        const x = (k / N) * W;
+        const y = y0 + D * fall * Math.exp(-((x - cx) ** 2) / (2 * sx * sx)) * dir;
+        d += `${k ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
+      }
+      p.setAttribute("d", d);
+    });
+    // the brightest line carries a single glint once it's straight
+    const glint = paths[Math.floor(paths.length / 2)].p.cloneNode();
+    glint.removeAttribute("filter");
+    glint.setAttribute("stroke", "#FFF6EC");
+    glint.setAttribute("stroke-width", "2.5");
+    glint.classList.add("glint");
+    refl.appendChild(glint);
+    if (reduceMotion) { draw(0); glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); }
+    else {
+      draw(D0);
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const start = performance.now() + 250, dur = 1600;
+      const tick = (now) => {
+        const t = Math.min(1, Math.max(0, (now - start) / dur));
+        draw(D0 * (1 - ease(t)));
+        if (t < 1) requestAnimationFrame(tick);
+        else { glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); glint.classList.add("is-on"); }
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+
   // ---------- Toast ----------
   const toastEl = $("[data-toast]");
   let toastTimer;

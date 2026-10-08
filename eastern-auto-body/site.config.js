@@ -33,10 +33,13 @@ export default {
     // [{ days: "Monday to Thursday", time: "07:30 to 17:30" }, { days: "Friday", time: "07:30 to 17:00" }]
     hours: [],
 
-    // Shown as a credentials strip. Each comes from the manufacturer's or association's own list.
+    // Shown as a credentials strip. Only approvals that appear on the manufacturer's or
+    // association's own published list are included. Confirm with the owner before going live.
     credentials: {
-      approvedFor: ["Peugeot", "Chery", "Omoda", "Jaecoo", "GWM", "Haval"],
-      memberships: ["SAMBRA member", "CRA member"],
+      approvedFor: ["Peugeot", "Mitsubishi", "Chery", "Omoda", "Jaecoo", "GWM", "Haval"],
+      memberships: ["Santam contracted repairer", "SAMBRA member", "CRA member"],
+      // From the shop's own website (easternauto.co.za). Set to "" to hide.
+      established: "1998",
     },
 
     // Registration field in the quote form, styled as a number plate.
@@ -84,6 +87,8 @@ export default {
   ],
 
   hero: {
+    // "reflection" (drawn booth-light reflections on a dark panel) or "photo" (images.hero)
+    visual: "reflection",
     eyebrow: "Panel beating & spray painting • Boksburg",
     statement: "Dents, scratches and accident damage. Put right.",
     body: "Panel beating and spray painting for cars and bakkies. WhatsApp us photos of the damage and we'll come back to you with a quote, for private or insurance work.",

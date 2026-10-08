@@ -31,6 +31,7 @@ function schema(cfg) {
     },
     ...(b.phoneE164 && { telephone: b.phoneE164 }),
     ...(b.email && { email: b.email }),
+    ...(b.credentials?.established && { foundingDate: b.credentials.established }),
     ...(cfg.seo.url && { url: cfg.seo.url }),
     makesOffer: cfg.services.items.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title } })),
   };

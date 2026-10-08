@@ -49,6 +49,7 @@
     "addressCountry": "ZA"
   },
   "telephone": "+27119178304",
+  "foundingDate": "1998",
   "makesOffer": [
     {
       "@type": "Offer",
@@ -157,8 +158,20 @@
 <main id="main">
 
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero-media media" data-label="Technician working on a car in a dark workshop">
-    <img src="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920" srcset="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=640 640w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=960 960w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1280 1280w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920 1920w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=2560 2560w" sizes="100vw" alt="Technician working on a car in a dark workshop" loading="eager" fetchpriority="high" decoding="async" style="object-position:50% 55%">
+  
+  <div class="hero-media hero-panel" aria-hidden="true">
+    <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
+      <defs>
+        <!-- userSpaceOnUse: a perfectly straight line has a zero-height box, which would blank a bounding-box gradient -->
+        <linearGradient id="refl" gradientUnits="userSpaceOnUse" x1="0" x2="1600" y1="0" y2="0">
+          <stop offset="0" stop-color="#FFF0E2" stop-opacity="0"/>
+          <stop offset=".3" stop-color="#FFF0E2" stop-opacity=".18"/>
+          <stop offset=".72" stop-color="#FFF0E2" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#FFF0E2" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="tube" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+    </svg>
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
 
@@ -186,9 +199,9 @@
   <div class="creds-inner container">
     <div class="creds-group">
       <p class="creds-label">Approved repairer for</p>
-      <ul class="creds-list"><li>Peugeot</li><li>Chery</li><li>Omoda</li><li>Jaecoo</li><li>GWM</li><li>Haval</li></ul>
+      <ul class="creds-list"><li>Peugeot</li><li>Mitsubishi</li><li>Chery</li><li>Omoda</li><li>Jaecoo</li><li>GWM</li><li>Haval</li></ul>
     </div>
-    <ul class="creds-list creds-members"><li>SAMBRA member</li><li>CRA member</li></ul>
+    <ul class="creds-list creds-members"><li>Since 1998</li><li>Santam contracted repairer</li><li>SAMBRA member</li><li>CRA member</li></ul>
   </div>
 </section>
 

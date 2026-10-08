@@ -12,7 +12,7 @@ export default function Credentials(cfg) {
       <p class="creds-label">Approved repairer for</p>
       <ul class="creds-list">${c.approvedFor.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>
     </div>` : ""}
-    ${c.memberships?.length ? `<ul class="creds-list creds-members">${c.memberships.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}
+    ${c.memberships?.length || c.established ? `<ul class="creds-list creds-members">${[c.established ? `Since ${c.established}` : "", ...(c.memberships || [])].filter(Boolean).map((n) => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}
   </div>
 </section>`;
 }

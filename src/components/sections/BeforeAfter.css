@@ -1,0 +1,130 @@
+.compare-section {
+  /* darker secondary text tone keeps AA contrast on the deeper grey */
+  --c-subtle: #5d6267;
+  background: var(--c-bg-2);
+}
+
+.compare-section__tabs {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  margin-bottom: 22px;
+  padding: 4px;
+  border-radius: var(--radius-s);
+  background: var(--c-bg-3);
+  max-width: 100%;
+}
+
+.compare-section__tab {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 clamp(12px, 2vw, 22px);
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-weight: 520;
+  color: var(--c-muted);
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease-soft);
+}
+
+.compare-section__tab:hover,
+.compare-section__tab.is-active {
+  color: var(--c-ink);
+}
+
+.compare-section__tab-index {
+  font-size: 0.68rem;
+  color: var(--c-subtle);
+}
+
+.compare-section__tab-indicator {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / var(--tab-count, 3));
+  border-radius: 4px;
+  background: var(--c-surface);
+  box-shadow: var(--shadow-s);
+  transition: transform 600ms var(--ease-out);
+}
+
+.compare-section__swap {
+  animation: compare-in 700ms var(--ease-soft);
+}
+
+@keyframes compare-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.compare-section__stage .compare {
+  box-shadow: var(--shadow-l);
+}
+
+.compare-section__meta {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.compare-section__details {
+  display: grid;
+  gap: 8px;
+  max-width: 36rem;
+}
+
+.compare-section__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+  color: var(--c-subtle);
+}
+
+.concept-note {
+  margin-top: 28px;
+  font-size: var(--fs-xs);
+  color: var(--c-subtle);
+}
+
+@media (min-width: 900px) {
+  .compare-section__meta {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+@media (max-width: 599px) {
+  .compare-section__tabs {
+    display: grid;
+    width: 100%;
+  }
+
+  .compare-section__tab {
+    padding: 0 6px;
+    font-size: 0.8rem;
+  }
+
+  .compare-section__tab-index {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .compare-section__hint span {
+    font-size: 0;
+  }
+
+  .compare-section__hint span::after {
+    content: 'Drag the handle to compare';
+    font-size: var(--fs-small);
+  }
+}

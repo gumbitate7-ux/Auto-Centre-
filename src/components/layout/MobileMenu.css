@@ -1,0 +1,124 @@
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background: var(--c-bg);
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 700ms var(--ease-in-out),
+    visibility 0s linear 700ms;
+}
+
+.mobile-menu.is-open {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition:
+    clip-path 700ms var(--ease-in-out),
+    visibility 0s;
+}
+
+.mobile-menu__panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--header-h) + 24px);
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+.mobile-menu__list {
+  display: grid;
+  border-top: 1px solid var(--c-line);
+}
+
+.mobile-menu__list li {
+  border-bottom: 1px solid var(--c-line);
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 400ms var(--ease-soft),
+    transform 600ms var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__list li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(240ms + var(--i) * 55ms);
+}
+
+.mobile-menu__link {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 15px 0;
+  font-family: var(--font-display);
+  font-stretch: 108%;
+  font-weight: 500;
+  font-size: clamp(1.6rem, 6.4vw, 2.3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.mobile-menu__index {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-subtle);
+  transform: translateY(-0.6em);
+}
+
+.mobile-menu__link.is-active {
+  color: var(--c-ink);
+}
+
+.mobile-menu__link:not(.is-active) {
+  color: var(--c-ink-2);
+}
+
+.mobile-menu__footer {
+  margin-top: auto;
+  padding-top: 32px;
+  display: grid;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 400ms var(--ease-soft),
+    transform 600ms var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__footer {
+  opacity: 1;
+  transform: none;
+  transition-delay: 520ms;
+}
+
+.mobile-menu__quick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mobile-menu__hours {
+  margin-top: 6px;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--c-subtle);
+}
+
+@media (min-width: 1140px) {
+  .mobile-menu {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu.is-open,
+  .mobile-menu__list li,
+  .mobile-menu__footer {
+    transition: none;
+  }
+}

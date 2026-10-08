@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>%SEO_TITLE%</title>
+    <meta name="description" content="%SEO_DESCRIPTION%" />
+    <link rel="canonical" href="%SEO_URL%/" />
+    <meta name="theme-color" content="#F3F4F5" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_ZA" />
+    <meta property="og:site_name" content="%SEO_NAME%" />
+    <meta property="og:title" content="%SEO_TITLE%" />
+    <meta property="og:description" content="%SEO_DESCRIPTION%" />
+    <meta property="og:url" content="%SEO_URL%/" />
+    <meta property="og:image" content="%SEO_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%SEO_TITLE%" />
+    <meta name="twitter:description" content="%SEO_DESCRIPTION%" />
+    <meta name="twitter:image" content="%SEO_URL%/og-image.jpg" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Largest contentful paint: first hero image -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="/images/hero-booth-480.avif 480w, /images/hero-booth-640.avif 640w, /images/hero-booth-960.avif 960w, /images/hero-booth-1280.avif 1280w, /images/hero-booth-1920.avif 1920w, /images/hero-booth-2400.avif 2400w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <!--%SEO_JSONLD%-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding:24px;font-family:system-ui,sans-serif">
+        Dino's Auto Body Repairs: panel beating, spray painting and accident repairs. Please enable
+        JavaScript to view this site.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

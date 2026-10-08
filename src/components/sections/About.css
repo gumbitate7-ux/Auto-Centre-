@@ -1,0 +1,107 @@
+.about__grid {
+  display: grid;
+  gap: 28px;
+}
+
+.about__statement {
+  max-width: 19ch;
+  font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.5rem);
+}
+
+.about__body {
+  display: grid;
+  gap: 18px;
+  max-width: 36rem;
+}
+
+.about__para {
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.about__para:first-child {
+  color: var(--c-ink-2);
+}
+
+.about__cta {
+  margin-top: 8px;
+}
+
+.about__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  padding-top: 26px;
+  border-top: 1px solid var(--c-line);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--c-ink-2);
+}
+
+.about__focus li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.about__focus-index {
+  font-size: 0.7rem;
+  color: var(--c-subtle);
+}
+
+@media (min-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 220px minmax(0, 1fr) minmax(0, 0.8fr);
+    grid-template-areas:
+      'label statement statement'
+      '. body .'
+      '. focus focus';
+    column-gap: clamp(40px, 5vw, 88px);
+    row-gap: clamp(40px, 4.5vw, 64px);
+  }
+
+  .about__label {
+    grid-area: label;
+    padding-top: 0.9rem;
+  }
+
+  .about__statement {
+    grid-area: statement;
+  }
+
+  .about__body {
+    grid-area: body;
+  }
+
+  .about__focus {
+    grid-area: focus;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about__grid {
+    grid-template-areas:
+      'label statement statement'
+      '. body focus';
+    align-items: start;
+  }
+
+  .about__focus {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding-top: 0;
+    border-top: 0;
+    justify-self: end;
+    width: min(100%, 300px);
+  }
+
+  .about__focus li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .about__focus li:first-child {
+    border-top: 1px solid var(--c-line);
+  }
+}

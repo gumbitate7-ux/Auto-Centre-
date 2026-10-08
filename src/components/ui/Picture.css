@@ -1,0 +1,48 @@
+.picture {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--c-bg-3);
+}
+
+/* Blurred placeholder shown until the real image has loaded */
+.picture::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background-image: var(--lqip);
+  background-size: cover;
+  background-position: center;
+  filter: blur(14px);
+  transition: opacity 600ms var(--ease-soft);
+}
+
+.picture.is-loaded::before {
+  opacity: 0;
+}
+
+.picture img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-soft);
+}
+
+.picture.is-loaded img {
+  opacity: 1;
+}
+
+.picture--missing {
+  background:
+    linear-gradient(135deg, transparent 49.5%, var(--c-line) 49.5%, var(--c-line) 50.5%, transparent 50.5%),
+    var(--c-bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .picture::before,
+  .picture img {
+    transition: none;
+  }
+}

@@ -1,0 +1,78 @@
+:root {
+  /* Colour — light-to-mid grey system */
+  --c-bg: #f3f4f5;
+  --c-bg-2: #e7e9eb;
+  --c-bg-3: #dcdfe2;
+  --c-surface: #ffffff;
+  --c-ink: #25282b;
+  --c-ink-2: #3b3f43;
+  --c-muted: #5f6469; /* body-text safe on --c-bg (5.3:1) */
+  --c-subtle: #676c71; /* eyebrows, meta (4.8:1 on --c-bg) */
+  --c-display-muted: #858a8f; /* large display text only (3.1:1) */
+  --c-line: #d5d8db;
+  --c-line-strong: #c2c6ca;
+  --c-metal: #a9aeb3;
+  --c-metal-light: #cfd3d6;
+  --c-accent: #9b907f; /* restrained warm metallic, used sparingly */
+  --c-accent-ink: #6f6556;
+  --c-success: #3f6b55;
+  --c-error: #9a3b33;
+
+  /* Dark graphite surfaces */
+  --c-dark: #25282b;
+  --c-dark-2: #2d3034;
+  --c-dark-3: #373b3f;
+  --c-on-dark: #f3f4f5;
+  --c-on-dark-muted: #a8adb2;
+  --c-line-dark: rgb(255 255 255 / 0.12);
+
+  /* Metallic hairline used for a few premium details */
+  --metal-gradient: linear-gradient(90deg, #b9bec3 0%, #eceef0 45%, #a4a9ae 100%);
+
+  /* Typography */
+  --font-display: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.65rem, 1.1rem + 5.3vw, 6.4rem);
+  --fs-h2: clamp(2.05rem, 1.25rem + 2.75vw, 3.9rem);
+  --fs-h3: clamp(1.2rem, 1.04rem + 0.5vw, 1.55rem);
+  --fs-lead: clamp(1.06rem, 0.99rem + 0.3vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-xs: 0.78rem;
+  --fs-eyebrow: 0.75rem;
+
+  --display-stretch: 108%;
+
+  /* Layout */
+  --container: 1360px;
+  --gutter: clamp(16px, 3.8vw, 56px);
+  --section-y: clamp(84px, 10vw, 168px);
+  --header-h: 84px;
+  --header-h-compact: 68px;
+
+  --radius-xs: 4px;
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+
+  /* Elevation (kept soft — no heavy drop shadows) */
+  --shadow-s: 0 1px 2px rgb(20 22 24 / 0.06), 0 1px 1px rgb(20 22 24 / 0.04);
+  --shadow-m: 0 12px 32px -14px rgb(20 22 24 / 0.22), 0 2px 6px rgb(20 22 24 / 0.05);
+  --shadow-l: 0 30px 80px -30px rgb(20 22 24 / 0.38);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur: 320ms;
+  --dur-slow: 700ms;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --header-h: 64px;
+    --header-h-compact: 60px;
+  }
+}

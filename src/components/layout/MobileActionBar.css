@@ -1,0 +1,65 @@
+.action-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .action-bar {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.45fr;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 14px;
+    background: rgb(250 251 251 / 0.88);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: 0 18px 40px -18px rgb(20 22 24 / 0.45), 0 0 0 1px rgb(20 22 24 / 0.07);
+    transform: translateY(calc(100% + 24px));
+    opacity: 0;
+    transition:
+      transform 600ms var(--ease-out),
+      opacity 400ms var(--ease-soft);
+  }
+
+  .action-bar.is-shown {
+    transform: none;
+    opacity: 1;
+  }
+
+  .action-bar__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 50px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 560;
+    color: var(--c-ink);
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color var(--dur) var(--ease-soft);
+  }
+
+  .action-bar__btn:active {
+    background: var(--c-bg-2);
+  }
+
+  .action-bar__btn--primary {
+    background: var(--c-ink);
+    color: var(--c-bg);
+  }
+
+  .action-bar__btn--primary:active {
+    background: #17191b;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-bar {
+    transition: none;
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "hero-booth": {
+    "width": 2400,
+    "height": 1350,
+    "widths": [
+      480,
+      640,
+      960,
+      1280,
+      1920,
+      2400
+    ],
+    "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JaQAAXyZlJyuvIMcnTXGKAAD+jTzhX6riUicFY+5znH6QDF8E7K7+KlX5CMWg7SYyHbpHP/AR/v+jW4crpptgEcLvrNXRVkNjh9OhQAA="
+  },
+  "hero-profile": {
+    "width": 2400,
+    "height": 1350,
+    "widths": [
+      480,
+      640,
+      960,
+      1280,
+      1920,
+      2400
+    ],
+    "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBACdASoYAA0APu1krU6ppaSiMAgBMB2JaQDKACGuN5rVa3GI/mnDoAD94nqkhsDlPXqd57Ej4RiIkZErPM3Z4NybmYkh7keWGDnDkOBP6oCWxudq34t4MGNjXJOcl7z0m9DWd3JvtIzV7QxRqfwlsqECRbm+YOd/qL1wAAA="
+  }
+}

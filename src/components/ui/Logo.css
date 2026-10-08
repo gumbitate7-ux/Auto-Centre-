@@ -1,0 +1,51 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  line-height: 1;
+}
+
+.logo__word {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 660;
+  font-size: 1.28rem;
+  letter-spacing: 0.045em;
+}
+
+.logo__rule {
+  width: 1px;
+  height: 24px;
+  background: currentColor;
+  opacity: 0.28;
+}
+
+.logo__sub {
+  display: grid;
+  gap: 4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    gap: 10px;
+  }
+
+  .logo__word {
+    font-size: 1.12rem;
+  }
+
+  .logo__rule {
+    height: 21px;
+  }
+
+  .logo__sub {
+    font-size: 0.55rem;
+    gap: 3px;
+  }
+}

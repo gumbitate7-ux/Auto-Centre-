@@ -1,0 +1,176 @@
+.btn {
+  --btn-h: 52px;
+  --btn-px: 24px;
+  --mx: 0px;
+  --my: 0px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--btn-h);
+  padding: 0 var(--btn-px);
+  border-radius: var(--radius-s);
+  font-size: 0.95rem;
+  font-weight: 540;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  white-space: nowrap;
+  isolation: isolate;
+  overflow: hidden;
+  transform: translate3d(var(--mx), var(--my), 0);
+  transition:
+    transform 420ms var(--ease-out),
+    background-color var(--dur) var(--ease-soft),
+    color var(--dur) var(--ease-soft),
+    border-color var(--dur) var(--ease-soft),
+    box-shadow var(--dur) var(--ease-soft);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn--sm {
+  --btn-h: 42px;
+  --btn-px: 18px;
+  font-size: 0.9rem;
+}
+
+.btn--lg {
+  --btn-h: 58px;
+  --btn-px: 30px;
+  font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+  .btn--lg {
+    --btn-h: 54px;
+    --btn-px: 24px;
+  }
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn__inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn__icon {
+  flex: none;
+  transition: transform 420ms var(--ease-out);
+}
+
+.btn:hover .btn__icon {
+  transform: translateX(3px);
+}
+
+.btn__icon-start {
+  flex: none;
+}
+
+/* Brushed-metal sheen that sweeps across on hover */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.16) 48%, transparent 66%);
+  transform: translateX(-110%);
+  transition: transform 900ms var(--ease-out);
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  transform: translateX(110%);
+}
+
+.btn:active {
+  transform: translate3d(var(--mx), calc(var(--my) + 1px), 0) scale(0.99);
+}
+
+/* Variants */
+.btn--primary {
+  background: var(--c-ink);
+  color: var(--c-bg);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08) inset, 0 10px 24px -14px rgb(20 22 24 / 0.55);
+}
+
+.btn--primary:hover {
+  background: #17191b;
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-line-strong);
+}
+
+.btn--secondary::after {
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.7) 48%, transparent 66%);
+}
+
+.btn--secondary:hover {
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 1px var(--c-metal);
+}
+
+.btn--light {
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+.btn--light::after {
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.9) 48%, transparent 66%);
+}
+
+.btn--light:hover {
+  background: #ffffff;
+}
+
+.btn--outline-light {
+  background: rgb(255 255 255 / 0.02);
+  color: var(--c-on-dark);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.28);
+}
+
+.btn--outline-light:hover {
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.5);
+}
+
+.btn--ghost {
+  --btn-px: 4px;
+  background: transparent;
+  color: var(--c-ink);
+  min-height: 44px;
+}
+
+.btn--ghost::after {
+  display: none;
+}
+
+.btn--ghost .btn__label {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+  padding-bottom: 3px;
+  transition: background-size 500ms var(--ease-out);
+}
+
+.btn--ghost:hover .btn__label {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+.btn:focus-visible {
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::after,
+  .btn__icon {
+    transition: none;
+  }
+}

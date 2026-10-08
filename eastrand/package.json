@@ -1,0 +1,10 @@
+{
+  "name": "eastrand-auto-repairs",
+  "private": true,
+  "type": "module",
+  "description": "Concept website for Eastrand Auto Repairs, Kempton Park",
+  "scripts": {
+    "build": "node build.mjs",
+    "images": "node tools/download-images.mjs"
+  }
+}

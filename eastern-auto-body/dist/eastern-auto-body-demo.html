@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eastern Auto Body | Panel Beating &amp; Spray Painting in Boksburg</title>
+<meta name="description" content="Panel beating and spray painting in Anderbolt, Boksburg. Accident repairs, resprays, dents, bumpers and insurance claim quotes. Send photos of the damage for a quote.">
+<meta name="theme-color" content="#1A100C">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Eastern Auto Body">
+<meta property="og:title" content="Eastern Auto Body: Panel beating &amp; spray painting">
+<meta property="og:description" content="Panel beating and spray painting in Anderbolt, Boksburg. Accident repairs, resprays, dents, bumpers and insurance claim quotes. Send photos of the damage for a quote.">
+<meta property="og:locale" content="en_ZA">
+
+<meta name="geo.region" content="ZA-GP">
+<meta name="geo.placename" content="12 Turf Road, Anderbolt, Boksburg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%22-14%20-31%20114%20114%22%3E%3Crect%20x%3D%22-14%22%20y%3D%22-31%22%20width%3D%22114%22%20height%3D%22114%22%20rx%3D%2216%22%20fill%3D%22%23E6EAE7%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%2217.9%2C21%2033.4%2C21%2045.52%2C0%2030.02%2C0%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%2238.4%2C21%2053.9%2C21%2066.02%2C0%2050.52%2C0%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%2258.9%2C21%2074.4%2C21%2086.52%2C0%2071.02%2C0%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%220%2C52%2015.5%2C52%2031.38%2C24.5%2015.88%2C24.5%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%2220.5%2C52%2036%2C52%2051.88%2C24.5%2036.38%2C24.5%22%2F%3E%3Cpolygon%20fill%3D%22%2347A877%22%20points%3D%2241%2C52%2056.5%2C52%2072.38%2C24.5%2056.88%2C24.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unsplash.com">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,300..800&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<script>
+  // Runs before images load: any photo that fails gets its frame's designed placeholder.
+  document.documentElement.classList.add("js");
+  addEventListener("error", function (e) {
+    var t = e.target;
+    if (!t || t.tagName !== "IMG") return;
+    // try the next backup photo before giving up on this frame
+    var fb = (t.getAttribute("data-fallbacks") || "").split(" ").filter(Boolean);
+    if (fb.length) {
+      t.setAttribute("data-fallbacks", fb.slice(1).join(" "));
+      t.removeAttribute("srcset");
+      t.src = "https://unsplash.com/photos/" + fb[0] + "/download?force=true&w=1920";
+      return;
+    }
+    var m = t.closest(".media"); if (m) m.classList.add("is-missing");
+  }, true);
+</script>
+<style>/* ==========================================================================
+   Eastern Auto Body — design system
+   Light and clean: soft greys, pastel sage and white, so the jade from the
+   logo is the colour that stands out, on every main action. The sign lockup
+   (jade mark + wide wordmark) sits on a light grey band under the workshop
+   photograph. One family (Mona Sans): extended width for display and the
+   wordmark, normal width for everything you read.
+   ========================================================================== */
+
+:root {
+  /* light greys and pastels */
+  --bg: #F4F5F4;
+  --bg-2: #EAEDEB;
+  --sage: #E2EFE7;
+  --sage-2: #CFE5D8;
+  --white: #FFFFFF;
+  --field: #F1F3F2;
+  /* charcoal for text, photo shading and the lightbox */
+  --ink: #1D2320;
+  --charcoal: #161B18;
+
+  /* the logo's jade, colour-corrected from the sign */
+  --jade: #559F7B;
+  --jade-hi: #6CB792;
+  --jade-deep: #2E6B50;
+  --alu: #ECEAE4;
+  --band: #E6EAE7;
+  --band-edge: #D2D9D4;
+
+
+  --on-dark: #ECEAE4;
+  --on-dark-dim: rgba(236, 234, 228, .68);
+  --on-dark-faint: rgba(236, 234, 228, .5);
+  --on-light: #1D2320;
+  --on-light-dim: #55605A;
+  --on-light-faint: #626C67;
+  --line-dark: rgba(236, 234, 228, .16);
+  --line-light: rgba(29, 35, 32, .12);
+
+  --font: "Mona Sans", "Helvetica Neue", Arial, sans-serif;
+  --wide: 125%;
+  --ease-out: cubic-bezier(.16, .84, .24, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
+
+  --container: 1440px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --section: clamp(72px, 9vw, 144px);
+  --nav-h: 80px;
+  --radius: 2px;
+
+  --z-nav: 50;
+  --z-mcta: 60;
+  --z-menu: 80;
+  --z-toast: 90;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--on-light);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+body.is-locked { overflow: hidden; }
+
+h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote, fieldset { margin: 0; }
+fieldset { padding: 0; border: 0; min-width: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+
+:focus-visible { outline: 2px solid var(--jade-deep); outline-offset: 3px; }
+.hero :focus-visible, .lightbox :focus-visible { outline-color: var(--jade-hi); }
+
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: fixed; left: 12px; top: -80px; z-index: 100; background: var(--jade); color: var(--ink); padding: 12px 16px; font-weight: 600; }
+.skip:focus { top: 12px; }
+.ico { width: 1.25em; height: 1.25em; flex: none; }
+
+/* ---------- Type ---------- */
+.display {
+  font-size: clamp(2.1rem, 4.6vw, 4.6rem);
+  font-weight: 650;
+  font-stretch: var(--wide);
+  line-height: .98;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+.line { display: block; overflow: hidden; padding-bottom: .05em; margin-bottom: -.05em; }
+.line > span { display: block; }
+.eyebrow {
+  font-size: .75rem;
+  font-weight: 600;
+  font-stretch: var(--wide);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.lead { font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); line-height: 1.6; max-width: 34em; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  --h: 52px;
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  min-height: var(--h); padding: 0 26px;
+  border-radius: var(--radius);
+  font-size: .78rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .07em; text-transform: uppercase; line-height: 1;
+  white-space: nowrap;
+  transition: background-color .25s var(--ease-out), color .25s var(--ease-out), box-shadow .25s var(--ease-out), transform .2s var(--ease-out);
+  touch-action: manipulation;
+}
+.btn .ico { width: 18px; height: 18px; }
+.btn:active { transform: translateY(1px); }
+.btn-sm { --h: 44px; padding: 0 18px; font-size: .72rem; }
+.btn-lg { --h: 58px; padding: 0 30px; }
+/* Every main action is the logo's jade. */
+.btn-primary { background: var(--jade); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .12), 0 6px 18px -8px rgba(47, 125, 87, .55); }
+.btn-primary:hover { background: var(--jade-hi); }
+.btn-glass { background: rgba(236, 234, 228, .08); color: var(--on-dark); box-shadow: inset 0 0 0 1px rgba(236, 234, 228, .34); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.btn-glass:hover { background: rgba(236, 234, 228, .16); }
+.btn-ghost { color: var(--on-light); box-shadow: inset 0 0 0 1.5px rgba(29, 35, 32, .28); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); background: rgba(29, 35, 32, .03); }
+
+/* ---------- Media frames + designed fallback ---------- */
+.media { position: relative; overflow: hidden; background: var(--bg-2); }
+.media img { width: 100%; height: 100%; object-fit: cover; }
+.media.is-missing {
+  background:
+    radial-gradient(120% 80% at 75% 20%, rgba(85, 159, 123, .22), transparent 60%),
+    repeating-linear-gradient(115deg, rgba(29, 35, 32, .04) 0 1px, transparent 1px 14px),
+    linear-gradient(160deg, #E3E8E5, #D3DAD6);
+}
+.media.is-missing img { visibility: hidden; }
+.media.is-missing::after {
+  content: attr(data-label);
+  position: absolute; left: 16px; bottom: 14px; right: 16px;
+  font-size: .75rem; letter-spacing: .04em; color: var(--on-light-faint);
+}
+
+/* ---------- Logo ---------- */
+.logo { display: inline-flex; align-items: center; gap: 12px; color: var(--on-light); }
+.nav .logo { color: var(--on-dark); transition: color .3s; }
+.logo-mark { width: 40px; height: auto; color: var(--jade); flex: none; }
+.logo-text { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase; line-height: 1; white-space: nowrap; }
+
+/* ---------- South African number plate (registration field) ---------- */
+.plate {
+  --plate-ink: #111;
+  position: relative; display: inline-grid; justify-items: center; align-content: center;
+  padding: 7px 18px 5px;
+  background: linear-gradient(180deg, #FDFDFB, #ECEBE6);
+  color: var(--plate-ink);
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 2px var(--plate-ink), inset 0 0 0 4px #FDFDFB;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  line-height: 1;
+}
+.plate-region { font-family: var(--font); font-size: .5rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; opacity: .7; }
+.plate-input { display: grid; width: 100%; padding: 6px 14px; }
+.field .plate-input input {
+  width: 100%; min-height: 40px; padding: 0; border: 0; background: transparent; color: var(--plate-ink);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 1.625rem; font-weight: 600; letter-spacing: .1em;
+  text-align: center; text-transform: uppercase;
+}
+.field .plate-input input::placeholder { color: rgba(17, 17, 17, .28); }
+.field .plate-input input:focus { outline: none; background: transparent; border: 0; }
+.plate-input:focus-within { outline: 2px solid var(--jade-deep); outline-offset: 3px; }
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: var(--z-nav);
+  height: var(--nav-h);
+  transition: background-color .4s var(--ease-out), height .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.nav::before {
+  content: ""; position: absolute; inset: 0 0 -40px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(22, 27, 24, .55), transparent);
+  transition: opacity .4s var(--ease-out);
+}
+/* Over the photo the nav is light-on-dark; once scrolling it turns into a white bar. */
+.nav.is-solid { --nav-h: 66px; background: rgba(255, 255, 255, .94); backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2); box-shadow: 0 1px 0 var(--line-light); }
+.nav.is-solid .logo, .nav.is-solid .menu-btn { color: var(--on-light); }
+.nav.is-solid .nav-links a { color: var(--on-light-dim); }
+.nav.is-solid .nav-links a:hover, .nav.is-solid .nav-links a[aria-current="true"] { color: var(--on-light); }
+.nav.is-solid::before { opacity: 0; }
+.nav-inner { position: relative; display: flex; align-items: center; height: 100%; gap: 32px; }
+.nav-links { margin-left: auto; }
+.nav-links ul { display: flex; gap: clamp(20px, 2.6vw, 40px); }
+.nav-links a {
+  position: relative; display: inline-block; padding: 8px 0;
+  font-size: .75rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase;
+  color: var(--on-dark-dim); transition: color .2s;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--jade);
+  transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out);
+}
+.nav-links a:hover, .nav-links a[aria-current="true"] { color: var(--on-dark); }
+.nav-links a:hover::after, .nav-links a[aria-current="true"]::after { transform: scaleX(1); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+
+.menu-btn { display: none; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px 0 14px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; text-transform: uppercase; color: var(--on-dark); transition: color .3s; }
+.menu-btn-lines { display: grid; gap: 6px; width: 22px; }
+.menu-btn-lines span { height: 1.5px; background: currentColor; transition: transform .3s var(--ease-out); }
+.menu-btn-lines span:last-child { width: 14px; justify-self: end; }
+
+.menu {
+  position: fixed; inset: 0; z-index: var(--z-menu);
+  display: flex; flex-direction: column;
+  background: var(--white); color: var(--on-light);
+  padding-bottom: env(safe-area-inset-bottom);
+  overflow-y: auto;
+}
+.menu[hidden] { display: none; }
+.menu-top { display: flex; align-items: center; justify-content: space-between; min-height: 66px; border-bottom: 1px solid var(--line-light); }
+.menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding-left: 12px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; text-transform: uppercase; }
+.menu-close .ico { width: 22px; height: 22px; }
+.menu-body { flex: 1; display: flex; align-items: center; padding-block: 32px; }
+.menu-links { counter-reset: m; width: 100%; }
+.menu-links li { counter-increment: m; border-bottom: 1px solid var(--line-light); overflow: hidden; }
+.menu-links a {
+  display: flex; align-items: baseline; gap: 16px; padding: 16px 0;
+  font-size: clamp(1.75rem, 8vw, 2.6rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; text-transform: uppercase; line-height: 1;
+}
+.menu-links a::before { content: counter(m, decimal-leading-zero); font-size: .72rem; font-weight: 600; letter-spacing: .1em; color: var(--jade-deep); transform: translateY(-.9em); }
+.menu-foot { display: grid; gap: 12px; padding-block: 8px 28px; }
+.menu-foot .btn { width: 100%; }
+.menu-foot-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.menu-place { margin-top: 8px; font-size: .8125rem; color: var(--on-light-faint); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .menu.is-open { animation: menu-in .45s var(--ease-out) both; }
+  .menu.is-open .menu-links li a { animation: menu-link .6s var(--ease-out) both; animation-delay: calc(80ms + var(--d, 0) * 55ms); }
+  .menu.is-open .menu-foot { animation: fade-up .6s var(--ease-out) .3s both; }
+  @keyframes menu-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+  @keyframes menu-link { from { transform: translateY(100%); } }
+}
+
+/* ==========================================================================
+   Hero: workshop photograph above, the shop sign as the base
+   ========================================================================== */
+.hero {
+  position: relative; isolation: isolate;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+  background: var(--charcoal);
+  color: var(--on-dark);
+}
+.hero-media { position: absolute; inset: 0; z-index: -2; }
+.hero-media.is-missing {
+  background:
+    radial-gradient(70% 60% at 70% 30%, rgba(85, 159, 123, .22), transparent 65%),
+    linear-gradient(180deg, #2A312D, #161B18);
+}
+.hero-media.is-missing::after { display: none; }
+.hero-photo { z-index: -1; }
+.hero-photo.is-missing { background: none; }
+.hero-content, .sign { position: relative; z-index: 1; }
+/* Lacquered panel under booth lights (default hero visual) */
+.hero-panel {
+  background:
+    radial-gradient(90% 70% at 70% 40%, rgba(85, 159, 123, .16), transparent 70%),
+    linear-gradient(176deg, #2A312D 0%, #161B18 46%, #202622 74%, #121614 100%);
+}
+.reflections { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: screen; }
+.reflections .glint { stroke-dasharray: 140 3200; stroke-dashoffset: 140; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .reflections .glint.is-on { opacity: 1; animation: glint 1.4s var(--ease-io) both; }
+  @keyframes glint { from { stroke-dashoffset: 140; } to { stroke-dashoffset: -1700; } }
+}
+.hero-shade {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(22, 27, 24, .55) 0%, rgba(22, 27, 24, 0) 26%, rgba(22, 27, 24, .2) 52%, rgba(22, 27, 24, .86) 100%),
+    linear-gradient(90deg, rgba(22, 27, 24, .74) 0%, rgba(22, 27, 24, .25) 58%, rgba(22, 27, 24, 0) 100%);
+}
+.hero-content { padding-top: calc(var(--nav-h) + 40px); padding-bottom: clamp(32px, 5.5vh, 60px); }
+.hero-eyebrow { display: flex; align-items: center; gap: 14px; color: var(--on-dark-dim); margin-bottom: clamp(18px, 2.6vh, 28px); }
+.hero-eyebrow::before { content: ""; width: 32px; height: 2px; background: var(--jade); }
+.hero-lead {
+  max-width: 15em;
+  font-size: clamp(2.1rem, 4.4vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.hero-foot {
+  display: grid; grid-template-columns: minmax(0, 30rem) auto; justify-content: space-between; align-items: end; gap: 28px 48px;
+  margin-top: clamp(24px, 4vh, 44px);
+}
+.hero-body { font-size: clamp(1.0625rem, 1.3vw, 1.1875rem); color: var(--on-dark-dim); line-height: 1.55; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* The sign band: the logo lockup on a light grey band. Mark + wordmark are sized together
+   in em so the lockup always fits on one line, as on the building (~15.9em in total). */
+.sign {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #F2F4F3, var(--band));
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 var(--band-edge), 0 -24px 60px rgba(0, 0, 0, .28);
+}
+.sign-inner {
+  display: flex; align-items: center; gap: .5em;
+  font-size: min(calc((min(100vw - 16px, var(--container)) - 2 * var(--gutter)) / 15.9), 5.4rem);
+  padding-block: max(.42em, 16px);
+}
+.sign-mark { width: 1.56em; height: auto; color: var(--jade); flex: none; filter: drop-shadow(.025em .04em 0 rgba(29, 35, 32, .16)); }
+.sign-text { display: block; min-width: 0; font-size: 1em; }
+.sign-text > span[aria-hidden] {
+  display: block;
+  font-weight: 600;
+  font-stretch: var(--wide);
+  letter-spacing: .08em;
+  word-spacing: .1em;
+  line-height: 1;
+  color: var(--ink);
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* raised letters, lit from above */
+  text-shadow: 0 .025em 0 #fff, .025em .05em .08em rgba(29, 35, 32, .16);
+}
+/* one raking highlight crosses the sign on load */
+.sign::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(60deg, transparent 42%, rgba(255, 255, 255, .7) 50%, transparent 58%);
+  transform: translateX(-100%);
+}
+
+/* Page-load sequence: photo settles, sign slides in, words follow. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero-media img { animation: hero-settle 2.4s var(--ease-out) both; }
+  .js .sign { animation: sign-in 1.1s var(--ease-out) .15s both; }
+  .js .sign-text > span[aria-hidden] { animation: fade 1s ease .55s both; }
+  .js .sign-mark polygon { animation: cell-in .42s var(--ease-out) both; transform-box: fill-box; transform-origin: center; }
+  .js .sign-mark polygon:nth-child(1) { animation-delay: .5s; }
+  .js .sign-mark polygon:nth-child(2) { animation-delay: .57s; }
+  .js .sign-mark polygon:nth-child(3) { animation-delay: .64s; }
+  .js .sign-mark polygon:nth-child(4) { animation-delay: .71s; }
+  .js .sign-mark polygon:nth-child(5) { animation-delay: .78s; }
+  .js .sign-mark polygon:nth-child(6) { animation-delay: .85s; }
+  .js .sign::after { animation: sweep 1.1s var(--ease-io) 1.35s both; }
+  @keyframes cell-in { from { opacity: 0; transform: translate(-12%, 18%); } }
+  @keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+  .js .hero-eyebrow { animation: fade-up .9s var(--ease-out) .55s both; }
+  .js .hero-lead { animation: fade-up 1s var(--ease-out) .65s both; }
+  .js .hero-foot { animation: fade-up 1s var(--ease-out) .8s both; }
+  .js .nav { animation: fade 1s ease .1s both; }
+  @keyframes hero-settle { from { transform: scale(1.08); } }
+  @keyframes sign-in { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(18px); } }
+  @keyframes fade { from { opacity: 0; } }
+}
+
+/* Credentials strip */
+.creds { background: var(--white); border-bottom: 1px solid var(--line-light); }
+.creds-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px 40px; padding-block: 22px; }
+.creds-group { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 22px; }
+.creds-label { font-size: .7rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .14em; text-transform: uppercase; color: var(--on-light-faint); }
+.creds-list { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.creds-list li { font-size: .95rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light); }
+.creds-members li { display: flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .12em; color: var(--on-light-dim); }
+.creds-members li::before { content: ""; width: 10px; height: 6px; background: var(--jade); transform: skewX(-30deg); }
+
+/* ==========================================================================
+   Shared section layout
+   ========================================================================== */
+.section { position: relative; padding-block: var(--section); }
+.section { background: var(--bg); color: var(--on-light); }
+.section .lead { color: var(--on-light-dim); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease-out), transform 1.1s var(--ease-out); transition-delay: calc(var(--i, 0) * 90ms); }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  .js .display.reveal { opacity: 1; transform: none; }
+  .js .display.reveal .line > span { transform: translateY(105%); transition: transform 1.1s var(--ease-out); }
+  .js .display.reveal .line:nth-child(2) > span { transition-delay: .1s; }
+  .js .display.reveal.is-in .line > span { transform: none; }
+}
+
+/* ==========================================================================
+   Services: editorial index + following photo
+   ========================================================================== */
+.svc-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.svc-layout { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.svc-preview { position: sticky; top: 96px; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); }
+.svc-shot { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease-out); }
+.svc-shot img { transform: scale(1.04); transition: transform 1.4s var(--ease-out); }
+.svc-shot.is-active { opacity: 1; }
+.svc-shot.is-active img { transform: none; }
+.svc-shot.is-missing::after { display: none; }
+.svc-preview-tag {
+  position: absolute; left: 0; bottom: 0; z-index: 1;
+  padding: 12px 18px;
+  background: var(--jade); color: var(--ink);
+  font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase;
+}
+.svc-list { border-top: 1px solid var(--line-light); }
+.svc-row {
+  position: relative; display: grid; grid-template-columns: 3.25rem 1fr 24px; align-items: center; gap: 16px;
+  padding: 22px 0; border-bottom: 1px solid var(--line-light); color: var(--on-light);
+}
+.svc-row::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--jade); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out); }
+.svc-num { font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; color: var(--on-light-dim); transition: color .3s; }
+.svc-main { display: grid; gap: 4px; }
+.svc-title { font-size: clamp(1.15rem, 1.8vw, 1.6rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; line-height: 1.1; text-transform: uppercase; transition: transform .5s var(--ease-out); }
+.svc-text { font-size: .9375rem; color: var(--on-light-dim); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .5s var(--ease-out), opacity .4s; }
+.svc-arrow { width: 22px; height: 22px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
+.svc-row.is-active .svc-num { color: var(--jade-deep); }
+.svc-row.is-active .svc-title { transform: translateX(6px); }
+.svc-row.is-active .svc-text { max-height: 3em; opacity: 1; }
+.svc-row.is-active .svc-arrow { color: var(--ink); transform: translate(2px, -2px); }
+.svc-row.is-active::after { transform: scaleX(1); }
+
+/* ==========================================================================
+   Process
+   ========================================================================== */
+.process { background: var(--sage); }
+.process-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(48px, 6vw, 88px); }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(24px, 3vw, 40px); counter-reset: none; }
+.step { position: relative; padding-top: 28px; border-top: 1px solid rgba(33, 103, 74, .22); }
+.step::before { content: ""; position: absolute; top: -2px; left: 0; width: 48px; height: 3px; background: var(--jade); }
+.step-num { display: block; margin-bottom: 22px; font-size: .72rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .12em; color: var(--jade-deep); }
+.step h3 { font-size: clamp(1.1rem, 1.5vw, 1.35rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.005em; line-height: 1.15; text-transform: uppercase; margin-bottom: 12px; }
+.step p { font-size: .9375rem; color: var(--on-light-dim); max-width: 22em; }
+.process-foot {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px 40px;
+  margin-top: clamp(48px, 6vw, 80px); padding: clamp(24px, 3vw, 36px);
+  background: var(--white); border-left: 4px solid var(--jade); border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(29, 35, 32, .06);
+}
+.claim { max-width: 40em; }
+.claim h3 { font-size: 1.05rem; font-weight: 650; font-stretch: var(--wide); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
+.claim p { color: var(--on-light-dim); font-size: .9375rem; }
+.process-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ==========================================================================
+   Gallery
+   ========================================================================== */
+.gallery { background: var(--bg-2); }
+.gal-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(32px, 4vw, 56px); }
+.gal-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: repeat(2, clamp(180px, 19vw, 300px));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+.gal-item:first-child { grid-row: span 2; }
+.gal-item:nth-child(4) { grid-column: span 2; }
+.gal-btn { position: relative; display: block; width: 100%; height: 100%; text-align: left; cursor: zoom-in; }
+.gal-media { position: absolute; inset: 0; border-radius: var(--radius); }
+.gal-media.is-missing::after { display: none; }
+.gal-media img { transition: transform 1.4s var(--ease-out); }
+.gal-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(22, 27, 24, .72)); pointer-events: none; }
+.gal-cap { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 1; font-size: .875rem; font-weight: 500; color: var(--on-dark); transition: transform .5s var(--ease-out); }
+@media (hover: hover) {
+  .gal-btn:hover .gal-media img { transform: scale(1.05); }
+  .gal-btn:hover .gal-cap { transform: translateY(-4px); }
+}
+.gal-note { margin-top: 14px; font-size: .875rem; color: var(--on-light-faint); }
+.link-cta { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; font-size: .75rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .1em; text-transform: uppercase; color: var(--on-light); border-bottom: 2px solid var(--jade); }
+.link-cta .ico { width: 18px; height: 18px; transition: transform .4s var(--ease-out); }
+.link-cta:hover .ico { transform: translate(2px, -2px); }
+
+.lightbox { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(22, 27, 24, .96); color: var(--on-dark); }
+.lightbox::backdrop { background: rgba(22, 27, 24, .9); }
+.lb-frame { position: relative; display: grid; place-items: center; height: 100%; padding: 72px clamp(16px, 6vw, 96px); }
+.lb-figure { display: grid; gap: 16px; width: 100%; max-width: 1280px; }
+.lb-img { aspect-ratio: 3 / 2; max-height: 76vh; width: 100%; border-radius: var(--radius); }
+.lb-img img { object-fit: contain; background: var(--charcoal); }
+.lb-cap { font-size: .9375rem; color: var(--on-dark-dim); }
+.lb-btn, .lb-close { position: absolute; display: grid; place-items: center; width: 52px; height: 52px; color: var(--on-dark); box-shadow: inset 0 0 0 1px var(--line-dark); border-radius: var(--radius); transition: background-color .2s; }
+.lb-btn:hover, .lb-close:hover { background: rgba(236, 234, 228, .08); }
+.lb-btn .ico, .lb-close .ico { width: 22px; height: 22px; }
+.lb-prev { left: clamp(8px, 2vw, 24px); top: 50%; transform: translateY(-50%); }
+.lb-next { right: clamp(8px, 2vw, 24px); top: 50%; transform: translateY(-50%); }
+.lb-close { right: clamp(8px, 2vw, 24px); top: 12px; }
+.lb-count { position: absolute; left: clamp(16px, 2vw, 24px); top: 26px; font-size: .75rem; letter-spacing: .14em; color: var(--on-dark-faint); }
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] { animation: fade .35s ease both; }
+  .lb-img.is-swapping img { animation: fade .45s ease both; }
+}
+
+/* ==========================================================================
+   Testimonials (only rendered when real reviews exist)
+   ========================================================================== */
+.reviews { background: var(--white); }
+.rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(16px, 2vw, 24px); margin-top: clamp(32px, 4vw, 56px); }
+.rev figure { display: flex; flex-direction: column; height: 100%; padding: clamp(28px, 3vw, 40px); background: var(--bg); border-radius: var(--radius); }
+.rev-stars { display: flex; gap: 2px; color: #D9A23A; }
+.rev-stars .ico { width: 18px; height: 18px; }
+.rev blockquote { flex: 1; margin: 24px 0 32px; }
+.rev blockquote p { font-size: clamp(1.125rem, 1.5vw, 1.3125rem); line-height: 1.45; letter-spacing: -.01em; }
+.rev figcaption { display: grid; gap: 2px; padding-top: 20px; border-top: 1px solid var(--line-light); font-size: .875rem; }
+.rev figcaption strong { font-weight: 650; font-stretch: var(--wide); letter-spacing: .04em; text-transform: uppercase; font-size: .78rem; }
+.rev figcaption span { color: var(--on-light-dim); }
+
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.contact-intro .lead { margin-top: 28px; }
+.tips { margin-top: 28px; padding: 20px 22px; background: var(--sage); border-left: 4px solid var(--jade); border-radius: var(--radius); }
+.tips-title { font-size: .78rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+.tips ol { display: grid; gap: 6px; counter-reset: tip; }
+.tips li { counter-increment: tip; display: flex; gap: 12px; font-size: .9375rem; color: var(--on-light-dim); }
+.tips li::before { content: counter(tip); flex: none; display: grid; place-items: center; width: 22px; height: 22px; background: var(--jade); color: var(--ink); font-size: .72rem; font-weight: 650; border-radius: var(--radius); }
+.contact-ways { margin-top: 32px; border-top: 1px solid var(--line-light); }
+.contact-ways a { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line-light); }
+.cw-ico { display: grid; place-items: center; width: 48px; height: 48px; background: var(--sage); color: var(--jade-deep); border-radius: var(--radius); }
+.cw-ico .ico { width: 20px; height: 20px; }
+.contact-ways strong { display: block; font-size: .78rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; }
+.contact-ways a > span:nth-child(2) > span { font-size: .9375rem; color: var(--on-light-dim); }
+.cw-arrow { width: 20px; height: 20px; color: var(--on-light-dim); transition: transform .4s var(--ease-out), color .3s; }
+.contact-ways a:hover .cw-arrow { transform: translate(3px, -3px); color: var(--jade-deep); }
+.contact-ways a:hover .cw-ico { background: var(--jade); color: var(--ink); }
+.cw-ico { transition: background-color .25s, color .25s; }
+.hours { margin-top: 24px; display: grid; gap: 8px; font-size: .9375rem; }
+.hours div { display: flex; justify-content: space-between; max-width: 26rem; }
+.hours dd { color: var(--on-light-dim); }
+
+.quote-form {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px;
+  padding: calc(clamp(28px, 4vw, 56px) + 10px) clamp(28px, 4vw, 56px) clamp(28px, 4vw, 56px);
+  background: var(--white); color: var(--on-light); border-radius: var(--radius);
+  box-shadow: 0 1px 0 rgba(29, 35, 32, .05), 0 24px 60px -32px rgba(29, 35, 32, .28);
+}
+.form-band { position: absolute; inset: 0 0 auto; height: 8px; background: var(--band); }
+.form-band::after { content: ""; position: absolute; left: clamp(28px, 4vw, 56px); top: 0; width: 56px; height: 8px; background: var(--jade); }
+.form-title { grid-column: 1 / -1; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 650; font-stretch: var(--wide); letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 6px; }
+.field { display: grid; gap: 8px; align-content: start; }
+.field-full { grid-column: 1 / -1; }
+.field label, .field legend { font-size: .8125rem; font-weight: 500; letter-spacing: .02em; color: var(--on-light-dim); padding: 0; }
+.field legend { margin-bottom: 8px; }
+.opt { color: var(--on-light-faint); }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: 54px; padding: 14px 16px;
+  background: var(--field); color: var(--on-light);
+  border: 1px solid var(--line-light); border-radius: var(--radius);
+  font-size: 1rem; line-height: 1.4;
+  transition: border-color .2s, background-color .2s;
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.field input::placeholder, .field textarea::placeholder { color: #8A938E; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: rgba(29, 35, 32, .3); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--jade-deep); background: var(--white); box-shadow: 0 0 0 3px rgba(85, 159, 123, .22); }
+.field input[aria-invalid="true"] { border-color: #C0392B; }
+.field-err { font-size: .8125rem; color: #B03A2E; }
+.field-err:empty { display: none; }
+.select { position: relative; }
+.select select { appearance: none; -webkit-appearance: none; padding-right: 44px; cursor: pointer; }
+.select::after { content: ""; position: absolute; right: 18px; top: 50%; width: 8px; height: 8px; border-right: 1.5px solid var(--on-light-dim); border-bottom: 1.5px solid var(--on-light-dim); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+.select option { background: var(--white); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--field); border: 1px solid var(--line-light); border-radius: var(--radius); }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius); font-size: .875rem; font-weight: 500; color: var(--on-light-dim); cursor: pointer; text-align: center; transition: background-color .2s, color .2s; }
+.seg input:checked + span { background: var(--jade); color: var(--ink); }
+.seg input:focus-visible + span { outline: 2px solid var(--jade-deep); outline-offset: 2px; }
+.form-foot { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; margin-top: 6px; }
+.form-note { font-size: .875rem; color: var(--on-light-faint); max-width: 26em; }
+.form-note.is-done { color: var(--jade-deep); font-weight: 500; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer { padding-block: 56px 32px; background: var(--white); color: var(--on-light); border-top: 1px solid var(--line-light); }
+.footer-inner { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 32px; }
+.footer nav ul { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px 32px; }
+.footer nav a { font-size: .75rem; font-weight: 600; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light-dim); transition: color .2s; }
+.footer nav a:hover { color: var(--on-light); }
+.footer-base { grid-column: 1 / -1; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 32px; padding-top: 24px; border-top: 1px solid var(--line-light); font-size: .8125rem; color: var(--on-light-faint); }
+
+/* ==========================================================================
+   Mobile CTA bar + toast
+   ========================================================================== */
+.mcta { display: none; }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: var(--z-toast);
+  max-width: min(92vw, 28rem); padding: 14px 18px;
+  background: var(--ink); color: var(--white); border-radius: var(--radius);
+  font-size: .9375rem; font-weight: 500; box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+  transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+  transition: opacity .3s var(--ease-out), transform .4s var(--ease-out);
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1180px) {
+  .nav-links ul { gap: 22px; }
+}
+
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .nav-actions { margin-left: auto; }
+  .menu-btn { display: inline-flex; }
+  .svc-head, .process-head { grid-template-columns: 1fr; }
+  .svc-layout { grid-template-columns: 1fr; }
+  .svc-preview { display: none; }
+  .svc-text { max-height: none; opacity: 1; }
+  .svc-row.is-active .svc-title { transform: none; }
+  .svc-row.is-active::after { transform: scaleX(0); }
+  .svc-row.is-active .svc-num { color: var(--on-light-dim); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  :root { --nav-h: 66px; }
+  .nav-cta { display: none; }
+  .logo-mark { width: 34px; }
+  .logo-text { font-size: .8rem; letter-spacing: .08em; }
+
+  .hero-lead { font-size: clamp(1.9rem, 8.6vw, 2.6rem); }
+  .hero-foot { grid-template-columns: 1fr; }
+  .hero-ctas .btn { flex: 1 1 auto; }
+  .sign-inner { padding-block: max(.7em, 18px); }
+  .creds-inner { padding-block: 18px; gap: 12px 24px; }
+  .creds-group { gap: 8px 16px; }
+  .creds-list { gap: 6px 16px; }
+  .creds-list li { font-size: .8rem; }
+
+  .svc-row { grid-template-columns: 2.25rem 1fr 20px; padding: 18px 0; gap: 12px; }
+  .svc-title { font-size: 1rem; }
+  .svc-text { font-size: .875rem; }
+
+  .steps { grid-template-columns: 1fr; row-gap: 32px; }
+  .process-foot { padding: 22px; }
+  .process-ctas, .process-ctas .btn { width: 100%; }
+
+  .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 140px 140px; }
+  .gal-item:first-child { grid-column: span 2; grid-row: span 1; }
+  .gal-item:nth-child(4) { grid-column: span 2; }
+  .gal-cap { left: 12px; right: 12px; bottom: 10px; font-size: .75rem; line-height: 1.3; }
+
+  .quote-form { grid-template-columns: 1fr; }
+  .form-foot .btn { width: 100%; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer nav ul { justify-content: flex-start; }
+  .footer { padding-bottom: calc(32px + 76px + env(safe-area-inset-bottom)); }
+
+  .mcta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-mcta);
+    display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 1px;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--line-light);
+    box-shadow: 0 -10px 30px rgba(29, 35, 32, .12);
+    transform: translateY(110%); transition: transform .45s var(--ease-out);
+  }
+  .mcta.is-on { transform: none; }
+  .mcta-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 60px;
+    background: rgba(255, 255, 255, .97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    font-size: .7rem; font-weight: 650; font-stretch: var(--wide); letter-spacing: .08em; text-transform: uppercase; color: var(--on-light);
+  }
+  .mcta-btn .ico { width: 18px; height: 18px; }
+  .mcta-primary { background: var(--jade); color: var(--ink); backdrop-filter: none; }
+  .toast { bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 400px) {
+  .logo-text { font-size: .72rem; letter-spacing: .06em; }
+  .btn-lg { padding: 0 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoBodyShop",
+  "name": "Eastern Auto Body",
+  "description": "Panel beating and spray painting in Anderbolt, Boksburg. Accident repairs, resprays, dents, bumpers and insurance claim quotes. Send photos of the damage for a quote.",
+  "areaServed": [
+    "Boksburg",
+    "East Rand",
+    "Gauteng"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12 Turf Road, Anderbolt",
+    "addressLocality": "Boksburg",
+    "addressRegion": "Gauteng",
+    "addressCountry": "ZA"
+  },
+  "telephone": "+27119178304",
+  "foundingDate": "1998",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Accident repairs"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Spray painting"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Dents & creases"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Insurance claim quotes"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Bumper repairs"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Scratches & scuffs"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Rust repair"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Machine polishing"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav-inner container">
+    
+  <a class="logo " href="#top" aria-label="Eastern Auto Body, back to top">
+    <svg class="logo-mark" viewBox="0 0 86.52 52" fill="currentColor" aria-hidden="true"><polygon points="17.9,21 33.4,21 45.52,0 30.02,0"/><polygon points="38.4,21 53.9,21 66.02,0 50.52,0"/><polygon points="58.9,21 74.4,21 86.52,0 71.02,0"/><polygon points="0,52 15.5,52 31.38,24.5 15.88,24.5"/><polygon points="20.5,52 36,52 51.88,24.5 36.38,24.5"/><polygon points="41,52 56.5,52 72.38,24.5 56.88,24.5"/></svg>
+    <span class="logo-text">Eastern Auto Body</span>
+  </a>
+    <nav class="nav-links" aria-label="Main"><ul><li><a href="#services">Services</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#work">Our work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact" data-quote>Get a quote</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+        <span class="menu-btn-label">Menu</span>
+        <span class="menu-btn-lines" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-menu>
+  <div class="menu-top container">
+    
+  <a class="logo logo-menu" href="#top" aria-label="Eastern Auto Body, back to top">
+    <svg class="logo-mark" viewBox="0 0 86.52 52" fill="currentColor" aria-hidden="true"><polygon points="17.9,21 33.4,21 45.52,0 30.02,0"/><polygon points="38.4,21 53.9,21 66.02,0 50.52,0"/><polygon points="58.9,21 74.4,21 86.52,0 71.02,0"/><polygon points="0,52 15.5,52 31.38,24.5 15.88,24.5"/><polygon points="20.5,52 36,52 51.88,24.5 36.38,24.5"/><polygon points="41,52 56.5,52 72.38,24.5 56.88,24.5"/></svg>
+    <span class="logo-text">Eastern Auto Body</span>
+  </a>
+    <button class="menu-close" type="button" data-menu-close>
+      <span>Close</span><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <nav class="menu-body container" aria-label="Mobile">
+    <ol class="menu-links"><li><a href="#services" data-menu-link>Services</a></li><li><a href="#how-it-works" data-menu-link>How it works</a></li><li><a href="#work" data-menu-link>Our work</a></li><li><a href="#contact" data-menu-link>Contact</a></li></ol>
+  </nav>
+  <div class="menu-foot container">
+    <a class="btn btn-primary" href="#contact" data-quote data-menu-link>Get a quote</a>
+    <div class="menu-foot-row">
+      <a class="btn btn-ghost" href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20here%20are%20photos%20of%20the%20damage%20on%20my%20car%20for%20a%20quote.%0A%0AMy%20car%3A%20%0AWhat%20happened%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+27119178304"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.2a10.5 10.5 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg>Call</a>
+    </div>
+    <p class="menu-place">Panel beating &amp; spray painting</p>
+  </div>
+</div>
+<main id="main">
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  
+  <div class="hero-media hero-panel" aria-hidden="true">
+    <svg class="reflections" viewBox="0 0 1600 900" preserveAspectRatio="none" data-reflections>
+      <defs>
+        <!-- userSpaceOnUse: a perfectly straight line has a zero-height box, which would blank a bounding-box gradient -->
+        <linearGradient id="refl" gradientUnits="userSpaceOnUse" x1="0" x2="1600" y1="0" y2="0">
+          <stop offset="0" stop-color="#FFF0E2" stop-opacity="0"/>
+          <stop offset=".3" stop-color="#FFF0E2" stop-opacity=".18"/>
+          <stop offset=".72" stop-color="#FFF0E2" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#FFF0E2" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="tube" filterUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900"><feGaussianBlur stdDeviation="6"/></filter>
+      </defs>
+    </svg>
+  </div>
+  <div class="hero-media media hero-photo" data-label="Technician working on a car in the workshop">
+    <img src="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920" srcset="https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=640 640w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=960 960w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1280 1280w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=1920 1920w, https://unsplash.com/photos/Iw480aWLXGo/download?force=true&w=2560 2560w" sizes="100vw" alt="Technician working on a car in the workshop" loading="eager" fetchpriority="high" decoding="async" style="object-position:50% 55%" data-fallbacks="8MXNZCgAah0 Hv_gKPOXmwE">
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="hero-content container">
+    <p class="eyebrow hero-eyebrow">Panel beating &amp; spray painting • Boksburg</p>
+    <p class="hero-lead">Dents, scratches and accident damage. Put right.</p>
+    <div class="hero-foot">
+      <p class="hero-body">Panel beating and spray painting for cars and bakkies. WhatsApp us photos of the damage and we&#39;ll come back to you with a quote, for private or insurance work.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="#contact" data-quote>Get a quote</a>
+        <a class="btn btn-glass btn-lg" href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20here%20are%20photos%20of%20the%20damage%20on%20my%20car%20for%20a%20quote.%0A%0AMy%20car%3A%20%0AWhat%20happened%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp photos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sign">
+    <div class="sign-inner container">
+      <svg class="sign-mark" viewBox="0 0 86.52 52" fill="currentColor" aria-hidden="true"><polygon points="17.9,21 33.4,21 45.52,0 30.02,0"/><polygon points="38.4,21 53.9,21 66.02,0 50.52,0"/><polygon points="58.9,21 74.4,21 86.52,0 71.02,0"/><polygon points="0,52 15.5,52 31.38,24.5 15.88,24.5"/><polygon points="20.5,52 36,52 51.88,24.5 36.38,24.5"/><polygon points="41,52 56.5,52 72.38,24.5 56.88,24.5"/></svg>
+      <h1 class="sign-text" id="hero-title"><span class="sr-only">Eastern Auto Body: Panel beating &amp; spray painting</span><span aria-hidden="true"><span class="sw">Eastern</span> <span class="sw">Auto Body</span></span></h1>
+    </div>
+  </div>
+</section>
+
+<section class="creds" aria-label="Approvals and memberships">
+  <div class="creds-inner container">
+    <div class="creds-group">
+      <p class="creds-label">Approved repairer for</p>
+      <ul class="creds-list"><li>Peugeot</li><li>Mitsubishi</li><li>Chery</li><li>Omoda</li><li>Jaecoo</li><li>GWM</li><li>Haval</li></ul>
+    </div>
+    <ul class="creds-list creds-members"><li>Since 1998</li><li>Santam contracted repairer</li><li>SAMBRA member</li><li>CRA member</li></ul>
+  </div>
+</section>
+
+<section class="section services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <div class="svc-head">
+      <h2 class="display reveal" id="services-title"><span class="line"><span>Every dent, scratch</span></span><span class="line"><span>and scrape.</span></span></h2>
+      <p class="lead reveal">Private or insurance work, one panel or the whole car. Send photos and we&#39;ll tell you what it needs.</p>
+    </div>
+    <div class="svc-layout" data-svc>
+      <div class="svc-preview" aria-hidden="true">
+        <div class="svc-shot media is-active" data-label="Car with a crashed front end" data-shot="0"><img src="https://unsplash.com/photos/p76hPO989to/download?force=true&w=960" srcset="https://unsplash.com/photos/p76hPO989to/download?force=true&w=640 640w, https://unsplash.com/photos/p76hPO989to/download?force=true&w=960 960w, https://unsplash.com/photos/p76hPO989to/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car with a crashed front end" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Gloved hands working on a car&#39;s paintwork in a body shop" data-shot="1"><img src="https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=960" srcset="https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=640 640w, https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=960 960w, https://unsplash.com/photos/G6sI_6B_FFY/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Gloved hands working on a car&#39;s paintwork in a body shop" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Car with a dent in the front end" data-shot="2"><img src="https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=960" srcset="https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=640 640w, https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=960 960w, https://unsplash.com/photos/iuuKLgDwbwQ/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Car with a dent in the front end" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Silver car with a crushed bonnet after a collision" data-shot="3"><img src="https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=960" srcset="https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=640 640w, https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=960 960w, https://unsplash.com/photos/CSkriQWeTVs/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Silver car with a crushed bonnet after a collision" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Front-end damage around a car&#39;s bumper" data-shot="4"><img src="https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=960" srcset="https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=640 640w, https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=960 960w, https://unsplash.com/photos/Eygfeq1Xe4E/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Front-end damage around a car&#39;s bumper" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Gloved hands working on a car&#39;s body panel" data-shot="5"><img src="https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=960" srcset="https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=640 640w, https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=960 960w, https://unsplash.com/photos/rsaYn6mq2qo/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Gloved hands working on a car&#39;s body panel" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Angle grinder cutting metal" data-shot="6"><img src="https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=960" srcset="https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=640 640w, https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=960 960w, https://unsplash.com/photos/8DH_pOGTOQ0/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Angle grinder cutting metal" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div><div class="svc-shot media" data-label="Machine polishing a car&#39;s paint" data-shot="7"><img src="https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=960" srcset="https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=640 640w, https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=960 960w, https://unsplash.com/photos/q94A6k81lAQ/download?force=true&w=1280 1280w" sizes="(min-width: 1024px) 40vw, 1px" alt="Machine polishing a car&#39;s paint" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div>
+        <span class="svc-preview-tag" data-preview-tag>Accident repairs</span>
+      </div>
+      <ol class="svc-list">
+        
+        <li>
+          <a class="svc-row is-active" href="#contact" data-service="Accident repairs" data-row="0">
+            <span class="svc-num">01</span>
+            <span class="svc-main"><span class="svc-title">Accident repairs</span><span class="svc-text">Panels straightened, repaired or replaced after a knock, then painted to match.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Spray painting" data-row="1">
+            <span class="svc-num">02</span>
+            <span class="svc-main"><span class="svc-title">Spray painting</span><span class="svc-text">Single panels to full resprays, colour-matched and blended into the panels next to them.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Dents &amp; creases" data-row="2">
+            <span class="svc-num">03</span>
+            <span class="svc-main"><span class="svc-title">Dents &amp; creases</span><span class="svc-text">Dents worked out of the panel wherever it can be saved, not replaced.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Insurance claim quotes" data-row="3">
+            <span class="svc-num">04</span>
+            <span class="svc-main"><span class="svc-title">Insurance claim quotes</span><span class="svc-text">A detailed repair quote for your insurer or assessor, from your photos or an inspection.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Bumper repairs" data-row="4">
+            <span class="svc-num">05</span>
+            <span class="svc-main"><span class="svc-title">Bumper repairs</span><span class="svc-text">Cracked, torn or scuffed plastic bumpers repaired and painted.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Scratches &amp; scuffs" data-row="5">
+            <span class="svc-num">06</span>
+            <span class="svc-main"><span class="svc-title">Scratches &amp; scuffs</span><span class="svc-text">Keyed doors and scraped corners flatted and refinished.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Rust repair" data-row="6">
+            <span class="svc-num">07</span>
+            <span class="svc-main"><span class="svc-title">Rust repair</span><span class="svc-text">Rust cut out, treated and repaired before it spreads into the panel.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+        <li>
+          <a class="svc-row" href="#contact" data-service="Machine polishing" data-row="7">
+            <span class="svc-num">08</span>
+            <span class="svc-main"><span class="svc-title">Machine polishing</span><span class="svc-text">Dull, oxidised paint machine-polished back to a shine.</span></span>
+            <svg class="ico svc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="how-it-works" aria-labelledby="process-title">
+  <div class="container">
+    <div class="process-head">
+      <h2 class="display reveal" id="process-title"><span class="line"><span>From damage</span></span><span class="line"><span>to done.</span></span></h2>
+      <p class="lead reveal">Most jobs start with a few photos on WhatsApp. You&#39;ll know the price before any work starts.</p>
+    </div>
+    <ol class="steps">
+      
+      <li class="step reveal" style="--i:0">
+        <span class="step-num">01</span>
+        <h3>Send photos</h3>
+        <p>WhatsApp a few photos of the damage from a couple of angles.</p>
+      </li>
+      <li class="step reveal" style="--i:1">
+        <span class="step-num">02</span>
+        <h3>Get a quote</h3>
+        <p>We reply with a price, or book a time to see the car in person.</p>
+      </li>
+      <li class="step reveal" style="--i:2">
+        <span class="step-num">03</span>
+        <h3>Book it in</h3>
+        <p>Drop the car at the workshop. We&#39;ll tell you when it&#39;ll be ready.</p>
+      </li>
+      <li class="step reveal" style="--i:3">
+        <span class="step-num">04</span>
+        <h3>Drive away</h3>
+        <p>Collect it repaired, painted and polished.</p>
+      </li>
+    </ol>
+    <div class="process-foot reveal">
+      <div class="claim">
+        <h3>Claiming from insurance?</h3>
+        <p>Send your claim number with the photos and we&#39;ll prepare a detailed quote for your assessor.</p>
+      </div>
+      <div class="process-ctas">
+        <a class="btn btn-primary" href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20here%20are%20photos%20of%20the%20damage%20on%20my%20car%20for%20a%20quote.%0A%0AMy%20car%3A%20%0AWhat%20happened%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg>Send photos</a>
+        <a class="btn btn-ghost" href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20I%20need%20a%20quote%20for%20an%20insurance%20claim.%0A%0AMy%20car%3A%20%0AInsurer%3A%20%0AClaim%20number%3A%20%0A%0AI'll%20send%20photos%20of%20the%20damage%20in%20this%20chat." target="_blank" rel="noopener">Insurance quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="gal-head">
+      <div>
+        <h2 class="display reveal" id="work-title">Our work</h2>
+        <p class="gal-note reveal">Illustrative photos until the workshop&#39;s own are added.</p>
+      </div>
+      <div class="reveal"><button class="link-cta" type="button" data-lightbox-open="0">See our work <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></button></div>
+    </div>
+    <ul class="gal-grid">
+      
+      <li class="gal-item reveal" style="--i:0">
+        <button class="gal-btn" type="button" data-lightbox-open="0" aria-label="View larger: Welding and structural repairs">
+          <div class="media gal-media" data-label="Welding on a car, sparks flying"><img src="https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1280" srcset="https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=640 640w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=960 960w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1280 1280w, https://unsplash.com/photos/e5LozVcb-6E/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 50vw, 100vw" alt="Welding on a car, sparks flying" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div>
+          <span class="gal-cap">Welding and structural repairs</span>
+        </button>
+      </li>
+      <li class="gal-item reveal" style="--i:1">
+        <button class="gal-btn" type="button" data-lightbox-open="1" aria-label="View larger: Finishing in the workshop">
+          <div class="media gal-media" data-label="Finishing a car&#39;s paint in a garage"><img src="https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1280" srcset="https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=640 640w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=960 960w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1280 1280w, https://unsplash.com/photos/9XcUbV5CdVA/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Finishing a car&#39;s paint in a garage" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div>
+          <span class="gal-cap">Finishing in the workshop</span>
+        </button>
+      </li>
+      <li class="gal-item reveal" style="--i:2">
+        <button class="gal-btn" type="button" data-lightbox-open="2" aria-label="View larger: Paint, up close">
+          <div class="media gal-media" data-label="Glossy black bodywork up close"><img src="https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1280" srcset="https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=640 640w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=960 960w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1280 1280w, https://unsplash.com/photos/TNybYN-LqJo/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Glossy black bodywork up close" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div>
+          <span class="gal-cap">Paint, up close</span>
+        </button>
+      </li>
+      <li class="gal-item reveal" style="--i:3">
+        <button class="gal-btn" type="button" data-lightbox-open="3" aria-label="View larger: Hand finishing">
+          <div class="media gal-media" data-label="Hand-finishing a car&#39;s bonnet"><img src="https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1280" srcset="https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=640 640w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=960 960w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1280 1280w, https://unsplash.com/photos/k_DBVzru8d8/download?force=true&w=1920 1920w" sizes="(min-width: 760px) 25vw, 50vw" alt="Hand-finishing a car&#39;s bonnet" loading="lazy" decoding="async" style="object-position:50% 50%" data-fallbacks="Iw480aWLXGo Hv_gKPOXmwE rg8Ak619UAQ"></div>
+          <span class="gal-cap">Hand finishing</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <dialog class="lightbox" data-lightbox aria-label="Workshop photos">
+    <div class="lb-frame">
+      <figure class="lb-figure"><div class="lb-img media" data-label=""></div><figcaption class="lb-cap"></figcaption></figure>
+      <button class="lb-btn lb-prev" type="button" data-lb-prev aria-label="Previous photo"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg></button>
+      <button class="lb-btn lb-next" type="button" data-lb-next aria-label="Next photo"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+      <button class="lb-close" type="button" data-lb-close aria-label="Close"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <p class="lb-count" aria-live="polite"></p>
+    </div>
+  </dialog>
+</section>
+
+
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+  <div class="contact-grid container">
+    <div class="contact-intro">
+      <h2 class="display reveal" id="contact-title">Send us the damage.</h2>
+      <p class="lead reveal">We&#39;ll send you a quote. WhatsApp is quickest, or fill in the form and we&#39;ll come back to you.</p>
+      <div class="tips reveal">
+        <p class="tips-title">For a quote from photos, send:</p>
+        <ol><li>The damage, up close</li><li>The whole side of the car, from a few steps back</li><li>The registration plate</li></ol>
+      </div>
+
+      <ul class="contact-ways reveal">
+        <li><a href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20here%20are%20photos%20of%20the%20damage%20on%20my%20car%20for%20a%20quote.%0A%0AMy%20car%3A%20%0AWhat%20happened%3A%20" target="_blank" rel="noopener">
+          <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg></span>
+          <span><strong>WhatsApp</strong><span>Fastest reply. Send photos of the damage.</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+        <li><a href="tel:+27119178304">
+          <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.2a10.5 10.5 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg></span>
+          <span><strong>Call the workshop</strong><span>011 917 8304</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Eastern%20Auto%20Body%2012%20Turf%20Road%2C%20Anderbolt%2C%20Boksburg" target="_blank" rel="noopener">
+          <span class="cw-ico"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg></span>
+          <span><strong>Get directions</strong><span>12 Turf Road, Anderbolt, Boksburg</span></span><svg class="ico cw-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></li>
+      </ul>
+      
+    </div>
+
+    <form class="quote-form reveal" data-quote-form novalidate aria-labelledby="form-title">
+      <div class="form-band" aria-hidden="true"></div>
+      <h3 class="form-title" id="form-title">Request a quote</h3>
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+        <p class="field-err" id="f-name-err" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err" placeholder="082 123 4567">
+        <p class="field-err" id="f-phone-err" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="f-vehicle">Vehicle make &amp; model</label>
+        <input id="f-vehicle" name="vehicle" type="text" autocomplete="off" placeholder="2018 Toyota Corolla">
+      </div>
+      <div class="field">
+        <label for="f-reg">Registration <span class="opt">(optional)</span></label>
+        <span class="plate plate-input">
+          <input id="f-reg" name="reg" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="AB 12 CD GP">
+          <span class="plate-region" aria-hidden="true">Gauteng</span>
+        </span>
+      </div>
+      <div class="field field-full">
+        <label for="f-service">What needs doing?</label>
+        <div class="select">
+          <select id="f-service" name="service">
+            <option>Accident repairs</option><option>Spray painting</option><option>Dents &amp; creases</option><option>Insurance claim quotes</option><option>Bumper repairs</option><option>Scratches &amp; scuffs</option><option>Rust repair</option><option>Machine polishing</option><option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <fieldset class="field field-full">
+        <legend>Who's paying?</legend>
+        <div class="seg">
+          <label><input type="radio" name="payer" value="Paying privately" checked><span>Paying privately</span></label>
+          <label><input type="radio" name="payer" value="Insurance claim"><span>Insurance claim</span></label>
+        </div>
+      </fieldset>
+      <div class="field field-full">
+        <label for="f-message">Message <span class="opt">(optional)</span></label>
+        <textarea id="f-message" name="message" rows="3" placeholder="What happened, and where's the damage?"></textarea>
+      </div>
+      <div class="form-foot field-full">
+        <button class="btn btn-primary btn-lg" type="submit">Request a quote</button>
+        <p class="form-note" data-form-note>Opens WhatsApp with your request ready to send. Add photos of the damage there.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    
+  <a class="logo " href="#top" aria-label="Eastern Auto Body, back to top">
+    <svg class="logo-mark" viewBox="0 0 86.52 52" fill="currentColor" aria-hidden="true"><polygon points="17.9,21 33.4,21 45.52,0 30.02,0"/><polygon points="38.4,21 53.9,21 66.02,0 50.52,0"/><polygon points="58.9,21 74.4,21 86.52,0 71.02,0"/><polygon points="0,52 15.5,52 31.38,24.5 15.88,24.5"/><polygon points="20.5,52 36,52 51.88,24.5 36.38,24.5"/><polygon points="41,52 56.5,52 72.38,24.5 56.88,24.5"/></svg>
+    <span class="logo-text">Eastern Auto Body</span>
+  </a>
+    <nav aria-label="Footer"><ul><li><a href="#services">Services</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#work">Our work</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <div class="footer-base">
+      <p>© 2026 Eastern Auto Body. Panel beating &amp; spray painting, 12 Turf Road, Anderbolt, Boksburg.</p>
+      <p><a href="tel:+27119178304">011 917 8304</a></p>
+      <p class="footer-demo">Concept website prepared for Eastern Auto Body. Logo redrawn from the shop sign; demo photography from Unsplash.</p>
+    </div>
+  </div>
+</footer>
+
+<nav class="mcta" aria-label="Quick contact" data-mcta>
+  <a class="mcta-btn" href="https://wa.me/?text=Hi%20Eastern%20Auto%20Body%2C%20here%20are%20photos%20of%20the%20damage%20on%20my%20car%20for%20a%20quote.%0A%0AMy%20car%3A%20%0AWhat%20happened%3A%20" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.06.89.9-2.98-.2-.31a8.2 8.2 0 1 1 6.84 3.73Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.72-1.33.08-.16.04-.3-.02-.43l-.75-1.8c-.2-.47-.4-.4-.55-.41h-.47a.9.9 0 0 0-.65.3 2.74 2.74 0 0 0-.86 2.04 4.76 4.76 0 0 0 1 2.53 10.9 10.9 0 0 0 4.18 3.69c1.55.67 2.16.73 2.94.61.47-.07 1.46-.6 1.66-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28Z"/></svg><span>WhatsApp</span></a>
+  <a class="mcta-btn" href="tel:+27119178304"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.2a10.5 10.5 0 0 0 6.8 6.8L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5C10.6 20 4 13.4 3.5 5.6A1.5 1.5 0 0 1 5 4Z"/></svg><span>Call</span></a>
+  <a class="mcta-btn mcta-primary" href="#contact" data-quote><span>Get a quote</span></a>
+</nav>
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+<script>window.SITE = {"name":"Eastern Auto Body","whatsapp":"","phone":"+27119178304","gallery":[{"caption":"Welding and structural repairs","image":{"unsplash":"e5LozVcb-6E","alt":"Welding on a car, sparks flying","position":"50% 50%","credit":"Unsplash"}},{"caption":"Finishing in the workshop","image":{"unsplash":"9XcUbV5CdVA","alt":"Finishing a car's paint in a garage","position":"50% 50%","credit":"Unsplash"}},{"caption":"Paint, up close","image":{"unsplash":"TNybYN-LqJo","alt":"Glossy black bodywork up close","position":"50% 50%","credit":"Unsplash"}},{"caption":"Hand finishing","image":{"unsplash":"k_DBVzru8d8","alt":"Hand-finishing a car's bonnet","position":"50% 50%","credit":"Unsplash"}}]};</script>
+<script>// Eastern Auto Body — interactions. No dependencies.
+(() => {
+  const SITE = window.SITE || {};
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const waLink = (text) => `https://wa.me/${SITE.whatsapp || ""}?text=${encodeURIComponent(text)}`;
+  const imageUrl = (image, w = 1920) =>
+    image.src ? image.src : `https://unsplash.com/photos/${image.unsplash}/download?force=true&w=${w}`;
+
+  // ---------- Hero: booth-light reflections that straighten out a dent ----------
+  const refl = $("[data-reflections]");
+  if (refl) {
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 1600, H = 900, N = 48;
+    const mobile = matchMedia("(max-width: 760px)").matches;
+    // Lines sit in the upper part of the panel, clear of the headline below.
+    const lines = (mobile ? [0.11, 0.17, 0.23, 0.29] : [0.12, 0.18, 0.24, 0.3, 0.36, 0.42]).map((f) => f * H);
+    const widths = mobile ? [2, 7, 2.5, 1.5] : [1.5, 3, 8, 2, 2.5, 1.5];
+    const cx = (mobile ? 0.66 : 0.7) * W, cy = (mobile ? 0.2 : 0.27) * H;
+    const sx = 0.085 * W, sy = 0.12 * H, D0 = mobile ? 34 : 58;
+    const paths = lines.map((y0, i) => {
+      const p = document.createElementNS(NS, "path");
+      p.setAttribute("stroke", "url(#refl)");
+      p.setAttribute("stroke-width", widths[i]);
+      p.setAttribute("fill", "none");
+      if (widths[i] >= 6) p.setAttribute("filter", "url(#tube)");
+      refl.appendChild(p);
+      return { p, y0 };
+    });
+    const draw = (D) => paths.forEach(({ p, y0 }) => {
+      const dir = Math.sign(cy - y0) || 1;
+      const fall = Math.exp(-((y0 - cy) ** 2) / (2 * sy * sy));
+      let d = "";
+      for (let k = 0; k <= N; k++) {
+        const x = (k / N) * W;
+        const y = y0 + D * fall * Math.exp(-((x - cx) ** 2) / (2 * sx * sx)) * dir;
+        d += `${k ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
+      }
+      p.setAttribute("d", d);
+    });
+    // the brightest line carries a single glint once it's straight
+    const glint = paths[Math.floor(paths.length / 2)].p.cloneNode();
+    glint.removeAttribute("filter");
+    glint.setAttribute("stroke", "#FFF6EC");
+    glint.setAttribute("stroke-width", "2.5");
+    glint.classList.add("glint");
+    refl.appendChild(glint);
+    if (reduceMotion) { draw(0); glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); }
+    else {
+      draw(D0);
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const start = performance.now() + 250, dur = 1600;
+      const tick = (now) => {
+        const t = Math.min(1, Math.max(0, (now - start) / dur));
+        draw(D0 * (1 - ease(t)));
+        if (t < 1) requestAnimationFrame(tick);
+        else { glint.setAttribute("d", paths[Math.floor(paths.length / 2)].p.getAttribute("d")); glint.classList.add("is-on"); }
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+
+  // ---------- Toast ----------
+  const toastEl = $("[data-toast]");
+  let toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 4200);
+  }
+
+  // Call buttons without a configured number explain themselves instead of dialling nowhere.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-demo-call]");
+    if (!a) return;
+    e.preventDefault();
+    toast("Demo: this button calls the workshop once its number is added.");
+  });
+
+  // ---------- Nav: transparent over the hero, solid once scrolling ----------
+  const nav = $("[data-nav]");
+  const hero = $(".hero");
+  const mcta = $("[data-mcta]");
+  const navLinks = $$(".nav-links a");
+  const sections = navLinks.map((a) => $(a.getAttribute("href"))).filter(Boolean);
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = scrollY;
+      nav.classList.toggle("is-solid", y > 24);
+      mcta?.classList.toggle("is-on", y > hero.offsetHeight * 0.55 && !document.body.classList.contains("is-locked"));
+
+      // Scroll spy
+      const mark = y + innerHeight * 0.35;
+      let current = null;
+      sections.forEach((s) => { if (s.getBoundingClientRect().top + y <= mark) current = s; });
+      navLinks.forEach((a) => a.setAttribute("aria-current", String(current && a.getAttribute("href") === "#" + current.id)));
+
+      parallax();
+      ticking = false;
+    });
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+
+  // ---------- Mobile menu ----------
+  const menu = $("[data-menu]");
+  const openBtn = $("[data-menu-open]");
+  $$(".menu-links li a").forEach((a, i) => a.style.setProperty("--d", i));
+
+  function openMenu() {
+    menu.hidden = false;
+    menu.classList.add("is-open");
+    openBtn.setAttribute("aria-expanded", "true");
+    document.body.classList.add("is-locked");
+    mcta?.classList.remove("is-on");
+    $("[data-menu-close]").focus();
+  }
+  function closeMenu(returnFocus = true) {
+    menu.classList.remove("is-open");
+    menu.hidden = true;
+    openBtn.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("is-locked");
+    if (returnFocus) openBtn.focus();
+    onScroll();
+  }
+  openBtn.addEventListener("click", openMenu);
+  $("[data-menu-close]").addEventListener("click", () => closeMenu());
+  $$("[data-menu-link]", menu).forEach((a) => a.addEventListener("click", () => closeMenu(false)));
+  menu.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+    if (e.key !== "Tab") return;
+    const f = $$("a, button", menu).filter((el) => el.offsetParent !== null);
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
+    else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
+  });
+
+  // ---------- Quote buttons + service rows prefill the form ----------
+  const form = $("[data-quote-form]");
+  const serviceSelect = $("#f-service");
+  const pickService = (name) => {
+    const opt = [...serviceSelect.options].find((o) => o.text === name);
+    if (opt) serviceSelect.value = opt.value;
+  };
+  document.addEventListener("click", (e) => {
+    const svc = e.target.closest("[data-service]");
+    if (svc) pickService(svc.dataset.service);
+  });
+
+  // ---------- Scroll reveal ----------
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add("is-in"); revealIO.unobserve(en.target); }
+    });
+  }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+  $$(".reveal").forEach((el) => revealIO.observe(el));
+
+  // ---------- Subtle parallax on the "why us" photo ----------
+  const para = $(".parallax");
+  function parallax() {
+    if (!para || reduceMotion) return;
+    const r = para.parentElement.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    const progress = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; // -1..1 around centre
+    para.style.transform = `translate3d(0, ${(progress * -6).toFixed(2)}%, 0)`;
+  }
+
+  // ---------- Services: photo panel follows the hovered or focused row ----------
+  const svc = $("[data-svc]");
+  if (svc) {
+    const rows = $$("[data-row]", svc);
+    const shots = $$("[data-shot]", svc);
+    const tag = $("[data-preview-tag]", svc);
+    const activate = (i) => {
+      rows.forEach((r, k) => r.classList.toggle("is-active", k === i));
+      shots.forEach((s, k) => s.classList.toggle("is-active", k === i));
+      if (tag) tag.textContent = $(".svc-title", rows[i]).textContent;
+    };
+    rows.forEach((r, i) => {
+      r.addEventListener("mouseenter", () => activate(i));
+      r.addEventListener("focus", () => activate(i));
+    });
+  }
+
+  // ---------- Gallery lightbox ----------
+  const lb = $("[data-lightbox]");
+  if (lb && SITE.gallery?.length) {
+    const frame = $(".lb-img", lb);
+    const cap = $(".lb-cap", lb);
+    const count = $(".lb-count", lb);
+    let idx = 0;
+    const show = (i) => {
+      idx = (i + SITE.gallery.length) % SITE.gallery.length;
+      const item = SITE.gallery[idx];
+      frame.classList.remove("is-missing", "is-swapping");
+      frame.dataset.label = item.image.alt;
+      const im = new Image();
+      im.alt = item.image.alt;
+      im.decoding = "async";
+      im.onerror = () => frame.classList.add("is-missing");
+      im.src = imageUrl(item.image);
+      frame.replaceChildren(im);
+      void frame.offsetWidth;
+      frame.classList.add("is-swapping");
+      cap.textContent = item.caption;
+      count.textContent = `${idx + 1} / ${SITE.gallery.length}`;
+    };
+    document.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-lightbox-open]");
+      if (!t) return;
+      show(Number(t.dataset.lightboxOpen));
+      lb.showModal();
+    });
+    $("[data-lb-prev]", lb).addEventListener("click", () => show(idx - 1));
+    $("[data-lb-next]", lb).addEventListener("click", () => show(idx + 1));
+    $("[data-lb-close]", lb).addEventListener("click", () => lb.close());
+    lb.addEventListener("click", (e) => { if (e.target === lb || e.target.classList.contains("lb-frame")) lb.close(); });
+    lb.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(idx - 1);
+      if (e.key === "ArrowRight") show(idx + 1);
+    });
+    let sx = null;
+    lb.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", (e) => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 48) show(idx + (dx < 0 ? 1 : -1));
+      sx = null;
+    });
+  }
+
+  // ---------- Quote form → WhatsApp ----------
+  if (form) {
+    const note = $("[data-form-note]", form);
+    const rules = {
+      name: (v) => (v.trim().length >= 2 ? "" : "Enter your name so we know who to ask for."),
+      phone: (v) => (v.replace(/\D/g, "").length >= 9 ? "" : "Enter a phone number we can call you back on, e.g. 082 123 4567."),
+    };
+    const check = (input) => {
+      const msg = rules[input.name]?.(input.value) ?? "";
+      input.setAttribute("aria-invalid", String(!!msg));
+      $("#" + input.id + "-err").textContent = msg;
+      return !msg;
+    };
+    ["name", "phone"].forEach((n) => {
+      const input = form.elements[n];
+      input.addEventListener("blur", () => { if (input.value) check(input); });
+      input.addEventListener("input", () => { if (input.getAttribute("aria-invalid") === "true") check(input); });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const invalid = ["name", "phone"].map((n) => form.elements[n]).filter((i) => !check(i));
+      if (invalid.length) { invalid[0].focus(); return; }
+      const f = form.elements;
+      const val = (el) => el.value.trim();
+      const lines = [
+        `Hi ${SITE.name}, I'd like a quote please.`,
+        "",
+        `Name: ${val(f.name)}`,
+        `Phone: ${val(f.phone)}`,
+        val(f.vehicle) ? `Vehicle: ${val(f.vehicle)}` : null,
+        val(f.reg) ? `Registration: ${val(f.reg).toUpperCase()}` : null,
+        `Work needed: ${f.service.value}`,
+        `Payment: ${f.payer.value}`,
+        f.payer.value === "Insurance claim" ? "Insurer and claim number: " : null,
+        val(f.message) ? `\n${val(f.message)}` : null,
+        "",
+        "I'll send photos of the damage in this chat.",
+      ].filter((l) => l !== null);
+      const url = waLink(lines.join("\n"));
+      const win = window.open(url, "_blank", "noopener");
+      if (!win) location.href = url;
+      note.textContent = "Your request is ready in WhatsApp. Attach a few photos of the damage, then press send.";
+      note.classList.add("is-done");
+    });
+  }
+
+  onScroll();
+})();
+</script>
+</body>
+</html>

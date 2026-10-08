@@ -1,0 +1,10 @@
+{
+  "name": "eastern-auto-body",
+  "private": true,
+  "type": "module",
+  "description": "Concept website for Eastern Auto Body, panel beating & spray painting",
+  "scripts": {
+    "build": "node build.mjs",
+    "images": "node tools/download-images.mjs"
+  }
+}

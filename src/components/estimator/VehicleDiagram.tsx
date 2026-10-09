@@ -18,13 +18,18 @@ const ARROW_STEP: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowL
 const PAD = 14
 const GRID = 18
 
+const overlaps = (a: DOMRect, b: DOMRect) =>
+  a.x < b.x + b.width && b.x < a.x + a.width && a.y < b.y + b.height && b.y < a.y + a.height
+
 /**
- * A point well inside the panel for its number marker. The bounding-box centre can fall
- * outside concave shapes (a wing wrapping a wheel arch), so sample a grid and take the
- * inside point furthest from any outside point.
+ * A point well inside the visible part of a panel for its number marker. The bounding-box
+ * centre can fall outside concave shapes (a wing wrapping a wheel arch) or under parts drawn
+ * on top (a tail light on a quarter panel), so sample a grid and take the visible point
+ * furthest from any hidden or outside point.
  */
-function markerPoint(path: SVGPathElement): [number, number] {
+function markerPoint(path: SVGPathElement, above: SVGPathElement[]): [number, number] {
   const b = path.getBBox()
+  const covers = above.filter((p) => overlaps(b, p.getBBox()))
   const centre: [number, number] = [b.x + b.width / 2, b.y + b.height / 2]
   const sx = b.width / GRID
   const sy = b.height / GRID
@@ -35,7 +40,9 @@ function markerPoint(path: SVGPathElement): [number, number] {
     for (let j = -1; j <= GRID + 1; j++) {
       const x = b.x + i * sx
       const y = b.y + j * sy
-      const isIn = i >= 0 && i <= GRID && j >= 0 && j <= GRID && path.isPointInFill(new DOMPoint(x, y))
+      const pt = new DOMPoint(x, y)
+      const isIn =
+        i >= 0 && i <= GRID && j >= 0 && j <= GRID && path.isPointInFill(pt) && !covers.some((c) => c.isPointInFill(pt))
       ;(isIn ? inside : outside).push([x, y])
     }
   }
@@ -77,8 +84,9 @@ export function VehicleDiagram({
     const box = g.getBBox()
     setViewBox(`${box.x - PAD} ${box.y - PAD} ${box.width + PAD * 2} ${box.height + PAD * 2}`)
     const next: Partial<Record<PanelId, [number, number]>> = {}
-    g.querySelectorAll<SVGPathElement>('path[data-panel]').forEach((p) => {
-      next[p.dataset.panel as PanelId] = markerPoint(p)
+    const paths = [...g.querySelectorAll<SVGPathElement>('path[data-panel]')]
+    paths.forEach((p, i) => {
+      next[p.dataset.panel as PanelId] = markerPoint(p, paths.slice(i + 1))
     })
     setCentres(next)
   }, [view])

@@ -1,5 +1,5 @@
 import { describeItem, formatEstimate, pricing } from '../../data/damage'
-import { scrollToSection } from '../../lib/scroll'
+import { goToSection } from '../../lib/scroll'
 import { Icon } from '../ui/Icon'
 import type { DamageReport } from './QuoteContext'
 
@@ -29,7 +29,11 @@ export function DamageAttachment({ report, full = false, onRemove }: DamageAttac
             {range ? ` · est. ${range}` : ''}
           </span>
         </p>
-        <button type="button" className="damage-attach__link" onClick={() => scrollToSection('estimate')}>
+        <button
+          type="button"
+          className="damage-attach__link"
+          onClick={() => goToSection('estimate', '.dmg-item__toggle')}
+        >
           Edit
         </button>
         <button type="button" className="damage-attach__remove" onClick={onRemove} aria-label="Remove damage map">

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { business, whatsappHref } from '../../data/business'
 import { describeItem, pricing } from '../../data/damage'
-import { scrollToSection } from '../../lib/scroll'
+import { goToSection } from '../../lib/scroll'
 import { isDemoMode, submitQuote } from '../../lib/submitQuote'
 import { Button } from '../ui/Button'
 import { Icon } from '../ui/Icon'
@@ -151,6 +151,12 @@ export function QuoteForm() {
     setStep(0)
   }
 
+  // Keep keyboard focus in the form when the card holding the focused button disappears.
+  const removeDamage = () => {
+    detachDamage()
+    legendRef.current?.focus({ preventScroll: true })
+  }
+
   const firstName = values.name.trim().split(/\s+/)[0]
 
   return (
@@ -228,7 +234,7 @@ export function QuoteForm() {
             </div>
           </div>
 
-          {damage && step < 2 && <DamageAttachment report={damage} onRemove={detachDamage} />}
+          {damage && step < 2 && <DamageAttachment report={damage} onRemove={removeDamage} />}
 
           {presetNote && !damage && step < 2 && (
             <p className="quote-preset">
@@ -355,7 +361,7 @@ export function QuoteForm() {
               <div className="quote-grid">
                 {damage && (
                   <div className="quote-grid__full">
-                    <DamageAttachment report={damage} full onRemove={detachDamage} />
+                    <DamageAttachment report={damage} full onRemove={removeDamage} />
                   </div>
                 )}
                 <fieldset
@@ -445,7 +451,7 @@ export function QuoteForm() {
                   />
                 </ReviewGroup>
                 {damage && (
-                  <ReviewGroup title="Damage map" onEdit={() => scrollToSection('estimate')}>
+                  <ReviewGroup title="Damage map" onEdit={() => goToSection('estimate', '.dmg-item__toggle')}>
                     {damage.items.map((item, i) => (
                       <ReviewRow key={item.panel} label={`Area ${i + 1}`} value={describeItem(item)} />
                     ))}

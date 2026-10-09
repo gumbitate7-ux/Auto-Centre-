@@ -1,4 +1,4 @@
-import { useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react'
 import { panelInfo, type PanelId, type ViewId } from '../../data/damage'
 import { diagramViews } from './vehicleDiagram'
 
@@ -14,6 +14,7 @@ interface VehicleDiagramProps {
 }
 
 const UNDER = new Set(['shadow', 'tyre'])
+const ARROW_STEP: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }
 const PAD = 14
 const GRID = 18
 
@@ -67,6 +68,7 @@ export function VehicleDiagram({
   const contentRef = useRef<SVGGElement>(null)
   const [viewBox, setViewBox] = useState('0 0 800 400')
   const [centres, setCentres] = useState<Partial<Record<PanelId, [number, number]>>>({})
+  const [focused, setFocused] = useState<PanelId | null>(null)
 
   // Crop to the drawing so every view fills the stage, and find panel centres for markers.
   useLayoutEffect(() => {
@@ -81,11 +83,38 @@ export function VehicleDiagram({
     setCentres(next)
   }, [view])
 
+  // Panels are one Tab stop; arrow keys move across the car in reading order (paint order stays as drawn).
+  const order = useMemo(
+    () =>
+      data.panels
+        .map((p) => p.id)
+        .sort((a, b) => {
+          const ca = centres[a]
+          const cb = centres[b]
+          return ca && cb ? ca[0] - cb[0] || ca[1] - cb[1] : 0
+        }),
+    [data, centres],
+  )
+  const inView = (id: PanelId | null): id is PanelId => !!id && data.panels.some((p) => p.id === id)
+  const tabStop = inView(focused) ? focused : inView(active) ? active : order[0]
+
   const onKey = (event: KeyboardEvent<SVGPathElement>, panel: PanelId) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       onSelect(panel)
+      return
     }
+    const step = ARROW_STEP[event.key]
+    if (!step && event.key !== 'Home' && event.key !== 'End') return
+    event.preventDefault()
+    const i = order.indexOf(panel)
+    const next =
+      event.key === 'Home'
+        ? order[0]
+        : event.key === 'End'
+          ? order[order.length - 1]
+          : order[(i + step + order.length) % order.length]
+    contentRef.current?.querySelector<SVGPathElement>(`path[data-panel="${next}"]`)?.focus()
   }
 
   const visibleSelected = selected.filter((id) => data.panels.some((p) => p.id === id))
@@ -96,7 +125,7 @@ export function VehicleDiagram({
       viewBox={viewBox}
       preserveAspectRatio="xMidYMid meet"
       role="group"
-      aria-label={`${viewLabel} view of the vehicle. Select a panel to mark damage.`}
+      aria-label={`${viewLabel} view of the vehicle. Select a panel to mark damage; use the arrow keys to move between panels.`}
       onMouseLeave={() => onHover(null)}
     >
       <defs>
@@ -126,14 +155,17 @@ export function VehicleDiagram({
                     highlight === p.id ? ' is-highlight' : ''
                   }`}
                   role="button"
-                  tabIndex={0}
+                  tabIndex={p.id === tabStop ? 0 : -1}
                   aria-label={`${info.label}${info.side ? `, ${info.side.toLowerCase()}` : ''}${
                     isSelected ? `, marked as damage ${index + 1}, select to edit` : ''
                   }`}
                   onClick={() => onSelect(p.id)}
                   onKeyDown={(e) => onKey(e, p.id)}
                   onMouseEnter={() => onHover(p.id)}
-                  onFocus={() => onHover(p.id)}
+                  onFocus={() => {
+                    setFocused(p.id)
+                    onHover(p.id)
+                  }}
                   onBlur={() => onHover(null)}
                 />
                 {/* Hatch sits directly on its own panel so parts drawn later (lights, mirrors) stay clean. */}

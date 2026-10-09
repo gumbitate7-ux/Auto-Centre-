@@ -85,9 +85,9 @@ export const panelInfo: Record<PanelId, PanelInfo> = {
   'wheel-rr': { label: 'Right rear wheel', side: R, cls: 'wheel' },
 }
 
-export const views: { id: ViewId; label: string; hint: string }[] = [
-  { id: 'left', label: 'Left side', hint: 'Passenger side · front of vehicle on the left' },
-  { id: 'right', label: 'Right side', hint: 'Driver side · front of vehicle on the right' },
+export const views: { id: ViewId; label: string; short?: string; hint: string }[] = [
+  { id: 'left', label: 'Left side', short: 'Left', hint: 'Passenger side · front of vehicle on the left' },
+  { id: 'right', label: 'Right side', short: 'Right', hint: 'Driver side · front of vehicle on the right' },
   { id: 'front', label: 'Front', hint: 'Looking at the front of the vehicle' },
   { id: 'rear', label: 'Rear', hint: 'Looking at the back of the vehicle' },
   { id: 'top', label: 'Top', hint: 'From above · front of vehicle on the left' },

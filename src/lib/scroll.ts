@@ -49,3 +49,9 @@ export function scrollToSection(id: string) {
   if (!el) return
   el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
 }
+
+/** Scrolls to a section and moves keyboard focus to `focusSelector` inside it, so keyboard and screen-reader users follow. */
+export function goToSection(id: string, focusSelector: string) {
+  scrollToSection(id)
+  document.querySelector<HTMLElement>(`#${id} ${focusSelector}`)?.focus({ preventScroll: true })
+}

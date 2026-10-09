@@ -42,6 +42,10 @@
   display: none;
 }
 
+.estimator__tab-short {
+  display: none;
+}
+
 .estimator__tab {
   flex: 1 0 auto;
   display: inline-flex;
@@ -465,9 +469,6 @@
   font-size: 0.93rem;
   font-weight: 560;
   color: var(--c-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .dmg-item__meta {
@@ -639,7 +640,7 @@
 }
 
 .estimator__amount-empty {
-  color: rgb(255 255 255 / 0.3);
+  color: var(--c-on-dark-muted);
 }
 
 .estimator__poi {
@@ -695,9 +696,31 @@
     padding: 18px 6px 6px;
   }
 
+  /* All five views fit on a phone, with no hidden scroll. */
+  .estimator__tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    overflow: visible;
+  }
+
   .estimator__tab {
-    padding: 0 12px;
-    font-size: 0.84rem;
+    padding: 0 4px;
+    gap: 4px;
+    font-size: 0.8rem;
+  }
+
+  .estimator__tab-long {
+    display: none;
+  }
+
+  .estimator__tab-short {
+    display: inline;
+  }
+
+  .estimator__tab-count {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
   }
 
   .estimator__stage-foot {

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   damageSizes,
   damageTypes,
@@ -21,7 +21,7 @@ import {
   type ViewId,
 } from '../../data/damage'
 import { useCountUp } from '../../hooks/useCountUp'
-import { scrollToSection } from '../../lib/scroll'
+import { goToSection } from '../../lib/scroll'
 import { useQuote } from '../quote/QuoteContext'
 import { Button } from '../ui/Button'
 import { Icon } from '../ui/Icon'
@@ -96,6 +96,8 @@ export function DamageEstimator() {
   const [vehicle, setVehicle] = useState<VehicleType>('compact')
   const [paint, setPaint] = useState<PaintFinish>('solid')
   const [pick, setPick] = useState<PanelId | ''>('')
+  const listRef = useRef<HTMLDivElement>(null)
+  const listHeadRef = useRef<HTMLHeadingElement>(null)
 
   const result = useMemo(() => estimate(items, vehicle, paint), [items, vehicle, paint])
   const low = useCountUp(result.low)
@@ -125,14 +127,24 @@ export function DamageEstimator() {
     setItems((prev) => prev.map((i) => (i.panel === panel ? { ...i, ...patch } : i)))
   }
 
+  // Buttons that remove themselves would drop focus to <body>; hand it to the nearest sensible control.
+  const focusItem = (panel: PanelId | undefined) =>
+    requestAnimationFrame(() => {
+      const toggle = panel && listRef.current?.querySelector<HTMLElement>(`.dmg-item__toggle[data-panel="${panel}"]`)
+      ;(toggle || listHeadRef.current)?.focus()
+    })
+
   const remove = (panel: PanelId) => {
+    const index = selected.indexOf(panel)
     setItems((prev) => prev.filter((i) => i.panel !== panel))
     if (active === panel) setActive(null)
+    focusItem(selected[index + 1] ?? selected[index - 1])
   }
 
   const clear = () => {
     setItems([])
     setActive(null)
+    focusItem(undefined)
   }
 
   const addPick = () => {
@@ -150,7 +162,7 @@ export function DamageEstimator() {
       attachDamage({ items, vehicle, paint, estimate: pricing.showPrices ? result : null })
       presetService(serviceFor(items))
     }
-    window.setTimeout(() => scrollToSection('quote'), 30)
+    window.setTimeout(() => goToSection('quote', '.quote-step__title'), 30)
   }
 
   const countIn = (v: ViewId) => selected.filter((id) => diagramViews[v].panels.some((p) => p.id === id)).length
@@ -190,7 +202,14 @@ export function DamageEstimator() {
                     className={`estimator__tab${view === v.id ? ' is-active' : ''}`}
                     onClick={() => setView(v.id)}
                   >
-                    {v.label}
+                    {v.short ? (
+                      <>
+                        <span className="estimator__tab-long">{v.label}</span>
+                        <span className="estimator__tab-short">{v.short}</span>
+                      </>
+                    ) : (
+                      v.label
+                    )}
                     {n > 0 && (
                       <span className="estimator__tab-count tabular" aria-label={`${n} marked`}>
                         {n}
@@ -280,9 +299,9 @@ export function DamageEstimator() {
               />
             </div>
 
-            <div className="estimator__items">
+            <div className="estimator__items" ref={listRef}>
               <div className="estimator__items-head">
-                <h3 className="estimator__subhead">
+                <h3 className="estimator__subhead" ref={listHeadRef} tabIndex={-1}>
                   Marked damage{items.length > 0 && <span className="tabular"> · {items.length}</span>}
                 </h3>
                 {items.length > 0 && (
@@ -314,6 +333,7 @@ export function DamageEstimator() {
                           <button
                             type="button"
                             className="dmg-item__toggle"
+                            data-panel={line.panel}
                             aria-expanded={isActive}
                             aria-controls={`dmg-${line.panel}`}
                             onClick={() => setActive(isActive ? null : line.panel)}
@@ -366,7 +386,14 @@ export function DamageEstimator() {
                                 hint: damageSizes[s].hint,
                               }))}
                             />
-                            <button type="button" className="dmg-item__done" onClick={() => setActive(null)}>
+                            <button
+                              type="button"
+                              className="dmg-item__done"
+                              onClick={() => {
+                                setActive(null)
+                                focusItem(line.panel)
+                              }}
+                            >
                               Done
                             </button>
                           </div>
@@ -378,7 +405,7 @@ export function DamageEstimator() {
               )}
             </div>
 
-            <div className={`estimator__total${items.length ? ' has-items' : ''}`}>
+            <div className={`estimator__total on-dark${items.length ? ' has-items' : ''}`}>
               {pricing.showPrices ? (
                 <>
                   <p className="estimator__subhead">Indicative estimate</p>

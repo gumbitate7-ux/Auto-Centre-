@@ -60,6 +60,36 @@
   max-width: 27em;
 }
 
+.hero__estimate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 4px 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--c-muted);
+  transition: color var(--dur) var(--ease-soft);
+}
+
+.hero__estimate strong {
+  font-weight: 560;
+  color: var(--c-ink);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+}
+
+.hero__estimate svg {
+  flex: none;
+}
+
+.hero__estimate-arrow {
+  transition: transform 450ms var(--ease-out);
+}
+
+.hero__estimate:hover .hero__estimate-arrow {
+  transform: translateX(3px);
+}
+
 .hero__ctas {
   display: flex;
   flex-wrap: wrap;

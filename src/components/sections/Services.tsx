@@ -41,9 +41,14 @@ export function Services() {
               From minor dents to major collision damage, every repair gets the same care: proper preparation, accurate
               colour matching and a quality finish.
             </p>
-            <Button href="#quote" variant="ghost" icon="arrow-right">
-              Discuss your repair
-            </Button>
+            <div className="services__links">
+              <Button href="#estimate" variant="ghost" icon="arrow-right">
+                Get an instant estimate
+              </Button>
+              <Button href="#quote" variant="ghost" icon="arrow-right">
+                Discuss your repair
+              </Button>
+            </div>
           </Reveal>
         </div>
       </div>

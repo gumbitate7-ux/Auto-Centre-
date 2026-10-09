@@ -17,12 +17,15 @@ A premium, single-page website concept for **Dino's Auto Body Repairs**: panel b
 ```bash
 npm install
 npm run dev       # http://localhost:5173
-npm run build     # type-check + production build to dist/
+npm run build     # type-check + production build to dist/ (for hosting)
+npm run build:local  # self-contained copy in local-site/ — open local-site/index.html directly, no server needed
 npm run preview   # serve the production build
 npm run images    # regenerate responsive images from assets/images/
 ```
 
 The output in `dist/` is a static site and can be hosted anywhere: Netlify, Vercel, Cloudflare Pages, or any shared hosting.
+
+`npm run build:local` produces `local-site/`: the same site with relative paths and all JavaScript, CSS and fonts inlined into `index.html`, so it opens by double-clicking the file (works from a USB stick or email attachment). Keep the `images/` folder next to it.
 
 ## Project structure
 
@@ -35,13 +38,15 @@ src/
   data/
     business.ts            ← All business details (name, phone, WhatsApp, email, address, hours, links)
     services.ts            Services shown in the grid, form and structured data
+    damage.ts              Estimator panels, damage types and PLACEHOLDER pricing
     content.ts             Section copy: hero slides, trust points, pillars, process, comparisons, projects
     images.generated.json  Image manifest written by the pipeline
   components/
     layout/                Header, MobileMenu, Footer, MobileActionBar
     sections/              Hero, TrustStrip, About, Services, WhyDinos, BeforeAfter, Gallery, Lightbox,
                            Process, CtaBand, QuoteSection, Contact, MapIllustration
-    quote/                 Multi-step QuoteForm, fields, photo dropzone, validation model, context
+    estimator/             Instant estimate: DamageEstimator, VehicleDiagram (SVG), generated vehicleDiagram.ts
+    quote/                 Multi-step QuoteForm, fields, photo dropzone, validation model, context, damage attachment
     ui/                    Button, Icon, Picture, CompareSlider, Reveal, Logo
   hooks/                   Scrollspy, parallax, magnetic hover, dialog (focus trap / scroll lock), in-view
   lib/                     Shared scroll loop, quote submission
@@ -63,8 +68,13 @@ Work through this list before publishing the site as Dino's real website.
    - Regenerate `public/og-image.jpg` (1200×630) from a real photo.
 3. **Projects:** edit `projects` in `src/data/content.ts` to reflect real jobs. Categories, filter counts and the masonry layout (balanced automatically by each card's `shape`) update on their own.
 4. **Quote form:** set `VITE_QUOTE_ENDPOINT` (in `.env` or your host's environment settings) to any endpoint that accepts `multipart/form-data`, such as Formspree, Getform, Basin or your own API. Requests include all fields plus the uploaded photos. Without it, the form runs in **demo mode**: it shows the full flow but sends nothing, and says so on the success screen. Add `?simulate-error` to the URL to preview the error state.
-5. **Map:** `MapIllustration.tsx` is a stylised placeholder. Once the address is confirmed, swap it for a Google Maps embed (`<iframe loading="lazy" …>`) or keep it and point `mapsUrl` at the workshop.
-6. **Domain:** update `public/robots.txt` and `public/sitemap.xml`.
+5. **Estimator pricing:** every rand amount in `src/data/damage.ts` is a **demo figure**. Replace the base ranges and multipliers with Dino's real rates, or set `pricing.showPrices = false` to keep the interactive damage map (customers still mark panels, damage type and size, and send it with their quote request) without showing any prices. Glass and bent/cracked wheels are "priced on inspection" by default.
+6. **Map:** `MapIllustration.tsx` is a stylised placeholder. Once the address is confirmed, swap it for a Google Maps embed (`<iframe loading="lazy" …>`) or keep it and point `mapsUrl` at the workshop.
+7. **Domain:** update `public/robots.txt` and `public/sitemap.xml`.
+
+## Instant estimate
+
+Between the call-to-action band and the quote form, customers can mark damage on a five-view vehicle diagram (left, right, front, rear, top). For each panel they pick what happened (scratch, dent, crumpled/cracked, paint fade, stone chips) and how big it is (smaller than a palm, up to an A4 page, larger). A vehicle type (hatch/sedan, SUV/bakkie, luxury) and paint finish (solid, metallic/pearl) adjust the indicative range. "Request a formal quote" attaches the damage map to the quote form, pre-selects the repair type, and includes the map (as readable text and JSON) in the submission. Panels are keyboard-operable buttons, and a "choose from a list" control offers a non-visual alternative.
 
 ## Design notes
 

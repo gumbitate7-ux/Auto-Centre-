@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { heroSlides } from '../../data/content'
 import { prefersReducedMotion, subscribeScroll, clamp } from '../../lib/scroll'
 import { Button } from '../ui/Button'
+import { Icon } from '../ui/Icon'
 import { Picture } from '../ui/Picture'
 import './Hero.css'
 
@@ -123,6 +124,13 @@ export function Hero() {
                 View Our Work
               </Button>
             </div>
+            <a href="#estimate" className="hero__estimate">
+              <Icon name="pin" size={16} />
+              <span>
+                Not sure of the cost? <strong>Get an instant estimate</strong>
+              </span>
+              <Icon name="arrow-right" size={15} className="hero__estimate-arrow" />
+            </a>
           </div>
         </div>
       </div>

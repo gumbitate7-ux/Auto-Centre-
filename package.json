@@ -2,11 +2,12 @@
   "name": "dinos-auto-body-repairs",
   "private": true,
   "version": "1.0.0",
-  "description": "Website concept for Dino's Auto Body Repairs — panel beating, spray painting and accident repairs.",
+  "description": "Website concept for Dino's Auto Body Repairs \u2014 panel beating, spray painting and accident repairs.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:local": "tsc -b && vite build --mode offline",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "images": "node scripts/optimize-images.mjs"
@@ -24,6 +25,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "sharp": "^0.35.5",
     "typescript": "~5.9.3",
-    "vite": "^8.3.4"
+    "vite": "^8.3.4",
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }

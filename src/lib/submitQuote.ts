@@ -1,5 +1,7 @@
 import { business } from '../data/business'
+import type { DamageReport } from '../components/quote/QuoteContext'
 import { repairLabel, type QuoteValues } from '../components/quote/quoteModel'
+import { describeItem, formatRand, paintFinishes, vehicleTypes } from '../data/damage'
 
 const endpoint = import.meta.env.VITE_QUOTE_ENDPOINT
 
@@ -18,9 +20,13 @@ const makeReference = () => {
  * Sends a quote request. With VITE_QUOTE_ENDPOINT set, posts
  * multipart/form-data (including photos) to that URL. Otherwise waits
  * briefly and resolves, so the demo flow can be shown end to end.
- * Add `?simulate-error` to the URL to preview the error state.
+ * Add `?simulate-error` to the URL to preview the error state. A damage map
+ * from the estimator is sent as readable text (damageMap) and JSON.
  */
-export async function submitQuote(values: QuoteValues): Promise<{ reference: string }> {
+export async function submitQuote(
+  values: QuoteValues,
+  damage: DamageReport | null = null,
+): Promise<{ reference: string }> {
   const reference = makeReference()
 
   if (!endpoint) {
@@ -43,6 +49,15 @@ export async function submitQuote(values: QuoteValues): Promise<{ reference: str
   data.append('vehicleYear', values.year.trim())
   data.append('repairType', repairLabel(values.repairType))
   data.append('message', values.message.trim())
+  if (damage) {
+    const lines = damage.items.map((item, i) => `${i + 1}. ${describeItem(item)}`)
+    lines.push(`Vehicle: ${vehicleTypes[damage.vehicle]}, ${paintFinishes[damage.paint].toLowerCase()}`)
+    if (damage.estimate && damage.estimate.high > 0) {
+      lines.push(`Indicative estimate shown: ${formatRand(damage.estimate.low)} – ${formatRand(damage.estimate.high)}`)
+    }
+    data.append('damageMap', lines.join('\n'))
+    data.append('damageMapJson', JSON.stringify(damage))
+  }
   values.photos.forEach((file) => data.append('photos', file, file.name))
 
   const response = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })

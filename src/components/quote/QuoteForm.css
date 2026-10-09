@@ -869,3 +869,92 @@ input:focus-visible + .dropzone {
     stroke-dashoffset: 0;
   }
 }
+
+/* ---------------------------------------------------------------- attached damage map */
+
+.damage-attach {
+  margin: -8px 0 22px;
+  border-radius: var(--radius-m);
+  background: #f6f2ec;
+  box-shadow: inset 0 0 0 1px rgb(111 101 86 / 0.25);
+  animation: error-in 300ms var(--ease-soft);
+}
+
+.damage-attach--full {
+  margin: 0;
+}
+
+.damage-attach__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 6px 10px 12px;
+}
+
+.damage-attach__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--c-accent-ink);
+  color: #fff;
+}
+
+.damage-attach__title {
+  flex: 1;
+  display: grid;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  line-height: 1.35;
+}
+
+.damage-attach__title span {
+  font-weight: 450;
+  font-size: 0.82rem;
+  color: var(--c-muted);
+}
+
+.damage-attach__link {
+  min-height: 34px;
+  padding: 0 8px;
+  font-size: 0.84rem;
+  font-weight: 540;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.damage-attach__remove {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  color: var(--c-subtle);
+}
+
+.damage-attach__remove:hover {
+  color: var(--c-ink);
+  background: rgb(255 255 255 / 0.6);
+}
+
+.damage-attach__list {
+  display: grid;
+  gap: 2px;
+  padding: 0 14px 12px 52px;
+  font-size: 0.86rem;
+  color: var(--c-ink-2);
+}
+
+.damage-attach__list li {
+  display: flex;
+  gap: 8px;
+}
+
+.damage-attach__list span {
+  min-width: 14px;
+  color: var(--c-accent-ink);
+  font-weight: 600;
+}

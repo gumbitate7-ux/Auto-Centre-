@@ -6,6 +6,7 @@ export const navigation = [
   { id: 'work', label: 'Our Work' },
   { id: 'about', label: 'About' },
   { id: 'why', label: "Why Dino's" },
+  { id: 'estimate', label: 'Estimate' },
   { id: 'contact', label: 'Contact' },
 ] as const
 

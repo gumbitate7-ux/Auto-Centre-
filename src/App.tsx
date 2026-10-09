@@ -1,6 +1,7 @@
 import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
 import { MobileActionBar } from './components/layout/MobileActionBar'
+import { DamageEstimator } from './components/estimator/DamageEstimator'
 import { QuoteProvider } from './components/quote/QuoteContext'
 import { About } from './components/sections/About'
 import { BeforeAfter } from './components/sections/BeforeAfter'
@@ -24,6 +25,7 @@ const sectionMap: Record<string, string> = {
   work: 'work',
   gallery: 'work',
   process: '',
+  estimate: 'estimate',
   quote: '',
   contact: 'contact',
 }
@@ -47,6 +49,7 @@ export default function App() {
         <Gallery />
         <Process />
         <CtaBand />
+        <DamageEstimator />
         <QuoteSection />
         <Contact />
       </main>

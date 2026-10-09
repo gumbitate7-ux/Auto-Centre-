@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { business, whatsappHref } from '../../data/business'
+import { describeItem, pricing } from '../../data/damage'
+import { scrollToSection } from '../../lib/scroll'
 import { isDemoMode, submitQuote } from '../../lib/submitQuote'
 import { Button } from '../ui/Button'
 import { Icon } from '../ui/Icon'
 import { TextArea, TextField, describedBy } from './Field'
 import { PhotoDropzone } from './PhotoDropzone'
+import { DamageAttachment, estimateText } from './DamageAttachment'
 import { useQuote } from './QuoteContext'
 import {
   initialValues,
@@ -29,7 +32,7 @@ const contactOptions: { value: ContactMethod; label: string }[] = [
 ]
 
 export function QuoteForm() {
-  const { preset } = useQuote()
+  const { preset, damage, detachDamage } = useQuote()
   const [values, setValues] = useState<QuoteValues>(initialValues)
   const [errors, setErrors] = useState<QuoteErrors>({})
   const [step, setStep] = useState(0)
@@ -123,7 +126,7 @@ export function QuoteForm() {
     }
     setStatus('submitting')
     try {
-      const result = await submitQuote(values)
+      const result = await submitQuote(values, damage)
       setReference(result.reference)
       shouldFocusStep.current = true
       setStatus('success')
@@ -133,6 +136,7 @@ export function QuoteForm() {
   }
 
   const reset = () => {
+    detachDamage()
     setValues(initialValues)
     setErrors({})
     setPresetNote(null)
@@ -218,7 +222,9 @@ export function QuoteForm() {
             </div>
           </div>
 
-          {presetNote && step < 2 && (
+          {damage && step < 2 && <DamageAttachment report={damage} onRemove={detachDamage} />}
+
+          {presetNote && !damage && step < 2 && (
             <p className="quote-preset">
               <Icon name="check" size={15} strokeWidth={2} />
               Repair type selected: <strong>{presetNote}</strong>
@@ -341,6 +347,11 @@ export function QuoteForm() {
 
             {step === 2 && (
               <div className="quote-grid">
+                {damage && (
+                  <div className="quote-grid__full">
+                    <DamageAttachment report={damage} full onRemove={detachDamage} />
+                  </div>
+                )}
                 <fieldset
                   className="quote-grid__full choice-group"
                   aria-describedby={describedBy('quote-repairType', errors.repairType)}
@@ -427,6 +438,16 @@ export function QuoteForm() {
                     value={values.photos.length ? `${values.photos.length} attached` : 'None attached'}
                   />
                 </ReviewGroup>
+                {damage && (
+                  <ReviewGroup title="Damage map" onEdit={() => scrollToSection('estimate')}>
+                    {damage.items.map((item, i) => (
+                      <ReviewRow key={item.panel} label={`Area ${i + 1}`} value={describeItem(item)} />
+                    ))}
+                    {pricing.showPrices && estimateText(damage) && (
+                      <ReviewRow label="Estimate" value={`${estimateText(damage)} (indicative)`} />
+                    )}
+                  </ReviewGroup>
+                )}
 
                 <label className={`consent${errors.consent ? ' has-error' : ''}`}>
                   <input

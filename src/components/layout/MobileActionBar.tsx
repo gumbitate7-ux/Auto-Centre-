@@ -16,7 +16,9 @@ export function MobileActionBar() {
   useEffect(() => subscribeScroll((y, vh) => setPastHero(y > vh * 0.75)), [])
 
   useEffect(() => {
-    const targets = ['quote', 'contact'].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
+    const targets = ['estimate', 'quote', 'contact']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[]
     const visible = new Set<string>()
     const io = new IntersectionObserver(
       (entries) => {

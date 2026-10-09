@@ -1,5 +1,6 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 import { business } from './src/data/business'
 
 const escapeHtml = (value: string) =>
@@ -64,10 +65,21 @@ function seo(): Plugin {
   }
 }
 
-export default defineConfig({
-  plugins: [react(), seo()],
-  build: {
-    target: 'es2022',
-    cssCodeSplit: false,
-  },
+/**
+ * `npm run build` → dist/ for hosting.
+ * `npm run build:local` → local-site/: relative paths with JS, CSS and fonts
+ * inlined into index.html, so the site opens by double-clicking the file
+ * (file://) with no server. Images stay alongside in images/.
+ */
+export default defineConfig(({ mode }) => {
+  const local = mode === 'offline'
+  return {
+    base: local ? './' : '/',
+    plugins: [react(), seo(), ...(local ? [viteSingleFile({ removeViteModuleLoader: true })] : [])],
+    build: {
+      target: 'es2022',
+      cssCodeSplit: false,
+      outDir: local ? 'local-site' : 'dist',
+    },
+  }
 })

@@ -1,4 +1,4 @@
-import { describeItem, formatRand, pricing } from '../../data/damage'
+import { describeItem, formatEstimate, pricing } from '../../data/damage'
 import { scrollToSection } from '../../lib/scroll'
 import { Icon } from '../ui/Icon'
 import type { DamageReport } from './QuoteContext'
@@ -9,10 +9,7 @@ interface DamageAttachmentProps {
   onRemove: () => void
 }
 
-export const estimateText = (report: DamageReport) =>
-  report.estimate && report.estimate.high > 0
-    ? `${formatRand(report.estimate.low)} – ${formatRand(report.estimate.high)}`
-    : null
+export const estimateText = (report: DamageReport) => formatEstimate(report.estimate)
 
 /** Shows the damage map handed over from the estimator inside the quote form. */
 export function DamageAttachment({ report, full = false, onRemove }: DamageAttachmentProps) {

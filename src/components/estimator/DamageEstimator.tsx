@@ -1,4 +1,4 @@
-import { useMemo, useState, type ChangeEvent } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   damageSizes,
   damageTypes,
@@ -88,23 +88,33 @@ function Choice<T extends string>({
 }
 
 export function DamageEstimator() {
-  const { attachDamage, presetService } = useQuote()
+  const { damage, attachDamage, detachDamage, presetService } = useQuote()
   const [items, setItems] = useState<DamageItem[]>([])
   const [active, setActive] = useState<PanelId | null>(null)
   const [view, setView] = useState<ViewId>('left')
   const [hover, setHover] = useState<PanelId | null>(null)
   const [vehicle, setVehicle] = useState<VehicleType>('compact')
   const [paint, setPaint] = useState<PaintFinish>('solid')
-  const [sent, setSent] = useState(false)
+  const [pick, setPick] = useState<PanelId | ''>('')
 
   const result = useMemo(() => estimate(items, vehicle, paint), [items, vehicle, paint])
   const low = useCountUp(result.low)
   const high = useCountUp(result.high)
+  const attached = damage !== null
+
+  // Once attached, the quote form always carries the live map. Clearing every item detaches it;
+  // a map removed from the form stays removed until it is requested again.
+  useEffect(() => {
+    if (!attached) return
+    if (!items.length) detachDamage()
+    else attachDamage({ items, vehicle, paint, estimate: pricing.showPrices ? result : null })
+    // `result` changes exactly when items, vehicle or paint change.
+  }, [result])
+
   const selected = items.map((i) => i.panel)
   const currentView = views.find((v) => v.id === view)!
 
   const select = (panel: PanelId) => {
-    setSent(false)
     if (!selected.includes(panel)) {
       setItems((prev) => [...prev, { panel, type: defaultTypeFor(panel), size: 'medium' }])
     }
@@ -112,12 +122,10 @@ export function DamageEstimator() {
   }
 
   const update = (panel: PanelId, patch: Partial<DamageItem>) => {
-    setSent(false)
     setItems((prev) => prev.map((i) => (i.panel === panel ? { ...i, ...patch } : i)))
   }
 
   const remove = (panel: PanelId) => {
-    setSent(false)
     setItems((prev) => prev.filter((i) => i.panel !== panel))
     if (active === panel) setActive(null)
   }
@@ -125,23 +133,23 @@ export function DamageEstimator() {
   const clear = () => {
     setItems([])
     setActive(null)
-    setSent(false)
   }
 
-  const fromList = (event: ChangeEvent<HTMLSelectElement>) => {
-    const panel = event.target.value as PanelId
-    if (!panel) return
-    const inViews = viewsWith(panel)
+  const addPick = () => {
+    if (!pick) return
+    const inViews = viewsWith(pick)
     if (!inViews.includes(view)) setView(inViews[0])
-    select(panel)
-    event.target.value = ''
+    select(pick)
+    setPick('')
   }
 
   const request = () => {
     if (!items.length) return
-    attachDamage({ items, vehicle, paint, estimate: pricing.showPrices ? result : null })
-    presetService(serviceFor(items))
-    setSent(true)
+    // Already attached: the form is in sync, so don't override a repair type the customer picked.
+    if (!attached) {
+      attachDamage({ items, vehicle, paint, estimate: pricing.showPrices ? result : null })
+      presetService(serviceFor(items))
+    }
     window.setTimeout(() => scrollToSection('quote'), 30)
   }
 
@@ -216,25 +224,32 @@ export function DamageEstimator() {
                     <span>{currentView.hint}</span>
                   )}
                 </p>
-                <label className="estimator__list-pick">
-                  <span className="visually-hidden">Add a damaged area from a list</span>
-                  <select onChange={fromList} defaultValue="">
-                    <option value="" disabled>
-                      Or choose an area from a list…
-                    </option>
-                    {listGroups.map((g) => (
-                      <optgroup key={g.label} label={g.label}>
-                        {g.ids.map((id) => (
-                          <option key={id} value={id}>
-                            {panelInfo[id].label}
-                            {selected.includes(id) ? ' (marked)' : ''}
-                          </option>
-                        ))}
-                      </optgroup>
-                    ))}
-                  </select>
-                  <Icon name="chevron-right" size={16} className="estimator__list-chevron" />
-                </label>
+                <div className="estimator__list-pick">
+                  <label htmlFor="estimate-pick" className="visually-hidden">
+                    Damaged area
+                  </label>
+                  <div className="estimator__list-select">
+                    <select id="estimate-pick" value={pick} onChange={(e) => setPick(e.target.value as PanelId | '')}>
+                      <option value="" disabled>
+                        Or choose an area from a list…
+                      </option>
+                      {listGroups.map((g) => (
+                        <optgroup key={g.label} label={g.label}>
+                          {g.ids.map((id) => (
+                            <option key={id} value={id}>
+                              {panelInfo[id].label}
+                              {selected.includes(id) ? ' (marked)' : ''}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                    </select>
+                    <Icon name="chevron-right" size={16} className="estimator__list-chevron" />
+                  </div>
+                  <button type="button" className="estimator__list-add" onClick={addPick} disabled={!pick}>
+                    Add
+                  </button>
+                </div>
               </div>
             </div>
           </Reveal>
@@ -246,10 +261,7 @@ export function DamageEstimator() {
                 legend="Vehicle"
                 compact
                 value={vehicle}
-                onChange={(v) => {
-                  setSent(false)
-                  setVehicle(v)
-                }}
+                onChange={setVehicle}
                 options={(Object.keys(vehicleTypes) as VehicleType[]).map((k) => ({
                   value: k,
                   label: vehicleTypes[k],
@@ -260,10 +272,7 @@ export function DamageEstimator() {
                 legend="Paint"
                 compact
                 value={paint}
-                onChange={(v) => {
-                  setSent(false)
-                  setPaint(v)
-                }}
+                onChange={setPaint}
                 options={(Object.keys(paintFinishes) as PaintFinish[]).map((k) => ({
                   value: k,
                   label: paintFinishes[k],
@@ -380,6 +389,8 @@ export function DamageEstimator() {
                         <span className="estimator__dash"> – </span>
                         {formatRand(Math.round(high / 10) * 10)}
                       </>
+                    ) : items.length > 0 ? (
+                      'On inspection'
                     ) : (
                       <span className="estimator__amount-empty">{formatRand(0)}</span>
                     )}
@@ -391,7 +402,7 @@ export function DamageEstimator() {
                         ? 'Marked items are priced on inspection'
                         : ''}
                   </p>
-                  {result.onInspection > 0 && (
+                  {result.onInspection > 0 && priced > 0 && (
                     <p className="estimator__poi">
                       + {result.onInspection} item{result.onInspection > 1 ? 's' : ''} priced on inspection
                     </p>
@@ -400,8 +411,14 @@ export function DamageEstimator() {
               ) : (
                 <p className="estimator__subhead">Your damage map is ready to send</p>
               )}
+              {attached && (
+                <p className="estimator__synced">
+                  <Icon name="check" size={15} />
+                  Attached to your quote request. Changes here update it.
+                </p>
+              )}
               <Button block size="lg" icon="arrow-right" onClick={request} disabled={!items.length} magnetic>
-                {sent ? 'Added to your quote request' : 'Request a formal quote'}
+                {attached ? 'Continue your quote request' : 'Request a formal quote'}
               </Button>
               <p className="estimator__disclaimer">
                 {pricing.showPrices

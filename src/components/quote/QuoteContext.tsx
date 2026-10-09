@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from 'react'
 import type { DamageItem, Estimate, PaintFinish, VehicleType } from '../../data/damage'
-import type { ServiceId } from '../../data/services'
+import type { RepairType } from './quoteModel'
 
 /** A damage map handed over from the estimator to the quote form. */
 export interface DamageReport {
@@ -13,8 +13,8 @@ export interface DamageReport {
 
 interface QuoteContextValue {
   /** Repair type pre-selected by a service card, project or the estimator, if any. */
-  preset: { service: ServiceId; nonce: number } | null
-  presetService: (service: ServiceId) => void
+  preset: { service: RepairType; nonce: number } | null
+  presetService: (service: RepairType) => void
   damage: DamageReport | null
   attachDamage: (report: DamageReport) => void
   detachDamage: () => void
@@ -25,7 +25,7 @@ const QuoteContext = createContext<QuoteContextValue | null>(null)
 export function QuoteProvider({ children }: { children: ReactNode }) {
   const [preset, setPreset] = useState<QuoteContextValue['preset']>(null)
   const [damage, setDamage] = useState<DamageReport | null>(null)
-  const presetService = useCallback((service: ServiceId) => {
+  const presetService = useCallback((service: RepairType) => {
     setPreset({ service, nonce: Date.now() })
   }, [])
   const attachDamage = useCallback((report: DamageReport) => setDamage(report), [])

@@ -205,16 +205,29 @@ export function estimate(items: DamageItem[], vehicle: VehicleType, paint: Paint
 }
 
 /** Best-matching service for the quote form, based on what was marked. */
-export function serviceFor(items: DamageItem[]): ServiceId {
-  if (items.some((i) => i.type === 'major')) return 'accident'
-  if (items.every((i) => i.type === 'dent')) return 'dent'
-  if (items.every((i) => panelInfo[i.panel].cls === 'bumper')) return 'bumper'
-  if (items.every((i) => ['scratch', 'paint', 'chip'].includes(i.type))) return 'spray'
+export function serviceFor(items: DamageItem[]): ServiceId | 'unsure' {
+  const notBody: PanelClass[] = ['glass', 'light', 'wheel']
+  const body = items.filter((i) => !notBody.includes(panelInfo[i.panel].cls))
+  const isMajor = (i: DamageItem) => i.type === 'major' && !['glass', 'wheel'].includes(panelInfo[i.panel].cls)
+  if (items.some(isMajor)) return 'accident'
+  // Glass, lights or wheels only: let the team decide after seeing it.
+  if (!body.length) return 'unsure'
+  if (body.every((i) => panelInfo[i.panel].cls === 'bumper')) return 'bumper'
+  if (body.every((i) => i.type === 'dent')) return 'dent'
+  if (body.every((i) => ['scratch', 'paint', 'chip'].includes(i.type))) return 'spray'
   return 'panel'
 }
 
 export const formatRand = (value: number) =>
   new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR', maximumFractionDigits: 0 }).format(value)
+
+/** The indicative range as text, noting items that can only be priced on inspection. */
+export function formatEstimate(estimate: Estimate | null) {
+  if (!estimate) return null
+  const { low, high, onInspection } = estimate
+  if (high === 0) return onInspection ? 'On inspection' : null
+  return `${formatRand(low)} – ${formatRand(high)}${onInspection ? ` + ${onInspection} on inspection` : ''}`
+}
 
 export const describeItem = (item: DamageItem) =>
   `${panelInfo[item.panel].label}: ${damageTypes[item.type].label.toLowerCase()}, ${damageSizes[item.size].label.toLowerCase()}`

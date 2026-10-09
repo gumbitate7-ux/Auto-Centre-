@@ -15,6 +15,43 @@ interface VehicleDiagramProps {
 
 const UNDER = new Set(['shadow', 'tyre'])
 const PAD = 14
+const GRID = 18
+
+/**
+ * A point well inside the panel for its number marker. The bounding-box centre can fall
+ * outside concave shapes (a wing wrapping a wheel arch), so sample a grid and take the
+ * inside point furthest from any outside point.
+ */
+function markerPoint(path: SVGPathElement): [number, number] {
+  const b = path.getBBox()
+  const centre: [number, number] = [b.x + b.width / 2, b.y + b.height / 2]
+  const sx = b.width / GRID
+  const sy = b.height / GRID
+  const inside: [number, number][] = []
+  const outside: [number, number][] = []
+  // One extra ring of samples outside the box so the panel edge counts as outside.
+  for (let i = -1; i <= GRID + 1; i++) {
+    for (let j = -1; j <= GRID + 1; j++) {
+      const x = b.x + i * sx
+      const y = b.y + j * sy
+      const isIn = i >= 0 && i <= GRID && j >= 0 && j <= GRID && path.isPointInFill(new DOMPoint(x, y))
+      ;(isIn ? inside : outside).push([x, y])
+    }
+  }
+  let best = centre
+  let bestScore = -1
+  for (const [x, y] of inside) {
+    let nearest = Infinity
+    for (const [ox, oy] of outside) nearest = Math.min(nearest, (x - ox) ** 2 + (y - oy) ** 2)
+    // Prefer roomier points, then points nearer the middle.
+    const score = Math.sqrt(nearest) - Math.hypot(x - centre[0], y - centre[1]) * 0.05
+    if (score > bestScore) {
+      bestScore = score
+      best = [x, y]
+    }
+  }
+  return best
+}
 
 export function VehicleDiagram({
   view,
@@ -39,8 +76,7 @@ export function VehicleDiagram({
     setViewBox(`${box.x - PAD} ${box.y - PAD} ${box.width + PAD * 2} ${box.height + PAD * 2}`)
     const next: Partial<Record<PanelId, [number, number]>> = {}
     g.querySelectorAll<SVGPathElement>('path[data-panel]').forEach((p) => {
-      const b = p.getBBox()
-      next[p.dataset.panel as PanelId] = [b.x + b.width / 2, b.y + b.height / 2]
+      next[p.dataset.panel as PanelId] = markerPoint(p)
     })
     setCentres(next)
   }, [view])
@@ -91,9 +127,8 @@ export function VehicleDiagram({
                   }`}
                   role="button"
                   tabIndex={0}
-                  aria-pressed={isSelected}
                   aria-label={`${info.label}${info.side ? `, ${info.side.toLowerCase()}` : ''}${
-                    isSelected ? `, marked as damage ${index + 1}` : ''
+                    isSelected ? `, marked as damage ${index + 1}, select to edit` : ''
                   }`}
                   onClick={() => onSelect(p.id)}
                   onKeyDown={(e) => onKey(e, p.id)}

@@ -1,7 +1,7 @@
 import { business } from '../data/business'
 import type { DamageReport } from '../components/quote/QuoteContext'
 import { repairLabel, type QuoteValues } from '../components/quote/quoteModel'
-import { describeItem, formatRand, paintFinishes, vehicleTypes } from '../data/damage'
+import { describeItem, formatEstimate, formatRand, paintFinishes, vehicleTypes } from '../data/damage'
 
 const endpoint = import.meta.env.VITE_QUOTE_ENDPOINT
 
@@ -50,11 +50,15 @@ export async function submitQuote(
   data.append('repairType', repairLabel(values.repairType))
   data.append('message', values.message.trim())
   if (damage) {
-    const lines = damage.items.map((item, i) => `${i + 1}. ${describeItem(item)}`)
+    const priced = damage.estimate?.lines
+    const lines = damage.items.map((item, i) => {
+      const range = priced?.find((l) => l.panel === item.panel)?.range
+      const price = priced ? (range ? ` (${formatRand(range[0])} – ${formatRand(range[1])})` : ' (on inspection)') : ''
+      return `${i + 1}. ${describeItem(item)}${price}`
+    })
     lines.push(`Vehicle: ${vehicleTypes[damage.vehicle]}, ${paintFinishes[damage.paint].toLowerCase()}`)
-    if (damage.estimate && damage.estimate.high > 0) {
-      lines.push(`Indicative estimate shown: ${formatRand(damage.estimate.low)} – ${formatRand(damage.estimate.high)}`)
-    }
+    const shown = formatEstimate(damage.estimate)
+    if (shown) lines.push(`Indicative estimate shown: ${shown}`)
     data.append('damageMap', lines.join('\n'))
     data.append('damageMapJson', JSON.stringify(damage))
   }

@@ -132,9 +132,16 @@
 }
 
 .estimator__list-pick {
-  position: relative;
   display: inline-flex;
+  gap: 6px;
+}
+
+.estimator__list-select {
+  position: relative;
+  display: flex;
   align-items: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .estimator__list-pick select {
@@ -160,6 +167,28 @@
   transform: rotate(90deg);
   pointer-events: none;
   color: var(--c-subtle);
+}
+
+.estimator__list-add {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-s);
+  background: var(--c-ink);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition:
+    background-color 250ms var(--ease-soft),
+    opacity 250ms var(--ease-soft);
+}
+
+.estimator__list-add:hover:not(:disabled) {
+  background: var(--c-ink-2);
+}
+
+.estimator__list-add:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* ---------------------------------------------------------------- diagram */
@@ -618,6 +647,20 @@
   color: var(--c-on-dark-muted);
 }
 
+.estimator__synced {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: var(--c-on-dark);
+}
+
+.estimator__synced svg {
+  flex: none;
+  color: var(--c-accent);
+}
+
 .estimator__total .btn {
   margin-top: 6px;
 }
@@ -664,6 +707,10 @@
 
   .estimator__list-pick select {
     width: 100%;
+  }
+
+  .estimator__list-pick {
+    display: flex;
   }
 
   .dmg-item__toggle {

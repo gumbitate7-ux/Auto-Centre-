@@ -47,13 +47,17 @@ export function QuoteForm() {
   // A service card or project asked for this repair type.
   useEffect(() => {
     if (!preset) return
-    setValues((v) => ({ ...v, repairType: preset.service }))
-    setErrors((e) => ({ ...e, repairType: undefined }))
-    setPresetNote(repairLabel(preset.service))
     if (status === 'success') {
+      // A new request after a sent one starts clean rather than reusing the last photos and details.
+      setValues({ ...initialValues, repairType: preset.service })
+      setErrors({})
       setStatus('idle')
       setStep(0)
+    } else {
+      setValues((v) => ({ ...v, repairType: preset.service }))
+      setErrors((e) => ({ ...e, repairType: undefined }))
     }
+    setPresetNote(repairLabel(preset.service))
     // Only react to new presets, not to status changes.
   }, [preset])
 
@@ -128,6 +132,8 @@ export function QuoteForm() {
     try {
       const result = await submitQuote(values, damage)
       setReference(result.reference)
+      // The map went with this request; the estimator can start a new one.
+      detachDamage()
       shouldFocusStep.current = true
       setStatus('success')
     } catch {
@@ -444,7 +450,7 @@ export function QuoteForm() {
                       <ReviewRow key={item.panel} label={`Area ${i + 1}`} value={describeItem(item)} />
                     ))}
                     {pricing.showPrices && estimateText(damage) && (
-                      <ReviewRow label="Estimate" value={`${estimateText(damage)} (indicative)`} />
+                      <ReviewRow label="Indicative estimate" value={estimateText(damage)!} />
                     )}
                   </ReviewGroup>
                 )}

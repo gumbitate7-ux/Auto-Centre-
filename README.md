@@ -19,7 +19,8 @@ Before committing, check it's free on the CIPC name register, as a domain, and o
 | Path | What it is |
 |---|---|
 | `assets/ config/ layout/ locales/ sections/ snippets/ templates/` | The Shopify theme (Online Store 2.0), custom built for this store |
-| `dist/homeward-theme.zip` | The theme, zipped and ready to upload to Shopify |
+| `dist/Homeward-Store-Complete.zip` | **Everything in one download:** theme zip, product CSV and photos, copy-paste policies, brand files, PDF guides and preview screenshots. Unzip it and open `START-HERE.txt`. |
+| `dist/homeward-theme.zip` | Just the theme, zipped and ready to upload to Shopify |
 | `store-setup/products.csv` | Product import file (title, description, R599 price, SEO) |
 | `store-setup/product-images/` | The four product photos, cleaned up (supplier watermark removed, typo fixed, fake "Hey Sir" badge removed) |
 | `store-setup/brand/` | Logo, white logo, app icon, social sharing image |

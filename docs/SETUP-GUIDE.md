@@ -215,7 +215,7 @@ These appear in the footer and at checkout.
 - **Customize email templates:** upload `store-setup/brand/homeward-logo.png`, set the accent colour to `#1E5F4B`.
 - **Sender email:** use your own domain email (e.g. `hello@homeward.co.za`) and verify it.
 - **Order confirmation:** add a line such as: *"Weekday orders placed before 13:00 are dispatched the same day. We'll email your Aramex tracking number as soon as your parcel is on its way."*
-- **Shipping confirmation:** add: *"Need help? WhatsApp us on [number]."*
+- **Shipping confirmation:** add: *"Need help? WhatsApp us on [WhatsApp number]."*
 
 ---
 

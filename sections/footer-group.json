@@ -1,0 +1,50 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand": {
+          "type": "brand",
+          "settings": {
+            "text": "<p>A small South African team making it harder to lose the things you carry every day. Every order is checked, packed and handed to Aramex by us.</p>"
+          }
+        },
+        "menu-shop": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shop",
+            "menu": "",
+            "fallback": "shop"
+          }
+        },
+        "menu-help": {
+          "type": "menu",
+          "settings": {
+            "heading": "Help",
+            "menu": "",
+            "fallback": "help"
+          }
+        },
+        "menu-legal": {
+          "type": "menu",
+          "settings": {
+            "heading": "Policies",
+            "menu": "",
+            "fallback": "legal"
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "settings": {
+            "heading": "Talk to us"
+          }
+        }
+      },
+      "block_order": ["brand", "menu-shop", "menu-help", "menu-legal", "contact"],
+      "settings": {}
+    }
+  },
+  "order": ["footer"]
+}

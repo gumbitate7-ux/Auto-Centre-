@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Returns & warranty",
+        "heading": "Returns & warranty",
+        "heading_level": "h1",
+        "text": "<p>Simple, fair, and in writing. Plus everything the Consumer Protection Act already guarantees you.</p>",
+        "alignment": "center",
+        "background": "default",
+        "compact": true
+      }
+    },
+    "promises": {
+      "type": "features",
+      "blocks": {
+        "r1": { "type": "feature", "settings": { "icon": "return", "title": "30 days to change your mind", "text": "<p>Return it unused, in its original packaging, within 30 days of delivery for a full refund of the purchase price.</p>" } },
+        "r2": { "type": "feature", "settings": { "icon": "shield", "title": "12-month warranty", "text": "<p>If a card develops a fault within 12 months, we'll repair or replace it, or refund you. We pay the courier both ways.</p>" } },
+        "r3": { "type": "feature", "settings": { "icon": "package", "title": "Arrived damaged?", "text": "<p>Send us a photo as soon as you can and we'll send a replacement straight away.</p>" } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {
+        "heading": "",
+        "center": true,
+        "style": "cards",
+        "columns": "3",
+        "background": "default"
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "title": "Tell us", "text": "<p>WhatsApp or email us your order number and whether it's a return or a warranty claim.</p>" } },
+        "s2": { "type": "step", "settings": { "title": "Remove it from Find My", "text": "<p>In Find My, tap the card → <strong>Remove Item</strong>. Otherwise it stays locked to your Apple ID and can't be checked or reused.</p>" } },
+        "s3": { "type": "step", "settings": { "title": "Send it back", "text": "<p>We'll reply with our returns address and instructions. For warranty claims we arrange and pay for the Aramex collection.</p>" } },
+        "s4": { "type": "step", "settings": { "title": "Get your refund", "text": "<p>We refund your card within 5 working days of receiving the return, or ship a replacement.</p>" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Returning something",
+        "note": "",
+        "background": "surface",
+        "anchor": "how-returns-work"
+      }
+    },
+    "fine-print": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "The fine print",
+        "heading_level": "h2",
+        "text": "<p><strong>Change-of-mind returns.</strong> Items must be unused, undamaged and in their original packaging, with all contents. We refund the full purchase price. Unless the item is faulty, the cost of sending it back is for your account. You're welcome to use any tracked courier, PostNet or Pargo.</p><p><strong>Cooling-off period.</strong> Under section 44 of the Electronic Communications and Transactions Act you may cancel an online purchase within 7 days of delivery without reason or penalty. Our 30-day window already covers this.</p><p><strong>Faulty goods.</strong> Under section 56 of the Consumer Protection Act, you may return goods that are defective within 6 months for a repair, replacement or refund. Our 12-month warranty goes beyond that. The warranty doesn't cover damage from misuse, water damage, or normal wear and tear.</p><p><strong>Refunds.</strong> Refunds go back to the card you paid with via Yoco, within 5 working days of us receiving and checking the return. Your bank may take a few extra days to reflect it.</p>",
+        "button_label": "Start a return",
+        "button_link": "/pages/contact",
+        "alignment": "left",
+        "background": "default",
+        "compact": false
+      }
+    }
+  },
+  "order": ["intro", "promises", "how", "fine-print"]
+}

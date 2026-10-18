@@ -1,0 +1,53 @@
+<section class="section note section--{{ section.settings.background }}">
+  <div class="container container--narrow">
+    <div class="note__card">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      <div class="rte note__text">{{ section.settings.text }}</div>
+      <div class="note__sign">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: section.settings.signature, width: 56, height: 56, class: 'note__avatar' }}
+        {%- else -%}
+          <span class="note__avatar note__avatar--mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="28" height="28"><path d="M10.4 21.2 20 11.6l9.6 9.6" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="25.6" r="3.4" fill="currentColor"/></svg>
+          </span>
+        {%- endif -%}
+        <span>
+          <strong>{{ section.settings.signature }}</strong>
+          {%- if section.settings.signature_role != blank -%}<small>{{ section.settings.signature_role }}</small>{%- endif -%}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Note from us",
+  "class": "section-note",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "A note from us" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why we started Homeward" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Write a few honest lines about why you started the store.</p>"
+    },
+    { "type": "image_picker", "id": "image", "label": "Signature photo" },
+    { "type": "text", "id": "signature", "label": "Signed by", "default": "The Homeward team" },
+    { "type": "text", "id": "signature_role", "label": "Role / location" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "surface"
+    }
+  ],
+  "presets": [{ "name": "Note from us" }]
+}
+{% endschema %}

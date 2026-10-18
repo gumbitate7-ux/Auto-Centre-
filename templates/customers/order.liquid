@@ -1,0 +1,54 @@
+<section class="section">
+  <div class="container">
+    <a href="{{ routes.account_url }}" class="link-arrow">{% render 'icon', name: 'chevron-left', size: 16 %} Back to your account</a>
+    <h1 class="h2">Order {{ order.name }}</h1>
+    <p class="muted">Placed {{ order.created_at | date: '%e %B %Y at %H:%M' }}</p>
+    {%- if order.cancelled -%}
+      <p class="notice">This order was cancelled on {{ order.cancelled_at | date: '%e %B %Y' }}.</p>
+    {%- endif -%}
+    <div class="account-grid">
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Product</th><th>Qty</th><th>Total</th></tr></thead>
+          <tbody>
+            {%- for line_item in order.line_items -%}
+              <tr>
+                <td>
+                  {{ line_item.title }}
+                  {%- if line_item.fulfillment -%}
+                    <br><small class="muted">
+                      Shipped {{ line_item.fulfillment.created_at | date: '%e %b' }}
+                      {%- if line_item.fulfillment.tracking_number %} &middot;
+                        <a href="{{ line_item.fulfillment.tracking_url }}" target="_blank" rel="noopener">Track ({{ line_item.fulfillment.tracking_number }})</a>
+                      {%- endif -%}
+                    </small>
+                  {%- endif -%}
+                </td>
+                <td>{{ line_item.quantity }}</td>
+                <td>{{ line_item.final_line_price | money_without_trailing_zeros }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+          <tfoot>
+            <tr><td colspan="2">Subtotal</td><td>{{ order.line_items_subtotal_price | money_without_trailing_zeros }}</td></tr>
+            {%- for shipping_method in order.shipping_methods -%}
+              <tr><td colspan="2">Delivery ({{ shipping_method.title }})</td><td>{{ shipping_method.price | money_without_trailing_zeros }}</td></tr>
+            {%- endfor -%}
+            {%- for tax_line in order.tax_lines -%}
+              <tr><td colspan="2">{{ tax_line.title }} ({{ tax_line.rate_percentage }}%) included</td><td>{{ tax_line.price | money_without_trailing_zeros }}</td></tr>
+            {%- endfor -%}
+            <tr><td colspan="2"><strong>Total</strong></td><td><strong>{{ order.total_price | money_without_trailing_zeros }}</strong></td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <aside class="card">
+        <h2 class="h4">Delivery address</h2>
+        <p>{{ order.shipping_address | format_address }}</p>
+        <p class="muted">Status: {{ order.fulfillment_status_label }}</p>
+        <h2 class="h4">Billing address</h2>
+        <p>{{ order.billing_address | format_address }}</p>
+        <p class="muted">Payment: {{ order.financial_status_label }}</p>
+      </aside>
+    </div>
+  </div>
+</section>

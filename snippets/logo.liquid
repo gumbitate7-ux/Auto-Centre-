@@ -1,0 +1,32 @@
+{%- comment -%}
+  Store logo. Falls back to the built-in Homeward mark + wordmark when no logo image is uploaded.
+  Accepts: inverse (boolean) for dark backgrounds.
+{%- endcomment -%}
+{%- if settings.logo != blank -%}
+  {{
+    settings.logo
+    | image_url: width: 600
+    | image_tag:
+      class: 'logo__image',
+      alt: shop.name,
+      widths: '160, 240, 320, 480, 600',
+      sizes: '(min-width: 750px) 260px, 200px',
+      loading: 'eager'
+  }}
+{%- else -%}
+  <span class="logo__lockup{% if inverse %} logo__lockup--inverse{% endif %}">
+    <svg class="logo__mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true" focusable="false">
+      <rect width="40" height="40" rx="9.6" fill="currentColor" class="logo__mark-bg"/>
+      <path d="M10.4 21.2 20 11.6l9.6 9.6" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="20" cy="25.6" r="3.4" fill="#fff"/>
+    </svg>
+    <span class="logo__text">
+      {%- if shop.name contains ' Supply Co' -%}
+        <span class="logo__name">{{ shop.name | split: ' Supply Co' | first }}</span>
+        <span class="logo__sub">Supply Co.</span>
+      {%- else -%}
+        <span class="logo__name">{{ shop.name }}</span>
+      {%- endif -%}
+    </span>
+  </span>
+{%- endif -%}

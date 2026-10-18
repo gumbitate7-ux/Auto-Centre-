@@ -1,0 +1,35 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "logo_width": 160,
+      "color_bg": "#FFFFFF",
+      "color_surface": "#F6F5F1",
+      "color_text": "#111827",
+      "color_muted": "#525B68",
+      "color_line": "#E5E2DA",
+      "color_accent": "#1E5F4B",
+      "color_accent_text": "#FFFFFF",
+      "color_dark": "#0F1A16",
+      "use_system_font": true,
+      "type_heading_font": "assistant_n4",
+      "type_body_font": "assistant_n4",
+      "company_legal_name": "Homeward Supply Co. (Pty) Ltd",
+      "company_city": "Johannesburg",
+      "support_email": "hello@homeward.co.za",
+      "support_hours": "Mon–Fri 08:00–17:00 · Sat 09:00–12:00",
+      "response_time": "We reply within one business day, usually within a few hours.",
+      "free_shipping": true,
+      "courier_name": "Aramex",
+      "dispatch_cutoff": 13,
+      "transit_min": 2,
+      "transit_max": 4,
+      "returns_days": 30,
+      "warranty_months": 12,
+      "cart_type": "drawer",
+      "show_cart_note": false,
+      "show_whatsapp_button": true,
+      "whatsapp_message": "Hi Homeward, I have a question about the tracker card."
+    }
+  }
+}

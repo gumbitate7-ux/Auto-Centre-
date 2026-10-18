@@ -1,0 +1,80 @@
+<section class="section comparison section--{{ section.settings.background }}">
+  <div class="container container--narrow">
+    <header class="section-head section-head--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<div class="section-head__text">{{ section.settings.text }}</div>{%- endif -%}
+    </header>
+
+    <div class="comparison__table" role="table" aria-label="{{ section.settings.heading | escape }}">
+      <div class="comparison__row comparison__row--head" role="row">
+        <span role="columnheader"><span class="visually-hidden">Feature</span></span>
+        <span role="columnheader" class="comparison__ours">{{ section.settings.ours_label }}</span>
+        <span role="columnheader">{{ section.settings.theirs_label }}</span>
+      </div>
+      {%- for block in section.blocks -%}
+        <div class="comparison__row" role="row" {{ block.shopify_attributes }}>
+          <span role="rowheader" class="comparison__label">{{ block.settings.label }}</span>
+          {%- assign values = block.settings.ours | append: '||' | append: block.settings.theirs | split: '||' -%}
+          {%- for v in values -%}
+            {%- assign vv = v | strip | downcase -%}
+            <span role="cell" class="comparison__cell{% if forloop.first %} comparison__ours{% endif %}">
+              {%- if vv == 'yes' -%}
+                <span class="comparison__yes">{% render 'icon', name: 'check', size: 20, stroke: 2.4 %}</span><span class="visually-hidden">Yes</span>
+              {%- elsif vv == 'no' -%}
+                <span class="comparison__no">{% render 'icon', name: 'x', size: 18, stroke: 2.2 %}</span><span class="visually-hidden">No</span>
+              {%- else -%}
+                {{ v | strip }}
+              {%- endif -%}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.note != blank -%}
+      <p class="comparison__note">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison",
+  "class": "section-comparison",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Why a card, not a tag?" },
+    { "type": "richtext", "id": "text", "label": "Text" },
+    { "type": "text", "id": "ours_label", "label": "Our column", "default": "Tracker card" },
+    { "type": "text", "id": "theirs_label", "label": "Other column", "default": "Coin-style tag" },
+    { "type": "text", "id": "note", "label": "Footnote" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "default"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Fits in a card slot" },
+        { "type": "text", "id": "ours", "label": "Our value", "info": "Type yes or no for a tick or cross, or any short text.", "default": "yes" },
+        { "type": "text", "id": "theirs", "label": "Other value", "default": "no" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison",
+      "blocks": [{ "type": "row" }, { "type": "row" }, { "type": "row" }]
+    }
+  ]
+}
+{% endschema %}

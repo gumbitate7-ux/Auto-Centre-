@@ -1,0 +1,6 @@
+# Non-theme files: ignored by `shopify theme push`
+docs/**
+store-setup/**
+scripts/**
+dist/**
+README.md

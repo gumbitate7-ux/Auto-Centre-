@@ -1,0 +1,44 @@
+<section class="section newsletter section--{{ section.settings.background }}">
+  <div class="container container--narrow newsletter__inner">
+    <h2 class="h3">{{ section.settings.heading }}</h2>
+    {%- if section.settings.text != blank -%}<div class="newsletter__text">{{ section.settings.text }}</div>{%- endif -%}
+    {%- form 'customer', id: 'NewsletterForm', class: 'newsletter__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      {%- if form.posted_successfully? -%}
+        <p class="form-status form-status--success" role="status">{% render 'icon', name: 'check-circle', size: 18 %} Thanks, you're on the list.</p>
+      {%- else -%}
+        <div class="newsletter__field">
+          <label for="NewsletterEmail" class="visually-hidden">Email address</label>
+          <input id="NewsletterEmail" type="email" name="contact[email]" class="field__input" placeholder="Your email address" autocomplete="email" required>
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </div>
+        {%- if form.errors -%}
+          <p class="form-status form-status--error" role="alert">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+        {%- endif -%}
+      {%- endif -%}
+      <p class="newsletter__fine">We respect your privacy (POPIA). Unsubscribe any time.</p>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "class": "section-newsletter",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Hear from us (rarely)" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>New products, restocks and the odd tip for getting more out of Find My. No spam.</p>" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "surface"
+    }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

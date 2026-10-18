@@ -1,0 +1,16 @@
+{%- comment -%}
+  Live dispatch countdown + Aramex delivery window. Calculated in South African time (SAST),
+  skipping weekends and the public holidays listed in theme settings. See assets/theme.js.
+{%- endcomment -%}
+<div class="delivery-estimate" data-delivery-estimate>
+  <span class="delivery-estimate__icon">{% render 'icon', name: 'truck', size: 22 %}</span>
+  <div class="delivery-estimate__body">
+    <p class="delivery-estimate__line" data-delivery-dispatch>
+      Order before {{ settings.dispatch_cutoff }}:00 on a weekday for same-day dispatch.
+    </p>
+    <p class="delivery-estimate__line delivery-estimate__line--muted" data-delivery-window>
+      {%- if settings.free_shipping -%}Free{%- endif %} {{ settings.courier_name }} delivery in
+      {{ settings.transit_min }}–{{ settings.transit_max }} working days.
+    </p>
+  </div>
+</div>

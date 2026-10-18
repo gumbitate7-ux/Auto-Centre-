@@ -1,0 +1,316 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Works with the Apple Find My app · iPhone only</p>",
+            "style": "eyebrow"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "unit_label": "for 2 cards"
+          }
+        },
+        "pitch": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Two 2 mm tracker cards that slip into your wallet and show up in Find My on your iPhone. Ring them when they're lost nearby, get an alert when you leave them behind, and see their last location on the map.</p>",
+            "style": "body"
+          }
+        },
+        "picker": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {}
+        },
+        "guarantees": {
+          "type": "guarantees",
+          "settings": {}
+        },
+        "payments": {
+          "type": "payment_icons",
+          "settings": {
+            "text": "Secure payment via Yoco"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "heading": "Details",
+            "open": false
+          }
+        },
+        "box": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "What's in the box",
+            "icon": "package",
+            "content": "<p>2 × slim tracker cards<br>1 × quick-start guide</p>",
+            "open": false
+          }
+        },
+        "specs": {
+          "type": "specs",
+          "settings": {
+            "heading": "Specifications",
+            "rows": "Size | 85 × 54 mm (bank-card size)\nThickness | 2 mm\nWorks with | Apple Find My on iPhone & iPad (iOS 14.5+)\nNot compatible with | Android\nConnection | Bluetooth Low Energy\nFinding | Play sound, left-behind alerts, Lost Mode, map location\nBattery | Rechargeable, wireless charging\nIn the box | 2 cards",
+            "open": false
+          }
+        },
+        "compat": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Compatibility",
+            "icon": "info",
+            "content": "<p>Works with iPhone and iPad running iOS 14.5 or later, through the built-in Find My app. Each card links to one Apple ID at a time; to give one to someone else, remove it from your Find My first.</p><p><strong>Not compatible with Android.</strong></p>",
+            "open": false
+          }
+        },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery & returns",
+            "icon": "truck",
+            "content": "<p><strong>Free Aramex delivery</strong> anywhere in South Africa. Order before 13:00 on a weekday and we dispatch the same day. Expect it in 2–4 working days in main centres, a little longer in outlying areas. You'll get a tracking number by email.</p><p><strong>30-day returns.</strong> Changed your mind? Send it back unused within 30 days for a full refund. <strong>12-month warranty</strong> on faulty cards. <a href=\"/pages/returns\">Full details</a></p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "price",
+        "pitch",
+        "picker",
+        "buy",
+        "delivery",
+        "guarantees",
+        "payments",
+        "description",
+        "box",
+        "specs",
+        "compat",
+        "shipping"
+      ],
+      "settings": {
+        "sticky_bar": true
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Aramex delivery",
+            "text": "Tracked, nationwide"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Full refund if unused"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "12-month warranty",
+            "text": "Faulty card? We replace it"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "title": "Local support",
+            "text": "WhatsApp or email us"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "style": "surface"
+      }
+    },
+    "ring": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-2mm-slim.jpg",
+        "fallback_alt": "Tracker card measuring 85 by 54 millimetres and 2 millimetres thin",
+        "layout": "image-left",
+        "background": "default",
+        "eyebrow": "Ultra-slim",
+        "heading": "Fits in a card slot. Barely there.",
+        "text": "<p>The same size as your bank card (85 × 54 mm) and only 2 mm thick. Slide it in behind your cards and forget it's there, until you need it.</p>",
+        "points": "",
+        "button_label": "",
+        "button_style": "secondary"
+      }
+    },
+    "left-behind": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-left-behind-alert.jpg",
+        "fallback_alt": "Left-behind notification for a wallet on the pavement",
+        "layout": "image-right",
+        "background": "surface",
+        "eyebrow": "Left-behind alerts",
+        "heading": "Walk away without it and your iPhone will say so.",
+        "text": "<p>Turn on <strong>Notify When Left Behind</strong> for the card in Find My. Add trusted places like home, and you'll only be alerted when it matters.</p>",
+        "points": "",
+        "button_label": "",
+        "button_style": "secondary"
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Switch it on",
+            "text": "<p>Press the button on the card. It beeps to let you know it's ready to pair.</p>"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Add it to Find My",
+            "text": "<p>Open <strong>Find My</strong> → <strong>Items</strong> → <strong>+</strong> → <strong>Add Other Item</strong> and follow the prompts.</p>"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Done",
+            "text": "<p>Name it, slip it into your wallet, and it shows up on the map next to your other Apple devices.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "eyebrow": "Set up in about a minute",
+        "heading": "How it works",
+        "note": "Needs an iPhone or iPad with the Find My app (iOS 14.5 or later). Not compatible with Android.",
+        "background": "default",
+        "anchor": "how-it-works"
+      }
+    },
+    "reviews": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "What customers say",
+        "background": "default"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Does it work with Android?",
+            "answer": "<p>No. It works with Apple's Find My app only, so you'll need an iPhone or iPad running iOS 14.5 or later.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Are there any monthly fees?",
+            "answer": "<p>No. You pay once. Find My is free and already on your iPhone.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I charge it?",
+            "answer": "<p>Each card has a built-in rechargeable battery. The quick-start guide in the box shows you how to charge it, and one charge lasts for months of normal use.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I use both cards on one iPhone?",
+            "answer": "<p>Yes. Add each card separately in Find My and give them different names, like \"Wallet\" and \"Laptop bag\".</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "When will my order arrive?",
+            "answer": "<p>Weekday orders placed before 13:00 leave us the same day. Aramex delivers in 2–4 working days to main centres, slightly longer to outlying areas. Delivery is free.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What if it's faulty?",
+            "answer": "<p>Every card has a 12-month warranty. WhatsApp or email us and we'll sort out a repair, replacement or refund, and cover the courier costs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Good to know",
+        "heading_level": "h2",
+        "text": "<p><a href=\"/pages/faq\">See all FAQs</a></p>",
+        "layout": "split",
+        "show_contact": true,
+        "schema_markup": true,
+        "background": "surface",
+        "anchor": "faq"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "trust",
+    "ring",
+    "left-behind",
+    "how",
+    "reviews",
+    "faq"
+  ]
+}

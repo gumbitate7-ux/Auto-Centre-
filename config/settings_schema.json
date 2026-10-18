@@ -1,0 +1,323 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Homeward",
+    "theme_version": "1.0.0",
+    "theme_author": "Homeward Supply Co.",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Logo & favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "Leave empty to use the built-in Homeward wordmark."
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 260,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 160
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Square, at least 96 × 96px. Leave empty to use the built-in icon."
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Social sharing image",
+        "info": "Shown when your store is shared on WhatsApp, Facebook etc. 1200 × 630px."
+      }
+    ]
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Soft background",
+        "info": "Used for alternating sections and cards.",
+        "default": "#F6F5F1"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#111827"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Secondary text",
+        "default": "#525B68"
+      },
+      {
+        "type": "color",
+        "id": "color_line",
+        "label": "Borders",
+        "default": "#E5E2DA"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (buttons, links)",
+        "default": "#1E5F4B"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_text",
+        "label": "Text on accent",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_dark",
+        "label": "Dark sections",
+        "default": "#0F1A16"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "use_system_font",
+        "label": "Use the device's system font",
+        "info": "Recommended. Loads instantly and looks native on iPhone (San Francisco). Untick to use the fonts below.",
+        "default": true
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "assistant_n4"
+      }
+    ]
+  },
+  {
+    "name": "Business details",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "South Africa's ECT Act (section 43) requires online stores to show who they are. These details appear in the footer, contact page and About page. Fill in every field before launch."
+      },
+      {
+        "type": "text",
+        "id": "company_legal_name",
+        "label": "Registered business name",
+        "default": "Homeward Supply Co. (Pty) Ltd"
+      },
+      {
+        "type": "text",
+        "id": "company_reg_no",
+        "label": "CIPC registration number",
+        "info": "e.g. 2025/123456/07"
+      },
+      {
+        "type": "text",
+        "id": "company_vat_no",
+        "label": "VAT number",
+        "info": "Leave empty if you are not VAT registered."
+      },
+      {
+        "type": "textarea",
+        "id": "company_address",
+        "label": "Physical address",
+        "info": "Required by law. Also used as your returns address."
+      },
+      {
+        "type": "text",
+        "id": "company_city",
+        "label": "City you ship from",
+        "default": "Johannesburg"
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support email",
+        "default": "hello@homeward.co.za"
+      },
+      {
+        "type": "text",
+        "id": "support_phone",
+        "label": "Phone number (display)",
+        "info": "e.g. 010 000 0000"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp number",
+        "info": "International format, numbers only, e.g. 27821234567"
+      },
+      {
+        "type": "text",
+        "id": "support_hours",
+        "label": "Support hours",
+        "default": "Mon–Fri 08:00–17:00 · Sat 09:00–12:00"
+      },
+      {
+        "type": "text",
+        "id": "response_time",
+        "label": "Response time promise",
+        "default": "We reply within one business day, usually within a few hours."
+      }
+    ]
+  },
+  {
+    "name": "Delivery & guarantees",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "free_shipping",
+        "label": "Free delivery on all orders",
+        "info": "Match this to your Shopify shipping rates.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "courier_name",
+        "label": "Courier name",
+        "default": "Aramex"
+      },
+      {
+        "type": "range",
+        "id": "dispatch_cutoff",
+        "min": 8,
+        "max": 18,
+        "step": 1,
+        "unit": "h",
+        "label": "Same-day dispatch cut-off (SAST)",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "transit_min",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "label": "Delivery time — minimum working days after dispatch",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "transit_max",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "label": "Delivery time — maximum working days after dispatch",
+        "default": 4
+      },
+      {
+        "type": "textarea",
+        "id": "public_holidays",
+        "label": "South African public holidays",
+        "info": "YYYY-MM-DD, separated by commas. No dispatch or delivery is estimated on these days.",
+        "default": "2026-01-01, 2026-03-21, 2026-04-03, 2026-04-06, 2026-04-27, 2026-05-01, 2026-06-16, 2026-08-10, 2026-09-24, 2026-12-16, 2026-12-25, 2026-12-26, 2027-01-01, 2027-03-22, 2027-03-26, 2027-03-29, 2027-04-27, 2027-05-01, 2027-06-16, 2027-08-09, 2027-09-24, 2027-12-16, 2027-12-25, 2027-12-27"
+      },
+      {
+        "type": "range",
+        "id": "returns_days",
+        "min": 7,
+        "max": 60,
+        "step": 1,
+        "unit": "d",
+        "label": "Return window",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "warranty_months",
+        "min": 6,
+        "max": 24,
+        "step": 1,
+        "unit": "m",
+        "label": "Warranty",
+        "info": "The Consumer Protection Act requires at least 6 months.",
+        "default": 12
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "When a customer adds to cart",
+        "options": [
+          { "value": "drawer", "label": "Open the cart drawer" },
+          { "value": "page", "label": "Go to the cart page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "Show order note field",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp button",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_whatsapp_button",
+        "label": "Show floating WhatsApp button",
+        "info": "Uses the WhatsApp number under Business details.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_message",
+        "label": "Pre-filled message",
+        "default": "Hi Homeward, I have a question about the tracker card."
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      }
+    ]
+  }
+]

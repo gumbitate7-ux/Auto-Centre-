@@ -1,0 +1,79 @@
+{%- comment -%}
+  Product gallery: large image + thumbnails on desktop, swipeable strip on mobile.
+  Falls back to the theme's bundled product photos when the product has no media yet.
+  Accepts: product, section_id
+{%- endcomment -%}
+{%- liquid
+  assign fallback_images = 'tracker-card-play-sound.jpg,tracker-card-find-anywhere.jpg,tracker-card-left-behind-alert.jpg,tracker-card-2mm-slim.jpg' | split: ','
+  assign fallback_alts = 'Tracker card ringing from the Find My app on iPhone|Slim black tracker card standing on a display|Left-behind notification for a wallet with a tracker card inside|Tracker card measuring 85 by 54 mm and 2 mm thin' | split: '|'
+  assign has_media = false
+  if product.media.size > 0
+    assign has_media = true
+  endif
+-%}
+<div class="gallery" data-gallery>
+  <div class="gallery__viewport" data-gallery-viewport>
+    {%- if has_media -%}
+      {%- for media in product.media -%}
+        {%- liquid
+          if forloop.first
+            assign loading = 'eager'
+          else
+            assign loading = 'lazy'
+          endif
+          assign media_alt = media.alt | default: product.title
+        -%}
+        <div class="gallery__slide{% if forloop.first %} is-active{% endif %}" data-gallery-slide data-media-id="{{ media.id }}">
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              {{
+                media
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'gallery__image',
+                  widths: '400, 600, 800, 1000, 1200, 1400',
+                  sizes: '(min-width: 990px) 560px, (min-width: 750px) 50vw, 100vw',
+                  loading: loading,
+                  alt: media_alt
+              }}
+            {%- when 'video' -%}
+              {{ media | video_tag: controls: true, class: 'gallery__image', image_size: '1200x' }}
+            {%- when 'external_video' -%}
+              {{ media | external_video_tag: class: 'gallery__image' }}
+            {%- else -%}
+              {{ media | media_tag: class: 'gallery__image' }}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for img in fallback_images -%}
+        <div class="gallery__slide{% if forloop.first %} is-active{% endif %}" data-gallery-slide>
+          <img
+            class="gallery__image"
+            src="{{ img | asset_url }}"
+            alt="{{ fallback_alts[forloop.index0] }}"
+            width="851"
+            height="851"
+            {% unless forloop.first %}loading="lazy"{% endunless %}
+          >
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <div class="gallery__thumbs" role="tablist" aria-label="Product images">
+    {%- if has_media -%}
+      {%- for media in product.media -%}
+        <button type="button" class="gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }}">
+          {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '', width: 80, height: 80 }}
+        </button>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for img in fallback_images -%}
+        <button type="button" class="gallery__thumb{% if forloop.first %} is-active{% endif %}" data-gallery-thumb="{{ forloop.index0 }}" aria-label="Show image {{ forloop.index }}">
+          <img src="{{ img | asset_url }}" alt="" width="80" height="80" loading="lazy">
+        </button>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>

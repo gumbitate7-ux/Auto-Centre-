@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "contact": {
+      "type": "main-contact",
+      "settings": {
+        "eyebrow": "Contact",
+        "heading": "We're here to help",
+        "text": "<p>Questions before you buy, help with setup, or something not right with your order? Message us. A real person on our team will answer, not a bot.</p>"
+      }
+    },
+    "details": {
+      "type": "company-details",
+      "settings": {
+        "heading": "Our details",
+        "text": "<p>Homeward is a registered South African business.</p>",
+        "background": "surface"
+      }
+    }
+  },
+  "order": ["contact", "details"]
+}

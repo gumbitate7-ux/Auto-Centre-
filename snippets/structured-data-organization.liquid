@@ -1,0 +1,51 @@
+{%- if request.page_type == 'index' -%}
+  {%- liquid
+    if settings.logo != blank
+      assign logo_url = settings.logo | image_url: width: 600 | prepend: 'https:'
+    else
+      assign logo_url = 'favicon.png' | asset_url | prepend: 'https:'
+    endif
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      {%- if settings.company_legal_name != blank %}
+      "legalName": {{ settings.company_legal_name | json }},
+      {%- endif %}
+      "url": {{ request.origin | append: routes.root_url | json }},
+      "logo": {{ logo_url | json }},
+      {%- if settings.company_vat_no != blank %}
+      "vatID": {{ settings.company_vat_no | json }},
+      {%- endif %}
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": {{ settings.company_city | json }},
+        "addressCountry": "ZA"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "ZA",
+        "availableLanguage": ["English"]
+        {%- if settings.support_email != blank %},
+        "email": {{ settings.support_email | json }}
+        {%- endif %}
+        {%- if settings.support_phone != blank %},
+        "telephone": {{ settings.support_phone | json }}
+        {%- endif %}
+      }
+      {%- if settings.social_instagram != blank or settings.social_facebook != blank or settings.social_tiktok != blank %},
+      "sameAs": [
+        {%- capture links -%}
+          {%- if settings.social_instagram != blank -%}{{ settings.social_instagram | json }},{%- endif -%}
+          {%- if settings.social_facebook != blank -%}{{ settings.social_facebook | json }},{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}{{ settings.social_tiktok | json }},{%- endif -%}
+        {%- endcapture -%}
+        {{ links | strip | remove_last: ',' }}
+      ]
+      {%- endif %}
+    }
+  </script>
+{%- endif -%}

@@ -1,0 +1,330 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'product-form-' | append: section.id
+-%}
+<section class="section section--tight product-section" data-product-section data-section-id="{{ section.id }}">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      {% render 'icon', name: 'chevron-right', size: 14 %}
+      <span aria-current="page">{{ product.title }}</span>
+    </nav>
+
+    <div class="product">
+      <div class="product__media">
+        {% render 'product-gallery', product: product, section_id: section.id %}
+      </div>
+
+      <div class="product__info">
+        <div class="buy-box">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+
+              {%- when 'text' -%}
+                <div class="buy-box__text buy-box__text--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </div>
+
+              {%- when 'title' -%}
+                <h1 class="buy-box__title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+              {%- when 'price' -%}
+                <div class="buy-box__price" {{ block.shopify_attributes }}>
+                  {% render 'price', product: product, variant: current_variant, show_unit: block.settings.unit_label %}
+                  <p class="buy-box__tax">
+                    {%- if settings.free_shipping -%}Free {{ settings.courier_name }} delivery{%- else -%}Delivery calculated at checkout{%- endif -%}
+                    {%- if settings.company_vat_no != blank %} &middot; VAT included{% endif -%}
+                  </p>
+                </div>
+
+              {%- when 'variant_picker' -%}
+                <div {{ block.shopify_attributes }}>
+                  {% render 'product-form', product: product, section_id: section.id, part: 'picker' %}
+                </div>
+
+              {%- when 'buy_buttons' -%}
+                <div class="buy-box__buttons" {{ block.shopify_attributes }} data-main-buy-buttons>
+                  {% render 'product-form',
+                    product: product,
+                    section_id: section.id,
+                    part: 'buttons',
+                    show_quantity: block.settings.show_quantity,
+                    show_dynamic_checkout: block.settings.show_dynamic_checkout
+                  %}
+                </div>
+
+              {%- when 'delivery' -%}
+                <div {{ block.shopify_attributes }}>
+                  {% render 'delivery-estimate' %}
+                </div>
+
+              {%- when 'guarantees' -%}
+                <div class="buy-box__guarantees" {{ block.shopify_attributes }}>
+                  {% render 'guarantee-list' %}
+                </div>
+
+              {%- when 'payment_icons' -%}
+                <div class="buy-box__payments" {{ block.shopify_attributes }}>
+                  {%- if block.settings.text != blank -%}<p class="buy-box__payments-label">{{ block.settings.text }}</p>{%- endif -%}
+                  {% render 'payment-icons' %}
+                </div>
+
+              {%- when 'description' -%}
+                {%- if product.description != blank -%}
+                  <details class="accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                    <summary class="accordion__summary">
+                      {% render 'icon', name: 'info', size: 20 %}
+                      <span>{{ block.settings.heading }}</span>
+                      {% render 'icon', name: 'chevron-down', size: 18 %}
+                    </summary>
+                    <div class="accordion__content rte">{{ product.description }}</div>
+                  </details>
+                {%- endif -%}
+
+              {%- when 'collapsible' -%}
+                <details class="accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                  <summary class="accordion__summary">
+                    {% render 'icon', name: block.settings.icon, size: 20 %}
+                    <span>{{ block.settings.heading }}</span>
+                    {% render 'icon', name: 'chevron-down', size: 18 %}
+                  </summary>
+                  <div class="accordion__content rte">
+                    {{ block.settings.content }}
+                    {%- if block.settings.page != blank -%}{{ block.settings.page.content }}{%- endif -%}
+                  </div>
+                </details>
+
+              {%- when 'specs' -%}
+                <details class="accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+                  <summary class="accordion__summary">
+                    {% render 'icon', name: 'card', size: 20 %}
+                    <span>{{ block.settings.heading }}</span>
+                    {% render 'icon', name: 'chevron-down', size: 18 %}
+                  </summary>
+                  <div class="accordion__content">
+                    <dl class="specs">
+                      {%- assign rows = block.settings.rows | newline_to_br | split: '<br />' -%}
+                      {%- for row in rows -%}
+                        {%- assign parts = row | split: '|' -%}
+                        {%- if parts.size > 1 -%}
+                          <div class="specs__row">
+                            <dt>{{ parts[0] | strip }}</dt>
+                            <dd>{{ parts[1] | strip }}</dd>
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </dl>
+                  </div>
+                </details>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.sticky_bar and product.id != blank -%}
+    <div class="sticky-buy" data-sticky-buy hidden>
+      <div class="container sticky-buy__inner">
+        <div class="sticky-buy__info">
+          <p class="sticky-buy__title">{{ product.title }}</p>
+          <p class="sticky-buy__meta">
+            <span data-price>{{ current_variant.price | money_without_trailing_zeros }}</span>
+            {%- if settings.free_shipping %} &middot; Free delivery{% endif -%}
+          </p>
+        </div>
+        <button type="submit" form="{{ form_id }}" name="add" class="btn btn--primary" {% unless current_variant.available %}disabled{% endunless %}>
+          Add to cart
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{%- if product.id != blank -%}
+  {%- liquid
+    if product.vendor != blank
+      assign brand_name = product.vendor
+    else
+      assign brand_name = shop.name
+    endif
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "url": {{ request.origin | append: product.url | json }},
+      {%- if product.featured_media %}
+      "image": [
+        {%- for media in product.media limit: 6 -%}
+          {{ media.preview_image | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      {%- endif %}
+      "description": {{ product.description | strip_html | strip | json }},
+      {%- if current_variant.sku != blank %}
+      "sku": {{ current_variant.sku | json }},
+      {%- endif %}
+      {%- if current_variant.barcode != blank %}
+      "gtin": {{ current_variant.barcode | json }},
+      {%- endif %}
+      "brand": { "@type": "Brand", "name": {{ brand_name | json }} },
+      "offers": [
+        {%- for variant in product.variants -%}
+          {
+            "@type": "Offer",
+            {%- if variant.sku != blank %}
+            "sku": {{ variant.sku | json }},
+            {%- endif %}
+            "availability": "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "price": {{ variant.price | divided_by: 100.0 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "url": {{ request.origin | append: variant.url | json }},
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": {% if settings.free_shipping %}0{% else %}99{% endif %},
+                "currency": "ZAR"
+              },
+              "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ZA" },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+                "transitTime": { "@type": "QuantitativeValue", "minValue": {{ settings.transit_min }}, "maxValue": {{ settings.transit_max }}, "unitCode": "DAY" }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "ZA",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": {{ settings.returns_days }},
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility"
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product information",
+  "class": "section-main-product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "sticky_bar",
+      "label": "Show sticky add-to-cart bar when scrolling",
+      "default": true
+    }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Works with the Apple Find My app</p>" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "eyebrow", "label": "Eyebrow (small, above title)" },
+            { "value": "body", "label": "Body" },
+            { "value": "small", "label": "Small print" }
+          ],
+          "default": "body"
+        }
+      ]
+    },
+    { "type": "title", "name": "Title", "limit": 1 },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "unit_label", "label": "Label after price", "default": "for 2 cards" }
+      ]
+    },
+    { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show 'Buy it now' button", "default": true }
+      ]
+    },
+    { "type": "delivery", "name": "Delivery estimate", "limit": 1 },
+    { "type": "guarantees", "name": "Guarantees", "limit": 1 },
+    {
+      "type": "payment_icons",
+      "name": "Payment icons",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Label", "default": "Secure payment via Yoco" }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Details" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "Collapsible row",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "What's in the box" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "package", "label": "Box" },
+            { "value": "truck", "label": "Delivery" },
+            { "value": "return", "label": "Returns" },
+            { "value": "shield", "label": "Warranty" },
+            { "value": "battery", "label": "Battery" },
+            { "value": "info", "label": "Info" },
+            { "value": "lock", "label": "Privacy" },
+            { "value": "card", "label": "Card" }
+          ],
+          "default": "package"
+        },
+        { "type": "richtext", "id": "content", "label": "Content" },
+        { "type": "page", "id": "page", "label": "Or show content from a page" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "specs",
+      "name": "Specifications",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Specifications" },
+        {
+          "type": "textarea",
+          "id": "rows",
+          "label": "Rows",
+          "info": "One per line, as Label | Value",
+          "default": "Size | 85 × 54 mm (bank-card size)\nThickness | 2 mm"
+        },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ]
+}
+{% endschema %}

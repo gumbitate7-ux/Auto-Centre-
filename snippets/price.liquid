@@ -1,0 +1,22 @@
+{%- comment -%}
+  Renders a product or variant price.
+  Accepts: product, variant (optional), class (optional), show_unit (optional string, e.g. "for 2 cards")
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign price = target.price | default: 59900
+  assign compare = target.compare_at_price
+  assign on_sale = false
+  if compare > price
+    assign on_sale = true
+  endif
+-%}
+<div class="price{% if on_sale %} price--sale{% endif %} {{ class }}" data-price-wrapper>
+  <span class="price__current" data-price>{{ price | money_without_trailing_zeros }}</span>
+  {%- if on_sale -%}
+    <s class="price__compare" data-compare-price>{{ compare | money_without_trailing_zeros }}</s>
+  {%- endif -%}
+  {%- if show_unit != blank -%}
+    <span class="price__unit">{{ show_unit }}</span>
+  {%- endif -%}
+</div>

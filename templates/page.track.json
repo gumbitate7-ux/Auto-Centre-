@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "track": {
+      "type": "track-order",
+      "blocks": {
+        "s1": { "type": "step", "settings": { "icon": "mail", "title": "Order confirmed", "text": "<p>You get an email with your order number as soon as you've paid.</p>" } },
+        "s2": { "type": "step", "settings": { "icon": "package", "title": "Packed & dispatched", "text": "<p>Weekday orders before 13:00 leave us the same day. We email your Aramex tracking number.</p>" } },
+        "s3": { "type": "step", "settings": { "icon": "truck", "title": "On its way", "text": "<p>Aramex delivers in 2–4 working days to main centres, and a little longer to outlying areas.</p>" } },
+        "s4": { "type": "step", "settings": { "icon": "home", "title": "Delivered", "text": "<p>The driver may SMS or call before arriving, so keep your phone close.</p>" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "eyebrow": "Delivery",
+        "heading": "Track your order",
+        "text": "<p>Every Homeward order ships with Aramex and comes with a tracking number.</p>",
+        "tracking_url": "https://www.aramex.co.za/tools/track?l="
+      }
+    }
+  },
+  "order": ["track"]
+}

@@ -1,0 +1,88 @@
+{%- comment -%}
+  Customer reviews. Hidden on the live store until at least one review block is added,
+  so the store never shows an empty or made-up reviews section.
+  Supports app blocks (e.g. Judge.me) for verified reviews.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <section class="section testimonials section--{{ section.settings.background }}">
+    <div class="container">
+      <header class="section-head section-head--center">
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="h2">{{ section.settings.heading }}</h2>
+      </header>
+      <div class="testimonials__grid">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              <div class="testimonials__app">{% render block %}</div>
+            {%- when 'review' -%}
+              <figure class="review card" {{ block.shopify_attributes }}>
+                <div class="review__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+                  {%- for i in (1..5) -%}
+                    <span class="review__star{% if i > block.settings.rating %} review__star--off{% endif %}">{% render 'icon', name: 'star', size: 18 %}</span>
+                  {%- endfor -%}
+                </div>
+                <blockquote class="review__quote">{{ block.settings.quote }}</blockquote>
+                <figcaption class="review__author">
+                  <strong>{{ block.settings.name }}</strong>
+                  {%- if block.settings.location != blank %} &middot; {{ block.settings.location }}{% endif -%}
+                  {%- if block.settings.verified -%}
+                    <span class="review__verified">{% render 'icon', name: 'check-circle', size: 16 %} Verified buyer</span>
+                  {%- endif -%}
+                </figcaption>
+              </figure>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  <section class="section">
+    <div class="container">
+      <p class="notice">
+        <strong>Reviews section is hidden.</strong> Add review blocks from real customers, or install a review app
+        (e.g. Judge.me) and add its block here. It will appear on the store as soon as it has content.
+      </p>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Customer reviews",
+  "class": "section-testimonials",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From people who stopped losing things" },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "paragraph",
+      "content": "Only publish genuine reviews. Fake reviews are a misleading representation under the Consumer Protection Act."
+    }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "richtext", "id": "quote", "label": "Review" },
+        { "type": "text", "id": "name", "label": "Customer first name & initial", "info": "Get permission before publishing." },
+        { "type": "text", "id": "location", "label": "City" },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Customer reviews" }]
+}
+{% endschema %}

@@ -1,0 +1,85 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "About us",
+        "heading": "We help South Africans lose less.",
+        "heading_level": "h1",
+        "text": "<p>Homeward is a small, registered South African business. We sell one product we believe in, a slim tracker card for iPhone, and we try to sell it the way we'd want to be sold to: honest descriptions, fast delivery, and real people when you need help.</p>",
+        "alignment": "center",
+        "background": "default",
+        "compact": false
+      }
+    },
+    "why": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-find-anywhere.jpg",
+        "fallback_alt": "Slim black tracker card",
+        "layout": "image-left",
+        "background": "surface",
+        "eyebrow": "Why a tracker card",
+        "heading": "Because a lost wallet costs more than a wallet.",
+        "text": "<p>In South Africa, losing your wallet means cancelling cards, waiting weeks for a new driver's licence card and losing a morning at Home Affairs for a new ID. A R300 card that prevents that is an easy decision.</p><p>Round tracker tags are great on keys, but they don't fit in a wallet. A card does.</p>",
+        "points": "",
+        "button_label": "See the tracker card",
+        "button_link": "/products/wallet-tracker-card-2-pack",
+        "button_style": "primary"
+      }
+    },
+    "how-we-work": {
+      "type": "features",
+      "blocks": {
+        "w1": { "type": "feature", "settings": { "icon": "tool", "title": "Checked before it ships", "text": "<p>We check stock as it arrives and look over every order before it leaves us.</p>" } },
+        "w2": { "type": "feature", "settings": { "icon": "package", "title": "Packed by us", "text": "<p>Orders are packed by our own team, not an anonymous overseas warehouse.</p>" } },
+        "w3": { "type": "feature", "settings": { "icon": "truck", "title": "Shipped with Aramex", "text": "<p>Free, tracked delivery to your door, usually dispatched the same day.</p>" } },
+        "w4": { "type": "feature", "settings": { "icon": "chat", "title": "Answered by people", "text": "<p>WhatsApp or email us and someone on our team replies. No bots, no call centre.</p>" } }
+      },
+      "block_order": ["w1", "w2", "w3", "w4"],
+      "settings": {
+        "eyebrow": "How we work",
+        "heading": "Small team, simple promises",
+        "center": true,
+        "style": "cards",
+        "columns": "4",
+        "background": "default"
+      }
+    },
+    "team": {
+      "type": "team",
+      "blocks": {
+        "m1": { "type": "member", "settings": { "role": "Orders & dispatch", "icon": "package", "bio": "<p>Checks, packs and hands every order to Aramex, usually on the day you order.</p>" } },
+        "m2": { "type": "member", "settings": { "role": "Customer care", "icon": "chat", "bio": "<p>Answers your WhatsApps and emails, helps with setup and sorts out returns.</p>" } },
+        "m3": { "type": "member", "settings": { "role": "Quality & warranty", "icon": "tool", "bio": "<p>Tests new stock and looks after warranty claims, so faulty cards get replaced fast.</p>" } }
+      },
+      "block_order": ["m1", "m2", "m3"],
+      "settings": {
+        "eyebrow": "The team",
+        "heading": "The people behind your order",
+        "text": "<p>We're a small team, and we like it that way. It means the person who packs your order is never far from the person who answers your questions.</p>",
+        "background": "surface"
+      }
+    },
+    "promise": {
+      "type": "founder-note",
+      "settings": {
+        "eyebrow": "Our promise",
+        "heading": "If it's not right, we'll make it right.",
+        "text": "<p>If your card arrives damaged, stops working, or just isn't for you, tell us. You get 30 days to return it for any reason and a 12-month warranty against faults, on top of your rights under the Consumer Protection Act.</p><p>We'd rather lose a sale than a customer's trust.</p>",
+        "signature": "The Homeward team",
+        "signature_role": "Johannesburg",
+        "background": "default"
+      }
+    },
+    "details": {
+      "type": "company-details",
+      "settings": {
+        "heading": "Who you're buying from",
+        "text": "<p>We're a registered South African business. Here are our details, as the ECT Act requires.</p>",
+        "background": "surface"
+      }
+    }
+  },
+  "order": ["intro", "why", "how-we-work", "team", "promise", "details"]
+}

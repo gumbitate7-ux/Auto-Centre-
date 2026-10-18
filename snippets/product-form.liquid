@@ -1,0 +1,84 @@
+{%- comment -%}
+  Variant picker + add to cart form.
+  Accepts: product, section_id, show_dynamic_checkout (bool), show_quantity (bool), part ('picker' | 'buttons' | 'all')
+{%- endcomment -%}
+{%- liquid
+  assign form_id = 'product-form-' | append: section_id
+  assign current_variant = product.selected_or_first_available_variant
+  assign part = part | default: 'all'
+-%}
+
+{%- if product.id == blank -%}
+  {%- comment -%} Product not created yet: show a non-functional preview so the page still looks right. {%- endcomment -%}
+  {%- if part == 'buttons' or part == 'all' -%}
+    <div class="product-form">
+      <div class="product-form__row">
+        <button type="button" class="btn btn--primary btn--lg product-form__submit" disabled>
+          <span>Add to cart</span><span class="btn__price">&middot; R599</span>
+        </button>
+      </div>
+      {%- if request.design_mode -%}
+        <p class="notice">Import <code>store-setup/products.csv</code> (Products → Import) to activate this button.</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- else -%}
+  {%- if part == 'picker' or part == 'all' -%}
+    {%- unless product.has_only_default_variant -%}
+      <div class="variant-picker" data-variant-picker data-form-id="{{ form_id }}" data-product-url="{{ product.url }}">
+        {%- for option in product.options_with_values -%}
+          <fieldset class="variant-picker__option">
+            <legend class="variant-picker__legend">
+              {{ option.name }}: <span data-option-label="{{ forloop.index0 }}">{{ option.selected_value }}</span>
+            </legend>
+            <div class="variant-picker__values">
+              {%- assign option_index = forloop.index0 -%}
+              {%- for value in option.values -%}
+                <input
+                  class="variant-picker__input"
+                  type="radio"
+                  id="{{ section_id }}-opt{{ option_index }}-{{ forloop.index0 }}"
+                  name="{{ section_id }}-option-{{ option_index }}"
+                  value="{{ value | escape }}"
+                  data-option-index="{{ option_index }}"
+                  {% if option.selected_value == value %}checked{% endif %}
+                >
+                <label class="variant-picker__label" for="{{ section_id }}-opt{{ option_index }}-{{ forloop.index0 }}">{{ value }}</label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+        <script type="application/json" data-variants>{{ product.variants | json }}</script>
+      </div>
+    {%- endunless -%}
+  {%- endif -%}
+
+  {%- if part == 'buttons' or part == 'all' -%}
+    {%- form 'product', product, id: form_id, class: 'product-form', novalidate: 'novalidate', data-product-form: '' -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+      <div class="product-form__row">
+        {%- if show_quantity -%}
+          <div class="qty" data-qty>
+            <button type="button" class="qty__btn" data-qty-step="-1" aria-label="Decrease quantity">{% render 'icon', name: 'minus', size: 16 %}</button>
+            <input class="qty__input" type="number" name="quantity" value="1" min="1" max="20" aria-label="Quantity" data-qty-input>
+            <button type="button" class="qty__btn" data-qty-step="1" aria-label="Increase quantity">{% render 'icon', name: 'plus', size: 16 %}</button>
+          </div>
+        {%- endif -%}
+        <button
+          type="submit"
+          name="add"
+          class="btn btn--primary btn--lg product-form__submit"
+          data-add-button
+          {% unless current_variant.available %}disabled{% endunless %}
+        >
+          <span data-add-label>{% if current_variant.available %}Add to cart{% else %}Sold out{% endif %}</span>
+          <span class="btn__price" data-add-price>&middot; {{ current_variant.price | money_without_trailing_zeros }}</span>
+        </button>
+      </div>
+      {%- if show_dynamic_checkout -%}
+        <div class="product-form__dynamic">{{ form | payment_button }}</div>
+      {%- endif -%}
+      <p class="product-form__error" role="alert" data-form-error hidden></p>
+    {%- endform -%}
+  {%- endif -%}
+{%- endif -%}

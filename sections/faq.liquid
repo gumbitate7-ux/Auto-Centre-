@@ -1,0 +1,133 @@
+<section class="section faq section--{{ section.settings.background }}" id="{{ section.settings.anchor | default: 'faq' | handle }}">
+  <div class="container{% if section.settings.layout == 'stacked' %} container--narrow{% endif %} faq__layout faq__layout--{{ section.settings.layout }}">
+    <header class="section-head{% if section.settings.layout == 'stacked' %} section-head--center{% endif %}">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading_level == 'h1' -%}
+        <h1 class="h1">{{ section.settings.heading }}</h1>
+      {%- else -%}
+        <h2 class="h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}<div class="section-head__text">{{ section.settings.text }}</div>{%- endif -%}
+      {%- if section.settings.show_contact -%}
+        <div class="faq__contact card">
+          <p class="faq__contact-title">Still stuck?</p>
+          <p class="muted">{{ settings.response_time }}</p>
+          <div class="faq__contact-actions">
+            {%- if settings.whatsapp_number != blank -%}
+              <a class="btn btn--primary btn--small" href="https://wa.me/{{ settings.whatsapp_number | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">
+                {% render 'icon', name: 'whatsapp', size: 18 %} WhatsApp
+              </a>
+            {%- endif -%}
+            <a class="btn btn--secondary btn--small" href="/pages/contact">{% render 'icon', name: 'mail', size: 18 %} Email us</a>
+          </div>
+        </div>
+      {%- endif -%}
+    </header>
+
+    <div class="faq__list">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'group' -%}
+            <h3 class="faq__group" {{ block.shopify_attributes }}>{{ block.settings.title }}</h3>
+          {%- when 'question' -%}
+            <details class="accordion accordion--faq" {{ block.shopify_attributes }}>
+              <summary class="accordion__summary">
+                <span>{{ block.settings.question }}</span>
+                <span class="accordion__toggle">{% render 'icon', name: 'plus', size: 18 %}</span>
+              </summary>
+              <div class="accordion__content rte">{{ block.settings.answer }}</div>
+            </details>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.schema_markup -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- assign first = true -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'question' -%}
+            {%- unless first %},{% endunless -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | json }},
+              "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | json }} }
+            }
+            {%- assign first = false -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "class": "section-faq",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions, answered" },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "options": [
+        { "value": "h2", "label": "Section heading (H2)" },
+        { "value": "h1", "label": "Page title (H1)" }
+      ],
+      "default": "h2"
+    },
+    { "type": "richtext", "id": "text", "label": "Intro text" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "split", "label": "Heading left, questions right" },
+        { "value": "stacked", "label": "Stacked" }
+      ],
+      "default": "split"
+    },
+    { "type": "checkbox", "id": "show_contact", "label": "Show 'Still stuck?' contact card", "default": true },
+    { "type": "checkbox", "id": "schema_markup", "label": "Add FAQ data for Google", "info": "Use on one FAQ section per page.", "default": true },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "default"
+    },
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "faq" }
+  ],
+  "blocks": [
+    {
+      "type": "group",
+      "name": "Group heading",
+      "settings": [{ "type": "text", "id": "title", "label": "Title", "default": "The card" }]
+    },
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [{ "type": "question" }, { "type": "question" }, { "type": "question" }]
+    }
+  ]
+}
+{% endschema %}

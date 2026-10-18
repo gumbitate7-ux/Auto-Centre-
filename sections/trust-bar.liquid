@@ -1,0 +1,69 @@
+<section class="trust-bar trust-bar--{{ section.settings.style }}">
+  <div class="container">
+    <ul class="trust-bar__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="trust-bar__item" {{ block.shopify_attributes }}>
+          <span class="trust-bar__icon">{% render 'icon', name: block.settings.icon, size: 26 %}</span>
+          <span class="trust-bar__text">
+            <strong>{{ block.settings.title }}</strong>
+            {%- if block.settings.text != blank -%}<small>{{ block.settings.text }}</small>{%- endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust bar",
+  "class": "section-trust-bar",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "line", "label": "Bordered" },
+        { "value": "surface", "label": "Soft background" }
+      ],
+      "default": "line"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery" },
+            { "value": "lock", "label": "Secure" },
+            { "value": "return", "label": "Returns" },
+            { "value": "shield", "label": "Warranty" },
+            { "value": "chat", "label": "Support" },
+            { "value": "pin", "label": "Location" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "check-circle", "label": "Check" },
+            { "value": "package", "label": "Package" },
+            { "value": "smile", "label": "Smile" }
+          ],
+          "default": "truck"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Free Aramex delivery" },
+        { "type": "text", "id": "text", "label": "Text", "default": "2–4 working days" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust bar",
+      "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }, { "type": "item" }]
+    }
+  ]
+}
+{% endschema %}

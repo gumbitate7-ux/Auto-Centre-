@@ -1,0 +1,47 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg-delivery": {
+          "type": "message",
+          "settings": {
+            "text": "Free Aramex delivery anywhere in South Africa",
+            "link": "",
+            "icon": "truck"
+          }
+        },
+        "msg-dispatch": {
+          "type": "message",
+          "settings": {
+            "text": "Order before 13:00 on weekdays — dispatched the same day",
+            "link": "",
+            "icon": "clock"
+          }
+        },
+        "msg-returns": {
+          "type": "message",
+          "settings": {
+            "text": "30-day returns · 12-month warranty",
+            "link": "",
+            "icon": "shield"
+          }
+        }
+      },
+      "block_order": ["msg-delivery", "msg-dispatch", "msg-returns"],
+      "settings": {
+        "style": "dark"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "sticky": true,
+        "show_contact": true
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

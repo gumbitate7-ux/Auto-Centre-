@@ -1,0 +1,25 @@
+{%- if section.settings.show_title or page.content != blank -%}
+  <section class="section{% if section.settings.compact %} section--tight{% endif %} page-main">
+    <div class="container container--narrow">
+      {%- if section.settings.show_title -%}
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h1 class="h1 page-title">{{ page.title }}</h1>
+      {%- endif -%}
+      {%- if page.content != blank -%}
+        <div class="rte page-main__content">{{ page.content }}</div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Page content",
+  "class": "section-main-page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "checkbox", "id": "show_title", "label": "Show page title", "default": true },
+    { "type": "checkbox", "id": "compact", "label": "Less spacing", "default": false }
+  ]
+}
+{% endschema %}

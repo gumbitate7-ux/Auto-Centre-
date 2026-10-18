@@ -1,0 +1,83 @@
+<section class="section track">
+  <div class="container container--narrow">
+    <header class="section-head section-head--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="h1">{{ section.settings.heading }}</h1>
+      {%- if section.settings.text != blank -%}<div class="section-head__text">{{ section.settings.text }}</div>{%- endif -%}
+    </header>
+
+    <form class="track__form card" data-track-form data-track-url="{{ section.settings.tracking_url }}" action="{{ section.settings.tracking_url }}" target="_blank">
+      <label for="Waybill" class="field__label">Aramex waybill / tracking number</label>
+      <div class="track__field">
+        <input id="Waybill" class="field__input" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 30012345678" required data-track-input>
+        <button type="submit" class="btn btn--primary">{% render 'icon', name: 'search', size: 18 %} Track parcel</button>
+      </div>
+      <p class="track__hint">
+        You'll find this number in your shipping confirmation email, sent as soon as your parcel leaves us.
+      </p>
+    </form>
+
+    <div class="track__steps">
+      {%- for block in section.blocks -%}
+        <div class="track__step" {{ block.shopify_attributes }}>
+          <span class="track__step-icon">{% render 'icon', name: block.settings.icon, size: 22 %}</span>
+          <div>
+            <h2 class="track__step-title">{{ block.settings.title }}</h2>
+            <div class="track__step-text">{{ block.settings.text }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="track__help card">
+      <div>
+        <p class="track__help-title">Parcel late or no tracking email?</p>
+        <p class="muted">Send us your order number and we'll chase {{ settings.courier_name }} for you.</p>
+      </div>
+      <a href="/pages/contact" class="btn btn--secondary">Contact us</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Track order",
+  "class": "section-track",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Delivery" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track your order" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Every Homeward order ships with Aramex and comes with a tracking number.</p>" },
+    {
+      "type": "text",
+      "id": "tracking_url",
+      "label": "Courier tracking link",
+      "info": "The waybill number is added to the end of this link. Test it with a real waybill before launch.",
+      "default": "https://www.aramex.co.za/tools/track?l="
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "package", "label": "Package" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "home", "label": "Home" },
+            { "value": "mail", "label": "Email" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "package"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Packed" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Describe this stage.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Track order" }]
+}
+{% endschema %}

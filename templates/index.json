@@ -1,0 +1,475 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Works with the Apple Find My app",
+        "heading": "Your wallet, back on the map.",
+        "text": "<p>A tracker as thin as a bank card. Slip it into your wallet, see it in Find My on your iPhone, and ring it when it's hiding between the couch cushions.</p>",
+        "points": "Two cards in every pack\nLeft-behind alerts before you drive off\nNo subscription, no monthly fees",
+        "button_label": "Get the 2-pack",
+        "secondary_label": "How it works",
+        "secondary_link": "/#how-it-works",
+        "show_floats": true
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Aramex delivery",
+            "text": "Anywhere in South Africa"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "title": "Same-day dispatch",
+            "text": "Weekdays, order before 13:00"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "30-day returns",
+            "text": "Changed your mind? No stress"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "12-month warranty",
+            "text": "Faulty card? We replace it"
+          }
+        },
+        "t5": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "Card payments via Yoco"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "settings": {
+        "style": "line"
+      }
+    },
+    "why": {
+      "type": "features",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "sound",
+            "title": "Ring it",
+            "text": "<p>Somewhere in the house? Play a sound from the Find My app and follow the chirp.</p>"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "bell",
+            "title": "Left-behind alerts",
+            "text": "<p>Your iPhone can let you know when you walk away without your wallet, before you're halfway down the road.</p>"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "map",
+            "title": "See it on the map",
+            "text": "<p>Check its last known location in Find My. Out of range? Nearby Apple devices on the Find My network can anonymously help locate it.</p>"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "thin",
+            "title": "2 mm thin",
+            "text": "<p>The same size as a bank card and barely thicker. It fits a card slot without the bulge.</p>"
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "icon": "lock",
+            "title": "Private by design",
+            "text": "<p>Locations travel through Apple's end-to-end encrypted Find My network. We never see where your things are.</p>"
+          }
+        },
+        "f6": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "title": "No subscription",
+            "text": "<p>Pay once. Find My is already on your iPhone, so there's no extra app, account or monthly fee.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "eyebrow": "Why it works",
+        "heading": "Small card. One less thing to worry about.",
+        "text": "<p>Losing a wallet in South Africa isn't just losing a wallet. It's cancelling cards, queueing for a new driver's licence and a morning at Home Affairs. This card helps you skip all of that.</p>",
+        "center": true,
+        "style": "cards",
+        "columns": "3",
+        "background": "default"
+      }
+    },
+    "ring": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-play-sound.jpg",
+        "fallback_alt": "iPhone showing the Find My app playing a sound on a tracker card",
+        "layout": "image-left",
+        "background": "surface",
+        "eyebrow": "Play sound",
+        "heading": "Couch, car seat or gym bag? Ask it to beep.",
+        "text": "<p>Open Find My, tap your wallet and choose <strong>Play Sound</strong>. The card chirps until you find it, so you can follow the sound instead of turning the house upside down.</p>",
+        "points": "Play a sound from your iPhone or iPad\nShows as Nearby when it's within Bluetooth range\nGet directions to where it was last seen",
+        "button_label": "",
+        "button_style": "secondary"
+      }
+    },
+    "left-behind": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-left-behind-alert.jpg",
+        "fallback_alt": "Left-behind notification for a wallet on the pavement",
+        "layout": "image-right",
+        "background": "default",
+        "eyebrow": "Left-behind alerts",
+        "heading": "Get a nudge before you drive off without it.",
+        "text": "<p>Switch on <strong>Notify When Left Behind</strong> in Find My and your iPhone tells you when your wallet stops travelling with you, along with where it was last seen.</p><p>Add trusted places like home or the office, so it only speaks up when it matters.</p>",
+        "points": "",
+        "button_label": "",
+        "button_style": "secondary"
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Switch it on",
+            "text": "<p>Press the button on the card. It beeps to let you know it's ready to pair.</p>"
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Add it to Find My",
+            "text": "<p>On your iPhone, open <strong>Find My</strong> → <strong>Items</strong> → <strong>+</strong> → <strong>Add Other Item</strong>, and follow the prompts.</p>"
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Slip it into your wallet",
+            "text": "<p>Give it a name and an emoji, and you're done. It now shows up on the map next to your other Apple devices.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "eyebrow": "Set up in about a minute",
+        "heading": "How it works",
+        "text": "<p>No extra app, no account to create. Everything happens in the Find My app that's already on your iPhone.</p>",
+        "note": "Needs an iPhone or iPad with the Find My app (iOS 14.5 or later). Not compatible with Android.",
+        "background": "surface",
+        "anchor": "how-it-works"
+      }
+    },
+    "uses": {
+      "type": "features",
+      "blocks": {
+        "u1": {
+          "type": "feature",
+          "settings": {
+            "icon": "wallet",
+            "title": "Wallet",
+            "text": "<p>The obvious one. Slides into any card slot.</p>"
+          }
+        },
+        "u2": {
+          "type": "feature",
+          "settings": {
+            "icon": "briefcase",
+            "title": "Laptop bag",
+            "text": "<p>Drop it in an inside pocket and forget it's there.</p>"
+          }
+        },
+        "u3": {
+          "type": "feature",
+          "settings": {
+            "icon": "luggage",
+            "title": "Luggage",
+            "text": "<p>See whether your bag made the flight to Cape Town too.</p>"
+          }
+        },
+        "u4": {
+          "type": "feature",
+          "settings": {
+            "icon": "passport",
+            "title": "Passport holder",
+            "text": "<p>For the documents you really can't afford to lose.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4"
+      ],
+      "settings": {
+        "eyebrow": "Two cards in every pack",
+        "heading": "Where will you put the second one?",
+        "center": true,
+        "style": "plain",
+        "columns": "4",
+        "background": "default",
+        "note": "Designed for keeping track of your belongings, not people or pets."
+      }
+    },
+    "buy": {
+      "type": "featured-product",
+      "settings": {
+        "eyebrow": "Get yours",
+        "unit_label": "for 2 cards",
+        "text": "<p>One for your wallet, one for wherever you need it: your laptop bag, passport holder or travel bag. Free delivery, 30-day returns and a 12-month warranty.</p>",
+        "show_dynamic_checkout": true,
+        "background": "surface",
+        "anchor": "shop"
+      }
+    },
+    "slim": {
+      "type": "image-with-text",
+      "settings": {
+        "fallback_image": "tracker-card-2mm-slim.jpg",
+        "fallback_alt": "Tracker card measuring 85 by 54 millimetres and 2 millimetres thin",
+        "layout": "image-left",
+        "background": "default",
+        "eyebrow": "Ultra-slim",
+        "heading": "Slides into a card slot like it belongs there.",
+        "text": "<p>At 85 × 54 mm it's the same size as your bank card, and only 2 mm thick. No lump in your pocket, no tag dangling off a keyring.</p>",
+        "points": "Bank-card size: 85 × 54 mm\n2 mm thin, about three bank cards stacked\nFits most wallets and card holders",
+        "button_label": "Shop the 2-pack",
+        "button_link": "/#shop",
+        "button_style": "primary"
+      }
+    },
+    "compare": {
+      "type": "comparison",
+      "blocks": {
+        "c1": {
+          "type": "row",
+          "settings": {
+            "label": "Fits inside a wallet card slot",
+            "ours": "yes",
+            "theirs": "no"
+          }
+        },
+        "c2": {
+          "type": "row",
+          "settings": {
+            "label": "No bulge in a slim wallet",
+            "ours": "yes",
+            "theirs": "no"
+          }
+        },
+        "c3": {
+          "type": "row",
+          "settings": {
+            "label": "Works without a keyring or holder",
+            "ours": "yes",
+            "theirs": "no"
+          }
+        },
+        "c4": {
+          "type": "row",
+          "settings": {
+            "label": "Plays a sound to help you find it",
+            "ours": "yes",
+            "theirs": "yes"
+          }
+        },
+        "c5": {
+          "type": "row",
+          "settings": {
+            "label": "Works with Apple Find My",
+            "ours": "yes",
+            "theirs": "Varies"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ],
+      "settings": {
+        "eyebrow": "Card vs tag",
+        "heading": "Why a card, not a tag?",
+        "text": "<p>Round trackers are great on a keyring. For a wallet, a card simply fits better.</p>",
+        "ours_label": "Tracker card",
+        "theirs_label": "Coin-style tag",
+        "background": "surface"
+      }
+    },
+    "reviews": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Reviews",
+        "heading": "From people who stopped losing things",
+        "background": "default"
+      }
+    },
+    "note": {
+      "type": "founder-note",
+      "settings": {
+        "eyebrow": "Who we are",
+        "heading": "A small team that answers its own WhatsApps",
+        "text": "<p>Homeward is a registered South African business. We started it to sell one thing we think every iPhone user should carry, and to sell it properly: honest descriptions, fast delivery and real help when you need it.</p><p>We check every order before it leaves us, pack it ourselves and hand it to Aramex. If something isn't right, you'll talk to one of us, not a call centre. <a href=\"/pages/about\">Meet the team →</a></p>",
+        "signature": "The Homeward team",
+        "signature_role": "Johannesburg",
+        "background": "default"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Does it work with Android phones?",
+            "answer": "<p>No. The card works with Apple's Find My app, so you need an iPhone or iPad (iOS 14.5 or later). It can't be set up on Android.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Is there a subscription or monthly fee?",
+            "answer": "<p>None at all. You pay R599 once for two cards. Find My is built into your iPhone and free to use.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "How does it find my wallet when I'm far away?",
+            "answer": "<p>The card has no GPS or SIM. Instead it sends out a secure Bluetooth signal. When any Apple device on the Find My network passes nearby, it anonymously reports the card's location to you. It's end-to-end encrypted, so nobody else (including us and Apple) can see it.</p><p>It works best where there are people around, which in South Africa is most places. In very remote areas location updates are less frequent.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Order before 13:00 on a weekday and we dispatch the same day. Aramex delivers in 2–4 working days to main centres, and a day or two longer to outlying areas. Delivery is free and every parcel is tracked.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Will it work inside a leather wallet?",
+            "answer": "<p>Yes. Bluetooth passes through leather, fabric and plastic without a problem. Fully metal or aluminium wallets can weaken the signal, so the range may be shorter.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What if I don't like it, or it stops working?",
+            "answer": "<p>You have 30 days to return it for a full refund if you change your mind. If a card is faulty within 12 months, we'll repair or replace it, or refund you. See our <a href=\"/pages/returns\">returns &amp; warranty</a> page.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Can someone use this to track me?",
+            "answer": "<p>Find My has built-in protection against unwanted tracking. If an unknown tracker is travelling with someone, their iPhone alerts them, and many Android phones can detect unknown trackers too. Please only use it for your own belongings.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "How do I pay? Is it safe?",
+            "answer": "<p>Checkout is handled by Yoco, a South African payment provider. Your card details are encrypted and go straight to Yoco; we never see or store them.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Questions, answered",
+        "heading_level": "h2",
+        "text": "<p>Can't find what you're looking for? <a href=\"/pages/faq\">See all FAQs</a> or message us.</p>",
+        "layout": "split",
+        "show_contact": true,
+        "schema_markup": true,
+        "background": "surface",
+        "anchor": "faq"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Hear from us (rarely)",
+        "text": "<p>New products, restocks and the odd tip for getting more out of Find My. No spam, ever.</p>",
+        "background": "default"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "why",
+    "ring",
+    "left-behind",
+    "how",
+    "uses",
+    "buy",
+    "slim",
+    "compare",
+    "reviews",
+    "note",
+    "faq",
+    "newsletter"
+  ]
+}

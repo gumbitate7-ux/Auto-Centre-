@@ -1,0 +1,86 @@
+{%- liquid
+  assign product = section.settings.product
+  if product == blank
+    assign product = all_products['wallet-tracker-card-2-pack']
+  endif
+  if product.id == blank
+    assign product = collections.all.products.first
+  endif
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+<section class="section featured-product section--{{ section.settings.background }}" id="{{ section.settings.anchor | default: 'shop' | handle }}">
+  <div class="container">
+    <div class="product" data-product-section data-section-id="{{ section.id }}">
+      <div class="product__media">
+        {% render 'product-gallery', product: product, section_id: section.id %}
+      </div>
+      <div class="product__info">
+        <div class="buy-box">
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          <h2 class="buy-box__title">
+            {%- if product.id != blank -%}{{ product.title }}{%- else -%}Tracker Card 2-Pack{%- endif -%}
+          </h2>
+          <div class="buy-box__price">
+            {% render 'price', product: product, variant: current_variant, show_unit: section.settings.unit_label %}
+            <p class="buy-box__tax">
+              {%- if settings.free_shipping -%}Free {{ settings.courier_name }} delivery{%- else -%}Delivery calculated at checkout{%- endif -%}
+              {%- if settings.company_vat_no != blank %} &middot; VAT included{% endif -%}
+            </p>
+          </div>
+          {%- if section.settings.text != blank -%}
+            <div class="buy-box__text buy-box__text--body">{{ section.settings.text }}</div>
+          {%- endif -%}
+          {% render 'product-form', product: product, section_id: section.id, part: 'picker' %}
+          <div class="buy-box__buttons">
+            {% render 'product-form',
+              product: product,
+              section_id: section.id,
+              part: 'buttons',
+              show_quantity: true,
+              show_dynamic_checkout: section.settings.show_dynamic_checkout
+            %}
+          </div>
+          {% render 'delivery-estimate' %}
+          <div class="buy-box__guarantees">{% render 'guarantee-list' %}</div>
+          <div class="buy-box__payments">{% render 'payment-icons' %}</div>
+          {%- if product.id != blank -%}
+            <a href="{{ product.url }}" class="link-arrow">Full details &amp; specs {% render 'icon', name: 'arrow-right', size: 16 %}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "class": "section-featured-product",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Get yours" },
+    { "type": "text", "id": "unit_label", "label": "Label after price", "default": "for 2 cards" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>One for your wallet, one for wherever you need it: your laptop bag, passport holder or car.</p>"
+    },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show 'Buy it now' button", "default": true },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "surface", "label": "Soft" }
+      ],
+      "default": "default"
+    },
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "shop" }
+  ],
+  "presets": [{ "name": "Featured product" }]
+}
+{% endschema %}

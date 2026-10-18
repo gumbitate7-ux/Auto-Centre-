@@ -1,0 +1,27 @@
+{%- comment -%}
+  Compact list of store promises, driven by theme settings so every page says the same thing.
+{%- endcomment -%}
+<ul class="guarantee-list" role="list">
+  <li>
+    {% render 'icon', name: 'truck', size: 20 %}
+    <span>
+      {%- if settings.free_shipping -%}
+        Free {{ settings.courier_name }} delivery, anywhere in South Africa
+      {%- else -%}
+        Tracked {{ settings.courier_name }} delivery, anywhere in South Africa
+      {%- endif -%}
+    </span>
+  </li>
+  <li>
+    {% render 'icon', name: 'return', size: 20 %}
+    <span>{{ settings.returns_days }}-day returns, no awkward questions</span>
+  </li>
+  <li>
+    {% render 'icon', name: 'shield', size: 20 %}
+    <span>{{ settings.warranty_months }}-month warranty &mdash; we replace faulty cards</span>
+  </li>
+  <li>
+    {% render 'icon', name: 'lock', size: 20 %}
+    <span>Secure card payment, processed by Yoco</span>
+  </li>
+</ul>

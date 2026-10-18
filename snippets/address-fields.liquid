@@ -1,0 +1,56 @@
+{%- comment -%}
+  Address form fields for the classic customer accounts pages.
+  Accepts: form, prefix
+{%- endcomment -%}
+<div class="form__row">
+  <div class="field">
+    <label class="field__label" for="AddressFirstName_{{ prefix }}">First name</label>
+    <input class="field__input" type="text" id="AddressFirstName_{{ prefix }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+  </div>
+  <div class="field">
+    <label class="field__label" for="AddressLastName_{{ prefix }}">Last name</label>
+    <input class="field__input" type="text" id="AddressLastName_{{ prefix }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+  </div>
+</div>
+<div class="field">
+  <label class="field__label" for="AddressCompany_{{ prefix }}">Company (optional)</label>
+  <input class="field__input" type="text" id="AddressCompany_{{ prefix }}" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+</div>
+<div class="field">
+  <label class="field__label" for="AddressAddress1_{{ prefix }}">Street address</label>
+  <input class="field__input" type="text" id="AddressAddress1_{{ prefix }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1">
+</div>
+<div class="field">
+  <label class="field__label" for="AddressAddress2_{{ prefix }}">Suburb / complex / unit</label>
+  <input class="field__input" type="text" id="AddressAddress2_{{ prefix }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2">
+</div>
+<div class="form__row">
+  <div class="field">
+    <label class="field__label" for="AddressCity_{{ prefix }}">City</label>
+    <input class="field__input" type="text" id="AddressCity_{{ prefix }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+  </div>
+  <div class="field">
+    <label class="field__label" for="AddressZip_{{ prefix }}">Postal code</label>
+    <input class="field__input" type="text" id="AddressZip_{{ prefix }}" name="address[zip]" value="{{ form.zip }}" autocomplete="postal-code">
+  </div>
+</div>
+<div class="form__row">
+  <div class="field">
+    <label class="field__label" for="AddressCountry_{{ prefix }}">Country</label>
+    <select class="field__input" id="AddressCountry_{{ prefix }}" name="address[country]" data-default="{{ form.country | default: 'South Africa' }}">
+      {{ all_country_option_tags }}
+    </select>
+  </div>
+  <div class="field">
+    <label class="field__label" for="AddressProvince_{{ prefix }}">Province</label>
+    <input class="field__input" type="text" id="AddressProvince_{{ prefix }}" name="address[province]" value="{{ form.province }}" autocomplete="address-level1">
+  </div>
+</div>
+<div class="field">
+  <label class="field__label" for="AddressPhone_{{ prefix }}">Phone</label>
+  <input class="field__input" type="tel" id="AddressPhone_{{ prefix }}" name="address[phone]" value="{{ form.phone }}" autocomplete="tel">
+</div>
+<label class="checkbox">
+  {{ form.set_as_default_checkbox }}
+  <span>Use as my default address</span>
+</label>

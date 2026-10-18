@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container">
+    <header class="section-head">
+      <h1 class="h1">Search</h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+        <label for="SearchInput" class="visually-hidden">Search</label>
+        <input id="SearchInput" class="field__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search the store">
+        <input type="hidden" name="options[prefix]" value="last">
+        <button type="submit" class="btn btn--primary">{% render 'icon', name: 'search', size: 18 %} Search</button>
+      </form>
+    </header>
+
+    {%- if search.performed -%}
+      {%- paginate search.results by 24 -%}
+        <p class="muted">{{ search.results_count }} {{ search.results_count | pluralize: 'result', 'results' }} for &ldquo;{{ search.terms | escape }}&rdquo;</p>
+        <div class="product-grid">
+          {%- for item in search.results -%}
+            {%- case item.object_type -%}
+              {%- when 'product' -%}
+                {% render 'product-card', product: item %}
+              {%- else -%}
+                <a href="{{ item.url }}" class="product-card card">
+                  <div class="product-card__info">
+                    <h2 class="product-card__title">{{ item.title }}</h2>
+                    <p class="muted">{{ item.content | strip_html | truncatewords: 20 }}</p>
+                  </div>
+                </a>
+            {%- endcase -%}
+          {%- else -%}
+            <p>Nothing found. Try another word, or <a href="/pages/contact">ask us</a>.</p>
+          {%- endfor -%}
+        </div>
+        {% render 'pagination', paginate: paginate %}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search results",
+  "class": "section-main-search",
+  "settings": []
+}
+{% endschema %}

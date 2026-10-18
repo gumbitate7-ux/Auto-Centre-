@@ -1,0 +1,38 @@
+{%- liquid
+  if settings.use_system_font
+    assign body_family = '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    assign heading_family = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+    assign heading_weight = 650
+  else
+    assign body_family = settings.type_body_font.family | append: ', ' | append: settings.type_body_font.fallback_families
+    assign heading_family = settings.type_heading_font.family | append: ', ' | append: settings.type_heading_font.fallback_families
+    assign heading_weight = settings.type_heading_font.weight
+  endif
+-%}
+{%- unless settings.use_system_font -%}
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- assign body_bold = settings.type_body_font | font_modify: 'weight', 'bold' -%}
+  <style>
+    {{ settings.type_body_font | font_face: font_display: 'swap' }}
+    {{ body_bold | font_face: font_display: 'swap' }}
+    {{ settings.type_heading_font | font_face: font_display: 'swap' }}
+  </style>
+{%- endunless -%}
+<style>
+  :root {
+    --color-bg: {{ settings.color_bg }};
+    --color-surface: {{ settings.color_surface }};
+    --color-text: {{ settings.color_text }};
+    --color-muted: {{ settings.color_muted }};
+    --color-line: {{ settings.color_line }};
+    --color-accent: {{ settings.color_accent }};
+    --color-accent-hover: {{ settings.color_accent | color_darken: 6 }};
+    --color-accent-soft: {{ settings.color_accent | color_mix: settings.color_bg, 12 }};
+    --color-accent-text: {{ settings.color_accent_text }};
+    --color-dark: {{ settings.color_dark }};
+    --font-body: {{ body_family }};
+    --font-heading: {{ heading_family }};
+    --heading-weight: {{ heading_weight }};
+    --logo-width: {{ settings.logo_width }}px;
+  }
+</style>

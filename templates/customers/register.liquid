@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container container--narrow account-form">
+    <h1 class="h2">Create an account</h1>
+    <p class="muted">Track orders and check out faster next time.</p>
+    {%- form 'create_customer' -%}
+      {{ form.errors | default_errors }}
+      <div class="form__row">
+        <div class="field">
+          <label class="field__label" for="RegisterFirstName">First name</label>
+          <input class="field__input" type="text" name="customer[first_name]" id="RegisterFirstName" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label class="field__label" for="RegisterLastName">Last name</label>
+          <input class="field__input" type="text" name="customer[last_name]" id="RegisterLastName" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label class="field__label" for="RegisterEmail">Email</label>
+        <input class="field__input" type="email" name="customer[email]" id="RegisterEmail" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label class="field__label" for="RegisterPassword">Password</label>
+        <input class="field__input" type="password" name="customer[password]" id="RegisterPassword" autocomplete="new-password" required>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" name="customer[accepts_marketing]" value="true">
+        <span>Email me about new products (optional)</span>
+      </label>
+      <button type="submit" class="btn btn--primary btn--block btn--lg">Create account</button>
+    {%- endform -%}
+    <p class="account-form__links">Already have an account? <a href="{{ routes.account_login_url }}">Sign in</a></p>
+  </div>
+</section>

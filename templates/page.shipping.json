@@ -1,0 +1,67 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Delivery",
+        "heading": "Shipping & delivery",
+        "heading_level": "h1",
+        "text": "<p>Every order ships free with Aramex, tracked from our door to yours, anywhere in South Africa.</p>",
+        "alignment": "center",
+        "background": "default",
+        "compact": true
+      }
+    },
+    "facts": {
+      "type": "features",
+      "blocks": {
+        "s1": { "type": "feature", "settings": { "icon": "truck", "title": "Free delivery", "text": "<p>Door-to-door with Aramex on every order. No minimum spend, nothing extra at checkout.</p>" } },
+        "s2": { "type": "feature", "settings": { "icon": "clock", "title": "Same-day dispatch", "text": "<p>Order before 13:00 on a weekday and it leaves us that day. Later orders go out the next working day.</p>" } },
+        "s3": { "type": "feature", "settings": { "icon": "map", "title": "2–4 working days", "text": "<p>To main centres. Outlying and rural areas usually take 3–6 working days.</p>" } },
+        "s4": { "type": "feature", "settings": { "icon": "pin", "title": "Tracked all the way", "text": "<p>We email your Aramex tracking number as soon as your parcel is collected.</p>" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {
+        "heading": "",
+        "center": true,
+        "style": "cards",
+        "columns": "4",
+        "background": "default",
+        "note": "Weekends and South African public holidays aren't working days for dispatch or delivery."
+      }
+    },
+    "details": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "The details",
+        "heading_level": "h2",
+        "text": "<p><strong>Where we deliver.</strong> Anywhere in South Africa, including outlying areas. We don't ship internationally yet.</p><p><strong>Getting your address right.</strong> Include your complex or estate name, unit number and suburb. A work address is a good idea if nobody is home during the day. Add a cellphone number so the Aramex driver can reach you.</p><p><strong>If you miss the driver.</strong> Aramex will contact you to arrange another delivery, or let you collect from your nearest Aramex branch.</p><p><strong>Lost or damaged parcels.</strong> If your parcel goes missing or arrives damaged, contact us. We'll deal with Aramex and send you a replacement or refund you. You don't have to chase anyone.</p>",
+        "button_label": "Track your order",
+        "button_link": "/pages/track-order",
+        "alignment": "left",
+        "background": "surface",
+        "compact": false
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "Can I collect my order instead?", "answer": "<p>We don't offer collection at the moment, but delivery is free and usually quick.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "Can you deliver to a PO Box?", "answer": "<p>No. Aramex needs a physical street address and a contact number.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "My tracking hasn't updated in a while", "answer": "<p>Tracking sometimes only updates when a parcel is scanned at a depot. If there's been no movement for 2 working days, send us your order number and we'll follow up with Aramex.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Delivery questions",
+        "heading_level": "h2",
+        "layout": "split",
+        "show_contact": true,
+        "schema_markup": true,
+        "background": "default",
+        "anchor": "faq"
+      }
+    }
+  },
+  "order": ["intro", "facts", "details", "faq"]
+}

@@ -1,0 +1,79 @@
+{%- liquid
+  assign featured = all_products['wallet-tracker-card-2-pack']
+  if featured.id == blank
+    assign featured = collections.all.products.first
+  endif
+-%}
+<div class="cart-drawer" data-cart-drawer hidden>
+  <div class="cart-drawer__backdrop" data-cart-close></div>
+  <aside class="cart-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="CartDrawerTitle" tabindex="-1">
+    <div class="cart-drawer__contents" data-cart-drawer-contents>
+      <div class="cart-drawer__head">
+        <h2 class="cart-drawer__title" id="CartDrawerTitle">
+          Your cart{% if cart.item_count > 0 %} <span class="muted">({{ cart.item_count }})</span>{% endif %}
+        </h2>
+        <button type="button" class="header-icon" aria-label="Close cart" data-cart-close>
+          {% render 'icon', name: 'x', size: 24 %}
+        </button>
+      </div>
+
+      {%- if cart.item_count > 0 -%}
+        {%- if settings.free_shipping -%}
+          <p class="cart-drawer__banner">
+            {% render 'icon', name: 'truck', size: 18 %}
+            <span>Your order ships free with {{ settings.courier_name }}.</span>
+          </p>
+        {%- endif -%}
+
+        <div class="cart-drawer__body">
+          {% render 'cart-items', context: 'drawer' %}
+        </div>
+
+        <div class="cart-drawer__foot">
+          {%- for discount in cart.cart_level_discount_applications -%}
+            <div class="cart-totals__row">
+              <span>{{ discount.title }}</span>
+              <span>&minus;{{ discount.total_allocated_amount | money_without_trailing_zeros }}</span>
+            </div>
+          {%- endfor -%}
+          <div class="cart-totals__row cart-totals__row--total">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money_without_trailing_zeros }}</span>
+          </div>
+          <p class="cart-totals__note">
+            {%- if settings.free_shipping -%}Delivery: <strong>Free</strong>.{%- else -%}Delivery calculated at checkout.{%- endif %}
+            {% if settings.company_vat_no != blank %}VAT included.{% endif %}
+          </p>
+          <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
+            <button type="submit" name="checkout" class="btn btn--primary btn--block btn--lg">
+              {% render 'icon', name: 'lock', size: 18 %}
+              <span>Secure checkout</span>
+            </button>
+          </form>
+          <p class="cart-drawer__assure">
+            {{ settings.returns_days }}-day returns &middot; {{ settings.warranty_months }}-month warranty &middot; Paid via Yoco
+          </p>
+          {% render 'payment-icons' %}
+        </div>
+      {%- else -%}
+        <div class="cart-empty">
+          <span class="cart-empty__icon">{% render 'icon', name: 'bag', size: 32 %}</span>
+          <p class="cart-empty__title">Your cart is empty</p>
+          <p class="muted">Two tracker cards, free delivery, one less thing to worry about.</p>
+          {%- if featured.id != blank -%}
+            <a href="{{ featured.url }}" class="btn btn--primary">Shop the 2-pack &mdash; {{ featured.price | money_without_trailing_zeros }}</a>
+          {%- else -%}
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Continue shopping</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </aside>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

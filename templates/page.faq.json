@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "g1": { "type": "group", "settings": { "title": "The card" } },
+        "a1": { "type": "question", "settings": { "question": "What exactly is it?", "answer": "<p>A slim tracker the size of a bank card (85 × 54 mm, 2 mm thick). It links to the Find My app on your iPhone, so you can see where it is on a map, make it play a sound, and get an alert if you leave it behind. Each pack has two cards.</p>" } },
+        "a2": { "type": "question", "settings": { "question": "Does it work with Android phones?", "answer": "<p>No. It only works with Apple's Find My app, so you need an iPhone or iPad running iOS 14.5 or later. It can't be set up or used on Android.</p>" } },
+        "a3": { "type": "question", "settings": { "question": "Does it have GPS? How does it find my wallet far away?", "answer": "<p>It has no GPS or SIM card, which is why it can be so thin and needs no subscription. Instead, it sends a secure Bluetooth signal. When any Apple device on the Find My network passes nearby, it anonymously and securely reports the card's location to you.</p><p>That works well in towns, malls, airports and suburbs. In very remote areas with few people around, updates are less frequent.</p>" } },
+        "a4": { "type": "question", "settings": { "question": "What's the range when I'm looking for it nearby?", "answer": "<p>Bluetooth range is roughly 10 to 30 metres depending on walls and surroundings. Within that range you can play a sound. Beyond it, Find My shows you the last location reported by the network.</p>" } },
+        "a5": { "type": "question", "settings": { "question": "Will it work inside a leather or metal wallet?", "answer": "<p>Leather, fabric and plastic wallets are no problem. Fully metal or aluminium wallets block part of the signal, so the range will be shorter. RFID-blocking sleeves can do the same.</p>" } },
+        "a6": { "type": "question", "settings": { "question": "Is there a monthly fee?", "answer": "<p>No. You pay once. Find My is free and already on your iPhone.</p>" } },
+
+        "g2": { "type": "group", "settings": { "title": "Setting up" } },
+        "b1": { "type": "question", "settings": { "question": "How do I set it up?", "answer": "<p>1. Press the button on the card to switch it on. It beeps when it's ready.<br>2. On your iPhone, open <strong>Find My</strong> → <strong>Items</strong> → <strong>+</strong> → <strong>Add Other Item</strong>.<br>3. Follow the prompts, give it a name (like \"Wallet\") and you're done.</p><p>Stuck? WhatsApp us and we'll walk you through it.</p>" } },
+        "b2": { "type": "question", "settings": { "question": "My iPhone can't find the card when I try to add it", "answer": "<p>Make sure Bluetooth is on, the card is right next to your phone, and it has been switched on (press the button, listen for the beep). If it was previously linked to another Apple ID, it must be removed from that Find My account first. Still no luck? Contact us. We'll help, and replace it if it's faulty.</p>" } },
+        "b3": { "type": "question", "settings": { "question": "Can I share a card with my partner or family?", "answer": "<p>Each card links to one Apple ID. On recent versions of iOS you can share an item's location with other people from the Find My app (tap the item, then <strong>Share This Item</strong>).</p>" } },
+        "b4": { "type": "question", "settings": { "question": "How do I turn on left-behind alerts?", "answer": "<p>In Find My, tap the card, then <strong>Notify When Left Behind</strong>. You can add trusted places like home or work where you don't want alerts.</p>" } },
+        "b5": { "type": "question", "settings": { "question": "What's Lost Mode?", "answer": "<p>If your wallet is lost, turn on <strong>Lost Mode</strong> for the card in Find My. You'll be notified as soon as the Find My network locates it, and you can add a phone number and message for whoever finds it.</p>" } },
+
+        "g3": { "type": "group", "settings": { "title": "Battery & care" } },
+        "c1": { "type": "question", "settings": { "question": "How do I charge it, and how long does the battery last?", "answer": "<p>Each card has a built-in rechargeable battery that charges wirelessly. A full charge lasts for months of normal use. The quick-start guide in the box has the details.</p>" } },
+        "c2": { "type": "question", "settings": { "question": "Is it waterproof?", "answer": "<p>It's built to handle everyday life in a wallet or bag, but it isn't designed to go swimming. Keep it out of water and don't put it through the wash.</p>" } },
+
+        "g4": { "type": "group", "settings": { "title": "Orders & payment" } },
+        "d1": { "type": "question", "settings": { "question": "How much does it cost?", "answer": "<p>R599 for a pack of two cards, with free delivery anywhere in South Africa. No hidden fees at checkout.</p>" } },
+        "d2": { "type": "question", "settings": { "question": "How do I pay? Is it secure?", "answer": "<p>We accept card payments through Yoco, a South African payment provider trusted by hundreds of thousands of local businesses. Your card details are encrypted and handled by Yoco; we never see or store them.</p>" } },
+        "d3": { "type": "question", "settings": { "question": "Can I get an invoice?", "answer": "<p>Yes. You'll receive an order confirmation by email straight away. If you need a formal invoice for your business, message us with your order number and company details.</p>" } },
+        "d4": { "type": "question", "settings": { "question": "Can I change or cancel my order?", "answer": "<p>Contact us as soon as possible. If your order hasn't been handed to Aramex yet we can change or cancel it. Once dispatched, you can still return it within 30 days.</p>" } },
+
+        "g5": { "type": "group", "settings": { "title": "Delivery" } },
+        "e1": { "type": "question", "settings": { "question": "How much is delivery?", "answer": "<p>Free, anywhere in South Africa.</p>" } },
+        "e2": { "type": "question", "settings": { "question": "How long will it take?", "answer": "<p>Weekday orders placed before 13:00 are dispatched the same day; later orders go out the next working day. Aramex delivers in 2–4 working days to main centres, and 3–6 working days to outlying and rural areas.</p>" } },
+        "e3": { "type": "question", "settings": { "question": "How do I track my parcel?", "answer": "<p>We email your Aramex tracking number as soon as your order leaves us. You can also use our <a href=\"/pages/track-order\">Track your order</a> page.</p>" } },
+        "e4": { "type": "question", "settings": { "question": "Do you deliver outside South Africa?", "answer": "<p>Not at the moment. We only deliver within South Africa.</p>" } },
+
+        "g6": { "type": "group", "settings": { "title": "Returns & warranty" } },
+        "f1": { "type": "question", "settings": { "question": "Can I return it if I change my mind?", "answer": "<p>Yes. Return it within 30 days of delivery, unused and in its original packaging, for a full refund of the purchase price. Please remove the cards from your Find My app first. <a href=\"/pages/returns\">How returns work</a></p>" } },
+        "f2": { "type": "question", "settings": { "question": "What does the warranty cover?", "answer": "<p>12 months against manufacturing faults. If a card stops working through no fault of yours, we'll repair or replace it, or refund you, and we'll cover the courier costs. This is in addition to your rights under the Consumer Protection Act.</p>" } },
+        "f3": { "type": "question", "settings": { "question": "When will I get my refund?", "answer": "<p>Within 5 working days of the return reaching us, back to the card you paid with. Your bank may take a few extra days to show it.</p>" } },
+
+        "g7": { "type": "group", "settings": { "title": "Privacy & safety" } },
+        "h1": { "type": "question", "settings": { "question": "Can you see where my things are?", "answer": "<p>No. Location data goes through Apple's end-to-end encrypted Find My network. Only you can see where your card is, not us, and not Apple.</p>" } },
+        "h2": { "type": "question", "settings": { "question": "Can someone use this to track me?", "answer": "<p>Find My has built-in protection against unwanted tracking. If an unknown tracker is moving with someone, their iPhone will alert them, and many Android phones can detect unknown trackers too. Our cards are for keeping track of belongings. Please don't use them to track people or pets.</p>" } },
+        "h3": { "type": "question", "settings": { "question": "What do you do with my personal information?", "answer": "<p>We only use your details to process and deliver your order and to help you, in line with POPIA. We never sell your information. See our <a href=\"/policies/privacy-policy\">privacy policy</a>.</p>" } }
+      },
+      "block_order": [
+        "g1", "a1", "a2", "a3", "a4", "a5", "a6",
+        "g2", "b1", "b2", "b3", "b4", "b5",
+        "g3", "c1", "c2",
+        "g4", "d1", "d2", "d3", "d4",
+        "g5", "e1", "e2", "e3", "e4",
+        "g6", "f1", "f2", "f3",
+        "g7", "h1", "h2", "h3"
+      ],
+      "settings": {
+        "eyebrow": "Help centre",
+        "heading": "Frequently asked questions",
+        "heading_level": "h1",
+        "text": "<p>Everything about the card, setup, delivery and returns. If your question isn't here, message us. A real person will reply.</p>",
+        "layout": "split",
+        "show_contact": true,
+        "schema_markup": true,
+        "background": "default",
+        "anchor": "faq"
+      }
+    }
+  },
+  "order": ["faq"]
+}

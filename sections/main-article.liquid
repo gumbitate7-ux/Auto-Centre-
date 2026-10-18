@@ -1,0 +1,22 @@
+<article class="section">
+  <div class="container container--narrow">
+    <p class="eyebrow"><a href="{{ blog.url }}">{{ blog.title }}</a></p>
+    <h1 class="h1">{{ article.title }}</h1>
+    <p class="muted">{{ article.published_at | date: '%e %B %Y' }}{% if article.author != blank %} &middot; {{ article.author }}{% endif %}</p>
+    {%- if article.image -%}
+      <div class="article__image">
+        {{ article.image | image_url: width: 1400 | image_tag: alt: article.title, widths: '600, 900, 1200, 1400', sizes: '(min-width: 800px) 760px, 92vw' }}
+      </div>
+    {%- endif -%}
+    <div class="rte article__content">{{ article.content }}</div>
+    <a href="{{ blog.url }}" class="link-arrow">{% render 'icon', name: 'chevron-left', size: 16 %} Back to {{ blog.title }}</a>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "class": "section-main-article",
+  "settings": []
+}
+{% endschema %}

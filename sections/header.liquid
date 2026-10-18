@@ -1,0 +1,145 @@
+{%- liquid
+  assign menu = section.settings.menu
+  assign has_menu = false
+  if menu != blank and menu.links.size > 0
+    assign has_menu = true
+  endif
+
+  assign featured = all_products['wallet-tracker-card-2-pack']
+  if featured.id == blank
+    assign featured = collections.all.products.first
+  endif
+  if featured.id != blank
+    assign shop_url = featured.url
+  else
+    assign shop_url = routes.all_products_collection_url
+  endif
+-%}
+
+{%- capture nav_links -%}
+  {%- if has_menu -%}
+    {%- for link in menu.links -%}
+      <li class="site-nav__item{% if link.links.size > 0 %} site-nav__item--parent{% endif %}">
+        <a href="{{ link.url }}" class="site-nav__link{% if link.active %} is-active{% endif %}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- if link.links.size > 0 -%}
+          <ul class="site-nav__dropdown" role="list">
+            {%- for child in link.links -%}
+              <li><a href="{{ child.url }}" class="site-nav__child">{{ child.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  {%- else -%}
+    <li class="site-nav__item"><a class="site-nav__link" href="{{ shop_url }}">Shop</a></li>
+    <li class="site-nav__item"><a class="site-nav__link" href="{{ routes.root_url }}#how-it-works">How it works</a></li>
+    <li class="site-nav__item"><a class="site-nav__link" href="/pages/faq">FAQ</a></li>
+    <li class="site-nav__item"><a class="site-nav__link" href="/pages/track-order">Track order</a></li>
+    <li class="site-nav__item"><a class="site-nav__link" href="/pages/contact">Contact</a></li>
+  {%- endif -%}
+{%- endcapture -%}
+
+<header class="site-header{% if section.settings.sticky %} site-header--sticky{% endif %}" data-header>
+  <div class="container site-header__inner">
+    <button
+      type="button"
+      class="header-icon site-header__menu-toggle"
+      aria-controls="MobileNav"
+      aria-expanded="false"
+      aria-label="Open menu"
+      data-menu-toggle
+    >
+      {% render 'icon', name: 'menu', size: 24 %}
+    </button>
+
+    <div class="site-header__logo">
+      <a href="{{ routes.root_url }}" class="logo" aria-label="{{ shop.name }} home">
+        {% render 'logo' %}
+      </a>
+    </div>
+
+    <nav class="site-nav" aria-label="Main">
+      <ul class="site-nav__list" role="list">
+        {{ nav_links }}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      {%- if section.settings.show_contact and settings.whatsapp_number != blank -%}
+        <a
+          class="header-help"
+          href="https://wa.me/{{ settings.whatsapp_number | remove: '+' | remove: ' ' }}"
+          target="_blank"
+          rel="noopener"
+        >
+          {% render 'icon', name: 'whatsapp', size: 18 %}
+          <span>Questions? WhatsApp us</span>
+        </a>
+      {%- endif -%}
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="header-icon header-icon--account" aria-label="Your account">
+          {% render 'icon', name: 'user', size: 22 %}
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="header-icon header-cart" aria-label="Cart, {{ cart.item_count }} items" data-cart-toggle>
+        {% render 'icon', name: 'bag', size: 23 %}
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="MobileNav" data-mobile-nav hidden>
+    <div class="mobile-nav__backdrop" data-menu-close></div>
+    <div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="mobile-nav__head">
+        <span class="logo">{% render 'logo' %}</span>
+        <button type="button" class="header-icon" aria-label="Close menu" data-menu-close>
+          {% render 'icon', name: 'x', size: 24 %}
+        </button>
+      </div>
+      <ul class="mobile-nav__list" role="list">
+        {{ nav_links }}
+      </ul>
+      <div class="mobile-nav__help">
+        <p class="mobile-nav__help-title">Need a hand?</p>
+        {%- if settings.whatsapp_number != blank -%}
+          <a href="https://wa.me/{{ settings.whatsapp_number | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">
+            {% render 'icon', name: 'whatsapp', size: 18 %} WhatsApp us
+          </a>
+        {%- endif -%}
+        {%- if settings.support_email != blank -%}
+          <a href="mailto:{{ settings.support_email }}">{% render 'icon', name: 'mail', size: 18 %} {{ settings.support_email }}</a>
+        {%- endif -%}
+        <p class="mobile-nav__hours">{{ settings.support_hours }}</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Leave empty to use the built-in menu: Shop, How it works, FAQ, Track order, Contact."
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Stick to the top while scrolling",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show WhatsApp help link (desktop)",
+      "default": true
+    }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

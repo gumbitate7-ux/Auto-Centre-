@@ -10,10 +10,10 @@ These terms apply when you use [your domain] (the "store") or buy from us. By pl
 ## 1. About us (ECTA section 43)
 
 - **Business name:** [Registered business name]
-- **Legal form and registration number:** [Private company], [CIPC registration number]
+- **Legal form and registration number:** [Private company (Pty) Ltd, or sole proprietor], [CIPC registration number]
 - **VAT number:** [VAT number, or "Not VAT registered"]
 - **Physical address (and address for legal notices):** [physical address]
-- **Email:** [support email] · **Phone / WhatsApp:** [number]
+- **Email:** [support email] · **Phone / WhatsApp:** [WhatsApp number]
 - **Directors:** [names of directors / owner]
 
 ## 2. Products

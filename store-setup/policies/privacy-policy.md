@@ -10,8 +10,9 @@ This policy explains how **[Registered business name]** ("Homeward", "we", "us")
 
 ## 1. Who is responsible for your information
 
-[Registered business name], registration number [CIPC registration number], [physical address].
-**Information Officer:** [Name], [email address].
+- **Business:** [Registered business name], registration number [CIPC registration number]
+- **Address:** [physical address]
+- **Information Officer:** [Information Officer name], [Information Officer email]
 
 ## 2. What we collect
 

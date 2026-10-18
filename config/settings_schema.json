@@ -129,7 +129,7 @@
         "type": "text",
         "id": "company_legal_name",
         "label": "Registered business name",
-        "default": "Homeward Supply Co. (Pty) Ltd"
+        "info": "e.g. Homeward Supply Co. (Pty) Ltd. Leave empty to show your store name."
       },
       {
         "type": "text",
@@ -159,7 +159,7 @@
         "type": "text",
         "id": "support_email",
         "label": "Support email",
-        "default": "hello@homeward.co.za"
+        "info": "e.g. hello@yourdomain.co.za. Shown on the contact page, footer and menu."
       },
       {
         "type": "text",

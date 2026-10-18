@@ -43,7 +43,7 @@ If your parcel arrives damaged or contains the wrong item, please contact us as 
 3. We'll reply within one business day with our returns address and instructions. For warranty claims and damaged items, we'll book the Aramex collection for you.
 4. Pack the item securely in its original packaging.
 
-Returns address: [physical returns address]
+Returns address: [physical address]
 
 ## 6. Refunds
 
@@ -53,6 +53,7 @@ If a return doesn't meet the conditions above (for example the cards are damaged
 
 ## 7. Contact
 
-[Registered business name] · Reg. no. [CIPC registration number]
-[Physical address]
-Email: [support email] · WhatsApp: [WhatsApp number] · Hours: [support hours]
+- [Registered business name], reg. no. [CIPC registration number]
+- [physical address]
+- Email: [support email] · WhatsApp: [WhatsApp number]
+- Hours: [support hours]

@@ -34,16 +34,20 @@ The store promises *real people, quick replies*. This keeps everyone on the team
 
 ### /setup: setup help
 > Happy to help! Here's how to add it:
+>
 > 1. Press the button on the card. It beeps when it's ready.
 > 2. On your iPhone open **Find My** → **Items** → **+** → **Add Other Item**.
 > 3. Hold the card right next to your phone and follow the steps.
+>
 > If it doesn't show up: check Bluetooth is on and the card isn't already linked to another Apple ID. Still stuck? Send me a screenshot and we'll sort it out.
 
 ### /return: change-of-mind return
 > No problem, [name]. You're within our 30-day return window. Please:
+>
 > 1. Remove the cards from Find My (Find My → Items → tap the card → Remove Item).
 > 2. Pack them in the original packaging.
 > 3. Send them with a tracked service to: [returns address]. Reference: [#1234].
+>
 > Send me the tracking number, and we'll refund R599 to your card within 5 working days of receiving it.
 
 ### /faulty: warranty claim

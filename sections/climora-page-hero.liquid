@@ -1,0 +1,61 @@
+{%- comment -%}
+  Hero banner for content pages (About, Contact, FAQ, Shipping, Returns…).
+  Leave the heading empty to use the Shopify page title.
+{%- endcomment -%}
+{%- liquid
+  assign dark = false
+  if section.settings.style == 'dark'
+    assign dark = true
+  endif
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = page.title | default: page_title
+  endif
+  assign has_visual = false
+  if section.settings.image != blank or section.settings.art != 'none'
+    assign has_visual = true
+  endif
+-%}
+<section class="page-hero{% if dark %} page-hero--dark on-dark{% endif %}" aria-labelledby="PageHeroTitle-{{ section.id }}">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><span aria-current="page">{{ page.title | default: heading | escape }}</span></li>
+      </ol>
+    </nav>
+    <div class="page-hero__grid{% if has_visual %} page-hero__grid--media{% endif %}">
+      <div class="page-hero__content">
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="page-hero__title" id="PageHeroTitle-{{ section.id }}">{{ heading | escape }}</h1>
+        {%- if section.settings.text != blank -%}<p class="page-hero__text">{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if has_visual -%}
+        <div class="page-hero__visual">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image.alt }}
+          {%- else -%}
+            {%- render 'climora-art', kind: section.settings.art -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page hero",
+  "tag": "div",
+  "class": "section-page-hero",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Background", "default": "light", "options": [{ "value": "light", "label": "Ice" }, { "value": "dark", "label": "Midnight" }] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Leave empty to use the page title." },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "select", "id": "art", "label": "Illustration (when no image)", "default": "none", "options": [{ "value": "none", "label": "None" }, { "value": "fan", "label": "Fan" }, { "value": "pillow", "label": "Pillowcase" }, { "value": "topper", "label": "Topper" }, { "value": "orbit", "label": "Brand orbit" }] }
+  ],
+  "presets": [{ "name": "Page hero" }]
+}
+{% endschema %}

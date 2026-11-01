@@ -1,0 +1,105 @@
+{%- comment -%}
+  Premium product card powered by native Shopify product data.
+  Accepts:
+  - product: product object (required unless placeholder_title is set)
+  - tagline: optional short description override
+  - eager: boolean — load image eagerly (first row above the fold)
+  - quick_add: boolean — show add-to-cart for single-variant products (default true)
+  - placeholder_title / placeholder_kind: onboarding placeholder when no product exists yet
+  - section_id: used to make form ids unique
+{%- endcomment -%}
+{%- liquid
+  assign show_quick_add = true
+  if quick_add == false
+    assign show_quick_add = false
+  endif
+  if eager
+    assign loading = 'eager'
+  else
+    assign loading = 'lazy'
+  endif
+-%}
+{%- if product != blank -%}
+  {%- liquid
+    assign short = tagline
+    if short == blank and product.metafields.custom.short_description != blank
+      assign short = product.metafields.custom.short_description.value
+    endif
+    if short == blank
+      assign short = product.description | strip_html | truncatewords: 18
+    endif
+    assign label = product.type
+    if label == blank
+      assign label = product.vendor
+    endif
+    assign form_id = 'QuickAdd-' | append: section_id | append: '-' | append: product.id
+    assign img_alt = product.featured_media.preview_image.alt | default: product.title
+    assign sizes = '(min-width: 1320px) 420px, (min-width: 990px) calc((100vw - 140px) / 3), (min-width: 750px) calc((100vw - 90px) / 2), calc(100vw - 32px)'
+  -%}
+  <article class="card" aria-labelledby="CardTitle-{{ section_id }}-{{ product.id }}">
+    <a class="card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+      {%- if product.available == false -%}
+        <span class="card__tag card__tag--soldout">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif label != blank -%}
+        <span class="card__tag">{{ label | escape }}</span>
+      {%- endif -%}
+      {%- if product.featured_media -%}
+        {{
+          product.featured_media.preview_image
+          | image_url: width: 1200
+          | image_tag: widths: '360, 540, 720, 900, 1200', sizes: sizes, loading: loading, alt: img_alt
+        }}
+        {%- if product.media[1] -%}
+          {{
+            product.media[1].preview_image
+            | image_url: width: 1200
+            | image_tag: widths: '360, 540, 720, 900, 1200', sizes: sizes, loading: 'lazy', alt: '', class: 'card__img--alt'
+          }}
+        {%- endif -%}
+      {%- else -%}
+        {%- render 'climora-art', product: product -%}
+      {%- endif -%}
+    </a>
+    <div class="card__body">
+      <h3 class="card__title" id="CardTitle-{{ section_id }}-{{ product.id }}">
+        <a href="{{ product.url }}">{{ product.title | escape }}</a>
+      </h3>
+      {%- if short != blank -%}<p class="card__desc">{{ short | strip_html | escape }}</p>{%- endif -%}
+      <div class="card__foot">
+        {%- render 'price', product: product, show_from: true -%}
+        {%- if show_quick_add -%}
+          {%- if product.available and product.has_only_default_variant -%}
+            {%- form 'product', product, id: form_id, data-product-form: 'quick', novalidate: 'novalidate' -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="btn btn--primary btn--sm" data-add-button aria-label="{{ 'products.product.add_to_cart_named' | t: title: product.title | escape }}">
+                {%- render 'icon', name: 'plus' -%}
+                <span>{{ 'products.product.add' | t }}</span>
+              </button>
+            {%- endform -%}
+          {%- elsif product.available -%}
+            <a href="{{ product.url }}" class="btn btn--secondary btn--sm" aria-label="{{ 'products.product.choose_options_named' | t: title: product.title | escape }}">{{ 'products.product.choose_options' | t }}</a>
+          {%- else -%}
+            <a href="{{ product.url }}" class="btn btn--secondary btn--sm">{{ 'products.product.view' | t }}</a>
+          {%- endif -%}
+        {%- else -%}
+          <span class="link-arrow" aria-hidden="true">{{ 'products.product.view' | t }} {% render 'icon', name: 'arrow-right' %}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </article>
+{%- else -%}
+  <article class="card card--placeholder">
+    <div class="card__media">
+      <span class="card__tag">{{ 'products.product.coming_soon' | t }}</span>
+      {%- render 'climora-art', kind: placeholder_kind -%}
+    </div>
+    <div class="card__body">
+      <h3 class="card__title">{{ placeholder_title | default: 'CLIMORA' | escape }}</h3>
+      {%- if tagline != blank -%}<p class="card__desc">{{ tagline | escape }}</p>{%- endif -%}
+      <div class="card__foot">
+        <span class="text-muted text-small">{{ 'products.product.placeholder_note' | t }}</span>
+      </div>
+    </div>
+  </article>
+{%- endif -%}

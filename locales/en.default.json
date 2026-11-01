@@ -1,0 +1,197 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content"
+  },
+  "general": {
+    "home": "Home",
+    "shop_all": "Shop all",
+    "menu": "Menu",
+    "close": "Close",
+    "search": "Search",
+    "account": "Account",
+    "announcement": "Announcement",
+    "breadcrumbs": "Breadcrumbs",
+    "primary_navigation": "Primary navigation",
+    "mobile_navigation": "Mobile navigation",
+    "contact_form": "Send us a message",
+    "pagination": "Pagination",
+    "previous_page": "Previous page",
+    "next_page": "Next page",
+    "delivery": {
+      "learn_more": "Delivery details"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "art": {
+      "fan": "Illustration of the CLIMORA SolarFlow solar rechargeable fan",
+      "pillow": "Illustration of the CLIMORA IceSoft cooling pillowcase",
+      "topper": "Illustration of the CLIMORA FrostLayer cooling mattress topper",
+      "brand": "CLIMORA brand illustration"
+    }
+  },
+  "products": {
+    "product": {
+      "add": "Add",
+      "add_to_cart": "Add to cart",
+      "add_to_cart_named": "Add {{ title }} to cart",
+      "choose_options": "Choose options",
+      "choose_options_named": "Choose options for {{ title }}",
+      "view": "View",
+      "from": "From",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "coming_soon": "Coming soon",
+      "placeholder_note": "Add this product in Shopify Admin",
+      "sale_price": "Sale price",
+      "regular_price": "Regular price",
+      "quantity": "Quantity",
+      "increase": "Increase quantity",
+      "decrease": "Decrease quantity",
+      "gallery": "Product images",
+      "thumbnails": "Product image thumbnails",
+      "media_of": "Media {{ index }} of {{ count }}",
+      "show_media": "Show image {{ index }}",
+      "taxes_included": "Taxes included.",
+      "taxes_excluded": "Taxes calculated at checkout.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "shipping_at_checkout": "Shipping calculated at checkout."
+    },
+    "assurance": {
+      "checkout_title": "Secure checkout.",
+      "checkout_text": "Payments are processed through Shopify’s encrypted checkout.",
+      "returns_title": "Returns.",
+      "returns_text": "Read our returns & refunds policy",
+      "support_title": "Questions?",
+      "support_text": "Our team is happy to help"
+    }
+  },
+  "cart": {
+    "title": "Your cart",
+    "open_cart": "Open cart, {{ count }} items",
+    "empty_title": "Your cart is empty",
+    "empty_text": "Explore cooling solutions for warmer days and warmer nights.",
+    "shop_all": "Explore the collection",
+    "sleep_cooling": "Sleep Cooling",
+    "portable_cooling": "Portable Cooling",
+    "subtotal": "Subtotal",
+    "summary": "Order summary",
+    "taxes_shipping_checkout": "Taxes, discounts and shipping are calculated at checkout.",
+    "checkout": "Secure checkout",
+    "view_cart": "View cart",
+    "continue": "Continue shopping",
+    "secure_checkout": "Encrypted, secure checkout powered by Shopify",
+    "remove": "Remove",
+    "increase": "Increase quantity of {{ title }}",
+    "decrease": "Decrease quantity of {{ title }}",
+    "quantity_for": "Quantity for {{ title }}",
+    "update": "Update cart",
+    "note": "Order note",
+    "note_placeholder": "Delivery instructions or anything else we should know",
+    "added": "Added to your cart",
+    "error": "Sorry, we couldn’t update your cart. The requested quantity may not be available.",
+    "login_html": "Have an account? <a class=\"link\" href=\"{{ link }}\">Log in</a> to check out faster."
+  },
+  "bundles": {
+    "combined_price": "Set total (sum of items)",
+    "note": "Each item is priced individually; the set total is simply the sum of the selected items.",
+    "choose_option": "Choose an option for {{ title }}",
+    "unavailable": "Currently unavailable",
+    "shop_items": "Shop the items",
+    "editor_hint": "Select products for this set in the theme editor.",
+    "added": "Set added to your cart"
+  },
+  "collections": {
+    "categories": "Categories",
+    "product_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "sort_by": "Sort by",
+    "apply": "Apply",
+    "empty_title": "Nothing here yet",
+    "empty_text": "New cooling solutions are on their way. Explore the full collection in the meantime."
+  },
+  "search": {
+    "title": "Search",
+    "heading": "Search CLIMORA",
+    "results_for": "Results for “{{ terms }}”",
+    "placeholder": "Search cooling products…",
+    "submit": "Search",
+    "count": {
+      "one": "{{ count }} result",
+      "other": "{{ count }} results"
+    },
+    "products": "Products",
+    "pages": "Pages & collections",
+    "suggestions": "Suggestions",
+    "popular": "Popular searches",
+    "popular_topper": "Cooling mattress topper",
+    "popular_pillowcase": "Cooling pillowcase",
+    "popular_fan": "Solar rechargeable fan",
+    "view_all": "View all results for “{{ terms }}”",
+    "no_results_title": "No results found",
+    "no_results": "We couldn’t find anything for “{{ terms }}”. Try a different search or browse our collections."
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "phone_optional": "Phone (optional)",
+    "order_number": "Order number (optional)",
+    "topic": "Topic",
+    "topic_product": "Product question",
+    "topic_order": "My order",
+    "topic_delivery": "Delivery",
+    "topic_returns": "Returns & refunds",
+    "topic_other": "Something else",
+    "message": "Message",
+    "send": "Send message",
+    "success": "Thank you — your message has been sent. We’ll be in touch soon.",
+    "hours": "Support hours",
+    "location": "Location"
+  },
+  "newsletter": {
+    "label": "Email address",
+    "placeholder": "Your email address",
+    "success": "Thanks for subscribing — welcome to CLIMORA."
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "refunds": "Refund Policy",
+    "shipping": "Shipping Policy",
+    "payment_methods": "Accepted payment methods",
+    "trust_checkout_title": "Secure checkout",
+    "trust_checkout_text": "Encrypted payments through Shopify’s checkout.",
+    "trust_delivery_title": "Aramex delivery",
+    "trust_support_title": "Real support",
+    "trust_support_text": "Questions before or after your order? Just ask."
+  },
+  "blog": {
+    "eyebrow": "Journal",
+    "empty": "No articles yet.",
+    "back": "Back to journal"
+  },
+  "not_found": {
+    "eyebrow": "404",
+    "title": "This page has drifted away.",
+    "text": "The page you’re looking for doesn’t exist or has moved. Let’s get you somewhere cooler.",
+    "home": "Back to home"
+  },
+  "password": {
+    "notify": "Notify me",
+    "owner": "Store owner? Enter password",
+    "password": "Password",
+    "enter": "Enter"
+  },
+  "gift_card": {
+    "title": "Your {{ shop }} gift card",
+    "heading": "Your CLIMORA gift card",
+    "code": "Gift card code",
+    "unavailable": "This gift card is no longer available.",
+    "shop": "Start shopping",
+    "print": "Print"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": ""
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "text": ""
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "highlights": {
+          "type": "highlights",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "style": "buttons"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {}
+        },
+        "assurances": {
+          "type": "assurances",
+          "settings": {
+            "returns_link": "shopify://pages/returns-refunds"
+          }
+        },
+        "divider": {
+          "type": "divider",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapsible": true,
+            "heading": "Description",
+            "open": true
+          }
+        },
+        "specs": {
+          "type": "specs",
+          "settings": {
+            "heading": "Specifications",
+            "specs": "",
+            "open": false
+          }
+        },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery & returns",
+            "icon": "truck",
+            "content": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p><p>See our <a href=\"/pages/shipping-delivery\" title=\"Shipping & Delivery\">Shipping & Delivery</a> and <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> pages for full details.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "tagline",
+        "price",
+        "highlights",
+        "variant_picker",
+        "buy_buttons",
+        "delivery",
+        "assurances",
+        "divider",
+        "description",
+        "specs",
+        "shipping"
+      ],
+      "settings": {
+        "image_fit": "cover",
+        "sticky_atc": true
+      }
+    },
+    "faq": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "How long will delivery take?",
+            "answer": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "Is checkout secure?",
+            "answer": "<p>Yes. Payments are processed through Shopify’s encrypted checkout. Available payment methods are shown at checkout.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "What if I need to return it?",
+            "answer": "<p>Please read our <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> page for eligibility and the steps to start a return.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3"
+      ],
+      "settings": {
+        "eyebrow": "Product FAQ",
+        "heading": "Good to know",
+        "text": "Have a question we haven’t answered? Our team is happy to help.",
+        "button_label": "Ask a question",
+        "button_link": "shopify://pages/contact",
+        "open_first": true,
+        "background": ""
+      }
+    },
+    "related": {
+      "type": "climora-related-products",
+      "settings": {
+        "eyebrow": "Complete your setup",
+        "heading": "You may also like",
+        "limit": 3,
+        "background": "section--mist"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq",
+    "related"
+  ]
+}

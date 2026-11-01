@@ -1,0 +1,15 @@
+{%- comment -%}
+  Consistent Aramex delivery message. The copy lives in Theme settings → Delivery
+  so it is identical everywhere (product pages, cart, shipping page, FAQ).
+  Accepts: compact (boolean)
+{%- endcomment -%}
+<div class="note{% if compact %} note--compact{% endif %}">
+  {%- render 'icon', name: 'truck' -%}
+  <p>
+    {%- if settings.delivery_heading != blank -%}<strong>{{ settings.delivery_heading | escape }}</strong><br>{%- endif -%}
+    {{ settings.delivery_message | default: 'Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.' | escape }}
+    {%- if compact != true and settings.shipping_page != blank -%}
+      <a class="link" href="{{ settings.shipping_page.url }}">{{ 'general.delivery.learn_more' | t }}</a>
+    {%- endif -%}
+  </p>
+</div>

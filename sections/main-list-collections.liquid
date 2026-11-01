@@ -1,0 +1,53 @@
+<div class="page-hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><span aria-current="page">{{ section.settings.heading | escape }}</span></li>
+      </ol>
+    </nav>
+    <div class="page-hero__content">
+      <p class="eyebrow">CLIMORA</p>
+      <h1 class="page-hero__title">{{ section.settings.heading | escape }}</h1>
+    </div>
+  </div>
+</div>
+<div class="container section">
+  <ul class="coll-tiles" role="list">
+    {%- for collection in collections -%}
+      {%- liquid
+        assign tile_dark = false
+        assign art = 'orbit'
+        if collection.handle contains 'portable' or collection.handle contains 'air'
+          assign tile_dark = true
+          assign art = 'fan'
+        elsif collection.handle contains 'sleep'
+          assign art = 'topper'
+        endif
+      -%}
+      <li>
+        <a class="coll-tile{% if tile_dark %} coll-tile--dark{% endif %}" href="{{ collection.url }}">
+          <span class="coll-tile__media" aria-hidden="true">
+            {%- if collection.image -%}
+              {{ collection.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 700, 900', sizes: '(min-width: 1100px) 33vw, (min-width: 750px) 50vw, 100vw', alt: '' }}
+              <span class="coll-tile__scrim"></span>
+            {%- else -%}
+              {%- render 'climora-art', kind: art -%}
+            {%- endif -%}
+          </span>
+          <span class="coll-tile__title h3">{{ collection.title | escape }}</span>
+          <span class="coll-tile__count">{{ 'collections.product_count' | t: count: collection.products_count }}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "tag": "section",
+  "class": "section-list-collections",
+  "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Collections" }]
+}
+{% endschema %}

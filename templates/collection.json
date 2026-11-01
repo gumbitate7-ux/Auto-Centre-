@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": { "style": "light", "eyebrow": "CLIMORA collection", "fallback_text": "Innovative cooling solutions for warmer days and warmer nights — thoughtfully selected and delivered across South Africa by Aramex.", "show_image": true, "art": "orbit", "show_sort": true, "per_page": 12 }
+    },
+    "delivery": {
+      "type": "climora-delivery",
+      "blocks": {
+        "d-1": { "type": "item", "settings": { "icon": "truck", "title": "Aramex delivery", "text": "Estimated 5–10 business days" } },
+        "d-2": { "type": "item", "settings": { "icon": "lock", "title": "Secure checkout", "text": "Encrypted Shopify checkout" } },
+        "d-3": { "type": "item", "settings": { "icon": "return", "title": "Clear returns policy", "text": "Know your options before you buy" } },
+        "d-4": { "type": "item", "settings": { "icon": "chat", "title": "Real support", "text": "Questions answered by our team" } }
+      },
+      "block_order": ["d-1", "d-2", "d-3", "d-4"],
+      "settings": { "eyebrow": "Delivery & checkout", "heading": "Shop with confidence.", "link_label": "Shipping & delivery details", "link": "shopify://pages/shipping-delivery", "background": "section--mist", "tight": true }
+    }
+  },
+  "order": ["main", "delivery"]
+}

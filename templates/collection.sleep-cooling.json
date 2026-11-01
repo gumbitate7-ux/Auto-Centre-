@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": { "style": "light", "eyebrow": "SleepTech", "fallback_text": "Cooling mattress toppers and cooling pillowcases designed to bring a fresher feel to warmer South African nights.", "show_image": true, "art": "topper", "show_sort": true, "per_page": 12 }
+    },
+    "features": {
+      "type": "climora-features",
+      "blocks": {
+        "f-1": { "type": "feature", "settings": { "icon": "snowflake", "title": "Cooling-feel materials", "text": "Fabrics and fillings selected for a fresher-feeling sleep surface." } },
+        "f-2": { "type": "feature", "settings": { "icon": "bed", "title": "Made to fit", "text": "Choose the size that matches your mattress and pillows." } },
+        "f-3": { "type": "feature", "settings": { "icon": "feather", "title": "Everyday comfort", "text": "Soft, practical bedding for nightly use." } },
+        "f-4": { "type": "feature", "settings": { "icon": "layers", "title": "Better together", "text": "Pair FrostLayer with IceSoft for a complete sleep set." } }
+      },
+      "block_order": ["f-1", "f-2", "f-3", "f-4"],
+      "settings": { "eyebrow": "SleepTech", "heading": "Designed for warmer nights.", "text": "", "numbered": false, "center": false, "background": "section--mist" }
+    },
+    "bundles": {
+      "type": "climora-bundles",
+      "blocks": {
+        "sleep-set": {
+          "type": "bundle",
+          "settings": { "style": "light", "eyebrow": "SleepTech set", "title": "The Ultimate Sleep Set", "text": "FrostLayer and IceSoft together — a complete cooling-feel upgrade for your bed.", "products": ["climora-frostlayer", "climora-icesoft"], "button_label": "Add set to cart", "placeholder_items": "CLIMORA FrostLayer, CLIMORA IceSoft", "placeholder_art": "topper, pillow", "fallback_link": "shopify://collections/sleep-cooling" }
+        }
+      },
+      "block_order": ["sleep-set"],
+      "settings": { "eyebrow": "Curated set", "heading": "Complete your bed.", "text": "Pick your sizes and add both in one step. Each item is priced individually.", "background": "" }
+    }
+  },
+  "order": ["main", "features", "bundles"]
+}

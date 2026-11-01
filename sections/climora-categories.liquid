@@ -1,0 +1,93 @@
+<section class="section" aria-labelledby="CatTitle-{{ section.id }}">
+  <div class="container">
+    <div class="section-head section-head--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="h2" id="CatTitle-{{ section.id }}" data-reveal>{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="section-head__text" data-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <div class="cat-grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign is_air = false
+          if block.settings.style == 'air'
+            assign is_air = true
+          endif
+          assign items = block.settings.items | newline_to_br | split: '<br />'
+          assign cat_url = block.settings.link | default: routes.all_products_collection_url
+        -%}
+        <article class="cat {% if is_air %}cat--air on-dark{% else %}cat--sleep{% endif %}" data-reveal style="--reveal-delay: {{ forloop.index0 | times: 120 }}ms" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank and block.settings.image_mode == 'full' -%}
+            {{ block.settings.image | image_url: width: 1400 | image_tag: class: 'cat__img-full', loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(min-width: 900px) 50vw, 100vw', alt: '' }}
+            <div class="cat__scrim" aria-hidden="true"></div>
+          {%- endif -%}
+          <div class="cat__content">
+            {%- if block.settings.eyebrow != blank -%}<p class="eyebrow">{{ block.settings.eyebrow | escape }}</p>{%- endif -%}
+            <h3 class="cat__title">{{ block.settings.title | escape }}</h3>
+            {%- if block.settings.text != blank -%}<p class="cat__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+            {%- if block.settings.items != blank -%}
+              <ul class="cat__list" role="list">
+                {%- for item in items -%}
+                  {%- assign item_clean = item | strip -%}
+                  {%- if item_clean != blank -%}<li>{% render 'icon', name: 'check' %}{{ item_clean | escape }}</li>{%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          {%- unless block.settings.image != blank and block.settings.image_mode == 'full' -%}
+            <div class="cat__visual" aria-hidden="true">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 900px) 440px, 72vw', alt: '' }}
+              {%- else -%}
+                {%- render 'climora-art', kind: block.settings.art -%}
+              {%- endif -%}
+            </div>
+          {%- endunless -%}
+          <a class="btn {% if is_air %}btn--light{% else %}btn--primary{% endif %} cat__cta cat__link" href="{{ cat_url }}">
+            {{ block.settings.button_label | escape }} {% render 'icon', name: 'arrow-right' %}
+          </a>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shopping categories",
+  "tag": "div",
+  "class": "section-categories",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by need" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Two ways to stay cool." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Engineered comfort for the bedroom, and portable airflow for everywhere else." }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "limit": 4,
+      "settings": [
+        { "type": "select", "id": "style", "label": "Style", "default": "sleep", "options": [{ "value": "sleep", "label": "SleepTech (ice)" }, { "value": "air", "label": "AirTech (midnight)" }] },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Sleep cooling" },
+        { "type": "text", "id": "title", "label": "Title", "default": "SLEEPTECH" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "textarea", "id": "items", "label": "Items", "info": "One per line." },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop SleepTech" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent product cut-outs work best with 'Product visual'." },
+        { "type": "select", "id": "image_mode", "label": "Image display", "default": "visual", "options": [{ "value": "visual", "label": "Product visual" }, { "value": "full", "label": "Full background" }] },
+        { "type": "select", "id": "art", "label": "Illustration (when no image)", "default": "topper", "options": [{ "value": "fan", "label": "Fan" }, { "value": "pillow", "label": "Pillowcase" }, { "value": "topper", "label": "Topper" }, { "value": "orbit", "label": "Brand orbit" }] }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shopping categories",
+      "blocks": [
+        { "type": "category", "settings": { "style": "sleep", "eyebrow": "Sleep cooling", "title": "SLEEPTECH", "text": "Bedding designed around a fresher-feeling night.", "items": "Cooling mattress topper\nCooling pillowcase", "button_label": "Shop SleepTech", "art": "topper" } },
+        { "type": "category", "settings": { "style": "air", "eyebrow": "Portable cooling", "title": "AIRTECH", "text": "Rechargeable airflow that goes where you go.", "items": "Solar-powered rechargeable fan", "button_label": "Shop AirTech", "art": "fan" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

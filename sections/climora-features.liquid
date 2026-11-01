@@ -1,0 +1,74 @@
+{%- comment -%}
+  Numbered feature / step cards. Used for product feature highlights and
+  for process explanations (e.g. the delivery journey on the shipping page).
+{%- endcomment -%}
+<section class="section {{ section.settings.background }}" aria-labelledby="FeaturesTitle-{{ section.id }}">
+  <div class="container">
+    <div class="section-head{% if section.settings.center %} section-head--center{% endif %}">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="h2" id="FeaturesTitle-{{ section.id }}" data-reveal>{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="section-head__text" data-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <ol class="features" role="list">
+      {%- for block in section.blocks -%}
+        <li class="feature" data-reveal style="--reveal-delay: {{ forloop.index0 | times: 80 }}ms" {{ block.shopify_attributes }}>
+          <div class="cluster" style="justify-content:space-between">
+            <span class="benefit__icon">{% render 'icon', name: block.settings.icon %}</span>
+            {%- if section.settings.numbered -%}<span class="feature__num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>{%- endif -%}
+          </div>
+          <h3 class="feature__title">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}<p class="feature__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature cards",
+  "tag": "div",
+  "class": "section-features",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Features" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Designed with purpose." },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "checkbox", "id": "numbered", "label": "Show numbers", "default": true },
+    { "type": "checkbox", "id": "center", "label": "Center heading", "default": false },
+    { "type": "select", "id": "background", "label": "Background", "default": "section--mist", "options": [{ "value": "", "label": "White" }, { "value": "section--mist", "label": "Mist" }, { "value": "section--ice", "label": "Ice gradient" }, { "value": "section--dark", "label": "Midnight" }] }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "sparkle",
+          "options": [
+            { "value": "sparkle", "label": "Sparkle" }, { "value": "sun", "label": "Solar" }, { "value": "battery", "label": "Battery" },
+            { "value": "wind", "label": "Airflow" }, { "value": "fan", "label": "Fan" }, { "value": "home", "label": "Home" },
+            { "value": "tree", "label": "Outdoor" }, { "value": "snowflake", "label": "Snowflake" }, { "value": "feather", "label": "Soft" },
+            { "value": "droplet", "label": "Fabric" }, { "value": "layers", "label": "Layers" }, { "value": "pillow", "label": "Pillow" },
+            { "value": "bed", "label": "Bed" }, { "value": "ruler", "label": "Size" }, { "value": "moon", "label": "Night" },
+            { "value": "box", "label": "Box" }, { "value": "truck", "label": "Delivery" }, { "value": "clock", "label": "Clock" },
+            { "value": "check-circle", "label": "Check" }, { "value": "chat", "label": "Support" }, { "value": "card", "label": "Payment" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature cards",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "Feature one" } },
+        { "type": "feature", "settings": { "title": "Feature two" } },
+        { "type": "feature", "settings": { "title": "Feature three" } },
+        { "type": "feature", "settings": { "title": "Feature four" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

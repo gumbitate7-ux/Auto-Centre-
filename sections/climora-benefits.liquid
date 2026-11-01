@@ -1,0 +1,67 @@
+<section class="section {{ section.settings.background }}" aria-labelledby="BenefitsTitle-{{ section.id }}">
+  <div class="container">
+    <div class="section-head{% if section.settings.center %} section-head--center{% endif %}">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="h2" id="BenefitsTitle-{{ section.id }}" data-reveal>{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.text != blank -%}<p class="section-head__text" data-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+    </div>
+    <ul class="benefits" role="list" style="--cols: {{ section.blocks.size | at_most: 5 | at_least: 1 }}">
+      {%- for block in section.blocks -%}
+        <li class="benefit" data-reveal style="--reveal-delay: {{ forloop.index0 | times: 80 }}ms" {{ block.shopify_attributes }}>
+          <span class="benefit__icon">{% render 'icon', name: block.settings.icon %}</span>
+          <h3 class="benefit__title">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}<p class="benefit__text">{{ block.settings.text | escape }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why CLIMORA",
+  "tag": "div",
+  "class": "section-benefits",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why CLIMORA?" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Technology designed around your comfort." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "We keep things simple: useful products, honest information and support from real people." },
+    { "type": "checkbox", "id": "center", "label": "Center heading", "default": false },
+    { "type": "select", "id": "background", "label": "Background", "default": "section--mist", "options": [{ "value": "", "label": "White" }, { "value": "section--mist", "label": "Mist" }, { "value": "section--ice", "label": "Ice gradient" }, { "value": "section--dark", "label": "Midnight" }] }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "sparkle",
+          "options": [
+            { "value": "sparkle", "label": "Sparkle" }, { "value": "cpu", "label": "Technology" }, { "value": "card", "label": "Card" },
+            { "value": "truck", "label": "Delivery" }, { "value": "chat", "label": "Support" }, { "value": "shield", "label": "Shield" },
+            { "value": "lock", "label": "Lock" }, { "value": "snowflake", "label": "Snowflake" }, { "value": "sun", "label": "Sun" },
+            { "value": "battery", "label": "Battery" }, { "value": "wind", "label": "Airflow" }, { "value": "moon", "label": "Moon" },
+            { "value": "layers", "label": "Layers" }, { "value": "feather", "label": "Soft" }, { "value": "return", "label": "Returns" },
+            { "value": "home", "label": "Home" }, { "value": "tree", "label": "Outdoor" }, { "value": "heart", "label": "Heart" },
+            { "value": "box", "label": "Box" }, { "value": "ruler", "label": "Size" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Benefit" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why CLIMORA",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "sparkle", "title": "Thoughtfully selected", "text": "A focused range of cooling solutions chosen for everyday usefulness." } },
+        { "type": "benefit", "settings": { "icon": "cpu", "title": "Modern, practical design", "text": "Clean, considered products that fit naturally into your home and routine." } },
+        { "type": "benefit", "settings": { "icon": "card", "title": "Convenient online shopping", "text": "Browse, choose your size and check out securely in a few steps." } },
+        { "type": "benefit", "settings": { "icon": "truck", "title": "Clear delivery information", "text": "Delivered by Aramex with an estimated 5–10 business days." } },
+        { "type": "benefit", "settings": { "icon": "chat", "title": "Customer-focused support", "text": "Questions before or after you order? Our team is here to help." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

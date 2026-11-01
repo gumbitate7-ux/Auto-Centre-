@@ -1,0 +1,78 @@
+{%- comment -%}
+  Rendered by Shopify's Predictive Search API:
+  /search/suggest?q=…&section_id=predictive-search&resources[type]=product,page,query
+{%- endcomment -%}
+<div id="predictive-search-results" data-predictive-results>
+  {%- if predictive_search.performed -%}
+    {%- assign resources = predictive_search.resources -%}
+    {%- assign has_results = false -%}
+    {%- if resources.products.size > 0 or resources.pages.size > 0 or resources.queries.size > 0 or resources.collections.size > 0 -%}
+      {%- assign has_results = true -%}
+    {%- endif -%}
+    <div class="predictive">
+      {%- if resources.queries.size > 0 -%}
+        <div class="predictive__group">
+          <p class="predictive__heading">{{ 'search.suggestions' | t }}</p>
+          <div class="predictive__suggest">
+            {%- for query in resources.queries -%}
+              <a class="chip" href="{{ query.url }}">{% render 'icon', name: 'search' %} {{ query.styled_text }}</a>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if resources.products.size > 0 -%}
+        <div class="predictive__group">
+          <p class="predictive__heading" id="predictive-products">{{ 'search.products' | t }}</p>
+          <ul class="predictive__list" role="listbox" aria-labelledby="predictive-products">
+            {%- for product in resources.products -%}
+              <li role="option" aria-selected="false">
+                <a class="predictive__item" href="{{ product.url }}" tabindex="-1">
+                  <span class="predictive__thumb">
+                    {%- if product.featured_media -%}
+                      {{ product.featured_media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+                    {%- else -%}
+                      {%- render 'climora-art', product: product -%}
+                    {%- endif -%}
+                  </span>
+                  <span>
+                    <span class="predictive__title">{{ product.title | escape }}</span><br>
+                    <span class="predictive__price">{% if product.price_varies %}{{ 'products.product.from' | t }} {% endif %}{{ product.price_min | money }}</span>
+                  </span>
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+      {%- if resources.collections.size > 0 or resources.pages.size > 0 -%}
+        <div class="predictive__group">
+          <p class="predictive__heading">{{ 'search.pages' | t }}</p>
+          <ul class="predictive__list" role="list">
+            {%- for collection in resources.collections -%}
+              <li><a class="predictive__item" href="{{ collection.url }}"><span class="predictive__title">{{ collection.title | escape }}</span></a></li>
+            {%- endfor -%}
+            {%- for page in resources.pages -%}
+              <li><a class="predictive__item" href="{{ page.url }}"><span class="predictive__title">{{ page.title | escape }}</span></a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+      {%- if has_results -%}
+        <div class="predictive__all">
+          <a class="link-arrow" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&options%5Bprefix%5D=last">
+            {{ 'search.view_all' | t: terms: predictive_search.terms }} {% render 'icon', name: 'arrow-right' %}
+          </a>
+        </div>
+      {%- else -%}
+        <p class="text-muted" role="status">{{ 'search.no_results' | t: terms: predictive_search.terms }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Predictive search",
+  "settings": []
+}
+{% endschema %}

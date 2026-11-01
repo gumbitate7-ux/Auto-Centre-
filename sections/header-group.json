@@ -1,0 +1,24 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement": {
+      "type": "climora-announcement",
+      "settings": {
+        "show": true,
+        "text": "Discover a cooler way to live",
+        "link_label": "Shop CLIMORA",
+        "link": "shopify://collections/all"
+      }
+    },
+    "header": {
+      "type": "climora-header",
+      "settings": {
+        "menu": "main-menu",
+        "logo_width": 140,
+        "show_account": true
+      }
+    }
+  },
+  "order": ["announcement", "header"]
+}

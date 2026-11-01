@@ -1,0 +1,118 @@
+{%- liquid
+  assign dark = false
+  if section.settings.style == 'dark'
+    assign dark = true
+  endif
+-%}
+<section class="hero{% if dark %} hero--dark on-dark{% endif %}" aria-labelledby="HeroTitle-{{ section.id }}">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow" data-reveal>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="h-display hero__title" id="HeroTitle-{{ section.id }}" data-reveal style="--reveal-delay: 80ms">
+        {{ section.settings.heading | escape }}
+        {%- if section.settings.heading_accent != blank -%}<br><span class="text-accent">{{ section.settings.heading_accent | escape }}</span>{%- endif -%}
+      </h1>
+      {%- if section.settings.text != blank -%}
+        <p class="hero__text" data-reveal style="--reveal-delay: 160ms">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+      <div class="hero__ctas" data-reveal style="--reveal-delay: 240ms">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="btn {% if dark %}btn--light{% else %}btn--primary{% endif %}" href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.primary_label | escape }} {% render 'icon', name: 'arrow-right' %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}
+          <a class="btn {% if dark %}btn--ghost-light{% else %}btn--secondary{% endif %}" href="{{ section.settings.secondary_link | default: '/pages/about' }}">
+            {{ section.settings.secondary_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+      {%- if section.blocks.size > 0 -%}
+        <ul class="hero__facts" role="list" data-reveal style="--reveal-delay: 320ms">
+          {%- for block in section.blocks -%}
+            <li class="hero__fact" {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title | escape }}</strong>
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="stage{% if section.settings.stage_style == 'light' %} stage--light{% endif %}" data-reveal style="--reveal-delay: 120ms">
+      <div class="stage__rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="stage__glow" aria-hidden="true"></div>
+      {%- if section.settings.image != blank -%}
+        {%- assign hero_alt = section.settings.image.alt | default: section.settings.image_alt -%}
+        {{
+          section.settings.image
+          | image_url: width: 1400
+          | image_tag: class: 'stage__img', loading: 'eager', fetchpriority: 'high', widths: '480, 720, 960, 1200, 1400', sizes: '(min-width: 990px) 50vw, 100vw', alt: hero_alt
+        }}
+      {%- else -%}
+        <div class="stage__art">{% render 'climora-art', kind: section.settings.art %}</div>
+      {%- endif -%}
+      {%- if section.settings.label_a_title != blank -%}
+        <div class="stage__label stage__label--a">
+          <strong><span class="dot" aria-hidden="true"></span>{{ section.settings.label_a_title | escape }}</strong>
+          <span>{{ section.settings.label_a_text | escape }}</span>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.label_b_title != blank -%}
+        <div class="stage__label stage__label--b">
+          <strong>{{ section.settings.label_b_title | escape }}</strong>
+          <span>{{ section.settings.label_b_text | escape }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CLIMORA hero",
+  "tag": "div",
+  "class": "section-hero",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Background", "default": "light", "options": [{ "value": "light", "label": "Ice (light)" }, { "value": "dark", "label": "Midnight (dark)" }] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "CLIMORA · Cooling technology" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "THE FUTURE OF" },
+    { "type": "text", "id": "heading_accent", "label": "Heading (highlighted line)", "default": "STAYING COOL." },
+    { "type": "textarea", "id": "text", "label": "Supporting copy", "default": "Discover innovative cooling solutions designed to bring comfort to warmer days and warmer nights." },
+    { "type": "text", "id": "primary_label", "label": "Primary button label", "default": "Explore collection" },
+    { "type": "url", "id": "primary_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button label", "default": "Discover CLIMORA" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary button link" },
+    { "type": "header", "content": "Visual" },
+    { "type": "image_picker", "id": "image", "label": "Hero image", "info": "Recommended: square product photography, 1400 × 1400px or larger. Without an image, a CLIMORA illustration is shown." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text (fallback)", "default": "CLIMORA cooling products" },
+    { "type": "select", "id": "art", "label": "Illustration (when no image)", "default": "fan", "options": [{ "value": "fan", "label": "SolarFlow fan" }, { "value": "pillow", "label": "IceSoft pillowcase" }, { "value": "topper", "label": "FrostLayer topper" }, { "value": "orbit", "label": "Brand orbit" }] },
+    { "type": "select", "id": "stage_style", "label": "Visual panel style", "default": "dark", "options": [{ "value": "dark", "label": "Midnight" }, { "value": "light", "label": "Silver" }] },
+    { "type": "text", "id": "label_a_title", "label": "Floating label 1 title", "default": "AIRTECH · SolarFlow" },
+    { "type": "text", "id": "label_a_text", "label": "Floating label 1 text", "default": "Solar-rechargeable, portable airflow" },
+    { "type": "text", "id": "label_b_title", "label": "Floating label 2 title", "default": "SLEEPTECH" },
+    { "type": "text", "id": "label_b_text", "label": "Floating label 2 text", "default": "IceSoft · FrostLayer" }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Fact title" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Short supporting text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CLIMORA hero",
+      "blocks": [
+        { "type": "fact", "settings": { "title": "Solar-rechargeable airflow", "text": "Portable cooling for home and outdoors" } },
+        { "type": "fact", "settings": { "title": "Cooling-feel sleep fabrics", "text": "Pillowcases and mattress toppers" } },
+        { "type": "fact", "settings": { "title": "Delivered by Aramex", "text": "Estimated 5–10 business days" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

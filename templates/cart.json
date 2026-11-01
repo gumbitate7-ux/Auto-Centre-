@@ -1,0 +1,7 @@
+{
+  "sections": {
+    "main": { "type": "main-cart", "settings": { "show_note": true, "show_express": true } },
+    "related": { "type": "climora-related-products", "settings": { "eyebrow": "Complete your setup", "heading": "You may also like", "limit": 3, "background": "section--mist" } }
+  },
+  "order": ["main", "related"]
+}

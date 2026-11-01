@@ -1,0 +1,35 @@
+<article itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="page-hero">
+    <div class="container container--narrow">
+      <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+        <ol>
+          <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+          <li><a href="{{ blog.url }}">{{ blog.title | escape }}</a></li>
+          <li><span aria-current="page">{{ article.title | escape }}</span></li>
+        </ol>
+      </nav>
+      <p class="text-small text-muted">{{ article.published_at | time_tag: format: 'date' }}</p>
+      <h1 class="page-hero__title" itemprop="headline">{{ article.title | escape }}</h1>
+    </div>
+  </div>
+  <div class="section section--tight">
+    <div class="container container--narrow stack-lg">
+      {%- if article.image -%}
+        <div class="split__media" style="aspect-ratio:16/9">
+          {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1600', sizes: '(min-width: 860px) 820px, 100vw', alt: article.image.alt }}
+        </div>
+      {%- endif -%}
+      <div class="rte" itemprop="articleBody">{{ article.content }}</div>
+      <a class="link-arrow" href="{{ blog.url }}">{% render 'icon', name: 'arrow-left' %} {{ 'blog.back' | t }}</a>
+    </div>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "class": "section-main-article",
+  "settings": []
+}
+{% endschema %}

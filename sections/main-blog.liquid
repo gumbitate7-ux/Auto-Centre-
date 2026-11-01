@@ -1,0 +1,46 @@
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__content">
+      <p class="eyebrow">{{ 'blog.eyebrow' | t }}</p>
+      <h1 class="page-hero__title">{{ blog.title | escape }}</h1>
+    </div>
+  </div>
+</div>
+<div class="container section">
+  {%- paginate blog.articles by 9 -%}
+    {%- if blog.articles.size > 0 -%}
+      <ul class="grid grid--3" role="list">
+        {%- for article in blog.articles -%}
+          <li>
+            <article class="card">
+              <a class="card__media" href="{{ article.url }}" tabindex="-1" aria-hidden="true" style="aspect-ratio:16/10">
+                {%- if article.image -%}
+                  {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 700, 900', sizes: '(min-width: 990px) 33vw, 100vw', alt: '' }}
+                {%- else -%}
+                  {%- render 'climora-art', kind: 'orbit' -%}
+                {%- endif -%}
+              </a>
+              <div class="card__body">
+                <p class="text-small text-muted">{{ article.published_at | time_tag: format: 'date' }}</p>
+                <h2 class="card__title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+                <p class="card__desc">{{ article.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
+              </div>
+            </article>
+          </li>
+        {%- endfor -%}
+      </ul>
+      {%- if paginate.pages > 1 -%}{%- render 'pagination', paginate: paginate -%}{%- endif -%}
+    {%- else -%}
+      <div class="empty"><span class="empty__icon">{% render 'icon', name: 'feather' %}</span><p class="text-muted">{{ 'blog.empty' | t }}</p></div>
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "class": "section-main-blog",
+  "settings": []
+}
+{% endschema %}

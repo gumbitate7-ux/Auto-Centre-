@@ -1,0 +1,62 @@
+{%- comment -%}
+  Related products. Uses the hand-picked list if set; otherwise shows other
+  products from the chosen collection (default: all products), excluding the
+  current product. Rendered server-side — no extra requests.
+{%- endcomment -%}
+{%- liquid
+  assign source = section.settings.collection
+  if source == blank
+    assign source = collections['all']
+  endif
+  assign picked = section.settings.products
+  assign shown = 0
+-%}
+{%- capture cards -%}
+  {%- if picked != blank and picked.size > 0 -%}
+    {%- for item in picked -%}
+      {%- if item.id != product.id and shown < section.settings.limit -%}
+        {%- assign shown = shown | plus: 1 -%}
+        <li>{% render 'product-card', product: item, section_id: section.id %}</li>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for item in source.products limit: 12 -%}
+      {%- if item.id != product.id and shown < section.settings.limit -%}
+        {%- assign shown = shown | plus: 1 -%}
+        <li>{% render 'product-card', product: item, section_id: section.id %}</li>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if shown > 0 -%}
+  <section class="section {{ section.settings.background }}" aria-labelledby="RelatedTitle-{{ section.id }}">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div class="stack">
+          {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          <h2 class="h2" id="RelatedTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        </div>
+        <a class="link-arrow" href="{{ routes.all_products_collection_url }}">{{ 'general.shop_all' | t }} {% render 'icon', name: 'arrow-right' %}</a>
+      </div>
+      <ul class="grid grid--3" role="list">{{ cards }}</ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related products",
+  "tag": "div",
+  "class": "section-related",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Complete your setup" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "You may also like" },
+    { "type": "product_list", "id": "products", "label": "Hand-picked products", "limit": 6, "info": "Optional." },
+    { "type": "collection", "id": "collection", "label": "Or show products from collection" },
+    { "type": "range", "id": "limit", "label": "Maximum products", "min": 2, "max": 6, "step": 1, "default": 3 },
+    { "type": "select", "id": "background", "label": "Background", "default": "", "options": [{ "value": "", "label": "White" }, { "value": "section--mist", "label": "Mist" }] }
+  ],
+  "presets": [{ "name": "Related products" }]
+}
+{% endschema %}

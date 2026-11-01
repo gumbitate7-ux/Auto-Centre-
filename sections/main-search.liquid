@@ -1,0 +1,97 @@
+{%- liquid
+  assign products_found = 0
+  for item in search.results
+    if item.object_type == 'product'
+      assign products_found = products_found | plus: 1
+    endif
+  endfor
+-%}
+<div class="page-hero">
+  <div class="container container--narrow">
+    <div class="page-hero__content" style="max-width:none">
+      <p class="eyebrow">{{ 'search.title' | t }}</p>
+      <h1 class="page-hero__title">
+        {%- if search.performed -%}{{ 'search.results_for' | t: terms: search.terms }}{%- else -%}{{ 'search.heading' | t }}{%- endif -%}
+      </h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+        <div class="search-form__field">
+          {%- render 'icon', name: 'search' -%}
+          <label class="visually-hidden" for="SearchPageInput">{{ 'search.placeholder' | t }}</label>
+          <input id="SearchPageInput" class="search-form__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'search.placeholder' | t }}" style="background:#fff">
+          <input type="hidden" name="options[prefix]" value="last">
+        </div>
+        <button type="submit" class="btn btn--primary">{{ 'search.submit' | t }}</button>
+      </form>
+      {%- if search.performed -%}<p class="text-muted" role="status">{{ 'search.count' | t: count: search.results_count }}</p>{%- endif -%}
+    </div>
+  </div>
+</div>
+
+<div class="container section">
+  {%- if search.performed -%}
+    {%- paginate search.results by 12 -%}
+      {%- if search.results_count > 0 -%}
+        {%- if products_found > 0 -%}
+          <div class="search-results__section">
+            <h2 class="h3" style="margin-bottom:var(--s-6)">{{ 'search.products' | t }}</h2>
+            <ul class="grid grid--3" role="list">
+              {%- for item in search.results -%}
+                {%- if item.object_type == 'product' -%}
+                  <li>{% render 'product-card', product: item, section_id: section.id %}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        {%- capture other_results -%}
+          {%- for item in search.results -%}
+            {%- unless item.object_type == 'product' -%}
+              <li><a href="{{ item.url }}"><span><strong>{{ item.title | escape }}</strong><br><span class="text-small text-muted">{{ item.content | strip_html | truncatewords: 20 }}</span></span>{% render 'icon', name: 'arrow-right' %}</a></li>
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if other_results != blank -%}
+          <div class="search-results__section">
+            <h2 class="h3" style="margin-bottom:var(--s-6)">{{ 'search.pages' | t }}</h2>
+            <ul class="result-list" role="list">{{ other_results }}</ul>
+          </div>
+        {%- endif -%}
+        {%- if paginate.pages > 1 -%}{%- render 'pagination', paginate: paginate -%}{%- endif -%}
+      {%- else -%}
+        <div class="empty">
+          <span class="empty__icon">{% render 'icon', name: 'search' %}</span>
+          <h2 class="h3">{{ 'search.no_results_title' | t }}</h2>
+          <p class="text-muted">{{ 'search.no_results' | t: terms: search.terms }}</p>
+          <div class="cluster" style="justify-content:center">
+            <a class="chip" href="{{ routes.all_products_collection_url }}">{{ 'general.shop_all' | t }}</a>
+            <a class="chip" href="{{ routes.collections_url }}/sleep-cooling">{{ 'cart.sleep_cooling' | t }}</a>
+            <a class="chip" href="{{ routes.collections_url }}/portable-cooling">{{ 'cart.portable_cooling' | t }}</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  {%- else -%}
+    <div class="stack-lg">
+      <h2 class="h3">{{ 'search.popular' | t }}</h2>
+      <div class="cluster">
+        <a class="chip" href="{{ routes.search_url }}?q=cooling+mattress+topper">{{ 'search.popular_topper' | t }}</a>
+        <a class="chip" href="{{ routes.search_url }}?q=cooling+pillowcase">{{ 'search.popular_pillowcase' | t }}</a>
+        <a class="chip" href="{{ routes.search_url }}?q=solar+rechargeable+fan">{{ 'search.popular_fan' | t }}</a>
+      </div>
+      <ul class="grid grid--3" role="list">
+        {%- for product in collections['all'].products limit: 3 -%}
+          <li>{% render 'product-card', product: product, section_id: section.id %}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Search results",
+  "tag": "section",
+  "class": "section-main-search",
+  "settings": []
+}
+{% endschema %}

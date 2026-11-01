@@ -1,0 +1,106 @@
+{%- liquid
+  assign shop_fallback = 'Shop All|' | append: routes.all_products_collection_url
+  assign shop_fallback = shop_fallback | append: ';Sleep Cooling|' | append: routes.collections_url | append: '/sleep-cooling'
+  assign shop_fallback = shop_fallback | append: ';Portable Cooling|' | append: routes.collections_url | append: '/portable-cooling'
+  assign shop_fallback = shop_fallback | append: ';Search|' | append: routes.search_url
+  assign help_fallback = 'FAQ|/pages/faq;Shipping & Delivery|/pages/shipping-delivery;Returns & Refunds|/pages/returns-refunds;Our Story|/pages/about;Contact Us|/pages/contact'
+  assign contact_email = settings.contact_email | default: shop.email
+-%}
+<footer class="footer on-dark">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="{{ routes.root_url }}" class="wordmark" aria-label="{{ shop.name | escape }}">{% render 'climora-art', kind: 'mark' %}<span>CLIMORA</span></a>
+        <p class="footer__tagline">{{ section.settings.tagline | escape }}</p>
+        {%- capture social -%}
+          {%- if settings.social_instagram != blank -%}<li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a></li>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a></li>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<li><a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok">{% render 'icon', name: 'tiktok' %}</a></li>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<li><a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube">{% render 'icon', name: 'youtube' %}</a></li>{%- endif -%}
+        {%- endcapture -%}
+        {%- if social != blank -%}<ul class="social" role="list">{{ social }}</ul>{%- endif -%}
+      </div>
+
+      <nav aria-labelledby="FooterShop">
+        <h2 class="footer__heading" id="FooterShop">{{ section.settings.shop_heading | escape }}</h2>
+        <ul class="footer__list" role="list">
+          {%- if section.settings.shop_menu != blank and section.settings.shop_menu.links.size > 0 -%}
+            {%- for link in section.settings.shop_menu.links -%}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- endfor -%}
+          {%- else -%}
+            {%- assign entries = shop_fallback | split: ';' -%}
+            {%- for entry in entries -%}{%- assign parts = entry | split: '|' -%}<li><a href="{{ parts[1] }}">{{ parts[0] }}</a></li>{%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="FooterHelp">
+        <h2 class="footer__heading" id="FooterHelp">{{ section.settings.help_heading | escape }}</h2>
+        <ul class="footer__list" role="list">
+          {%- if section.settings.help_menu != blank and section.settings.help_menu.links.size > 0 -%}
+            {%- for link in section.settings.help_menu.links -%}<li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- endfor -%}
+          {%- else -%}
+            {%- assign entries = help_fallback | split: ';' -%}
+            {%- for entry in entries -%}{%- assign parts = entry | split: '|' -%}<li><a href="{{ parts[1] }}">{{ parts[0] }}</a></li>{%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="footer__heading">{{ section.settings.contact_heading | escape }}</h2>
+        <div class="footer__contact">
+          {%- if contact_email != blank -%}<a href="mailto:{{ contact_email }}">{% render 'icon', name: 'mail' %}{{ contact_email }}</a>{%- endif -%}
+          {%- if settings.contact_phone != blank -%}<a href="tel:{{ settings.contact_phone | remove: ' ' }}">{% render 'icon', name: 'phone' %}{{ settings.contact_phone }}</a>{%- endif -%}
+          {%- if settings.contact_hours != blank -%}<span>{{ settings.contact_hours | escape }}</span>{%- endif -%}
+          {%- if settings.contact_location != blank -%}<span>{{ settings.contact_location | escape }}</span>{%- endif -%}
+          <a href="/pages/contact">{% render 'icon', name: 'chat' %}{{ 'general.contact_form' | t }}</a>
+        </div>
+      </div>
+    </div>
+
+    {%- if section.settings.show_trust -%}
+      <ul class="footer__trust" role="list">
+        <li class="footer__trust-item">{% render 'icon', name: 'lock' %}<span><strong>{{ 'footer.trust_checkout_title' | t }}</strong>{{ 'footer.trust_checkout_text' | t }}</span></li>
+        <li class="footer__trust-item">{% render 'icon', name: 'truck' %}<span><strong>{{ 'footer.trust_delivery_title' | t }}</strong>{{ settings.delivery_short | default: 'Delivered by Aramex · 5–10 business days' | escape }}</span></li>
+        <li class="footer__trust-item">{% render 'icon', name: 'chat' %}<span><strong>{{ 'footer.trust_support_title' | t }}</strong>{{ 'footer.trust_support_text' | t }}</span></li>
+      </ul>
+    {%- endif -%}
+
+    <div class="footer__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. {{ settings.brand_tagline | default: 'The Future of Staying Cool.' | escape }}</p>
+      <ul class="footer__legal" role="list">
+        <li><a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">{{ 'footer.privacy' | t }}</a></li>
+        <li><a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">{{ 'footer.terms' | t }}</a></li>
+        <li><a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">{{ 'footer.refunds' | t }}</a></li>
+        <li><a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">{{ 'footer.shipping' | t }}</a></li>
+      </ul>
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="footer__payments" role="list" aria-label="{{ 'footer.payment_methods' | t }}">
+          {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if section.settings.show_wordmark -%}
+    <div class="footer__wordmark" aria-hidden="true">CLIMORA</div>
+  {%- endif -%}
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "enabled_on": { "groups": ["footer"] },
+  "settings": [
+    { "type": "textarea", "id": "tagline", "label": "Brand description", "default": "Innovative cooling solutions for warmer South African days and nights. Thoughtfully selected, clearly explained and delivered to your door." },
+    { "type": "text", "id": "shop_heading", "label": "Shop column heading", "default": "Shop" },
+    { "type": "link_list", "id": "shop_menu", "label": "Shop menu", "info": "Leave empty to use CLIMORA default links." },
+    { "type": "text", "id": "help_heading", "label": "Help column heading", "default": "Support" },
+    { "type": "link_list", "id": "help_menu", "label": "Support menu", "info": "Leave empty to use CLIMORA default links." },
+    { "type": "text", "id": "contact_heading", "label": "Contact column heading", "default": "Contact" },
+    { "type": "paragraph", "content": "Contact details and social links are edited in Theme settings → Contact & social." },
+    { "type": "checkbox", "id": "show_trust", "label": "Show trust row", "default": true },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true, "info": "Icons reflect the payment methods enabled in Shopify Admin." },
+    { "type": "checkbox", "id": "show_wordmark", "label": "Show large wordmark", "default": true }
+  ]
+}
+{% endschema %}

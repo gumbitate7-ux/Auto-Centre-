@@ -1,0 +1,205 @@
+{
+  "sections": {
+    "hero": {
+      "type": "climora-page-hero",
+      "settings": {
+        "style": "light",
+        "eyebrow": "Help centre",
+        "heading": "Frequently asked questions",
+        "text": "Clear answers about ordering, delivery, payment, returns and our products.",
+        "art": "orbit"
+      }
+    },
+    "orders": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>When your order is handed to Aramex you’ll receive a shipping confirmation email. When tracking is available for your shipment, the tracking details are included in that email.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you deliver across South Africa?",
+            "answer": "<p>We deliver to addresses serviced by Aramex. Enter your address at checkout to see the delivery options available for your location.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "How much is delivery?",
+            "answer": "<p>Delivery costs are calculated and shown at checkout before you pay.</p>"
+          }
+        },
+        "q-5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I change or cancel my order?",
+            "answer": "<p>Contact us as soon as possible. If your order hasn’t been processed for courier collection yet, we’ll do our best to help.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4",
+        "q-5"
+      ],
+      "settings": {
+        "eyebrow": "Orders & delivery",
+        "heading": "Orders & delivery",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": ""
+      }
+    },
+    "payments": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "Is checkout secure?",
+            "answer": "<p>Yes. Payments are processed through Shopify’s encrypted checkout. The payment methods available to you are shown at checkout.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "Which payment methods do you accept?",
+            "answer": "<p>The payment methods available are shown at checkout.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "Will I receive an order confirmation?",
+            "answer": "<p>Yes — an order confirmation is emailed to you as soon as your order is placed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3"
+      ],
+      "settings": {
+        "eyebrow": "Payment",
+        "heading": "Payment & checkout",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": "section--mist"
+      }
+    },
+    "products": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "Where can I find product specifications?",
+            "answer": "<p>Each product page has a Specifications section with the verified details for that product.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "How do I choose the right FrostLayer size?",
+            "answer": "<p>Select the size that matches your mattress. If you’re unsure, contact us before ordering.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I charge SolarFlow?",
+            "answer": "<p>SolarFlow is rechargeable with solar charging capability. Please follow the charging instructions supplied with your fan.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "How should I care for IceSoft and FrostLayer?",
+            "answer": "<p>Follow the care label supplied with your product.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4"
+      ],
+      "settings": {
+        "eyebrow": "Products",
+        "heading": "Products & sizing",
+        "text": "",
+        "button_label": "",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": ""
+      }
+    },
+    "returns": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return a product?",
+            "answer": "<p>Yes, subject to our policy. See <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> for eligibility, timeframes and how to start a return.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "My order arrived damaged — what should I do?",
+            "answer": "<p>Please contact us as soon as possible with your order number and photos of the damage, and we’ll help you resolve it.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I contact you?",
+            "answer": "<p>Use the form on our <a href=\"/pages/contact\" title=\"Contact\">Contact</a> page and we’ll reply as soon as possible during business hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3"
+      ],
+      "settings": {
+        "eyebrow": "Returns",
+        "heading": "Returns & refunds",
+        "text": "",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": "section--mist"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "orders",
+    "payments",
+    "products",
+    "returns"
+  ]
+}

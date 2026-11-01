@@ -1,0 +1,39 @@
+{%- comment -%}
+  Renders a price from native Shopify data. Never hard-code prices.
+  Accepts:
+  - product: product object (uses selected/first available variant)
+  - variant: optional variant object (overrides product)
+  - show_from: boolean — prefix "From" when variant prices differ (cards)
+  - large: boolean — large product-page style
+{%- endcomment -%}
+{%- liquid
+  if variant
+    assign target = variant
+  else
+    assign target = product.selected_or_first_available_variant
+  endif
+  assign price = target.price
+  assign compare = target.compare_at_price
+  assign on_sale = false
+  if compare > price
+    assign on_sale = true
+  endif
+  assign varies = false
+  if show_from and product.price_varies
+    assign varies = true
+    assign price = product.price_min
+    assign on_sale = false
+  endif
+-%}
+<div class="price{% if large %} price--lg{% endif %}" data-price-wrapper>
+  {%- if varies -%}<span class="price__from">{{ 'products.product.from' | t }}</span>{%- endif -%}
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+    <span data-price>{{ price | money }}</span>
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <s class="price__compare" data-compare-price>{{ compare | money }}</s>
+  {%- else -%}
+    <span data-price>{{ price | money }}</span>
+    <s class="price__compare" data-compare-price hidden></s>
+  {%- endif -%}
+</div>

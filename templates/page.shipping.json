@@ -1,0 +1,210 @@
+{
+  "sections": {
+    "hero": {
+      "type": "climora-page-hero",
+      "settings": {
+        "style": "light",
+        "eyebrow": "Shipping & delivery",
+        "heading": "Delivered by Aramex.",
+        "text": "Estimated delivery is 5–10 business days, subject to order processing and courier collection.",
+        "art": "none"
+      }
+    },
+    "summary": {
+      "type": "climora-rich-text",
+      "blocks": {
+        "b-1": {
+          "type": "delivery_note",
+          "settings": {}
+        },
+        "b-2": {
+          "type": "heading",
+          "settings": {
+            "heading": "How delivery works",
+            "size": "h2"
+          }
+        },
+        "b-3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p>"
+          }
+        },
+        "b-4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Delivery costs",
+            "size": "h3"
+          }
+        },
+        "b-5": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Delivery costs are calculated at checkout based on your address, and are always shown before you pay.</p>"
+          }
+        },
+        "b-6": {
+          "type": "heading",
+          "settings": {
+            "heading": "Order confirmation and tracking",
+            "size": "h3"
+          }
+        },
+        "b-7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>You’ll receive an order confirmation email when you place your order, and a shipping confirmation email once your parcel has been handed to Aramex. When tracking is available for your shipment, the tracking details are included in that email.</p>"
+          }
+        },
+        "b-8": {
+          "type": "heading",
+          "settings": {
+            "heading": "Delivery address",
+            "size": "h3"
+          }
+        },
+        "b-9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Please make sure your delivery address and phone number are complete and correct, as the courier may need to contact you. Contact us as soon as possible if you need to change your address after ordering.</p>"
+          }
+        },
+        "b-10": {
+          "type": "heading",
+          "settings": {
+            "heading": "Delays",
+            "size": "h3"
+          }
+        },
+        "b-11": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Delivery times are estimates. Occasionally, delays may occur due to high volumes, public holidays, weather or other circumstances outside our control. If your order is taking longer than expected, please contact us and we’ll help.</p>"
+          }
+        },
+        "b-12": {
+          "type": "page_content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b-1",
+        "b-2",
+        "b-3",
+        "b-4",
+        "b-5",
+        "b-6",
+        "b-7",
+        "b-8",
+        "b-9",
+        "b-10",
+        "b-11",
+        "b-12"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "card": true,
+        "tight": false,
+        "background": ""
+      }
+    },
+    "steps": {
+      "type": "climora-features",
+      "blocks": {
+        "f-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "check-circle",
+            "title": "Order placed",
+            "text": "You receive an order confirmation email."
+          }
+        },
+        "f-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "title": "Processing",
+            "text": "We prepare and pack your order."
+          }
+        },
+        "f-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Courier collection",
+            "text": "Aramex collects your parcel. You’ll receive a shipping confirmation."
+          }
+        },
+        "f-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "home",
+            "title": "Delivered",
+            "text": "Estimated 5–10 business days in total."
+          }
+        }
+      },
+      "block_order": [
+        "f-1",
+        "f-2",
+        "f-3",
+        "f-4"
+      ],
+      "settings": {
+        "eyebrow": "The journey",
+        "heading": "From our hands to yours.",
+        "text": "",
+        "numbered": true,
+        "center": false,
+        "background": "section--mist"
+      }
+    },
+    "faq": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>When your order is handed to Aramex you’ll receive a shipping confirmation email. When tracking is available for your shipment, the tracking details are included in that email.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "What if I’m not home?",
+            "answer": "<p>Aramex may attempt to contact you or re-deliver. Please make sure your phone number is correct at checkout.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>We currently focus on delivery within South Africa. Available destinations are shown at checkout.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3"
+      ],
+      "settings": {
+        "eyebrow": "Delivery FAQ",
+        "heading": "Delivery questions",
+        "text": "",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": ""
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "summary",
+    "steps",
+    "faq"
+  ]
+}

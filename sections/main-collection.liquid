@@ -1,0 +1,111 @@
+{%- liquid
+  assign dark = false
+  if section.settings.style == 'dark'
+    assign dark = true
+  endif
+  assign description = collection.description
+  if description == blank
+    assign description = section.settings.fallback_text
+  endif
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
+<section class="page-hero{% if dark %} page-hero--dark on-dark{% endif %}" aria-labelledby="CollectionTitle-{{ section.id }}">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><span aria-current="page">{{ collection.title | escape }}</span></li>
+      </ol>
+    </nav>
+    <div class="page-hero__grid page-hero__grid--media">
+      <div class="page-hero__content">
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="page-hero__title" id="CollectionTitle-{{ section.id }}">{{ collection.title | escape }}</h1>
+        {%- if description != blank -%}<div class="page-hero__text rte">{{ description }}</div>{%- endif -%}
+      </div>
+      <div class="page-hero__visual">
+        {%- if collection.image and section.settings.show_image -%}
+          {%- assign coll_alt = collection.image.alt | default: collection.title -%}
+          {{ collection.image | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '(min-width: 990px) 45vw, 100vw', alt: coll_alt }}
+        {%- else -%}
+          {%- render 'climora-art', kind: section.settings.art -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  {%- paginate collection.products by section.settings.per_page -%}
+    <div class="toolbar">
+      <nav class="filters" aria-label="{{ 'collections.categories' | t }}">
+        {%- assign all_url = routes.all_products_collection_url -%}
+        <a class="chip"{% if collection.handle == 'all' %} aria-current="page"{% endif %} href="{{ all_url }}">{{ 'general.shop_all' | t }}</a>
+        {%- for link in section.settings.category_menu.links -%}
+          <a class="chip"{% if link.active %} aria-current="page"{% endif %} href="{{ link.url }}">{{ link.title | escape }}</a>
+        {%- else -%}
+          {%- assign sleep_url = routes.collections_url | append: '/sleep-cooling' -%}
+          {%- assign air_url = routes.collections_url | append: '/portable-cooling' -%}
+          <a class="chip"{% if collection.handle == 'sleep-cooling' %} aria-current="page"{% endif %} href="{{ sleep_url }}">{% render 'icon', name: 'moon' %} {{ 'cart.sleep_cooling' | t }}</a>
+          <a class="chip"{% if collection.handle == 'portable-cooling' %} aria-current="page"{% endif %} href="{{ air_url }}">{% render 'icon', name: 'fan' %} {{ 'cart.portable_cooling' | t }}</a>
+        {%- endfor -%}
+      </nav>
+      <div class="cluster">
+        <p class="toolbar__count" role="status">{{ 'collections.product_count' | t: count: collection.products_count }}</p>
+        {%- if section.settings.show_sort and collection.products_count > 1 -%}
+          <form class="toolbar__sort" method="get" data-sort-form>
+            <label for="SortBy-{{ section.id }}">{{ 'collections.sort_by' | t }}</label>
+            <select class="select" id="SortBy-{{ section.id }}" name="sort_by" data-sort-select>
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+              {%- endfor -%}
+            </select>
+            <noscript><button type="submit" class="btn btn--secondary btn--sm">{{ 'collections.apply' | t }}</button></noscript>
+          </form>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if collection.products.size > 0 -%}
+      <h2 class="visually-hidden">{{ 'search.products' | t }}</h2>
+      <ul class="grid grid--3" role="list">
+        {%- for product in collection.products -%}
+          <li data-reveal style="--reveal-delay: {{ forloop.index0 | modulo: 3 | times: 80 }}ms">
+            {%- assign eager = false -%}{%- if forloop.index <= 3 -%}{%- assign eager = true -%}{%- endif -%}
+            {%- render 'product-card', product: product, eager: eager, section_id: section.id -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <div class="empty">
+        <span class="empty__icon">{% render 'icon', name: 'snowflake' %}</span>
+        <h2 class="h3">{{ 'collections.empty_title' | t }}</h2>
+        <p class="text-muted">{{ 'collections.empty_text' | t }}</p>
+        <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'general.shop_all' | t }}</a>
+      </div>
+    {%- endif -%}
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+  {%- endpaginate -%}
+  <div style="height: var(--section-y)"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Header style", "default": "light", "options": [{ "value": "light", "label": "Ice" }, { "value": "dark", "label": "Midnight" }] },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Collection" },
+    { "type": "textarea", "id": "fallback_text", "label": "Text when collection has no description" },
+    { "type": "checkbox", "id": "show_image", "label": "Show collection image", "default": true },
+    { "type": "select", "id": "art", "label": "Illustration (when no image)", "default": "orbit", "options": [{ "value": "fan", "label": "Fan" }, { "value": "pillow", "label": "Pillowcase" }, { "value": "topper", "label": "Topper" }, { "value": "orbit", "label": "Brand orbit" }] },
+    { "type": "link_list", "id": "category_menu", "label": "Category chips menu", "info": "Optional. Defaults to Sleep Cooling and Portable Cooling." },
+    { "type": "checkbox", "id": "show_sort", "label": "Show sorting", "default": true },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 6, "max": 24, "step": 3, "default": 12 }
+  ]
+}
+{% endschema %}

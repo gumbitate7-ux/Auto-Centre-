@@ -1,0 +1,237 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "SleepTech · Sleep cooling"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "text": "Bring a fresher feel to your sleep experience."
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "highlights": {
+          "type": "highlights",
+          "settings": {
+            "item_1": "Cooling-feel fabric",
+            "icon_1": "snowflake",
+            "item_2": "Soft to the touch",
+            "icon_2": "feather",
+            "item_3": "Breathable construction",
+            "icon_3": "wind",
+            "item_4": "Choose your size",
+            "icon_4": "ruler"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "style": "buttons"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true
+          }
+        },
+        "delivery": {
+          "type": "delivery",
+          "settings": {}
+        },
+        "assurances": {
+          "type": "assurances",
+          "settings": {
+            "returns_link": "shopify://pages/returns-refunds"
+          }
+        },
+        "divider": {
+          "type": "divider",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapsible": true,
+            "heading": "Description",
+            "open": true
+          }
+        },
+        "specs": {
+          "type": "specs",
+          "settings": {
+            "heading": "Specifications",
+            "specs": "Product | Cooling pillowcase\nAvailable sizes | See the size options above\nAvailable colours | See the colour options above\nFabric composition | \nFeel | \nClosure | \nCare instructions | \nPack contents | ",
+            "open": false
+          }
+        },
+        "care": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Care instructions",
+            "icon": "droplet",
+            "content": "<p>Follow the care label on your pillowcase to keep it looking and feeling its best.</p>",
+            "open": false
+          }
+        },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Delivery & returns",
+            "icon": "truck",
+            "content": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p><p>See our <a href=\"/pages/shipping-delivery\" title=\"Shipping & Delivery\">Shipping & Delivery</a> and <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> pages for full details.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "tagline",
+        "price",
+        "highlights",
+        "variant_picker",
+        "buy_buttons",
+        "delivery",
+        "assurances",
+        "divider",
+        "description",
+        "specs",
+        "care",
+        "shipping"
+      ],
+      "settings": {
+        "image_fit": "cover",
+        "sticky_atc": true
+      }
+    },
+    "features": {
+      "type": "climora-features",
+      "blocks": {
+        "f-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "snowflake",
+            "title": "Cooling-feel construction",
+            "text": "Fabric selected for a fresher feel against your skin."
+          }
+        },
+        "f-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "feather",
+            "title": "Softness",
+            "text": "Smooth and soft, made for nightly comfort."
+          }
+        },
+        "f-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "wind",
+            "title": "Breathability",
+            "text": "A breathable construction designed for warmer nights."
+          }
+        },
+        "f-4": {
+          "type": "feature",
+          "settings": {
+            "icon": "ruler",
+            "title": "Sizes & colours",
+            "text": "Choose from the size and colour options available above."
+          }
+        }
+      },
+      "block_order": [
+        "f-1",
+        "f-2",
+        "f-3",
+        "f-4"
+      ],
+      "settings": {
+        "eyebrow": "Why IceSoft",
+        "heading": "A fresher feel, every night.",
+        "text": "A simple upgrade that changes how your pillow feels when you lie down.",
+        "numbered": true,
+        "center": false,
+        "background": "section--mist"
+      }
+    },
+    "faq": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "What is IceSoft made from?",
+            "answer": "<p>The fabric composition is listed under Specifications and in the product description.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "Which size should I choose?",
+            "answer": "<p>Select the size that matches your pillow. The available sizes are shown in the size options above.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "How long will delivery take?",
+            "answer": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p>"
+          }
+        },
+        "q-4": {
+          "type": "question",
+          "settings": {
+            "question": "What if I need to return it?",
+            "answer": "<p>Please read our <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> page for eligibility and the steps to start a return.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3",
+        "q-4"
+      ],
+      "settings": {
+        "eyebrow": "Product FAQ",
+        "heading": "IceSoft questions",
+        "text": "Have a question we haven’t answered? Our team is happy to help.",
+        "button_label": "Ask a question",
+        "button_link": "shopify://pages/contact",
+        "open_first": true,
+        "background": ""
+      }
+    },
+    "related": {
+      "type": "climora-related-products",
+      "settings": {
+        "eyebrow": "Complete your setup",
+        "heading": "You may also like",
+        "limit": 3,
+        "background": "section--mist"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "features",
+    "faq",
+    "related"
+  ]
+}

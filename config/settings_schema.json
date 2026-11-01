@@ -1,0 +1,69 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "CLIMORA",
+    "theme_version": "1.0.0",
+    "theme_author": "CLIMORA",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo", "info": "Leave empty to use the built-in CLIMORA wordmark." },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Square PNG, at least 180 × 180px." },
+      { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "The Future of Staying Cool." },
+      { "type": "header", "content": "Search engines & sharing" },
+      { "type": "textarea", "id": "seo_fallback_description", "label": "Fallback meta description", "default": "CLIMORA brings innovative cooling solutions to South Africa — cooling mattress toppers, cooling pillowcases and solar rechargeable fans. Delivered by Aramex.", "info": "Used only when a page has no description of its own. Set per-page SEO in Shopify Admin." },
+      { "type": "image_picker", "id": "share_image", "label": "Default social sharing image", "info": "1200 × 630px recommended." }
+    ]
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      { "type": "paragraph", "content": "CLIMORA palette. Change with care — the design system is tuned for accessible contrast." },
+      { "type": "color", "id": "color_navy", "label": "Midnight Navy (primary text & buttons)", "default": "#182A40" },
+      { "type": "color", "id": "color_charcoal", "label": "Deep Charcoal (footer, dark accents)", "default": "#111820" },
+      { "type": "color", "id": "color_ice", "label": "Ice Blue (light backgrounds)", "default": "#EAF5FF" },
+      { "type": "color", "id": "color_electric", "label": "Electric Ice Blue (accent lighting)", "default": "#78C8F5" },
+      { "type": "color", "id": "color_silver", "label": "Silver (details)", "default": "#BFCBD5" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "paragraph", "content": "Headings use Sora; body text uses Manrope (both SIL Open Font License), self-hosted on Shopify's CDN with font-display: swap." },
+      { "type": "checkbox", "id": "load_google_fonts", "label": "Load brand fonts", "default": true, "info": "Disable to use the system font stack (fastest)." }
+    ]
+  },
+  {
+    "name": "Contact & social",
+    "settings": [
+      { "type": "text", "id": "contact_email", "label": "Support email", "info": "Leave empty to use the store email from Shopify Admin." },
+      { "type": "text", "id": "contact_phone", "label": "Phone / WhatsApp", "info": "Hidden when empty." },
+      { "type": "text", "id": "contact_hours", "label": "Support hours", "default": "Monday–Friday, 09:00–17:00 (SAST)" },
+      { "type": "text", "id": "contact_location", "label": "Location", "default": "South Africa" },
+      { "type": "header", "content": "Social media" },
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" }
+    ]
+  },
+  {
+    "name": "Delivery",
+    "settings": [
+      { "type": "paragraph", "content": "Shown on product pages, the cart, the shipping page and the footer, so delivery information is always consistent." },
+      { "type": "text", "id": "delivery_heading", "label": "Heading", "default": "Delivered by Aramex" },
+      { "type": "textarea", "id": "delivery_message", "label": "Delivery message", "default": "Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection." },
+      { "type": "text", "id": "delivery_short", "label": "Short delivery line", "default": "Delivered by Aramex · 5–10 business days" },
+      { "type": "page", "id": "shipping_page", "label": "Shipping & delivery page", "info": "Linked from the delivery message on product pages." }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      { "type": "select", "id": "cart_type", "label": "After adding to cart", "default": "drawer", "options": [{ "value": "drawer", "label": "Open cart drawer" }, { "value": "page", "label": "Go to cart page" }] }
+    ]
+  }
+]

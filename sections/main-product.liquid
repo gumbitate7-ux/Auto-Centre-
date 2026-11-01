@@ -1,0 +1,403 @@
+{%- comment -%}
+  Main product section. All prices, variants and availability come from native
+  Shopify product data. The add-to-cart form is a native Shopify product form,
+  enhanced with the Cart AJAX API in climora.js (it still works without JS).
+{%- endcomment -%}
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign product_form_id = 'ProductForm-' | append: section.id
+  assign img_class = ''
+  if section.settings.image_fit == 'contain'
+    assign img_class = 'is-contain'
+  endif
+-%}
+
+<div class="container" data-product-section data-section-id="{{ section.id }}">
+  <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+    <ol>
+      <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+      {%- if collection -%}
+        <li><a href="{{ collection.url }}">{{ collection.title | escape }}</a></li>
+      {%- else -%}
+        <li><a href="{{ routes.all_products_collection_url }}">{{ 'general.shop_all' | t }}</a></li>
+      {%- endif -%}
+      <li><span aria-current="page">{{ product.title | escape }}</span></li>
+    </ol>
+  </nav>
+
+  <div class="product">
+    {%- comment -%} Gallery {%- endcomment -%}
+    <div class="gallery" data-gallery>
+      <div class="gallery__track" data-gallery-track tabindex="0" aria-label="{{ 'products.product.gallery' | t }}" role="region">
+        {%- if product.media.size > 0 -%}
+          {%- for media in product.media -%}
+            {%- assign media_alt = media.alt | default: product.title -%}
+            <div class="gallery__slide" data-media-id="{{ media.id }}" id="Slide-{{ section.id }}-{{ media.id }}" aria-label="{{ 'products.product.media_of' | t: index: forloop.index, count: product.media.size }}" role="group">
+              {%- case media.media_type -%}
+                {%- when 'image' -%}
+                  {%- if forloop.first -%}
+                    {%- assign media_loading = 'eager' -%}
+                  {%- else -%}
+                    {%- assign media_loading = 'lazy' -%}
+                  {%- endif -%}
+                  {{
+                    media
+                    | image_url: width: 1600
+                    | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 990px) 55vw, 100vw', loading: media_loading, alt: media_alt, class: img_class
+                  }}
+                {%- when 'video' -%}
+                  {{ media | video_tag: controls: true, playsinline: true, preload: 'none', image_size: '1200x' }}
+                {%- when 'external_video' -%}
+                  {{ media | external_video_tag: loading: 'lazy' }}
+                {%- when 'model' -%}
+                  {{ media | model_viewer_tag: reveal: 'interaction', toggleable: true }}
+                {%- else -%}
+                  {{ media | media_tag }}
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <div class="gallery__slide">{% render 'climora-art', product: product %}</div>
+        {%- endif -%}
+      </div>
+      {%- if product.media.size > 1 -%}
+        <div class="gallery__dots" aria-hidden="true">
+          {%- for media in product.media -%}<span{% if forloop.first %} class="is-active"{% endif %}></span>{%- endfor -%}
+        </div>
+        <div class="gallery__thumbs" role="list" aria-label="{{ 'products.product.thumbnails' | t }}">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              class="gallery__thumb"
+              role="listitem"
+              data-thumb="{{ media.id }}"
+              aria-label="{{ 'products.product.show_media' | t: index: forloop.index }}"
+              {% if forloop.first %}aria-current="true"{% endif %}
+            >
+              {{ media.preview_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '', widths: '100, 200', sizes: '84px' }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Product information {%- endcomment -%}
+    <div class="pinfo">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+
+          {%- when 'eyebrow' -%}
+            <div class="pinfo__vendor" {{ block.shopify_attributes }}>
+              <p class="eyebrow">{{ block.settings.text | default: product.type | default: product.vendor | escape }}</p>
+            </div>
+
+          {%- when 'title' -%}
+            <h1 class="pinfo__title" {{ block.shopify_attributes }}>{{ product.title | escape }}</h1>
+
+          {%- when 'tagline' -%}
+            {%- assign tagline = block.settings.text | default: product.metafields.custom.tagline.value -%}
+            {%- if tagline != blank -%}<p class="pinfo__tagline" {{ block.shopify_attributes }}>{{ tagline | escape }}</p>{%- endif -%}
+
+          {%- when 'price' -%}
+            <div class="pinfo__price" id="Price-{{ section.id }}" {{ block.shopify_attributes }}>
+              {%- render 'price', product: product, variant: current_variant, large: true -%}
+              <p class="pinfo__tax">
+                {%- if cart.taxes_included -%}{{ 'products.product.taxes_included' | t }}{%- else -%}{{ 'products.product.taxes_excluded' | t }}{%- endif -%}
+                {%- if shop.shipping_policy.body != blank %} {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}{%- else %} {{ 'products.product.shipping_at_checkout' | t }}{%- endif -%}
+              </p>
+            </div>
+
+          {%- when 'highlights' -%}
+            {%- capture highlights -%}
+              {%- for i in (1..4) -%}
+                {%- assign key_text = 'item_' | append: i -%}
+                {%- assign key_icon = 'icon_' | append: i -%}
+                {%- if block.settings[key_text] != blank -%}
+                  <li class="highlight">{% render 'icon', name: block.settings[key_icon] %}<span>{{ block.settings[key_text] | escape }}</span></li>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if highlights != blank -%}<ul class="highlights" role="list" {{ block.shopify_attributes }}>{{ highlights }}</ul>{%- endif -%}
+
+          {%- when 'variant_picker' -%}
+            {%- unless product.has_only_default_variant -%}
+              <div class="stack" data-variant-picker data-picker-style="{{ block.settings.style }}" {{ block.shopify_attributes }}>
+                {%- for option in product.options_with_values -%}
+                  {%- if block.settings.style == 'dropdown' -%}
+                    <div class="field">
+                      <label class="field__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">{{ option.name | escape }}</label>
+                      <select class="select" id="Option-{{ section.id }}-{{ forloop.index0 }}" data-option-index="{{ forloop.index0 }}">
+                        {%- for value in option.values -%}
+                          <option value="{{ value | escape }}"{% if value.selected %} selected{% endif %}>{{ value | escape }}</option>
+                        {%- endfor -%}
+                      </select>
+                    </div>
+                  {%- else -%}
+                    {%- assign option_index = forloop.index0 -%}
+                    <fieldset class="option" data-option-index="{{ option_index }}">
+                      <legend class="option__legend">{{ option.name | escape }}: <span data-option-selected>{{ option.selected_value | escape }}</span></legend>
+                      <div class="option__values">
+                        {%- for value in option.values -%}
+                          {%- assign value_id = 'Opt-' | append: section.id | append: '-' | append: option_index | append: '-' | append: forloop.index0 -%}
+                          <input
+                            class="option__input{% if value.available == false %} is-unavailable{% endif %}"
+                            type="radio"
+                            id="{{ value_id }}"
+                            name="option-{{ section.id }}-{{ option_index }}"
+                            value="{{ value | escape }}"
+                            {% if value.selected %}checked{% endif %}
+                          >
+                          {%- if value.swatch.color -%}
+                            <label class="option__label option__label--swatch" for="{{ value_id }}" title="{{ value | escape }}">
+                              <span class="swatch" style="--swatch: {{ value.swatch.color }}"></span><span class="visually-hidden">{{ value | escape }}</span>
+                            </label>
+                          {%- else -%}
+                            <label class="option__label" for="{{ value_id }}">{{ value | escape }}</label>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </fieldset>
+                  {%- endif -%}
+                {%- endfor -%}
+                <script type="application/json" data-product-json>{{ product | json }}</script>
+              </div>
+            {%- endunless -%}
+
+          {%- when 'buy_buttons' -%}
+            <div {{ block.shopify_attributes }}>
+              {%- form 'product', product, id: product_form_id, class: 'buy', data-product-form: 'main', novalidate: 'novalidate' -%}
+                <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+                <div class="buy__row">
+                  {%- if block.settings.show_quantity -%}
+                    <div class="qty" data-qty>
+                      <button type="button" class="qty__btn" data-qty-minus aria-label="{{ 'products.product.decrease' | t }}">{% render 'icon', name: 'minus' %}</button>
+                      <label class="visually-hidden" for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+                      <input class="qty__input" type="number" name="quantity" id="Quantity-{{ section.id }}" value="1" min="1" inputmode="numeric">
+                      <button type="button" class="qty__btn" data-qty-plus aria-label="{{ 'products.product.increase' | t }}">{% render 'icon', name: 'plus' %}</button>
+                    </div>
+                  {%- endif -%}
+                  <button
+                    type="submit"
+                    name="add"
+                    class="btn btn--primary"
+                    data-add-button
+                    data-main-add
+                    {% unless current_variant.available %}disabled{% endunless %}
+                  >
+                    <span data-add-label>
+                      {%- if current_variant.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+                    </span>
+                  </button>
+                </div>
+                {%- if block.settings.show_dynamic_checkout -%}
+                  {{ form | payment_button }}
+                {%- endif -%}
+                <div class="form-message form-message--error buy__error" role="alert" data-form-error>{% render 'icon', name: 'alert' %}<span data-form-error-text></span></div>
+              {%- endform -%}
+            </div>
+
+          {%- when 'delivery' -%}
+            <div {{ block.shopify_attributes }}>{% render 'delivery-note' %}</div>
+
+          {%- when 'assurances' -%}
+            <ul class="assurances" role="list" {{ block.shopify_attributes }}>
+              <li class="assurance">{% render 'icon', name: 'lock' %}<span><strong>{{ 'products.assurance.checkout_title' | t }}</strong> {{ 'products.assurance.checkout_text' | t }}</span></li>
+              <li class="assurance">{% render 'icon', name: 'return' %}<span><strong>{{ 'products.assurance.returns_title' | t }}</strong> <a class="link" href="{{ block.settings.returns_link | default: '/pages/returns-refunds' }}">{{ 'products.assurance.returns_text' | t }}</a></span></li>
+              <li class="assurance">{% render 'icon', name: 'chat' %}<span><strong>{{ 'products.assurance.support_title' | t }}</strong> <a class="link" href="/pages/contact">{{ 'products.assurance.support_text' | t }}</a></span></li>
+            </ul>
+
+          {%- when 'divider' -%}
+            <hr class="pinfo__divider" {{ block.shopify_attributes }}>
+
+          {%- when 'description' -%}
+            {%- if product.description != blank -%}
+              {%- if block.settings.collapsible -%}
+                <div class="accordion accordion--compact" {{ block.shopify_attributes }}>
+                  <details class="accordion__item"{% if block.settings.open %} open{% endif %}>
+                    <summary class="accordion__summary"><span class="accordion__summary-label">{% render 'icon', name: 'sparkle' %}{{ block.settings.heading | escape }}</span><span class="accordion__icon" aria-hidden="true"></span></summary>
+                    <div class="accordion__content"><div class="rte">{{ product.description }}</div></div>
+                  </details>
+                </div>
+              {%- else -%}
+                <div class="rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
+              {%- endif -%}
+            {%- endif -%}
+
+          {%- when 'specs' -%}
+            {%- liquid
+              assign spec_source = block.settings.specs
+              if product.metafields.custom.specifications != blank
+                assign spec_source = product.metafields.custom.specifications.value
+              endif
+              assign spec_lines = spec_source | newline_to_br | split: '<br />'
+            -%}
+            {%- capture spec_rows -%}
+              {%- for line in spec_lines -%}
+                {%- assign pair = line | split: '|' -%}
+                {%- assign spec_label = pair[0] | strip -%}
+                {%- assign spec_value = pair[1] | strip -%}
+                {%- if spec_label != blank and spec_value != blank -%}
+                  <tr><th scope="row">{{ spec_label | escape }}</th><td>{{ spec_value | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if spec_rows != blank -%}
+              <div class="accordion accordion--compact" {{ block.shopify_attributes }}>
+                <details class="accordion__item"{% if block.settings.open %} open{% endif %}>
+                  <summary class="accordion__summary"><span class="accordion__summary-label">{% render 'icon', name: 'cpu' %}{{ block.settings.heading | escape }}</span><span class="accordion__icon" aria-hidden="true"></span></summary>
+                  <div class="accordion__content"><table class="specs"><tbody>{{ spec_rows }}</tbody></table></div>
+                </details>
+              </div>
+            {%- endif -%}
+
+          {%- when 'collapsible' -%}
+            {%- if block.settings.content != blank or block.settings.page != blank -%}
+              <div class="accordion accordion--compact" {{ block.shopify_attributes }}>
+                <details class="accordion__item"{% if block.settings.open %} open{% endif %}>
+                  <summary class="accordion__summary"><span class="accordion__summary-label">{% render 'icon', name: block.settings.icon %}{{ block.settings.heading | escape }}</span><span class="accordion__icon" aria-hidden="true"></span></summary>
+                  <div class="accordion__content">
+                    <div class="rte">
+                      {{ block.settings.content }}
+                      {%- if block.settings.page != blank -%}{{ block.settings.page.content }}{%- endif -%}
+                    </div>
+                  </div>
+                </details>
+              </div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.sticky_atc and product.available -%}
+  <div class="sticky-atc" data-sticky-atc aria-hidden="true">
+    <div class="sticky-atc__info">
+      <span class="sticky-atc__title">{{ product.title | escape }}</span>
+      <span class="sticky-atc__price" data-sticky-price>{{ current_variant.price | money }}</span>
+    </div>
+    <button type="button" class="btn btn--primary btn--sm" data-sticky-add tabindex="-1">{{ 'products.product.add_to_cart' | t }}</button>
+  </div>
+{%- endif -%}
+
+{%- comment -%} Product structured data (schema.org) {%- endcomment -%}
+{%- liquid
+  assign seo_media = product.featured_media
+  if product.selected_or_first_available_variant.barcode != blank
+    assign gtin = product.selected_or_first_available_variant.barcode
+  endif
+-%}
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ request.origin | append: product.url | json }},
+    {%- if seo_media %}
+    "image": [{{ seo_media | image_url: width: 1200 | prepend: 'https:' | json }}],
+    {%- endif %}
+    "description": {{ product.description | strip_html | strip_newlines | truncate: 5000 | json }},
+    {%- if current_variant.sku != blank %}
+    "sku": {{ current_variant.sku | json }},
+    {%- endif %}
+    {%- if gtin %}
+    "gtin": {{ gtin | json }},
+    {%- endif %}
+    "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+    "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          {%- if variant.sku != blank %}"sku": {{ variant.sku | json }},{% endif %}
+          "name": {{ variant.title | json }},
+          "availability": "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price": {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "url": {{ request.origin | append: variant.url | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [
+    { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover", "options": [{ "value": "cover", "label": "Fill frame" }, { "value": "contain", "label": "Fit (for cut-out photography)" }] },
+    { "type": "checkbox", "id": "sticky_atc", "label": "Show sticky add-to-cart bar on mobile", "default": true }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    { "type": "eyebrow", "name": "Eyebrow", "limit": 1, "settings": [{ "type": "text", "id": "text", "label": "Text", "info": "Leave empty to use the product type." }] },
+    { "type": "title", "name": "Title", "limit": 1, "settings": [] },
+    { "type": "tagline", "name": "Positioning line", "limit": 1, "settings": [{ "type": "text", "id": "text", "label": "Text", "info": "Leave empty to use the custom.tagline product metafield." }] },
+    { "type": "price", "name": "Price", "limit": 1, "settings": [] },
+    {
+      "type": "highlights",
+      "name": "Highlights",
+      "limit": 1,
+      "settings": [
+        { "type": "paragraph", "content": "Only list features you have verified with your supplier." },
+        { "type": "text", "id": "item_1", "label": "Highlight 1" },
+        { "type": "select", "id": "icon_1", "label": "Icon 1", "default": "sparkle", "options": [{ "value": "sparkle", "label": "Sparkle" }, { "value": "sun", "label": "Solar" }, { "value": "battery", "label": "Battery" }, { "value": "wind", "label": "Airflow" }, { "value": "home", "label": "Home" }, { "value": "tree", "label": "Outdoor" }, { "value": "feather", "label": "Soft" }, { "value": "droplet", "label": "Fabric" }, { "value": "snowflake", "label": "Cooling" }, { "value": "layers", "label": "Layers" }, { "value": "ruler", "label": "Size" }, { "value": "bed", "label": "Bed" }] },
+        { "type": "text", "id": "item_2", "label": "Highlight 2" },
+        { "type": "select", "id": "icon_2", "label": "Icon 2", "default": "sparkle", "options": [{ "value": "sparkle", "label": "Sparkle" }, { "value": "sun", "label": "Solar" }, { "value": "battery", "label": "Battery" }, { "value": "wind", "label": "Airflow" }, { "value": "home", "label": "Home" }, { "value": "tree", "label": "Outdoor" }, { "value": "feather", "label": "Soft" }, { "value": "droplet", "label": "Fabric" }, { "value": "snowflake", "label": "Cooling" }, { "value": "layers", "label": "Layers" }, { "value": "ruler", "label": "Size" }, { "value": "bed", "label": "Bed" }] },
+        { "type": "text", "id": "item_3", "label": "Highlight 3" },
+        { "type": "select", "id": "icon_3", "label": "Icon 3", "default": "sparkle", "options": [{ "value": "sparkle", "label": "Sparkle" }, { "value": "sun", "label": "Solar" }, { "value": "battery", "label": "Battery" }, { "value": "wind", "label": "Airflow" }, { "value": "home", "label": "Home" }, { "value": "tree", "label": "Outdoor" }, { "value": "feather", "label": "Soft" }, { "value": "droplet", "label": "Fabric" }, { "value": "snowflake", "label": "Cooling" }, { "value": "layers", "label": "Layers" }, { "value": "ruler", "label": "Size" }, { "value": "bed", "label": "Bed" }] },
+        { "type": "text", "id": "item_4", "label": "Highlight 4" },
+        { "type": "select", "id": "icon_4", "label": "Icon 4", "default": "sparkle", "options": [{ "value": "sparkle", "label": "Sparkle" }, { "value": "sun", "label": "Solar" }, { "value": "battery", "label": "Battery" }, { "value": "wind", "label": "Airflow" }, { "value": "home", "label": "Home" }, { "value": "tree", "label": "Outdoor" }, { "value": "feather", "label": "Soft" }, { "value": "droplet", "label": "Fabric" }, { "value": "snowflake", "label": "Cooling" }, { "value": "layers", "label": "Layers" }, { "value": "ruler", "label": "Size" }, { "value": "bed", "label": "Bed" }] }
+      ]
+    },
+    { "type": "variant_picker", "name": "Variant picker", "limit": 1, "settings": [{ "type": "select", "id": "style", "label": "Style", "default": "buttons", "options": [{ "value": "buttons", "label": "Buttons" }, { "value": "dropdown", "label": "Dropdown" }] }] },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show Buy Now (dynamic checkout) button", "default": true, "info": "Uses Shopify's native accelerated checkout." }
+      ]
+    },
+    { "type": "delivery", "name": "Delivery message", "limit": 1, "settings": [{ "type": "paragraph", "content": "Edit the message in Theme settings → Delivery." }] },
+    { "type": "assurances", "name": "Trust assurances", "limit": 1, "settings": [{ "type": "url", "id": "returns_link", "label": "Returns link" }] },
+    { "type": "divider", "name": "Divider", "settings": [] },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "collapsible", "label": "Show as collapsible row", "default": true },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Description" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true }
+      ]
+    },
+    {
+      "type": "specs",
+      "name": "Specifications",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Specifications" },
+        { "type": "textarea", "id": "specs", "label": "Specifications", "info": "One per line as Label | Value. Rows without a value are hidden — fill them in once verified with your supplier. A product metafield custom.specifications (multi-line text, same format) overrides this." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "collapsible",
+      "name": "Collapsible row",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Collapsible row" },
+        { "type": "select", "id": "icon", "label": "Icon", "default": "sparkle", "options": [{ "value": "sparkle", "label": "Sparkle" }, { "value": "truck", "label": "Delivery" }, { "value": "return", "label": "Returns" }, { "value": "droplet", "label": "Care" }, { "value": "ruler", "label": "Size" }, { "value": "box", "label": "In the box" }, { "value": "chat", "label": "Question" }, { "value": "shield", "label": "Shield" }] },
+        { "type": "richtext", "id": "content", "label": "Content" },
+        { "type": "page", "id": "page", "label": "Content from page" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ]
+}
+{% endschema %}

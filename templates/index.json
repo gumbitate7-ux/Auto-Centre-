@@ -1,0 +1,217 @@
+{
+  "sections": {
+    "hero": {
+      "type": "climora-hero",
+      "blocks": {
+        "fact-1": { "type": "fact", "settings": { "title": "Solar-rechargeable airflow", "text": "Portable cooling for home and outdoors" } },
+        "fact-2": { "type": "fact", "settings": { "title": "Cooling-feel sleep fabrics", "text": "Pillowcases and mattress toppers" } },
+        "fact-3": { "type": "fact", "settings": { "title": "Delivered by Aramex", "text": "Estimated 5–10 business days" } }
+      },
+      "block_order": ["fact-1", "fact-2", "fact-3"],
+      "settings": {
+        "style": "light",
+        "eyebrow": "CLIMORA · Cooling technology",
+        "heading": "THE FUTURE OF",
+        "heading_accent": "STAYING COOL.",
+        "text": "Discover innovative cooling solutions designed to bring comfort to warmer days and warmer nights.",
+        "primary_label": "Explore collection",
+        "primary_link": "shopify://collections/all",
+        "secondary_label": "Discover CLIMORA",
+        "secondary_link": "shopify://pages/about",
+        "image_alt": "CLIMORA cooling products",
+        "art": "fan",
+        "stage_style": "dark",
+        "label_a_title": "AIRTECH · SolarFlow",
+        "label_a_text": "Solar-rechargeable, portable airflow",
+        "label_b_title": "SLEEPTECH",
+        "label_b_text": "IceSoft · FrostLayer"
+      }
+    },
+    "featured": {
+      "type": "climora-featured-products",
+      "blocks": {
+        "p-1": { "type": "product", "settings": { "product": "climora-solarflow", "tagline": "Portable airflow. Smarter everyday comfort." } },
+        "p-2": { "type": "product", "settings": { "product": "climora-icesoft", "tagline": "Bring a fresher feel to your sleep experience." } },
+        "p-3": { "type": "product", "settings": { "product": "climora-frostlayer", "tagline": "Rethink the way you sleep." } }
+      },
+      "block_order": ["p-1", "p-2", "p-3"],
+      "settings": {
+        "eyebrow": "The collection",
+        "heading": "INNOVATION MEETS COMFORT.",
+        "text": "Three thoughtfully selected essentials for cooler days and calmer nights.",
+        "link_label": "Shop all",
+        "link": "shopify://collections/all",
+        "limit": 3,
+        "columns": "3",
+        "background": "",
+        "eager": false
+      }
+    },
+    "categories": {
+      "type": "climora-categories",
+      "blocks": {
+        "sleep": {
+          "type": "category",
+          "settings": {
+            "style": "sleep",
+            "eyebrow": "Sleep cooling",
+            "title": "SLEEPTECH",
+            "text": "Bedding designed around a fresher-feeling night.",
+            "items": "Cooling mattress topper\nCooling pillowcase",
+            "link": "shopify://collections/sleep-cooling",
+            "button_label": "Shop SleepTech",
+            "image_mode": "visual",
+            "art": "topper"
+          }
+        },
+        "air": {
+          "type": "category",
+          "settings": {
+            "style": "air",
+            "eyebrow": "Portable cooling",
+            "title": "AIRTECH",
+            "text": "Rechargeable airflow that goes where you go — indoors and out.",
+            "items": "Solar-powered rechargeable fan",
+            "link": "shopify://collections/portable-cooling",
+            "button_label": "Shop AirTech",
+            "image_mode": "visual",
+            "art": "fan"
+          }
+        }
+      },
+      "block_order": ["sleep", "air"],
+      "settings": {
+        "eyebrow": "Shop by need",
+        "heading": "Two ways to stay cool.",
+        "text": "Engineered comfort for the bedroom, and portable airflow for everywhere else."
+      }
+    },
+    "benefits": {
+      "type": "climora-benefits",
+      "blocks": {
+        "b-1": { "type": "benefit", "settings": { "icon": "sparkle", "title": "Thoughtfully selected", "text": "A focused range of cooling solutions chosen for everyday usefulness." } },
+        "b-2": { "type": "benefit", "settings": { "icon": "cpu", "title": "Modern, practical design", "text": "Clean, considered products that fit naturally into your home and routine." } },
+        "b-3": { "type": "benefit", "settings": { "icon": "card", "title": "Convenient online shopping", "text": "Browse, choose your size and check out securely in a few steps." } },
+        "b-4": { "type": "benefit", "settings": { "icon": "truck", "title": "Clear delivery information", "text": "Delivered by Aramex with an estimated 5–10 business days." } },
+        "b-5": { "type": "benefit", "settings": { "icon": "chat", "title": "Customer-focused support", "text": "Questions before or after you order? Our team is here to help." } }
+      },
+      "block_order": ["b-1", "b-2", "b-3", "b-4", "b-5"],
+      "settings": {
+        "eyebrow": "Why CLIMORA?",
+        "heading": "Technology designed around your comfort.",
+        "text": "We keep things simple: useful products, honest information and support from real people.",
+        "center": false,
+        "background": "section--mist"
+      }
+    },
+    "story": {
+      "type": "climora-brand-story",
+      "blocks": {
+        "pl-1": { "type": "pillar", "settings": { "title": "Days", "text": "Portable airflow" } },
+        "pl-2": { "type": "pillar", "settings": { "title": "Nights", "text": "Sleep cooling" } },
+        "pl-3": { "type": "pillar", "settings": { "title": "ZA", "text": "South African brand" } }
+      },
+      "block_order": ["pl-1", "pl-2", "pl-3"],
+      "settings": {
+        "eyebrow": "Our philosophy",
+        "heading": "COMFORT IS EVOLVING.",
+        "text": "<p>At CLIMORA, we believe staying comfortable should be easier, smarter and more accessible. We bring together innovative cooling solutions designed to help you navigate warmer days and enjoy more comfortable nights.</p>",
+        "button_label": "Our story",
+        "button_link": "shopify://pages/about",
+        "flush_top": false
+      }
+    },
+    "bundles": {
+      "type": "climora-bundles",
+      "blocks": {
+        "sleep-set": {
+          "type": "bundle",
+          "settings": {
+            "style": "light",
+            "eyebrow": "SleepTech set",
+            "title": "The Ultimate Sleep Set",
+            "text": "FrostLayer and IceSoft together — a complete cooling-feel upgrade for your bed.",
+            "products": ["climora-frostlayer", "climora-icesoft"],
+            "button_label": "Add set to cart",
+            "placeholder_items": "CLIMORA FrostLayer, CLIMORA IceSoft",
+            "placeholder_art": "topper, pillow",
+            "fallback_link": "shopify://collections/sleep-cooling"
+          }
+        },
+        "everyday-set": {
+          "type": "bundle",
+          "settings": {
+            "style": "dark",
+            "eyebrow": "Day + night set",
+            "title": "The Everyday Cooling Set",
+            "text": "SolarFlow for warmer days, plus FrostLayer and IceSoft for warmer nights.",
+            "products": ["climora-solarflow", "climora-frostlayer", "climora-icesoft"],
+            "button_label": "Add set to cart",
+            "placeholder_items": "CLIMORA SolarFlow, CLIMORA FrostLayer, CLIMORA IceSoft",
+            "placeholder_art": "fan, topper, pillow",
+            "fallback_link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": ["sleep-set", "everyday-set"],
+      "settings": {
+        "eyebrow": "Curated sets",
+        "heading": "Better together.",
+        "text": "Complementary combinations, selected to make choosing simple. Pick your sizes and add the whole set in one step.",
+        "background": ""
+      }
+    },
+    "delivery": {
+      "type": "climora-delivery",
+      "blocks": {
+        "d-1": { "type": "item", "settings": { "icon": "truck", "title": "Aramex delivery", "text": "Estimated 5–10 business days" } },
+        "d-2": { "type": "item", "settings": { "icon": "lock", "title": "Secure checkout", "text": "Encrypted Shopify checkout" } },
+        "d-3": { "type": "item", "settings": { "icon": "return", "title": "Clear returns policy", "text": "Know your options before you buy" } },
+        "d-4": { "type": "item", "settings": { "icon": "chat", "title": "Real support", "text": "Questions answered by our team" } }
+      },
+      "block_order": ["d-1", "d-2", "d-3", "d-4"],
+      "settings": {
+        "eyebrow": "Delivery & checkout",
+        "heading": "Shop with confidence.",
+        "link_label": "Shipping & delivery details",
+        "link": "shopify://pages/shipping-delivery",
+        "background": "section--mist",
+        "tight": true
+      }
+    },
+    "faq": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": { "type": "question", "settings": { "question": "How long does delivery take?", "answer": "<p>Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.</p>" } },
+        "q-2": { "type": "question", "settings": { "question": "How will I know when my order has shipped?", "answer": "<p>Once your order has been handed to Aramex, you’ll receive a shipping confirmation email. When tracking is available for your shipment, the tracking details are included in that email.</p>" } },
+        "q-3": { "type": "question", "settings": { "question": "Is checkout secure?", "answer": "<p>Yes. Payments are processed through Shopify’s encrypted checkout. The payment methods available to you are shown at checkout.</p>" } },
+        "q-4": { "type": "question", "settings": { "question": "Can I return a product?", "answer": "<p>Please see our <a href=\"/pages/returns-refunds\" title=\"Returns & Refunds\">Returns & Refunds</a> page for eligibility, timeframes and how to start a return.</p>" } },
+        "q-5": { "type": "question", "settings": { "question": "How do I choose the right size?", "answer": "<p>Each product page lists the available sizes. For FrostLayer, choose the size that matches your mattress. If you’re unsure, contact us before ordering and we’ll gladly help.</p>" } },
+        "q-6": { "type": "question", "settings": { "question": "How do I contact CLIMORA?", "answer": "<p>Use the form on our <a href=\"/pages/contact\" title=\"Contact\">Contact</a> page and we’ll get back to you as soon as possible during business hours.</p>" } }
+      },
+      "block_order": ["q-1", "q-2", "q-3", "q-4", "q-5", "q-6"],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Frequently asked questions",
+        "text": "Everything you need to know before you order. Can’t find your answer? Get in touch.",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": ""
+      }
+    },
+    "newsletter": {
+      "type": "climora-newsletter",
+      "settings": {
+        "style": "light",
+        "eyebrow": "Stay in the loop",
+        "heading": "Cooler ideas, delivered.",
+        "text": "Be the first to hear about new CLIMORA products, restocks and practical tips for staying comfortable in the heat.",
+        "button_label": "Subscribe",
+        "fine_print": "You can unsubscribe at any time. We respect your privacy.",
+        "flush_top": true
+      }
+    }
+  },
+  "order": ["hero", "featured", "categories", "benefits", "story", "bundles", "delivery", "faq", "newsletter"]
+}

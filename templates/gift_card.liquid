@@ -1,0 +1,40 @@
+{%- layout none -%}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ 'gift_card.title' | t: shop: shop.name }}</title>
+    <meta name="robots" content="noindex">
+    {{ 'climora.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer></script>
+    {{ content_for_header }}
+  </head>
+  <body>
+    <main class="section">
+      <div class="container container--narrow">
+        <div class="prose-card stack-lg" style="text-align:center;justify-items:center">
+          <span class="wordmark">{% render 'climora-art', kind: 'mark' %}<span>CLIMORA</span></span>
+          <h1 class="h2">{{ 'gift_card.heading' | t }}</h1>
+          <p class="price price--lg">{{ gift_card.balance | money }}</p>
+          {%- if gift_card.enabled == false or gift_card.expired -%}
+            <p class="form-message form-message--error">{{ 'gift_card.unavailable' | t }}</p>
+          {%- endif -%}
+          <p class="text-muted">{{ 'gift_card.code' | t }}</p>
+          <p class="h3" style="letter-spacing:.12em">{{ gift_card.code | format_code }}</p>
+          <div id="QrCode" data-identifier="{{ gift_card.qr_identifier }}"></div>
+          <div class="cluster" style="justify-content:center">
+            <a class="btn btn--primary" href="{{ shop.url }}" target="_blank" rel="noopener">{{ 'gift_card.shop' | t }}</a>
+            <button class="btn btn--secondary" type="button" onclick="window.print()">{{ 'gift_card.print' | t }}</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      window.addEventListener('load', function () {
+        var el = document.getElementById('QrCode');
+        if (el && window.QRCode) { new QRCode(el, { text: el.dataset.identifier, width: 120, height: 120 }); }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+{%- comment -%}
+  Cart page. Works fully without JavaScript (native /cart form posts).
+  With JS, quantity changes update instantly through /cart/change.js and this
+  section is re-rendered through the Section Rendering API.
+{%- endcomment -%}
+<div class="page-hero" style="padding-block: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 40px)">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><span aria-current="page">{{ 'cart.title' | t }}</span></li>
+      </ol>
+    </nav>
+    <h1 class="page-hero__title">{{ 'cart.title' | t }}</h1>
+  </div>
+</div>
+
+<div class="container" data-cart-page data-section-id="{{ section.id }}">
+  <div data-cart-page-inner>
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" id="CartPageForm" class="cart-page" novalidate>
+        <div>
+          <div class="form-message form-message--error cart-error" role="alert" data-cart-error hidden>{% render 'icon', name: 'alert' %}<span data-cart-error-text></span></div>
+          {%- render 'cart-line-items', context: 'page' -%}
+          <noscript><button type="submit" name="update" class="btn btn--secondary mt-6">{{ 'cart.update' | t }}</button></noscript>
+          {%- if section.settings.show_note -%}
+            <div class="field mt-10">
+              <label class="field__label" for="CartNote">{{ 'cart.note' | t }}</label>
+              <textarea class="textarea" id="CartNote" name="note" data-cart-note placeholder="{{ 'cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <aside class="cart-page__summary" aria-labelledby="CartSummaryTitle">
+          <div class="cart-summary">
+            <h2 class="h4" id="CartSummaryTitle">{{ 'cart.summary' | t }}</h2>
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <div class="cart-summary__row text-small"><span>{{ discount.title | escape }}</span><span>−{{ discount.total_allocated_amount | money }}</span></div>
+            {%- endfor -%}
+            <div class="cart-summary__row">
+              <span>{{ 'cart.subtotal' | t }}</span>
+              <span class="cart-summary__total">{{ cart.total_price | money_with_currency }}</span>
+            </div>
+            <p class="cart-summary__fine">{{ 'cart.taxes_shipping_checkout' | t }}</p>
+            {%- render 'delivery-note', compact: true -%}
+            <button type="submit" name="checkout" class="btn btn--primary btn--block">{% render 'icon', name: 'lock' %}<span>{{ 'cart.checkout' | t }}</span></button>
+            {%- if section.settings.show_express and additional_checkout_buttons -%}
+              <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+            {%- endif -%}
+            <p class="secure-line">{% render 'icon', name: 'shield' %} {{ 'cart.secure_checkout' | t }}</p>
+            <a class="link-arrow" href="{{ routes.all_products_collection_url }}" style="justify-self:center">{{ 'cart.continue' | t }} {% render 'icon', name: 'arrow-right' %}</a>
+          </div>
+        </aside>
+      </form>
+    {%- else -%}
+      <div class="cart-empty" style="padding-bottom: var(--section-y)">
+        <div class="cart-empty__icon">{% render 'icon', name: 'cart' %}</div>
+        <h2 class="h3">{{ 'cart.empty_title' | t }}</h2>
+        <p class="text-muted">{{ 'cart.empty_text' | t }}</p>
+        <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'cart.shop_all' | t }}</a>
+        {%- if shop.customer_accounts_enabled and customer == nil -%}
+          <p class="text-small text-muted">{{ 'cart.login_html' | t: link: routes.account_login_url }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "class": "section-main-cart",
+  "settings": [
+    { "type": "checkbox", "id": "show_note", "label": "Enable order note", "default": true },
+    { "type": "checkbox", "id": "show_express", "label": "Show express checkout buttons", "default": true, "info": "Shown only for payment providers that support accelerated checkout." }
+  ]
+}
+{% endschema %}

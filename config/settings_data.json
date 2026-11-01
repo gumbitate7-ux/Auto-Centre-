@@ -1,0 +1,29 @@
+{
+  "current": {
+    "brand_tagline": "The Future of Staying Cool.",
+    "color_navy": "#182A40",
+    "color_charcoal": "#111820",
+    "color_ice": "#EAF5FF",
+    "color_electric": "#78C8F5",
+    "color_silver": "#BFCBD5",
+    "load_google_fonts": true,
+    "contact_hours": "Monday–Friday, 09:00–17:00 (SAST)",
+    "contact_location": "South Africa",
+    "delivery_heading": "Delivered by Aramex",
+    "delivery_message": "Your CLIMORA order will be delivered through our courier partner, Aramex. Estimated delivery is 5–10 business days, subject to order processing and courier collection.",
+    "delivery_short": "Delivered by Aramex · 5–10 business days",
+    "cart_type": "drawer"
+  },
+  "presets": {
+    "Default": {
+      "brand_tagline": "The Future of Staying Cool.",
+      "color_navy": "#182A40",
+      "color_charcoal": "#111820",
+      "color_ice": "#EAF5FF",
+      "color_electric": "#78C8F5",
+      "color_silver": "#BFCBD5",
+      "load_google_fonts": true,
+      "cart_type": "drawer"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": { "style": "dark", "eyebrow": "AirTech", "fallback_text": "Solar rechargeable fans and portable cooling solutions for South African homes, offices and outdoor days.", "show_image": true, "art": "fan", "show_sort": true, "per_page": 12 }
+    },
+    "features": {
+      "type": "climora-features",
+      "blocks": {
+        "f-1": { "type": "feature", "settings": { "icon": "battery", "title": "Rechargeable", "text": "Cordless airflow, wherever you need it." } },
+        "f-2": { "type": "feature", "settings": { "icon": "sun", "title": "Solar charging capability", "text": "Top up with sunlight — useful outdoors and during power interruptions." } },
+        "f-3": { "type": "feature", "settings": { "icon": "wind", "title": "Portable", "text": "Move it from room to room, or take it with you." } },
+        "f-4": { "type": "feature", "settings": { "icon": "tree", "title": "Home & outdoor", "text": "From bedside to braai, patio and camping trips." } }
+      },
+      "block_order": ["f-1", "f-2", "f-3", "f-4"],
+      "settings": { "eyebrow": "AirTech", "heading": "Portable airflow, ready when you are.", "text": "", "numbered": false, "center": false, "background": "section--mist" }
+    },
+    "delivery": {
+      "type": "climora-delivery",
+      "blocks": {
+        "d-1": { "type": "item", "settings": { "icon": "truck", "title": "Aramex delivery", "text": "Estimated 5–10 business days" } },
+        "d-2": { "type": "item", "settings": { "icon": "lock", "title": "Secure checkout", "text": "Encrypted Shopify checkout" } }
+      },
+      "block_order": ["d-1", "d-2"],
+      "settings": { "eyebrow": "Delivery & checkout", "heading": "Shop with confidence.", "link_label": "Shipping & delivery details", "link": "shopify://pages/shipping-delivery", "background": "", "tight": true }
+    }
+  },
+  "order": ["main", "features", "delivery"]
+}

@@ -1,0 +1,90 @@
+{%- comment -%}
+  Featured products. Uses product blocks when set, otherwise the selected collection.
+  Prices, availability and variants always come from Shopify.
+{%- endcomment -%}
+{%- liquid
+  assign has_block_products = false
+  for block in section.blocks
+    if block.settings.product != blank
+      assign has_block_products = true
+      break
+    endif
+  endfor
+  assign coll = section.settings.collection
+  if coll == blank
+    assign coll = collections['all']
+  endif
+  assign columns = section.settings.columns
+-%}
+<section class="section {{ section.settings.background }}" aria-labelledby="FeaturedTitle-{{ section.id }}">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div class="stack">
+        {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="h2" id="FeaturedTitle-{{ section.id }}" data-reveal>{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.text != blank -%}<p class="section-head__text" data-reveal>{{ section.settings.text | escape }}</p>{%- endif -%}
+      </div>
+      {%- if section.settings.link_label != blank -%}
+        <a class="link-arrow" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.link_label | escape }} {% render 'icon', name: 'arrow-right' %}</a>
+      {%- endif -%}
+    </div>
+
+    <ul class="grid grid--{{ columns }}" role="list">
+      {%- if has_block_products -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.product != blank -%}
+            <li data-reveal style="--reveal-delay: {{ forloop.index0 | times: 90 }}ms" {{ block.shopify_attributes }}>
+              {%- render 'product-card', product: block.settings.product, tagline: block.settings.tagline, eager: section.settings.eager, section_id: section.id -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- elsif coll.products_count > 0 -%}
+        {%- for product in coll.products limit: section.settings.limit -%}
+          <li data-reveal style="--reveal-delay: {{ forloop.index0 | times: 90 }}ms">
+            {%- render 'product-card', product: product, eager: section.settings.eager, section_id: section.id -%}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        <li>{%- render 'product-card', placeholder_title: 'CLIMORA SolarFlow', placeholder_kind: 'fan', tagline: 'Portable airflow. Smarter everyday comfort.' -%}</li>
+        <li>{%- render 'product-card', placeholder_title: 'CLIMORA IceSoft', placeholder_kind: 'pillow', tagline: 'Bring a fresher feel to your sleep experience.' -%}</li>
+        <li>{%- render 'product-card', placeholder_title: 'CLIMORA FrostLayer', placeholder_kind: 'topper', tagline: 'Rethink the way you sleep.' -%}</li>
+      {%- endif -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "tag": "div",
+  "class": "section-featured",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "INNOVATION MEETS COMFORT." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Three thoughtfully selected essentials for cooler days and calmer nights." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Shop all" },
+    { "type": "url", "id": "link", "label": "Link" },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Used when no product blocks are added." },
+    { "type": "range", "id": "limit", "label": "Products from collection", "min": 2, "max": 12, "step": 1, "default": 3 },
+    { "type": "select", "id": "columns", "label": "Columns (desktop)", "default": "3", "options": [{ "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" }] },
+    { "type": "select", "id": "background", "label": "Background", "default": "", "options": [{ "value": "", "label": "White" }, { "value": "section--mist", "label": "Mist" }, { "value": "section--ice", "label": "Ice gradient" }] },
+    { "type": "checkbox", "id": "eager", "label": "Load images immediately", "default": false, "info": "Enable only if this section is near the top of the page." }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "tagline", "label": "Short description override", "info": "Optional. Otherwise uses the custom.short_description metafield or product description." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products",
+      "blocks": [{ "type": "product" }, { "type": "product" }, { "type": "product" }]
+    }
+  ]
+}
+{% endschema %}

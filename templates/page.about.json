@@ -1,0 +1,138 @@
+{
+  "sections": {
+    "hero": {
+      "type": "climora-page-hero",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Our story",
+        "heading": "Comfort is evolving.",
+        "text": "CLIMORA is a South African cooling technology brand. We bring together innovative, practical products that help you stay comfortable when the temperature rises.",
+        "art": "orbit"
+      }
+    },
+    "mission": {
+      "type": "climora-image-text",
+      "settings": {
+        "art": "fan",
+        "reverse": false,
+        "eyebrow": "Why we exist",
+        "heading": "Staying cool should be easier.",
+        "text": "<p>At CLIMORA, we believe staying comfortable should be easier, smarter and more accessible. We bring together innovative cooling solutions designed to help you navigate warmer days and enjoy more comfortable nights.</p><p>We started with three essentials — a solar-rechargeable fan, a cooling pillowcase and a cooling mattress topper — each chosen for how it fits into everyday South African life.</p>",
+        "button_label": "Explore the collection",
+        "button_link": "shopify://collections/all",
+        "background": ""
+      }
+    },
+    "approach": {
+      "type": "climora-benefits",
+      "blocks": {
+        "b-1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Thoughtfully selected",
+            "text": "We focus on a small range of products we can explain clearly and stand behind."
+          }
+        },
+        "b-2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Honest information",
+            "text": "Clear descriptions and specifications — no exaggerated claims."
+          }
+        },
+        "b-3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck",
+            "title": "Transparent delivery",
+            "text": "Delivered by Aramex, with an estimated 5–10 business days."
+          }
+        },
+        "b-4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "chat",
+            "title": "People-first support",
+            "text": "Real answers from our team, before and after you order."
+          }
+        }
+      },
+      "block_order": [
+        "b-1",
+        "b-2",
+        "b-3",
+        "b-4"
+      ],
+      "settings": {
+        "eyebrow": "Our approach",
+        "heading": "Technology designed around your comfort.",
+        "text": "",
+        "center": false,
+        "background": "section--mist"
+      }
+    },
+    "categories": {
+      "type": "climora-categories",
+      "blocks": {
+        "sleep": {
+          "type": "category",
+          "settings": {
+            "style": "sleep",
+            "eyebrow": "Sleep cooling",
+            "title": "SLEEPTECH",
+            "text": "Bedding designed around a fresher-feeling night.",
+            "items": "Cooling mattress topper\nCooling pillowcase",
+            "link": "shopify://collections/sleep-cooling",
+            "button_label": "Shop SleepTech",
+            "image_mode": "visual",
+            "art": "topper"
+          }
+        },
+        "air": {
+          "type": "category",
+          "settings": {
+            "style": "air",
+            "eyebrow": "Portable cooling",
+            "title": "AIRTECH",
+            "text": "Rechargeable airflow that goes where you go.",
+            "items": "Solar-powered rechargeable fan",
+            "link": "shopify://collections/portable-cooling",
+            "button_label": "Shop AirTech",
+            "image_mode": "visual",
+            "art": "fan"
+          }
+        }
+      },
+      "block_order": [
+        "sleep",
+        "air"
+      ],
+      "settings": {
+        "eyebrow": "What we make",
+        "heading": "Day and night comfort.",
+        "text": ""
+      }
+    },
+    "newsletter": {
+      "type": "climora-newsletter",
+      "settings": {
+        "style": "dark",
+        "eyebrow": "Stay in the loop",
+        "heading": "Cooler ideas, delivered.",
+        "text": "Be the first to hear about new CLIMORA products and practical tips for staying comfortable in the heat.",
+        "button_label": "Subscribe",
+        "fine_print": "You can unsubscribe at any time. We respect your privacy.",
+        "flush_top": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "mission",
+    "approach",
+    "categories",
+    "newsletter"
+  ]
+}

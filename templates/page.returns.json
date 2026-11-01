@@ -1,0 +1,162 @@
+{
+  "sections": {
+    "hero": {
+      "type": "climora-page-hero",
+      "settings": {
+        "style": "light",
+        "eyebrow": "Returns & refunds",
+        "heading": "Returns, made clear.",
+        "text": "If something isn’t right with your order, we’re here to help. Here’s how returns and refunds work at CLIMORA.",
+        "art": "none"
+      }
+    },
+    "summary": {
+      "type": "climora-rich-text",
+      "blocks": {
+        "b-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our commitment",
+            "size": "h2"
+          }
+        },
+        "b-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We want you to be comfortable shopping with CLIMORA. If you have a problem with your order, please contact us — we’ll help you find the right solution.</p>"
+          }
+        },
+        "b-3": {
+          "type": "heading",
+          "settings": {
+            "heading": "Changed your mind?",
+            "size": "h3"
+          }
+        },
+        "b-4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Under the Electronic Communications and Transactions Act (ECTA), you may cancel an online purchase within 7 days of receiving your goods. Items should be returned unused, in their original condition and packaging. The direct cost of returning the goods is your responsibility.</p>"
+          }
+        },
+        "b-5": {
+          "type": "heading",
+          "settings": {
+            "heading": "Defective or damaged products",
+            "size": "h3"
+          }
+        },
+        "b-6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Under the Consumer Protection Act (CPA), if a product is defective you may return it within 6 months of delivery and choose a repair, replacement or refund, subject to the product being assessed. If your order arrives damaged, please contact us as soon as possible with your order number and photos.</p>"
+          }
+        },
+        "b-7": {
+          "type": "heading",
+          "settings": {
+            "heading": "How to start a return",
+            "size": "h3"
+          }
+        },
+        "b-8": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>1.</strong> Contact us with your order number and the reason for your return.</p><p><strong>2.</strong> We’ll confirm the next steps and the return address.</p><p><strong>3.</strong> Once we receive and check the item, we’ll process your refund, repair or replacement.</p>"
+          }
+        },
+        "b-9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Refunds",
+            "size": "h3"
+          }
+        },
+        "b-10": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Approved refunds are made to your original payment method. Your bank or card provider may take a few business days to reflect the refund.</p>"
+          }
+        },
+        "b-11": {
+          "type": "page_content",
+          "settings": {}
+        },
+        "b-12": {
+          "type": "button",
+          "settings": {
+            "label": "Start a return",
+            "link": "shopify://pages/contact",
+            "style": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "b-1",
+        "b-2",
+        "b-3",
+        "b-4",
+        "b-5",
+        "b-6",
+        "b-7",
+        "b-8",
+        "b-9",
+        "b-10",
+        "b-11",
+        "b-12"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "card": true,
+        "tight": false,
+        "background": ""
+      }
+    },
+    "faq": {
+      "type": "climora-faq",
+      "blocks": {
+        "q-1": {
+          "type": "question",
+          "settings": {
+            "question": "How long do refunds take?",
+            "answer": "<p>Once your return has been received and approved, we process the refund to your original payment method. Your bank may take a few business days to reflect it.</p>"
+          }
+        },
+        "q-2": {
+          "type": "question",
+          "settings": {
+            "question": "My order arrived damaged — what should I do?",
+            "answer": "<p>Contact us as soon as possible with your order number and photos of the damage.</p>"
+          }
+        },
+        "q-3": {
+          "type": "question",
+          "settings": {
+            "question": "How do I contact you?",
+            "answer": "<p>Use the form on our <a href=\"/pages/contact\" title=\"Contact\">Contact</a> page and we’ll reply as soon as possible during business hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q-1",
+        "q-2",
+        "q-3"
+      ],
+      "settings": {
+        "eyebrow": "Returns FAQ",
+        "heading": "Returns questions",
+        "text": "",
+        "button_label": "Contact us",
+        "button_link": "shopify://pages/contact",
+        "open_first": false,
+        "background": "section--mist"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "summary",
+    "faq"
+  ]
+}

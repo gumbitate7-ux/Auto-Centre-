@@ -1,0 +1,61 @@
+<section class="section {{ section.settings.background }}{% if section.settings.tight %} section--tight{% endif %}"{% if section.settings.heading != blank %} aria-labelledby="RichTextTitle-{{ section.id }}"{% endif %}>
+  <div class="container container--narrow">
+    <div class="{% if section.settings.card %}prose-card {% endif %}stack-lg">
+      {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+        <div class="stack">
+          {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          {%- if section.settings.heading != blank -%}<h2 class="h2" id="RichTextTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>{%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            {%- if block.settings.heading != blank -%}
+              {%- if block.settings.size == 'h2' -%}<h2 class="h3" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>{%- else -%}<h3 class="h4" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h3>{%- endif -%}
+            {%- endif -%}
+          {%- when 'text' -%}
+            <div class="rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- when 'page_content' -%}
+            {%- if page.content != blank -%}<div class="rte" {{ block.shopify_attributes }}>{{ page.content }}</div>{%- endif -%}
+          {%- when 'delivery_note' -%}
+            <div {{ block.shopify_attributes }}>{% render 'delivery-note', compact: true %}</div>
+          {%- when 'button' -%}
+            {%- if block.settings.label != blank -%}
+              <div {{ block.shopify_attributes }}><a class="btn btn--{{ block.settings.style }}" href="{{ block.settings.link | default: routes.root_url }}">{{ block.settings.label | escape }}</a></div>
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "div",
+  "class": "section-rich-text",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "checkbox", "id": "card", "label": "Display as card", "default": false },
+    { "type": "checkbox", "id": "tight", "label": "Compact spacing", "default": false },
+    { "type": "select", "id": "background", "label": "Background", "default": "", "options": [{ "value": "", "label": "White" }, { "value": "section--mist", "label": "Mist" }, { "value": "section--ice", "label": "Ice gradient" }] }
+  ],
+  "blocks": [
+    { "type": "heading", "name": "Heading", "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Heading" }, { "type": "select", "id": "size", "label": "Size", "default": "h2", "options": [{ "value": "h2", "label": "Large" }, { "value": "h3", "label": "Small" }] }] },
+    { "type": "text", "name": "Text", "settings": [{ "type": "richtext", "id": "text", "label": "Text", "default": "<p>Share information about your brand, products or policies.</p>" }] },
+    { "type": "page_content", "name": "Page content", "limit": 1, "settings": [{ "type": "paragraph", "content": "Shows the content written in Shopify Admin → Online Store → Pages." }] },
+    { "type": "delivery_note", "name": "Delivery message", "limit": 1, "settings": [] },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Learn more" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "select", "id": "style", "label": "Style", "default": "primary", "options": [{ "value": "primary", "label": "Primary" }, { "value": "secondary", "label": "Secondary" }] }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Rich text", "blocks": [{ "type": "text" }] }]
+}
+{% endschema %}

@@ -1,0 +1,183 @@
+{%- comment -%}
+  Primary navigation, mobile menu drawer and search dialog.
+  Uses the menu chosen in the theme editor; falls back to the CLIMORA default
+  navigation so every link works before menus are configured in Shopify Admin.
+{%- endcomment -%}
+{%- liquid
+  assign menu = section.settings.menu
+  assign use_fallback = true
+  if menu != blank and menu.links.size > 0
+    assign use_fallback = false
+  endif
+  assign fallback = 'Home|' | append: routes.root_url
+  assign fallback = fallback | append: ';Shop All|' | append: routes.all_products_collection_url
+  assign fallback = fallback | append: ';Sleep Cooling|' | append: routes.collections_url | append: '/sleep-cooling'
+  assign fallback = fallback | append: ';Portable Cooling|' | append: routes.collections_url | append: '/portable-cooling'
+  assign fallback = fallback | append: ';Our Story|/pages/about'
+  assign fallback = fallback | append: ';Contact|/pages/contact'
+  assign fallback_links = fallback | split: ';'
+-%}
+
+<div class="site-header" data-header>
+  <header class="header">
+    <div class="container header__inner">
+      <div class="header__left">
+        <button type="button" class="icon-btn" data-drawer-open="MobileMenu" aria-controls="MobileMenu" aria-expanded="false" aria-label="{{ 'general.menu' | t }}">
+          {%- render 'icon', name: 'menu' -%}
+        </button>
+      </div>
+
+      <a class="header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }} – {{ 'general.home' | t }}">
+        {%- if settings.logo != blank -%}
+          {%- assign logo_w = section.settings.logo_width -%}
+          {%- assign logo_style = 'width:' | append: logo_w | append: 'px' -%}
+          {{ settings.logo | image_url: width: 480 | image_tag: width: logo_w, alt: shop.name, loading: 'eager', style: logo_style }}
+        {%- else -%}
+          <span class="wordmark">{% render 'climora-art', kind: 'mark' %}<span>CLIMORA</span></span>
+        {%- endif -%}
+      </a>
+
+      <nav class="nav" aria-label="{{ 'general.primary_navigation' | t }}">
+        <ul class="nav__list" role="list">
+          {%- if use_fallback -%}
+            {%- for entry in fallback_links -%}
+              {%- assign parts = entry | split: '|' -%}
+              <li><a class="nav__link" href="{{ parts[1] }}"{% if request.path == parts[1] %} aria-current="page"{% endif %}>{{ parts[0] }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for link in menu.links -%}
+              <li class="nav__item{% if link.links.size > 0 %} nav__item--has-children{% endif %}">
+                <a class="nav__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+                {%- if link.links.size > 0 -%}
+                  <ul class="nav__dropdown" role="list">
+                    {%- for child in link.links -%}
+                      <li><a href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>{{ child.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a href="{{ routes.search_url }}" class="icon-btn" data-search-open aria-controls="SearchModal" aria-expanded="false" aria-label="{{ 'general.search' | t }}">
+          {%- render 'icon', name: 'search' -%}
+        </a>
+        {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
+          <a href="{{ routes.account_url }}" class="icon-btn icon-btn--account" aria-label="{{ 'general.account' | t }}">
+            {%- render 'icon', name: 'account' -%}
+          </a>
+        {%- endif -%}
+        <a href="{{ routes.cart_url }}" class="icon-btn" data-cart-open aria-controls="CartDrawer" aria-label="{{ 'cart.open_cart' | t: count: cart.item_count }}">
+          {%- render 'icon', name: 'cart' -%}
+          <span class="cart-count" data-cart-count-bubble data-count="{{ cart.item_count }}">{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}</span>
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div id="MobileMenu" class="drawer drawer--left" aria-hidden="true">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.menu' | t }}" tabindex="-1">
+    <div class="drawer__head">
+      <span class="wordmark">{% render 'climora-art', kind: 'mark' %}<span>CLIMORA</span></span>
+      <button type="button" class="icon-btn" data-drawer-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+    </div>
+    <div class="drawer__body">
+      <nav aria-label="{{ 'general.mobile_navigation' | t }}">
+        <ul class="mobile-nav__list" role="list">
+          {%- if use_fallback -%}
+            {%- for entry in fallback_links -%}
+              {%- assign parts = entry | split: '|' -%}
+              <li><a class="mobile-nav__link" href="{{ parts[1] }}"{% if request.path == parts[1] %} aria-current="page"{% endif %}>{{ parts[0] }} {% render 'icon', name: 'arrow-right' %}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for link in menu.links -%}
+              <li>
+                <a class="mobile-nav__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title | escape }} {% render 'icon', name: 'arrow-right' %}</a>
+                {%- if link.links.size > 0 -%}
+                  <ul class="mobile-nav__sub" role="list">
+                    {%- for child in link.links -%}
+                      <li><a href="{{ child.url }}">{{ child.title | escape }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
+        </ul>
+      </nav>
+      <div class="mobile-nav__meta">
+        <a href="{{ routes.search_url }}" data-search-open>{% render 'icon', name: 'search' %} {{ 'general.search' | t }}</a>
+        {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
+          <a href="{{ routes.account_url }}">{% render 'icon', name: 'account' %} {{ 'general.account' | t }}</a>
+        {%- endif -%}
+        {%- assign contact_email = settings.contact_email | default: shop.email -%}
+        {%- if contact_email != blank -%}
+          <a href="mailto:{{ contact_email }}">{% render 'icon', name: 'mail' %} {{ contact_email }}</a>
+        {%- endif -%}
+        <p>{{ settings.delivery_short | default: 'Delivered by Aramex · 5–10 business days' | escape }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="SearchModal" class="search-modal" aria-hidden="true" data-search-modal>
+  <div class="search-modal__overlay" data-search-close></div>
+  <div class="search-modal__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.search' | t }}">
+    <div class="container container--narrow">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form" data-predictive-form>
+        <div class="search-form__field">
+          {%- render 'icon', name: 'search' -%}
+          <label class="visually-hidden" for="SearchModalInput">{{ 'search.placeholder' | t }}</label>
+          <input
+            id="SearchModalInput"
+            class="search-form__input"
+            type="search"
+            name="q"
+            placeholder="{{ 'search.placeholder' | t }}"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            role="combobox"
+            aria-expanded="false"
+            aria-controls="predictive-search-results"
+            aria-autocomplete="list"
+            data-predictive-input
+          >
+          <input type="hidden" name="options[prefix]" value="last">
+        </div>
+        <button type="button" class="icon-btn" data-search-close aria-label="{{ 'general.close' | t }}">{% render 'icon', name: 'close' %}</button>
+      </form>
+      <div data-predictive-target aria-live="polite">
+        <div class="predictive">
+          <div class="predictive__group">
+            <p class="predictive__heading">{{ 'search.popular' | t }}</p>
+            <div class="predictive__suggest">
+              <a class="chip" href="{{ routes.search_url }}?q=cooling+mattress+topper">{{ 'search.popular_topper' | t }}</a>
+              <a class="chip" href="{{ routes.search_url }}?q=cooling+pillowcase">{{ 'search.popular_pillowcase' | t }}</a>
+              <a class="chip" href="{{ routes.search_url }}?q=solar+rechargeable+fan">{{ 'search.popular_fan' | t }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu", "info": "If the menu is empty, the CLIMORA default navigation is shown." },
+    { "type": "range", "id": "logo_width", "label": "Logo width", "min": 80, "max": 240, "step": 10, "unit": "px", "default": 140, "info": "Upload the logo in Theme settings → Brand." },
+    { "type": "checkbox", "id": "show_account", "label": "Show account icon", "default": true }
+  ]
+}
+{% endschema %}

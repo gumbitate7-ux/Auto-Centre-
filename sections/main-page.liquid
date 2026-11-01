@@ -1,0 +1,26 @@
+{%- comment -%} Default Shopify page content (used by any page without a custom template). {%- endcomment -%}
+<div class="page-hero">
+  <div class="container container--narrow">
+    <nav class="breadcrumbs" aria-label="{{ 'general.breadcrumbs' | t }}">
+      <ol>
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><span aria-current="page">{{ page.title | escape }}</span></li>
+      </ol>
+    </nav>
+    <h1 class="page-hero__title">{{ page.title | escape }}</h1>
+  </div>
+</div>
+<div class="section section--tight">
+  <div class="container container--narrow">
+    <div class="{% if section.settings.card %}prose-card {% endif %}rte">{{ page.content }}</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page content",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": [{ "type": "checkbox", "id": "card", "label": "Display content as card", "default": false }]
+}
+{% endschema %}

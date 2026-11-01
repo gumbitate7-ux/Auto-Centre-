@@ -1,0 +1,34 @@
+<section class="hero" aria-labelledby="NotFoundTitle">
+  <div class="container hero__inner" style="min-height:auto">
+    <div class="hero__content">
+      <p class="eyebrow">{{ 'not_found.eyebrow' | t }}</p>
+      <h1 class="h1" id="NotFoundTitle">{{ 'not_found.title' | t }}</h1>
+      <p class="hero__text">{{ 'not_found.text' | t }}</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">{{ 'general.shop_all' | t }} {% render 'icon', name: 'arrow-right' %}</a>
+        <a class="btn btn--secondary" href="{{ routes.root_url }}">{{ 'not_found.home' | t }}</a>
+      </div>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form mt-6">
+        <div class="search-form__field">
+          {%- render 'icon', name: 'search' -%}
+          <label class="visually-hidden" for="NotFoundSearch">{{ 'search.placeholder' | t }}</label>
+          <input id="NotFoundSearch" class="search-form__input" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}">
+        </div>
+      </form>
+    </div>
+    <div class="stage">
+      <div class="stage__rings" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="stage__glow" aria-hidden="true"></div>
+      <div class="stage__art">{% render 'climora-art', kind: 'orbit' %}</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404",
+  "tag": "section",
+  "class": "section-404",
+  "settings": []
+}
+{% endschema %}

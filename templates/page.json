@@ -1,0 +1,1 @@
+{ "sections": { "main": { "type": "main-page", "settings": { "card": false } } }, "order": ["main"] }
